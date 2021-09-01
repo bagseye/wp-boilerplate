@@ -1,0 +1,141 @@
+<?php 
+
+$themeName = 'wp-boiler';
+
+if(!function_exists('wp_boiler_setup')) {
+
+    function wp_boiler_setup() {
+        add_theme_support( 'post-thumbnails' );
+
+        add_theme_support( 'title-tag' );
+    
+        add_theme_support(
+            'post-formats',
+            array(
+                'link',
+                'aside',
+                'gallery',
+                'image',
+                'quote',
+                'status',
+                'video',
+                'audio',
+                'chat',
+            )
+        );
+    
+        add_post_type_support( 'page', 'excerpt' );
+    
+        register_nav_menus(
+			array(
+				'primary' => esc_html__( 'Primary menu', $themeName ),
+				'footer'  => __( 'Secondary menu', $themeName ),
+			)
+		);
+    
+        add_theme_support(
+            'html5',
+            array(
+                'comment-form',
+                'comment-list',
+                'gallery',
+                'caption',
+                'style',
+                'script',
+                'navigation-widgets',
+            )
+        );
+    
+        $editor_stylesheet_path = './css/style-editor.css';
+        add_theme_support( 'editor-styles' );
+        add_editor_style( $editor_stylesheet_path );
+    
+        add_theme_support( 'responsive-embeds' );
+        add_theme_support( 'editor-font-sizes' );
+        add_theme_support( 'disable-custom-font-sizes' );
+        add_theme_support( 'disable-custom-colors' );
+        add_theme_support( 'disable-custom-gradients' );
+        add_theme_support( 'editor-gradient-presets', array() );
+        add_theme_support( 'custom-units', array() );
+    
+        $brand1 = '#161616';
+        $brand2 = '#0093ca';
+        $brand3 = '#ffffff';
+        $brand4 = '#f2f5f6';
+    
+        add_theme_support('editor-color-palette', array(
+            array(
+                'name' => esc_html__( 'Brand 1', $themeName ),
+                'slug' => 'brand1',
+                'color' => $brand1,
+            ),
+            array(
+                'name' => esc_html__( 'Brand 2', $themeName ),
+                'slug' => 'brand2',
+                'color' => $brand2,
+            ),
+            array(
+                'name' => esc_html__( 'Brand 3', $themeName ),
+                'slug' => 'brand3',
+                'color' => $brand3,
+            ),
+            array(
+                'name' => esc_html__( 'Brand 4', $themeName ),
+                'slug' => 'brand4',
+                'color' => $brand4,
+            ),
+        ));
+    }
+}
+add_action('after_setup_theme', 'wp_boiler_setup');
+
+require get_template_directory() . '/classes/class-strut-svg-icons.php';
+require get_template_directory() . '/inc/template-functions.php';
+require get_template_directory() . '/inc/menu-functions.php';
+require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/inc/allowed-blocks.php';
+
+function wp_boiler_block_additional_styles_enqueue() {
+    /**
+	 * Adds new styling options to blocks in the sidebar
+     * Also removes some default style options from blocks
+	 *
+	 */
+    wp_enqueue_script(
+        'wp-boiler-block-additonal-styles-script', get_template_directory_uri() . '/js/wp-boiler-block-additional-styles.js', array('wp-blocks', 'wp-dom-ready', 'wp-edit-post')
+    );
+
+}
+add_action( 'enqueue_block_editor_assets', 'wp_boiler_block_additional_styles_enqueue' );
+
+
+function wp_boiler_the_html_classes() {
+    /**
+	 * Filters the classes for the main <html> element.
+	 *
+	 */
+    $classes = apply_filters( 'wp_boiler_html_classes', '' );
+    if( !$classes ) {
+        return;
+    }
+    echo 'class="' . esc_attr( $classes ) . '"';
+}
+
+
+function wp_boiler_add_ie_class() {
+    ?>
+    <script>
+    if ( -1 !== navigator.userAgent.indexOf( 'MSIE' ) || -1 !== navigator.appVersion.indexOf( 'Trident/' ) ) {
+        document.body.classList.add('is-IE');
+    }
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'wp_boiler_add_ie_class' );
+
+
+// Remove the basic block styles
+function remove_wp_block_library_css(){
+    wp_dequeue_style( 'wp-block-library' );
+}
+add_action( 'wp_enqueue_scripts', 'remove_wp_block_library_css' );

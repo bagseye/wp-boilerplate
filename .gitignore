@@ -1,0 +1,11 @@
+.DS_Store 
+node_modules 
+Gulpfile.babel.min.js 
+
+# ignore gulp minified css, will always conflict 
+*.map
+css/atf.css
+css/main.css 
+
+*.swp 
+.idea
