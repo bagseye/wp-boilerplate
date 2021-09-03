@@ -1,10 +1,12 @@
 <?php 
 
-$themeName = 'wp-boiler';
+define('THEME_NAME', 'wpboiler');
 
-if(!function_exists('wp_boiler_setup')) {
+require_once get_template_directory() . '/classes/class-wpboiler-inliner.php';
 
-    function wp_boiler_setup() {
+if(!function_exists('wpboiler_setup')) {
+
+    function wpboiler_setup() {
         add_theme_support( 'post-thumbnails' );
 
         add_theme_support( 'title-tag' );
@@ -28,8 +30,8 @@ if(!function_exists('wp_boiler_setup')) {
     
         register_nav_menus(
 			array(
-				'primary' => esc_html__( 'Primary menu', $themeName ),
-				'footer'  => __( 'Secondary menu', $themeName ),
+				'primary' => esc_html__( 'Primary menu', THEME_NAME ),
+				'footer'  => __( 'Secondary menu', THEME_NAME ),
 			)
 		);
     
@@ -65,56 +67,56 @@ if(!function_exists('wp_boiler_setup')) {
     
         add_theme_support('editor-color-palette', array(
             array(
-                'name' => esc_html__( 'Brand 1', $themeName ),
+                'name' => esc_html__( 'Brand 1', THEME_NAME ),
                 'slug' => 'brand1',
                 'color' => $brand1,
             ),
             array(
-                'name' => esc_html__( 'Brand 2', $themeName ),
+                'name' => esc_html__( 'Brand 2', THEME_NAME ),
                 'slug' => 'brand2',
                 'color' => $brand2,
             ),
             array(
-                'name' => esc_html__( 'Brand 3', $themeName ),
+                'name' => esc_html__( 'Brand 3', THEME_NAME ),
                 'slug' => 'brand3',
                 'color' => $brand3,
             ),
             array(
-                'name' => esc_html__( 'Brand 4', $themeName ),
+                'name' => esc_html__( 'Brand 4', THEME_NAME ),
                 'slug' => 'brand4',
                 'color' => $brand4,
             ),
         ));
     }
 }
-add_action('after_setup_theme', 'wp_boiler_setup');
+add_action('after_setup_theme', 'wpboiler_setup');
 
-require get_template_directory() . '/classes/class-strut-svg-icons.php';
+require get_template_directory() . '/classes/class-wpboiler-svg-icons.php';
 require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/menu-functions.php';
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/allowed-blocks.php';
 
-function wp_boiler_block_additional_styles_enqueue() {
+function wpboiler_block_additional_styles_enqueue() {
     /**
 	 * Adds new styling options to blocks in the sidebar
      * Also removes some default style options from blocks
 	 *
 	 */
     wp_enqueue_script(
-        'wp-boiler-block-additonal-styles-script', get_template_directory_uri() . '/js/wp-boiler-block-additional-styles.js', array('wp-blocks', 'wp-dom-ready', 'wp-edit-post')
+        'wpboiler-block-additonal-styles-script', get_template_directory_uri() . '/js/wpboiler-block-additional-styles.js', array('wp-blocks', 'wp-dom-ready', 'wp-edit-post')
     );
 
 }
-add_action( 'enqueue_block_editor_assets', 'wp_boiler_block_additional_styles_enqueue' );
+add_action( 'enqueue_block_editor_assets', 'wpboiler_block_additional_styles_enqueue' );
 
 
-function wp_boiler_the_html_classes() {
+function wpboiler_the_html_classes() {
     /**
 	 * Filters the classes for the main <html> element.
 	 *
 	 */
-    $classes = apply_filters( 'wp_boiler_html_classes', '' );
+    $classes = apply_filters( 'wpboiler_html_classes', '' );
     if( !$classes ) {
         return;
     }
@@ -122,7 +124,7 @@ function wp_boiler_the_html_classes() {
 }
 
 
-function wp_boiler_add_ie_class() {
+function wpboiler_add_ie_class() {
     ?>
     <script>
     if ( -1 !== navigator.userAgent.indexOf( 'MSIE' ) || -1 !== navigator.appVersion.indexOf( 'Trident/' ) ) {
@@ -131,7 +133,7 @@ function wp_boiler_add_ie_class() {
     </script>
     <?php
 }
-add_action( 'wp_footer', 'wp_boiler_add_ie_class' );
+add_action( 'wp_footer', 'wpboiler_add_ie_class' );
 
 
 // Remove the basic block styles
