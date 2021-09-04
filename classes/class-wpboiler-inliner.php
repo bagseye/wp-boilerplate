@@ -9,27 +9,49 @@ class WpboilerInliner {
     function __construct() {
         add_action( 'init', array(&$this, 'init') );
         add_action( 'wp_head', array(&$this, 'addCriticalCss') );
-        // add_action( 'wp_head', array(&$this, 'addCriticalJs') );
-        add_action( 'get_footer', array(&$this, 'addGeneralCss') );
+        add_action( 'wp_footer', array(&$this, 'addGeneralCss') );
     }
-
-    // function addCriticalJs() {
-        // wp_enqueue_script('wpboiler-critical-js', get_template_directory_uri() . '/js/atf.min.js', array(), CACHE_VERSION, false);
-    // }
-
-    
 
     // This will add the critical CSS to the header
     function addCriticalCss() {
-        wp_enqueue_style( 'wpboiler-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,200;1,300&display=swap', array(), CACHE_VERSION, 'all' );
+        // Set to not load in the admin as this will 'break' it
+        if(!is_admin()) {
+            $criticalFonts = '<link rel="preconnect" href="https://fonts.googleapis.com">
+                              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                              <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,300&display=swap" rel="stylesheet"> ';
+    
+            $criticalCSSContent = file_get_contents( get_template_directory_uri() . '/css/atf.css' );
+            $criticalCSS = "<style type='text/css'>
+                                <!-- BEGIN CRITICAL STYLES -->
+                                {$criticalCSSContent}
+                                <!-- END CRITICAL STYLES -->
+                            </style>";
 
-        $criticalCSS = file_get_contents( get_template_directory_uri() . '/css/atf.min.css' );
-        echo "<style type='text/css'>{$criticalCSS}</style>";
+            echo $criticalFonts . $criticalCSS;
+
+        }
     }
 
     // General styles, these will be added in the footer
     function addGeneralCss() {
-        wp_enqueue_style( 'wpboiler-general-styles', get_template_directory_uri() . '/css/general.min.css', array(), CACHE_VERSION, 'all' );
+
+        // Add the filename to be added to the footer(below the fold) here
+        // Add files in their correct cascade order
+        // e.g filename.css
+        // filename.min.css 
+        // subdirectory/filename.css
+        $generalCssFileName = array(
+            'general.css',
+            'type.css',
+        );
+
+        foreach($generalCssFileName as $cssFileName) {
+            $linkFormat = '<link rel="stylesheet" href="' . get_template_directory_uri() . '/css/%s?ver=%s" />';
+        
+            $cssLink = sprintf($linkFormat, $cssFileName, CACHE_VERSION);
+
+            echo $cssLink;
+        }
     }
 
     function init() {
@@ -59,7 +81,7 @@ class WpboilerInliner {
         // Removes feed links 
         remove_action( 'wp_head', 'feed_links', 2 );
 
-        // Removes comments feed 
+        // // Removes comments feed 
         remove_action( 'wp_head', 'feed_links_extra', 3 );
 
         /**
@@ -71,7 +93,7 @@ class WpboilerInliner {
         function disable_emojis_tinymce( $plugins ) {
 
             if( is_array( $plugins ) ) {
-                array_diff( $plugins, array( 'wpemoji' ) );
+                return array_diff( $plugins, array( 'wpemoji' ) );
             } else {
                 return array();
             }
@@ -96,16 +118,12 @@ class WpboilerInliner {
 
             return $urls;
 
-        }  
+        }
 
+        // Load JS files
         wp_enqueue_script('wpboiler-critical-js', get_template_directory_uri() . '/js/atf.min.js', array(), CACHE_VERSION, false);
-
-
-        // function addGeneralJs() {
-            wp_enqueue_script('wpboiler-general-js', get_template_directory_uri() . '/js/general.min.js', array(), CACHE_VERSION, true);
-        // }
-
-        
+        wp_enqueue_script('wpboiler-general-js', get_template_directory_uri() . '/js/general.min.js', array(), CACHE_VERSION, true);
+ 
     }
 
 }
