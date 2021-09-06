@@ -125,7 +125,7 @@
 											className: mediaID ? 'image-button' : 'button button-large',
 											onClick: obj.open,
 										},
-										!mediaID ? __( 'Upload Image', 'cta' ) : __( 'Change Image', 'cta' )
+										!mediaID ? __( 'Upload Image', 'cta' ) : el( 'img', { src: mediaURL } )
 									);
 								},
 							}
@@ -198,21 +198,62 @@
 			);
 		},
 
-		/**
-		 * The save function defines the way in which the different attributes should be combined
-		 * into the final markup, which is then serialized by the block editor into `post_content`.
-		 *
-		 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
-		 *
-		 * @return {WPElement} Element to render.
-		 */
-		save: function() {
-			// return el(
-			// 	'p',
-			// 	useBlockProps.save(),
-			// 	__( 'Call to Action – hello from the saved content!', 'cta' )
-			// );
-			return null;
+		save: function(props) {
+			const { attributes } = props;
+			const { category, heading, subheading, mediaID, mediaURL } = attributes;
+
+			return el(
+				'section',
+				{ className: 'cta' },
+
+				el(
+					'div',
+					{ className: 'cta__container' },
+
+					el(
+						RichText.Content, {
+							tagName: 'h3',
+							className: 'cta__heading--category',
+							value: category,
+						}
+					),
+
+					el(
+						RichText.Content, {
+							tagName: 'h2',
+							className: 'cta__heading',
+							value: heading,
+						}
+					),
+
+					el(
+						RichText.Content, {
+							tagName: 'h3',
+							className: 'cta__heading--sub',
+							value: subheading
+						}
+					),
+
+					el(
+						InnerBlocks.Content, {},
+					),
+
+					mediaID ? el(
+						'div',
+						{ className: 'cta__container--media' },
+
+						el(
+							'img',
+							{
+								src: mediaURL
+							}
+						)
+
+					) : ''
+					
+				)
+			)
+
 		},
 	} );
 }(
