@@ -13,19 +13,14 @@
  * @package           wpboiler-core
  */
 
-/**
- * Registers all block assets so that they can be enqueued through the block editor
- * in the corresponding context.
- *
- * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/applying-styles-with-stylesheets/
- */
-function wpboiler_core_cta_block_init() {
-	$dir = __DIR__;
 
-	$index_js = 'index.js';
+function wpboiler_core_cta_block_init() {
+	$dir = get_template_directory() . '/gutenberg';
+
+	$index_js = 'cta/index.js';
 	wp_register_script(
 		'wpboiler-core-cta-block-editor',
-		plugins_url( $index_js, __FILE__ ),
+		get_template_directory_uri() . "/gutenberg/$index_js",
 		array(
 			'wp-block-editor',
 			'wp-blocks',
@@ -36,18 +31,18 @@ function wpboiler_core_cta_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-cta-block-editor', 'cta' );
 
-	$editor_css = 'editor.css';
+	$editor_css = 'cta/editor.css';
 	wp_register_style(
 		'wpboiler-core-cta-block-editor',
-		plugins_url( $editor_css, __FILE__ ),
+		get_template_directory_uri() . "/gutenberg/$editor_css",
 		array(),
 		filemtime( "$dir/$editor_css" )
 	);
 
-	$style_css = 'style.css';
+	$style_css = 'cta/style.css';
 	wp_register_style(
 		'wpboiler-core-cta-block',
-		plugins_url( $style_css, __FILE__ ),
+		get_template_directory_uri() . "/gutenberg/$style_css",
 		array(),
 		filemtime( "$dir/$style_css" )
 	);
