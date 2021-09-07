@@ -29,3 +29,4 @@
 
 include_once(TEMPLATEPATH . '/gutenberg/flexiblock/flexiblock.php');
 include_once(TEMPLATEPATH . '/gutenberg/cta/cta.php');
+include_once(TEMPLATEPATH . '/gutenberg/card-group/card-group.php');
