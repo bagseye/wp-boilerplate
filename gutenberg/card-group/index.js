@@ -37,6 +37,24 @@
 				selector: 'img.cardgroup__background',
 				attribute: 'src',
 			},
+			title: {
+				type: 'string',
+				source: 'text',
+				selector: 'h2.cardgroup__heading--title',
+				default: ''
+			},
+			pretitle: {
+				type: 'string',
+				source: 'text',
+				selector: 'h3.cardgroup__heading--pre',
+				default: '',
+			},
+			introduction: {
+				type: 'string',
+				source: 'text',
+				selector: 'p.cardgroup__introduction',
+				default: '',
+			},
 		},
 
 		edit: function(props) {
@@ -46,97 +64,219 @@
 				marginselect,
 				mediaID,
 				mediaURL,
+				title,
+				pretitle,
+				introduction,
 			} = attributes;
 
 			const onChangeMarginSelect = value => setAttributes({ marginselect: value });
-			const onSelectImage = media => setAttributes({ m })
+			const onSelectImage = media => setAttributes({ mediaURL: media.url, mediaID: media.id })
 
 			return el(
 				'div',
 				useBlockProps(attributes),
 				
-				// INSPECTOR CONTROL BEGIN
+					// INSPECTOR CONTROL BEGIN
+					el(
+						InspectorControls,
+						null,
+
+						el(
+						PanelBody, {
+							title: 'Margins'
+						},
+
+						el(
+							RadioControl,
+							{
+								selected: marginselect,
+								options: [
+									{
+										label: 'No Margins',
+										value: 'margins__none',
+									},
+									{
+										label: 'Top & Bottom Margins',
+										value: 'margins__topBottom',
+									},
+									{
+										label: 'Top Margin Only',
+										value: 'margins__top',
+									},
+									{
+										label: 'Bottom Margin Only',
+										value: 'margins__bottom',
+									},
+								],
+								onChange: onChangeMarginSelect
+							}
+						)
+					),
+
+					// IMAGE UPLOAD BEGIN
+					el(
+						PanelBody, {
+							title: 'Background Image',
+						},
+
+						el(
+							MediaUpload, {
+								onSelect: onSelectImage,
+								allowedTypes: 'image',
+								value: mediaID,
+								render: obj => {
+									return el(
+										Button, {
+											className: 'components-button is-primary',
+											onClick: obj.open,
+										},
+										!mediaID ? __( 'Upload Image', 'card-group' ) : __( 'Replace Image', 'card-group' )
+									)
+								}
+							}
+						),
+
+						mediaID ? el(
+							Button, {
+								className: 'components-button is-tertiary',
+								style: { marginLeft: '5px' },
+								onClick: () => setAttributes({ mediaID: '', mediaURL: '' })
+							},
+							'Remove Image'
+						) : ''
+					)
+					// IMAGE UPLOAD END
+				),
+				// INSPECTOR CONTROL END
+
+				// PREVIEW AREA BEGIN
 				el(
-					InspectorControls,
-					null,
+					'div',
+					{ className: 'cardgroup__container--title' },
 
 					el(
-					PanelBody, {
-						title: 'Margins'
-					},
+						RichText, {
+							tagName: 'h3',
+							placeholder: 'Add a pre-title here...',
+							className: 'cardgroup__heading cardgroup__heading--pre',
+							value: ( pretitle ? pretitle : '' ),
+							onChange: value => setAttributes({ pretitle: value }),
+						}
+					),
 
 					el(
-						RadioControl,
-						{
-							selected: marginselect,
-							options: [
-								{
-									label: 'No Margins',
-									value: 'margins__none',
-								},
-								{
-									label: 'Top & Bottom Margins',
-									value: 'margins__topBottom',
-								},
-								{
-									label: 'Top Margin Only',
-									value: 'margins__top',
-								},
-								{
-									label: 'Bottom Margin Only',
-									value: 'margins__bottom',
-								},
-							],
-							onChange: onChangeMarginSelect
+						RichText, {
+							tagName: 'h2',
+							placeholder: 'Add a title here...',
+							className: 'cardgroup__heading cardgroup__heading--title',
+							value: ( title ? title : '' ),
+							onChange: value => setAttributes({ title: value }),
+						}
+					),
+
+					el(
+						RichText, {
+							tagName: 'p',
+							placeholder: 'Enter introduction text here...',
+							className: 'cardgroup__introduction',
+							value: ( introduction ? introduction : '' ),
+							onChange: value => setAttributes({ introduction: value })
+						}
+					),
+				),
+
+				el(
+					'div',
+					{ className: 'cardgroup__container' },
+
+					el(
+						InnerBlocks, {
+							allowedBlocks: allowedBlocks
 						}
 					)
 				),
 
-				// IMAGE UPLOAD BEGIN
-				el(
-					PanelBody, {
-						title: 'Background Image',
-					},
+				mediaURL ? el(
+					'div',
+					{ className: 'cardgroup__container--media' },
 
 					el(
-						MediaUpload, {
-							onSelect: onSelectImage,
-							allowedTypes: 'image',
-							value: mediaID,
-							render: obj => {
-								return el(
-									Button, {
-										className: 'components-button is-primary',
-										onClick: obj.open,
-									},
-									!mediaID ? __( 'Upload Image', 'card-group' ) : __( 'Replace Image', 'card-group' )
-								)
-							}
+						'img',
+						{
+							className: 'cardgroup__background',
+							src: mediaURL
 						}
 					),
-
-					mediaID ? el(
-						Button, {
-							className: 'components-button is-tertiary',
-							style: { marginLeft: '5px' },
-							onClick: () => setAttributes({ mediaID: '', mediaURL: '' })
-						},
-						'Remove Image'
-					) : ''
-				)
-				// IMAGE UPLOAD END
-			),
-			// INSPECTOR CONTROL END
-
-				
+				) : ''
+				// PREVIEW AREA END
 			);
 		},
 
-		save: function() {
+		save: function(props) {
+
+			const { attributes } = props;
+			const { 
+				marginselect,
+				pretitle,
+				title,
+				introduction,
+			} = attributes;
+
 			return el(
-				'p',
+				'section',
 				useBlockProps.save(),
-				__( 'Card Group – hello from the saved content!', 'card-group' )
+				{ className: `cardgroup ${marginselect}` },
+
+				el(
+					'div',
+					{ className: 'cardgroup__container--title' },
+
+					el(
+						RichText.Content, {
+							tagName: 'h3',
+							className: 'cardgroup__heading cardgroup__heading--pre',
+							value: pretitle,
+						}
+					),
+
+					el(
+						RichText.Content, {
+							tagName: 'h2',
+							className: 'cardgroup__heading cardgroup__heading--title',
+							value: title,
+						}
+					),
+
+					el(
+						RichText.Content, {
+							tagName: 'p',
+							className: 'cardgroup__introduction',
+							value: introduction,
+						}
+					),
+				),
+
+				el(
+					'div',
+					{ className: 'cardgroup__container' },
+
+					el(
+						InnerBlocks.Content, {},
+					)
+				),
+
+				mediaURL ? el(
+					'div',
+					{ className: 'cardgroup__container--media' },
+
+					el(
+						'img',
+						{
+							className: 'cardgroup__background',
+							src: mediaURL
+						}
+					)
+				) : ''
 			);
 		},
 	} );
