@@ -28,21 +28,28 @@
 			category: {
 				type: 'string',
 				source: 'text',
-				selector: 'h3',
+				selector: 'h3.cta__heading--category',
+				default: '',
 			},
 			heading: {
 				type: 'string',
 				source: 'text',
-				selector: 'h2',
+				selector: 'h2.cta__heading--main',
+				default: '',
 			},
 			subheading: {
 				type: 'string',
 				source: 'text',
-				selector: 'h3'
+				selector: 'h3.cta__heading--sub',
+				default: '',
 			},
 			marginselect: {
 				type: 'string',
 				default: 'margins__none',
+			},
+			orientationselect: {
+				type: 'string',
+				default: 'cta__text--left',
 			},
 			mediaID: {
 				type: 'number',
@@ -50,7 +57,7 @@
 			mediaURL: {
 				type: 'string',
 				source: 'attribute',
-				select: 'img',
+				selector: 'img.cta__background',
 				attribute: 'src'
 			},
 		},
@@ -59,9 +66,18 @@
 		edit: function(props) {
 
 			const { attributes, setAttributes } = props;
-			const { category, heading, subheading, marginselect, mediaID, mediaURL } = attributes;
+			const { 
+				category, 
+				heading, 
+				subheading, 
+				marginselect,
+				orientationselect, 
+				mediaID, 
+				mediaURL 
+			} = attributes;
 
 			const onChangeMarginSelect = value => setAttributes({ marginselect: value });
+			const onChangeOrientationSelect = value => setAttributes({ orientationselect: value });
 			const onSelectImage = media => setAttributes({ mediaID: media.id, mediaURL: media.url });
 
 			return el(
@@ -107,6 +123,36 @@
 					),
 					// BLOCK MARGIN CONTROLS END
 
+					// BLOCK ORIENTATION CONTROL BEGIN
+					el(
+						PanelBody, {
+							title: 'Text Orientation'
+						},
+
+						el(
+							RadioControl,
+							{
+								selected: orientationselect,
+								options: [
+									{
+										label: 'Text Left',
+										value: 'cta__text--left',
+									},
+									{
+										label: 'Text Right',
+										value: 'cta__text--right',
+									},
+									{
+										label: 'Text Center',
+										value: 'cta__text--center',
+									},
+								],
+								onChange: onChangeOrientationSelect
+							}
+						)
+					),
+					// BLOCK ORIENTATION CONTROL END
+
 					// IMAGE UPLOAD BEGINS
 					el(
 						PanelBody, {
@@ -122,33 +168,42 @@
 								render: obj => {
 									return el(
 										Button, {
-											className: mediaID ? 'image-button' : 'button button-large',
+											className: 'components-button is-primary',
 											onClick: obj.open,
 										},
-										!mediaID ? __( 'Upload Image', 'cta' ) : el( 'img', { src: mediaURL } )
+										!mediaID ? __( 'Upload Image', 'cta' ) : __( 'Replace Image', 'cta' )
 									);
 								},
 							}
 						),
+
+						mediaID ? el(
+							Button, {
+								className: 'components-button is-tertiary',
+								style: {  marginLeft: '5px' },
+								onClick: () => setAttributes({ mediaID: '', mediaURL: '' }),
+							},
+							'Remove Image'
+						) : ''
 					),
 					// IMAGE UPLOAD ENDS
 				),
-				// iNSPECTOR CONTROL END
+				// INSPECTOR CONTROL END
 
 				// PREVIEW AREA STARTS
 				el(
 					'div',
-					{ className: 'block__container' },
+					{ className: 'cta__container' },
 
 					el(
 						'div',
-						{ className: 'block__column' },
+						{ className: 'cta__column' },
 
 						el(
 							RichText, {
 								tagName: 'h3',
 								placeholder: 'Enter a category here...',
-								className: 'block__heading--category',
+								className: 'cta__heading cta__heading--category',
 								value: ( category ? category : '' ),
 								onChange: value => setAttributes({ category: value }),
 							}
@@ -158,7 +213,7 @@
 							RichText, {
 								tagName: 'h2',
 								placeholder: 'Enter a heading here...',
-								className: 'block__heading',
+								className: 'cta__heading cta__heading--main',
 								value: ( heading ? heading : '' ),
 								onChange: value => setAttributes({ heading: value }),
 							}
@@ -168,7 +223,7 @@
 							RichText, {
 								tagName: 'h3',
 								placeholder: 'Enter a subtitle here...',
-								className: 'block__heading--sub',
+								className: 'cta__heading cta__heading--sub',
 								value: ( subheading ? subheading : '' ),
 								onChange: value => setAttributes({ subheading: value }),
 							}
@@ -180,18 +235,20 @@
 							}
 						),
 					),
+				),
 
-					(mediaURL ? el(
-						'div',
-						{ className: 'block__background' },
+				mediaURL ? el(
+					'div',
+					{ className: 'cta__container--media' },
 
-						el(
-							'img',
-							{ src: mediaURL }
-						),
-					) : '')
-					
-				)
+					el(
+						'img',
+						{ 
+							className: 'cta__background',
+							src: mediaURL 
+						}
+					),
+				) : ''
 				
 				// PREVIEW AREA ENDS
 
@@ -200,58 +257,70 @@
 
 		save: function(props) {
 			const { attributes } = props;
-			const { category, heading, subheading, mediaID, mediaURL } = attributes;
+			const { 
+				category, 
+				heading, 
+				subheading, 
+				mediaURL,
+				orientationselect,
+				marginselect, 
+			} = attributes;
 
 			return el(
 				'section',
-				{ className: 'cta' },
+				{ className: `cta ${orientationselect} ${marginselect}` },
 
 				el(
 					'div',
 					{ className: 'cta__container' },
 
 					el(
-						RichText.Content, {
-							tagName: 'h3',
-							className: 'cta__heading--category',
-							value: category,
-						}
-					),
-
-					el(
-						RichText.Content, {
-							tagName: 'h2',
-							className: 'cta__heading',
-							value: heading,
-						}
-					),
-
-					el(
-						RichText.Content, {
-							tagName: 'h3',
-							className: 'cta__heading--sub',
-							value: subheading
-						}
-					),
-
-					el(
-						InnerBlocks.Content, {},
-					),
-
-					mediaID ? el(
 						'div',
-						{ className: 'cta__container--media' },
+						{ className: 'cta__column' },
 
 						el(
-							'img',
-							{
-								src: mediaURL
+							RichText.Content, {
+								tagName: 'h3',
+								className: 'cta__heading cta__heading--category',
+								value: category,
 							}
-						)
+						),
+	
+						el(
+							RichText.Content, {
+								tagName: 'h2',
+								className: 'cta__heading cta__heading--main',
+								value: heading,
+							}
+						),
+	
+						el(
+							RichText.Content, {
+								tagName: 'h3',
+								className: 'cta__heading cta__heading--sub',
+								value: subheading,
+							}
+						),
+	
+						el(
+							InnerBlocks.Content, {},
+						),
+					),
+				),
 
-					) : ''
-					
-				)
+				mediaURL ? el(
+					'div',
+					{ className: 'cta__container--media' },
+
+					el(
+						'img',
+						{
+							className: 'cta__background',
+							src: mediaURL
+						}
+					)
+
+				) : ''
 			)
 
 		},
