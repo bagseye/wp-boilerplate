@@ -1,285 +1,259 @@
-( function( wp ) {
+(function (wp) {
+  var registerBlockType = wp.blocks.registerBlockType;
+  var el = wp.element.createElement;
+  var __ = wp.i18n.__;
 
-	var registerBlockType = wp.blocks.registerBlockType;
-	var el = wp.element.createElement;
-	var __ = wp.i18n.__;
+  const { RadioControl, PanelBody, Button } = wp.components;
+  const {
+    useBlockProps,
+    RichText,
+    InspectorControls,
+    InnerBlocks,
+    MediaUpload,
+  } = wp.blockEditor;
+  const allowedBlocks = ["wpboiler-core/card-group-item"];
 
-	const { RadioControl, PanelBody, Button } = wp.components;
-	const { useBlockProps, RichText, InspectorControls, InnerBlocks, MediaUpload } = wp.blockEditor;
+  registerBlockType("wpboiler-core/card-group", {
+    apiVersion: 2,
+    title: __("Card Group", "card-group"),
+    description: __(
+      "Displays a group of cards. Useful for displaying snippets of information",
+      "card-group"
+    ),
+    category: "design",
+    icon: "columns",
+    supports: {
+      html: false,
+    },
+    attributes: {
+      marginselect: {
+        type: "string",
+        default: "margins__none",
+      },
+      mediaID: {
+        type: "number",
+      },
+      mediaURL: {
+        type: "string",
+        source: "attribute",
+        selector: "img.cardgroup__background",
+        attribute: "src",
+      },
+      title: {
+        type: "string",
+        source: "text",
+        selector: "h2.cardgroup__heading--title",
+        default: "",
+      },
+      pretitle: {
+        type: "string",
+        source: "text",
+        selector: "h3.cardgroup__heading--pre",
+        default: "",
+      },
+      introduction: {
+        type: "string",
+        source: "text",
+        selector: "p.cardgroup__introduction",
+        default: "",
+      },
+    },
 
-	registerBlockType( 'wpboiler-core/card-group', {
+    edit: function (props) {
+      const { attributes, setAttributes } = props;
+      const { marginselect, mediaID, mediaURL, title, pretitle, introduction } =
+        attributes;
 
-		apiVersion: 2,
-		title: __(
-			'Card Group',
-			'card-group'
-		),
-		description: __(
-			'Displays a group of cards. Useful for displaying snippets of information',
-			'card-group'
-		),
-		category: 'design',
-		icon: 'columns',
-		supports: {
-			html: false,
-		},
-		attributes: {
-			marginselect: {
-				type: 'string',
-				default: 'margins__none',
-			},
-			mediaID: {
-				type: 'number',
-			},
-			mediaURL: {
-				type: 'string',
-				source: 'attribute',
-				selector: 'img.cardgroup__background',
-				attribute: 'src',
-			},
-			title: {
-				type: 'string',
-				source: 'text',
-				selector: 'h2.cardgroup__heading--title',
-				default: ''
-			},
-			pretitle: {
-				type: 'string',
-				source: 'text',
-				selector: 'h3.cardgroup__heading--pre',
-				default: '',
-			},
-			introduction: {
-				type: 'string',
-				source: 'text',
-				selector: 'p.cardgroup__introduction',
-				default: '',
-			},
-		},
+      const onChangeMarginSelect = (value) =>
+        setAttributes({ marginselect: value });
+      const onSelectImage = (media) =>
+        setAttributes({ mediaURL: media.url, mediaID: media.id });
 
-		edit: function(props) {
+      return el(
+        "div",
+        useBlockProps(attributes),
 
-			const { attributes, setAttributes } = props;
-			const { 
-				marginselect,
-				mediaID,
-				mediaURL,
-				title,
-				pretitle,
-				introduction,
-			} = attributes;
+        // INSPECTOR CONTROL BEGIN
+        el(
+          InspectorControls,
+          null,
 
-			const onChangeMarginSelect = value => setAttributes({ marginselect: value });
-			const onSelectImage = media => setAttributes({ mediaURL: media.url, mediaID: media.id })
+          el(
+            PanelBody,
+            {
+              title: "Margins",
+            },
 
-			return el(
-				'div',
-				useBlockProps(attributes),
-				
-					// INSPECTOR CONTROL BEGIN
-					el(
-						InspectorControls,
-						null,
+            el(RadioControl, {
+              selected: marginselect,
+              options: [
+                {
+                  label: "No Margins",
+                  value: "margins__none",
+                },
+                {
+                  label: "Top & Bottom Margins",
+                  value: "margins__topBottom",
+                },
+                {
+                  label: "Top Margin Only",
+                  value: "margins__top",
+                },
+                {
+                  label: "Bottom Margin Only",
+                  value: "margins__bottom",
+                },
+              ],
+              onChange: onChangeMarginSelect,
+            })
+          ),
 
-						el(
-						PanelBody, {
-							title: 'Margins'
-						},
+          // IMAGE UPLOAD BEGIN
+          el(
+            PanelBody,
+            {
+              title: "Background Image",
+            },
 
-						el(
-							RadioControl,
-							{
-								selected: marginselect,
-								options: [
-									{
-										label: 'No Margins',
-										value: 'margins__none',
-									},
-									{
-										label: 'Top & Bottom Margins',
-										value: 'margins__topBottom',
-									},
-									{
-										label: 'Top Margin Only',
-										value: 'margins__top',
-									},
-									{
-										label: 'Bottom Margin Only',
-										value: 'margins__bottom',
-									},
-								],
-								onChange: onChangeMarginSelect
-							}
-						)
-					),
+            el(MediaUpload, {
+              onSelect: onSelectImage,
+              allowedTypes: "image",
+              value: mediaID,
+              render: (obj) => {
+                return el(
+                  Button,
+                  {
+                    className: "components-button is-primary",
+                    onClick: obj.open,
+                  },
+                  !mediaID
+                    ? __("Upload Image", "card-group")
+                    : __("Replace Image", "card-group")
+                );
+              },
+            }),
 
-					// IMAGE UPLOAD BEGIN
-					el(
-						PanelBody, {
-							title: 'Background Image',
-						},
+            mediaID
+              ? el(
+                  Button,
+                  {
+                    className: "components-button is-tertiary",
+                    style: { marginLeft: "5px" },
+                    onClick: () => setAttributes({ mediaID: "", mediaURL: "" }),
+                  },
+                  "Remove Image"
+                )
+              : ""
+          )
+          // IMAGE UPLOAD END
+        ),
+        // INSPECTOR CONTROL END
 
-						el(
-							MediaUpload, {
-								onSelect: onSelectImage,
-								allowedTypes: 'image',
-								value: mediaID,
-								render: obj => {
-									return el(
-										Button, {
-											className: 'components-button is-primary',
-											onClick: obj.open,
-										},
-										!mediaID ? __( 'Upload Image', 'card-group' ) : __( 'Replace Image', 'card-group' )
-									)
-								}
-							}
-						),
+        // PREVIEW AREA BEGIN
+        el(
+          "div",
+          { className: "cardgroup__container--title" },
 
-						mediaID ? el(
-							Button, {
-								className: 'components-button is-tertiary',
-								style: { marginLeft: '5px' },
-								onClick: () => setAttributes({ mediaID: '', mediaURL: '' })
-							},
-							'Remove Image'
-						) : ''
-					)
-					// IMAGE UPLOAD END
-				),
-				// INSPECTOR CONTROL END
+          el(RichText, {
+            tagName: "h3",
+            placeholder: "Add a pre-title here...",
+            className: "cardgroup__heading cardgroup__heading--pre",
+            value: pretitle ? pretitle : "",
+            onChange: (value) => setAttributes({ pretitle: value }),
+          }),
 
-				// PREVIEW AREA BEGIN
-				el(
-					'div',
-					{ className: 'cardgroup__container--title' },
+          el(RichText, {
+            tagName: "h2",
+            placeholder: "Add a title here...",
+            className: "cardgroup__heading cardgroup__heading--title",
+            value: title ? title : "",
+            onChange: (value) => setAttributes({ title: value }),
+          }),
 
-					el(
-						RichText, {
-							tagName: 'h3',
-							placeholder: 'Add a pre-title here...',
-							className: 'cardgroup__heading cardgroup__heading--pre',
-							value: ( pretitle ? pretitle : '' ),
-							onChange: value => setAttributes({ pretitle: value }),
-						}
-					),
+          el(RichText, {
+            tagName: "p",
+            placeholder: "Enter introduction text here...",
+            className: "cardgroup__introduction",
+            value: introduction ? introduction : "",
+            onChange: (value) => setAttributes({ introduction: value }),
+          })
+        ),
 
-					el(
-						RichText, {
-							tagName: 'h2',
-							placeholder: 'Add a title here...',
-							className: 'cardgroup__heading cardgroup__heading--title',
-							value: ( title ? title : '' ),
-							onChange: value => setAttributes({ title: value }),
-						}
-					),
+        el(
+          "div",
+          { className: "cardgroup__container" },
 
-					el(
-						RichText, {
-							tagName: 'p',
-							placeholder: 'Enter introduction text here...',
-							className: 'cardgroup__introduction',
-							value: ( introduction ? introduction : '' ),
-							onChange: value => setAttributes({ introduction: value })
-						}
-					),
-				),
+          el(InnerBlocks, {
+            allowedBlocks: allowedBlocks,
+          })
+        ),
 
-				el(
-					'div',
-					{ className: 'cardgroup__container' },
+        mediaURL
+          ? el(
+              "div",
+              { className: "cardgroup__container--media" },
 
-					el(
-						InnerBlocks, {
-							allowedBlocks: allowedBlocks
-						}
-					)
-				),
+              el("img", {
+                className: "cardgroup__background",
+                src: mediaURL,
+              })
+            )
+          : ""
+        // PREVIEW AREA END
+      );
+    },
 
-				mediaURL ? el(
-					'div',
-					{ className: 'cardgroup__container--media' },
+    save: function (props) {
+      const { attributes } = props;
+      const { marginselect, pretitle, title, introduction } = attributes;
 
-					el(
-						'img',
-						{
-							className: 'cardgroup__background',
-							src: mediaURL
-						}
-					),
-				) : ''
-				// PREVIEW AREA END
-			);
-		},
+      return el(
+        "section",
+        useBlockProps.save(),
+        { className: `cardgroup ${marginselect}` },
 
-		save: function(props) {
+        el(
+          "div",
+          { className: "cardgroup__container--title" },
 
-			const { attributes } = props;
-			const { 
-				marginselect,
-				pretitle,
-				title,
-				introduction,
-			} = attributes;
+          el(RichText.Content, {
+            tagName: "h3",
+            className: "cardgroup__heading cardgroup__heading--pre",
+            value: pretitle,
+          }),
 
-			return el(
-				'section',
-				useBlockProps.save(),
-				{ className: `cardgroup ${marginselect}` },
+          el(RichText.Content, {
+            tagName: "h2",
+            className: "cardgroup__heading cardgroup__heading--title",
+            value: title,
+          }),
 
-				el(
-					'div',
-					{ className: 'cardgroup__container--title' },
+          el(RichText.Content, {
+            tagName: "p",
+            className: "cardgroup__introduction",
+            value: introduction,
+          })
+        ),
 
-					el(
-						RichText.Content, {
-							tagName: 'h3',
-							className: 'cardgroup__heading cardgroup__heading--pre',
-							value: pretitle,
-						}
-					),
+        el(
+          "div",
+          { className: "cardgroup__container" },
 
-					el(
-						RichText.Content, {
-							tagName: 'h2',
-							className: 'cardgroup__heading cardgroup__heading--title',
-							value: title,
-						}
-					),
+          el(InnerBlocks.Content, {})
+        ),
 
-					el(
-						RichText.Content, {
-							tagName: 'p',
-							className: 'cardgroup__introduction',
-							value: introduction,
-						}
-					),
-				),
+        mediaURL
+          ? el(
+              "div",
+              { className: "cardgroup__container--media" },
 
-				el(
-					'div',
-					{ className: 'cardgroup__container' },
-
-					el(
-						InnerBlocks.Content, {},
-					)
-				),
-
-				mediaURL ? el(
-					'div',
-					{ className: 'cardgroup__container--media' },
-
-					el(
-						'img',
-						{
-							className: 'cardgroup__background',
-							src: mediaURL
-						}
-					)
-				) : ''
-			);
-		},
-	} );
-}(
-	window.wp
-) );
+              el("img", {
+                className: "cardgroup__background",
+                src: mediaURL,
+              })
+            )
+          : ""
+      );
+    },
+  });
+})(window.wp);
