@@ -1,0 +1,8 @@
+.cardgroupitem {
+    flex: 0 0 calc(33.333% - 27px);
+    
+    &__title,
+    &__content {
+        color: #fff;
+    }
+}

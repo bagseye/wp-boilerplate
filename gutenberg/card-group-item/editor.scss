@@ -1,0 +1,9 @@
+.wp-block-wpboiler-core-card-group-item {
+    flex: 0 0 33.333%;
+    .cardgroupitem {
+        &__title,
+        &__content {
+            color: #fff;
+        }
+    }
+}

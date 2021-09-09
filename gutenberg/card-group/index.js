@@ -66,8 +66,8 @@
 
       const onChangeMarginSelect = (value) =>
         setAttributes({ marginselect: value });
-      const onSelectImage = (media) =>
-        setAttributes({ mediaURL: media.url, mediaID: media.id });
+
+      const onSelectImage = media => setAttributes({ mediaID: media.id, mediaURL: media.url });
 
       return el(
         "div",
@@ -152,41 +152,47 @@
         // PREVIEW AREA BEGIN
         el(
           "div",
-          { className: "cardgroup__container--title" },
-
-          el(RichText, {
-            tagName: "h3",
-            placeholder: "Add a pre-title here...",
-            className: "cardgroup__heading cardgroup__heading--pre",
-            value: pretitle ? pretitle : "",
-            onChange: (value) => setAttributes({ pretitle: value }),
-          }),
-
-          el(RichText, {
-            tagName: "h2",
-            placeholder: "Add a title here...",
-            className: "cardgroup__heading cardgroup__heading--title",
-            value: title ? title : "",
-            onChange: (value) => setAttributes({ title: value }),
-          }),
-
-          el(RichText, {
-            tagName: "p",
-            placeholder: "Enter introduction text here...",
-            className: "cardgroup__introduction",
-            value: introduction ? introduction : "",
-            onChange: (value) => setAttributes({ introduction: value }),
-          })
-        ),
-
-        el(
-          "div",
           { className: "cardgroup__container" },
 
-          el(InnerBlocks, {
-            allowedBlocks: allowedBlocks,
-          })
+          el(
+            "div",
+            { className: "cardgroup__container--title" },
+  
+            el(RichText, {
+              tagName: "h3",
+              placeholder: "Add a pre-title here...",
+              className: "cardgroup__heading cardgroup__heading--pre",
+              value: pretitle ? pretitle : "",
+              onChange: (value) => setAttributes({ pretitle: value }),
+            }),
+  
+            el(RichText, {
+              tagName: "h2",
+              placeholder: "Add a title here...",
+              className: "cardgroup__heading cardgroup__heading--title",
+              value: title ? title : "",
+              onChange: (value) => setAttributes({ title: value }),
+            }),
+  
+            el(RichText, {
+              tagName: "p",
+              placeholder: "Enter introduction text here...",
+              className: "cardgroup__introduction",
+              value: introduction ? introduction : "",
+              onChange: (value) => setAttributes({ introduction: value }),
+            })
+          ),
+  
+          el(
+            "div",
+            { className: "cardgroup__container--content" },
+  
+            el(InnerBlocks, {
+              allowedBlocks: allowedBlocks,
+            })
+          ),
         ),
+        
 
         mediaURL
           ? el(
@@ -205,42 +211,49 @@
 
     save: function (props) {
       const { attributes } = props;
-      const { marginselect, pretitle, title, introduction } = attributes;
+      const { marginselect, pretitle, title, mediaURL, introduction } = attributes;
 
       return el(
         "section",
-        useBlockProps.save(),
+      //   useBlockProps.save(),
         { className: `cardgroup ${marginselect}` },
-
-        el(
-          "div",
-          { className: "cardgroup__container--title" },
-
-          el(RichText.Content, {
-            tagName: "h3",
-            className: "cardgroup__heading cardgroup__heading--pre",
-            value: pretitle,
-          }),
-
-          el(RichText.Content, {
-            tagName: "h2",
-            className: "cardgroup__heading cardgroup__heading--title",
-            value: title,
-          }),
-
-          el(RichText.Content, {
-            tagName: "p",
-            className: "cardgroup__introduction",
-            value: introduction,
-          })
-        ),
 
         el(
           "div",
           { className: "cardgroup__container" },
 
-          el(InnerBlocks.Content, {})
+          el(
+            "div",
+            { className: "cardgroup__container--title" },
+  
+            el(RichText.Content, {
+              tagName: "h3",
+              className: "cardgroup__heading cardgroup__heading--pre",
+              value: pretitle,
+            }),
+  
+            el(RichText.Content, {
+              tagName: "h2",
+              className: "cardgroup__heading cardgroup__heading--title",
+              value: title,
+            }),
+  
+            el(RichText.Content, {
+              tagName: "p",
+              className: "cardgroup__introduction",
+              value: introduction,
+            })
+          ),
+  
+          el(
+            "div",
+            { className: "cardgroup__container--content" },
+  
+            el(InnerBlocks.Content, {})
+          ),
         ),
+
+        
 
         mediaURL
           ? el(

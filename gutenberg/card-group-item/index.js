@@ -63,7 +63,7 @@
       const { title, content } = attributes;
       return el(
         "article",
-        useBlockProps.save(),
+        { className: 'cardgroupitem' },
 
         el(RichText.Content, {
           tagName: "h2",

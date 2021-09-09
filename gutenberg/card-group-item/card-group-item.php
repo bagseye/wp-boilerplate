@@ -10,7 +10,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       card-group-item
  *
- * @package           --wpboiler-core
+ * @package           wpboiler-core
  */
 
 function wpboiler_core_card_group_item_block_init() {
