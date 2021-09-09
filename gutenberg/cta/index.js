@@ -60,6 +60,24 @@
 				selector: 'img.cta__background',
 				attribute: 'src'
 			},
+			mediaAlt: {
+				type: 'string',
+				source: 'attribute',
+				selector: 'img.cta__background',
+				attribute: 'alt'
+			},
+			mediaWidth: {
+				type: 'number',
+				source: 'attribute',
+				selector: 'img.cta__background',
+				attribute: 'width',
+			},
+			mediaHeight: {
+				type: 'number',
+				source: 'attribute',
+				selector: 'img.cta__background',
+				attribute: 'height',
+			},
 		},
 
 
@@ -73,12 +91,23 @@
 				marginselect,
 				orientationselect, 
 				mediaID, 
-				mediaURL 
+				mediaURL,
+				mediaHeight,
+				mediaWidth,
+				mediaAlt,				 
 			} = attributes;
 
 			const onChangeMarginSelect = value => setAttributes({ marginselect: value });
 			const onChangeOrientationSelect = value => setAttributes({ orientationselect: value });
-			const onSelectImage = media => setAttributes({ mediaID: media.id, mediaURL: media.url });
+			const onSelectImage = media => {
+				setAttributes({ 
+					mediaID: media.id, 
+					mediaURL: (media.sizes.cta ? media.sizes.cta.url : media.url),
+					mediaAlt: media.alt,
+					mediaWidth: (media.sizes.cta ? media.sizes.cta.width : media.width),
+					mediaHeight: (media.sizes.cta ? media.sizes.cta.height : media.height),
+				});
+			}
 
 			return el(
 				'div',
@@ -245,7 +274,11 @@
 						'img',
 						{ 
 							className: 'cta__background',
-							src: mediaURL 
+							src: mediaURL,
+							loading: 'lazy',
+							width: mediaWidth,
+							height: mediaHeight,
+							alt: mediaAlt,
 						}
 					),
 				) : ''
@@ -262,6 +295,9 @@
 				heading, 
 				subheading, 
 				mediaURL,
+				mediaAlt,
+				mediaHeight,
+				mediaWidth,
 				orientationselect,
 				marginselect, 
 			} = attributes;
@@ -316,7 +352,11 @@
 						'img',
 						{
 							className: 'cta__background',
-							src: mediaURL
+							src: mediaURL,
+							loading: 'lazy',
+							width: mediaWidth,
+							height: mediaHeight,
+							alt: mediaAlt,
 						}
 					)
 

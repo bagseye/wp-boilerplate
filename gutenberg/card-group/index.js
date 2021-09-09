@@ -39,6 +39,24 @@
         selector: "img.cardgroup__background",
         attribute: "src",
       },
+      mediaAlt: {
+        type: 'string',
+        source: 'attribute',
+        selector: 'img.cta__background',
+        attribute: 'alt'
+      },
+      mediaWidth: {
+        type: 'number',
+        source: 'attribute',
+        selector: 'img.cta__background',
+        attribute: 'width',
+      },
+      mediaHeight: {
+        type: 'number',
+        source: 'attribute',
+        selector: 'img.cta__background',
+        attribute: 'height',
+      },
       title: {
         type: "string",
         source: "text",
@@ -61,13 +79,28 @@
 
     edit: function (props) {
       const { attributes, setAttributes } = props;
-      const { marginselect, mediaID, mediaURL, title, pretitle, introduction } =
-        attributes;
+      const { 
+        marginselect, 
+        mediaID, 
+        mediaURL, 
+        mediaHeight,
+        mediaWidth,
+        mediaAlt,
+        title, 
+        pretitle, 
+        introduction 
+      } = attributes;
 
       const onChangeMarginSelect = (value) =>
         setAttributes({ marginselect: value });
 
-      const onSelectImage = media => setAttributes({ mediaID: media.id, mediaURL: media.url });
+      const onSelectImage = media => setAttributes({ 
+        mediaID: media.id, 
+        mediaURL: (media.sizes.cta ? media.sizes.cta.url : media.url),
+        mediaAlt: media.alt,
+        mediaWidth: (media.sizes.cta ? media.sizes.cta.width : media.width),
+        mediaHeight: (media.sizes.cta ? media.sizes.cta.height : media.height),
+      });
 
       return el(
         "div",
@@ -202,6 +235,10 @@
               el("img", {
                 className: "cardgroup__background",
                 src: mediaURL,
+                loading: 'lazy',
+                width: mediaWidth,
+                height: mediaHeight,
+                alt: mediaAlt,
               })
             )
           : ""
@@ -211,7 +248,16 @@
 
     save: function (props) {
       const { attributes } = props;
-      const { marginselect, pretitle, title, mediaURL, introduction } = attributes;
+      const { 
+        marginselect, 
+        pretitle, 
+        title, 
+        mediaURL, 
+        mediaAlt,
+        mediaHeight,
+        mediaWidth,
+        introduction 
+      } = attributes;
 
       return el(
         "section",
@@ -263,6 +309,10 @@
               el("img", {
                 className: "cardgroup__background",
                 src: mediaURL,
+                loading: 'lazy',
+                width: mediaWidth,
+                height: mediaHeight,
+                alt: mediaAlt,
               })
             )
           : ""
