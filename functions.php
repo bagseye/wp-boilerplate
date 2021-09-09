@@ -7,6 +7,7 @@ require_once get_template_directory() . '/classes/class-wpboiler-inliner.php';
 if(!function_exists('wpboiler_setup')) {
 
     function wpboiler_setup() {
+        add_image_size( 'promo', 600 );
         add_image_size( 'cta', 2000 );
         
         add_theme_support( 'post-thumbnails' );

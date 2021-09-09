@@ -1,0 +1,48 @@
+@import '../../sass/utils/mixins',
+        '../../sass/utils/variables';
+
+.promogroup {
+    position: relative;
+    padding-top: $spacing * 2;
+    padding-bottom: $spacing * 2;
+    // width: 100vw!important;
+    // left: 50%;
+    // right: 50%;
+    // margin-left: -50vw;
+    // margin-right: -50vw;
+
+    @include desktopLarge {
+        padding-top: $spacing * 6;
+        padding-bottom: $spacing * 6;
+    }
+
+    .promogroup__container {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        gap: $spacing * 2;
+
+        @include tablet {
+            max-width: $breakpointTablet;
+        }
+
+        @include tabletLarge {
+            max-width: $breakpointTabletLarge;
+        }
+
+        @include desktop {
+            max-width: $breakpointDesktop;
+        }
+
+        @include desktopLarge {
+            max-width: $breakpointDesktopLarge;
+        }
+
+        &--content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+}

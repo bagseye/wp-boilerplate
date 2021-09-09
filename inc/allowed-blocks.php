@@ -31,3 +31,5 @@ include_once(TEMPLATEPATH . '/gutenberg/flexiblock/flexiblock.php');
 include_once(TEMPLATEPATH . '/gutenberg/cta/cta.php');
 include_once(TEMPLATEPATH . '/gutenberg/card-group/card-group.php');
 include_once(TEMPLATEPATH . '/gutenberg/card-group-item/card-group-item.php');
+include_once(TEMPLATEPATH . '/gutenberg/promo-group/promo-group.php');
+include_once(TEMPLATEPATH . '/gutenberg/promo-group-item/promo-group-item.php');

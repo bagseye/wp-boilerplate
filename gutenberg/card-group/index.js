@@ -42,19 +42,19 @@
       mediaAlt: {
         type: 'string',
         source: 'attribute',
-        selector: 'img.cta__background',
+        selector: 'img.cardgroup__background',
         attribute: 'alt'
       },
       mediaWidth: {
         type: 'number',
         source: 'attribute',
-        selector: 'img.cta__background',
+        selector: 'img.cardgroup__background',
         attribute: 'width',
       },
       mediaHeight: {
         type: 'number',
         source: 'attribute',
-        selector: 'img.cta__background',
+        selector: 'img.cardgroup__background',
         attribute: 'height',
       },
       title: {
