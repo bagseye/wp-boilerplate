@@ -11,6 +11,53 @@
     // margin-left: -50vw;
     // margin-right: -50vw;
 
+    &.columns {
+        &-2 {
+            .promogroup__container {
+                display: flex;
+                flex-wrap: wrap;
+
+                .promogroupitem {
+                    flex: 0 0 50%;
+
+                    &__container {
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+
+        &-3 {
+            .promogroup__container {
+                display: flex;
+                flex-wrap: wrap;
+
+                .promogroupitem {
+                    flex: 0 0 33.333%;
+
+                    &__container {
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+
+        &-4 {
+            .promogroup__container {
+                display: flex;
+                flex-wrap: wrap;
+
+                .promogroupitem {
+                    flex: 0 0 25%;
+
+                    &__container {
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+    }
+
     @include desktopLarge {
         padding-top: $spacing * 6;
         padding-bottom: $spacing * 6;

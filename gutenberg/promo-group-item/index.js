@@ -157,7 +157,7 @@
 						el(
 							'img',
 							{ 
-								className: 'promogroupitem__media--img',
+								className: `promogroupitem__media--img wp-image-${mediaID}`,
 								src: mediaURL,
                   				loading: 'lazy',
                   				width: mediaWidth,
@@ -202,6 +202,7 @@
 				content,
 				mediaURL, 
           		mediaAlt,
+				mediaID,
 				mediaHeight,
 				mediaWidth, 
 			} = attributes;
@@ -221,7 +222,7 @@
 
 						el(
 							'img', { 
-								className: 'promogroupitem__media--img',
+								className: `promogroupitem__media--img wp-image-${mediaID}`,
 								src: mediaURL,
 								loading: 'lazy',
 								width: mediaWidth,

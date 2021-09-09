@@ -16,7 +16,7 @@
 function wpboiler_core_promo_group_block_init() {
 	$dir = get_template_directory() . '/gutenberg';
 
-	$index_js = '/promo-group/index.js';
+	$index_js = 'promo-group/index.js';
 	wp_register_script(
 		'wpboiler-core-promo-group-block-editor',
 		get_template_directory_uri() . "/gutenberg/$index_js",

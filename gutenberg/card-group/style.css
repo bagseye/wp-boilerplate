@@ -1,12 +1,1 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
-
-.wp-block-wpboiler-core-card-group {
-	background-color: #000;
-	color: #fff;
-	padding: 2px;
-}
+.cardgroup{background-color:#000;position:relative;padding-top:2rem;padding-bottom:2rem;width:100vw!important;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw}@media (min-width:1600px){.cardgroup{padding-top:6rem;padding-bottom:6rem}}.cardgroup .cardgroup__container{position:relative;z-index:2;width:100%;margin:0 auto;padding:4rem 2rem;gap:2rem}@media (min-width:600px){.cardgroup .cardgroup__container{max-width:600px}}@media (min-width:992px){.cardgroup .cardgroup__container{max-width:992px}}@media (min-width:1024px){.cardgroup .cardgroup__container{max-width:1024px}}@media (min-width:1600px){.cardgroup .cardgroup__container{max-width:1600px}}.cardgroup .cardgroup__container--title{position:relative;z-index:2;text-align:center;width:100%}.cardgroup .cardgroup__container--title>*{color:#fff}.cardgroup .cardgroup__container--content{display:flex;flex-wrap:wrap;border-top:1px solid #fff;padding-top:2rem}.cardgroup .cardgroup__container--media{position:absolute;top:0;left:0;right:0;bottom:0;z-index:1}.cardgroup .cardgroup__container--media img{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center}

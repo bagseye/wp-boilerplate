@@ -40,22 +40,22 @@
         attribute: "src",
       },
       mediaAlt: {
-        type: 'string',
-        source: 'attribute',
-        selector: 'img.cardgroup__background',
-        attribute: 'alt'
+        type: "string",
+        source: "attribute",
+        selector: "img.cardgroup__background",
+        attribute: "alt",
       },
       mediaWidth: {
-        type: 'number',
-        source: 'attribute',
-        selector: 'img.cardgroup__background',
-        attribute: 'width',
+        type: "number",
+        source: "attribute",
+        selector: "img.cardgroup__background",
+        attribute: "width",
       },
       mediaHeight: {
-        type: 'number',
-        source: 'attribute',
-        selector: 'img.cardgroup__background',
-        attribute: 'height',
+        type: "number",
+        source: "attribute",
+        selector: "img.cardgroup__background",
+        attribute: "height",
       },
       title: {
         type: "string",
@@ -79,28 +79,29 @@
 
     edit: function (props) {
       const { attributes, setAttributes } = props;
-      const { 
-        marginselect, 
-        mediaID, 
-        mediaURL, 
+      const {
+        marginselect,
+        mediaID,
+        mediaURL,
         mediaHeight,
         mediaWidth,
         mediaAlt,
-        title, 
-        pretitle, 
-        introduction 
+        title,
+        pretitle,
+        introduction,
       } = attributes;
 
       const onChangeMarginSelect = (value) =>
         setAttributes({ marginselect: value });
 
-      const onSelectImage = media => setAttributes({ 
-        mediaID: media.id, 
-        mediaURL: (media.sizes.cta ? media.sizes.cta.url : media.url),
-        mediaAlt: media.alt,
-        mediaWidth: (media.sizes.cta ? media.sizes.cta.width : media.width),
-        mediaHeight: (media.sizes.cta ? media.sizes.cta.height : media.height),
-      });
+      const onSelectImage = (media) =>
+        setAttributes({
+          mediaID: media.id,
+          mediaURL: media.sizes.cta ? media.sizes.cta.url : media.url,
+          mediaAlt: media.alt,
+          mediaWidth: media.sizes.cta ? media.sizes.cta.width : media.width,
+          mediaHeight: media.sizes.cta ? media.sizes.cta.height : media.height,
+        });
 
       return el(
         "div",
@@ -190,7 +191,7 @@
           el(
             "div",
             { className: "cardgroup__container--title" },
-  
+
             el(RichText, {
               tagName: "h3",
               placeholder: "Add a pre-title here...",
@@ -198,7 +199,7 @@
               value: pretitle ? pretitle : "",
               onChange: (value) => setAttributes({ pretitle: value }),
             }),
-  
+
             el(RichText, {
               tagName: "h2",
               placeholder: "Add a title here...",
@@ -206,7 +207,7 @@
               value: title ? title : "",
               onChange: (value) => setAttributes({ title: value }),
             }),
-  
+
             el(RichText, {
               tagName: "p",
               placeholder: "Enter introduction text here...",
@@ -215,17 +216,16 @@
               onChange: (value) => setAttributes({ introduction: value }),
             })
           ),
-  
+
           el(
             "div",
             { className: "cardgroup__container--content" },
-  
+
             el(InnerBlocks, {
               allowedBlocks: allowedBlocks,
             })
-          ),
+          )
         ),
-        
 
         mediaURL
           ? el(
@@ -233,9 +233,9 @@
               { className: "cardgroup__container--media" },
 
               el("img", {
-                className: "cardgroup__background",
+                className: `cardgroup__background wp-image-${mediaID}`,
                 src: mediaURL,
-                loading: 'lazy',
+                loading: "lazy",
                 width: mediaWidth,
                 height: mediaHeight,
                 alt: mediaAlt,
@@ -248,20 +248,21 @@
 
     save: function (props) {
       const { attributes } = props;
-      const { 
-        marginselect, 
-        pretitle, 
-        title, 
-        mediaURL, 
+      const {
+        marginselect,
+        pretitle,
+        title,
+        mediaURL,
         mediaAlt,
+        mediaID,
         mediaHeight,
         mediaWidth,
-        introduction 
+        introduction,
       } = attributes;
 
       return el(
         "section",
-      //   useBlockProps.save(),
+        //   useBlockProps.save(),
         { className: `cardgroup ${marginselect}` },
 
         el(
@@ -271,35 +272,33 @@
           el(
             "div",
             { className: "cardgroup__container--title" },
-  
+
             el(RichText.Content, {
               tagName: "h3",
               className: "cardgroup__heading cardgroup__heading--pre",
               value: pretitle,
             }),
-  
+
             el(RichText.Content, {
               tagName: "h2",
               className: "cardgroup__heading cardgroup__heading--title",
               value: title,
             }),
-  
+
             el(RichText.Content, {
               tagName: "p",
               className: "cardgroup__introduction",
               value: introduction,
             })
           ),
-  
+
           el(
             "div",
             { className: "cardgroup__container--content" },
-  
-            el(InnerBlocks.Content, {})
-          ),
-        ),
 
-        
+            el(InnerBlocks.Content, {})
+          )
+        ),
 
         mediaURL
           ? el(
@@ -307,9 +306,9 @@
               { className: "cardgroup__container--media" },
 
               el("img", {
-                className: "cardgroup__background",
+                className: `cardgroup__background wp-image-${mediaID}`,
                 src: mediaURL,
-                loading: 'lazy',
+                loading: "lazy",
                 width: mediaWidth,
                 height: mediaHeight,
                 alt: mediaAlt,

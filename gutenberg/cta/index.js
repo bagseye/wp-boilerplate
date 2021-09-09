@@ -273,7 +273,7 @@
 					el(
 						'img',
 						{ 
-							className: 'cta__background',
+							className: `cta__background wp-image-${mediaID}`,
 							src: mediaURL,
 							loading: 'lazy',
 							width: mediaWidth,
@@ -294,6 +294,7 @@
 				category, 
 				heading, 
 				subheading, 
+				mediaID,
 				mediaURL,
 				mediaAlt,
 				mediaHeight,
@@ -351,7 +352,7 @@
 					el(
 						'img',
 						{
-							className: 'cta__background',
+							className: `cta__background wp-image-${mediaID}`,
 							src: mediaURL,
 							loading: 'lazy',
 							width: mediaWidth,

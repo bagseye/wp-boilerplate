@@ -4,13 +4,13 @@
 	var el = wp.element.createElement;
 	var __ = wp.i18n.__;
 
-	const { RadioControl, PanelBody } = wp.components;
+	const { RadioControl, PanelBody, RangeControl } = wp.components;
 	const {
 		useBlockProps,
 		InspectorControls,
 		InnerBlocks,
 	  } = wp.blockEditor;
-	const allowedBlocks = ["wpboiler-core/promo-group-item"];
+	const allowedBlocks = [ "wpboiler-core/promo-group-item" ];
 
 	registerBlockType( 'wpboiler-core/promo-group', {
 		apiVersion: 2,
@@ -32,15 +32,27 @@
 			  	type: "string",
 			  	default: "margins__none",
 			},
+			orientation: {
+				type: 'string',
+				default: 'stacked',
+			},
+			columnselect: {
+				type: 'number',
+				default: 2
+			},
 		},
 
 		edit: function(props) {
 			const { attributes, setAttributes } = props;
 			const { 
 			  	marginselect,
+				orientation,
+				columnselect,
 			} = attributes;
 
 			const onChangeMarginSelect = value => setAttributes({ marginselect: value });
+			const onCHangeOrientationSelect = value => setAttributes({ orientation: value });
+			const onChangeRangeControl = value => setAttributes({ columnselect: value });
 
 			return el(
 				'section',
@@ -80,6 +92,41 @@
 						onChange: onChangeMarginSelect,
 					  })
 					),
+
+					el(PanelBody, 
+						{
+							title: 'Orientation',
+						},
+
+						el(RadioControl, {
+							selected: orientation,
+							options: [
+								{
+									label: 'Stacked Items',
+									value: 'stacked',
+								},
+								{
+									label: 'Columns',
+									value: 'columns',
+								},
+							],
+							onChange: onCHangeOrientationSelect
+						})
+					),
+
+					orientation === 'columns' ?
+					el(
+						PanelBody, {
+							title: 'Columns'
+						},
+
+						el(RangeControl, {
+							min: 2,
+							max: 4,
+							value: columnselect,
+							onChange: onChangeRangeControl
+						}),
+					) : ''
 				),
 				// INSPECTOR CONTROL END
 
@@ -105,12 +152,14 @@
 		save: function(props) {
 			const { attributes } = props;
 			const { 
-				marginselect, 
+				marginselect,
+				orientation,
+				columnselect, 
 			} = attributes;
 
 			return el(
 				'section',
-				{ className: `promogroup ${marginselect}` },
+				{ className: `promogroup ${marginselect} ${orientation}-${columnselect.toString()}` },
 				
 				el(
 					"div",

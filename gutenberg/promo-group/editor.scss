@@ -1,10 +1,54 @@
 @import '../../sass/utils/mixins',
         '../../sass/utils/variables';
 
- .wp-block-strut-core-promo-group {
+ .wp-block-wpboiler-core-promo-group {
     position: relative;
     padding-top: $spacing * 2;
     padding-bottom: $spacing * 2;
+
+    &[orientation="columns"] {
+        .block-editor-inner-blocks {
+            .block-editor-block-list__layout {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                .promogroupitem__container {
+                    flex-direction: column;
+                }
+            }
+        }
+
+        &[columnselect="2"] {
+            .block-editor-inner-blocks {
+                .block-editor-block-list__layout {
+                    .wp-block-wpboiler-core-promo-group-item {
+                        flex: 0 0 50%;
+                    }
+                }
+            }
+        }
+
+        &[columnselect="3"] {
+            .block-editor-inner-blocks {
+                .block-editor-block-list__layout {
+                    .wp-block-wpboiler-core-promo-group-item {
+                        flex: 0 0 33.333%;
+                    }
+                }
+            }
+        }
+
+        &[columnselect="4"] {
+            .block-editor-inner-blocks {
+                .block-editor-block-list__layout {
+                    .wp-block-wpboiler-core-promo-group-item {
+                        flex: 0 0 25%;
+                    }
+                }
+            }
+        }
+    }
 
     @include desktopLarge {
         padding-top: $spacing * 6;
