@@ -43,18 +43,6 @@
 				selector: 'img.promogroupitem__media--img',
 				attribute: 'alt'
 			},
-			mediaWidth: {
-				type: 'number',
-				source: 'attribute',
-				selector: 'img.promogroupitem__media--img',
-				attribute: 'width',
-			},
-			mediaHeight: {
-				type: 'number',
-				source: 'attribute',
-				selector: 'img.promogroupitem__media--img',
-				attribute: 'height',
-			},
 			title: {
 				type: 'string',
 				source: 'text',
@@ -68,7 +56,7 @@
 				default: '',
 			},
 		},
-		parent: 'wpboiler-core/promo-group',
+		parent: ['wpboiler-core/promo-group'],
 
 		edit: function(props) {
 			const { attributes, setAttributes } = props;
@@ -78,16 +66,12 @@
 				mediaID,
 				mediaURL,
 				mediaAlt,
-				mediaWidth,
-				mediaHeight, 
 			} = attributes;
 
 			const onSelectImage = media => setAttributes({ 
 				mediaID: media.id, 
-				mediaURL: (media.sizes.promo ? media.sizes.promo.url : media.url),
+				mediaURL: media.url,
 				mediaAlt: media.alt,
-				mediaWidth: (media.sizes.promo ? media.sizes.promo.width : media.width),
-				mediaHeight: (media.sizes.promo ? media.sizes.promo.height : media.height),
 			});
 
 			return el(
@@ -133,8 +117,6 @@
 									mediaID: "", 
 									mediaURL: "",
 									mediaAlt: "",
-									mediaHeight: "",
-									mediaWidth: "",
 								}),
 							  },
 							  "Remove Image"
@@ -159,9 +141,6 @@
 							{ 
 								className: `promogroupitem__media--img wp-image-${mediaID}`,
 								src: mediaURL,
-                  				loading: 'lazy',
-                  				width: mediaWidth,
-                  				height: mediaHeight,
                   				alt: mediaAlt,
 							}
 						),
@@ -203,8 +182,6 @@
 				mediaURL, 
           		mediaAlt,
 				mediaID,
-				mediaHeight,
-				mediaWidth, 
 			} = attributes;
 
 			return el(
@@ -224,9 +201,6 @@
 							'img', { 
 								className: `promogroupitem__media--img wp-image-${mediaID}`,
 								src: mediaURL,
-								loading: 'lazy',
-								width: mediaWidth,
-								height: mediaHeight,
 								alt: mediaAlt,
 							}
 						),

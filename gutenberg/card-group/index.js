@@ -45,18 +45,6 @@
         selector: "img.cardgroup__background",
         attribute: "alt",
       },
-      mediaWidth: {
-        type: "number",
-        source: "attribute",
-        selector: "img.cardgroup__background",
-        attribute: "width",
-      },
-      mediaHeight: {
-        type: "number",
-        source: "attribute",
-        selector: "img.cardgroup__background",
-        attribute: "height",
-      },
       title: {
         type: "string",
         source: "text",
@@ -83,8 +71,6 @@
         marginselect,
         mediaID,
         mediaURL,
-        mediaHeight,
-        mediaWidth,
         mediaAlt,
         title,
         pretitle,
@@ -97,10 +83,8 @@
       const onSelectImage = (media) =>
         setAttributes({
           mediaID: media.id,
-          mediaURL: media.sizes.cta ? media.sizes.cta.url : media.url,
+          mediaURL: media.url,
           mediaAlt: media.alt,
-          mediaWidth: media.sizes.cta ? media.sizes.cta.width : media.width,
-          mediaHeight: media.sizes.cta ? media.sizes.cta.height : media.height,
         });
 
       return el(
@@ -173,7 +157,11 @@
                   {
                     className: "components-button is-tertiary",
                     style: { marginLeft: "5px" },
-                    onClick: () => setAttributes({ mediaID: "", mediaURL: "" }),
+                    onClick: () => setAttributes({ 
+                      mediaID: "", 
+                      mediaURL: "",
+                      mediaAlt: "", 
+                    }),
                   },
                   "Remove Image"
                 )
@@ -235,9 +223,6 @@
               el("img", {
                 className: `cardgroup__background wp-image-${mediaID}`,
                 src: mediaURL,
-                loading: "lazy",
-                width: mediaWidth,
-                height: mediaHeight,
                 alt: mediaAlt,
               })
             )
@@ -255,8 +240,6 @@
         mediaURL,
         mediaAlt,
         mediaID,
-        mediaHeight,
-        mediaWidth,
         introduction,
       } = attributes;
 
@@ -308,9 +291,6 @@
               el("img", {
                 className: `cardgroup__background wp-image-${mediaID}`,
                 src: mediaURL,
-                loading: "lazy",
-                width: mediaWidth,
-                height: mediaHeight,
                 alt: mediaAlt,
               })
             )

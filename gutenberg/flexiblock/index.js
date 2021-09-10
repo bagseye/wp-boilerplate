@@ -159,6 +159,7 @@
 									tmpImages.push({
 										ImageId: '',
 										ImageURL: '',
+										ImageAlt: '',
 									});
 									setAttributes({ images: JSON.stringify(tmpImages) });
 								},
@@ -227,7 +228,11 @@
 	
 							el(
 								'img',
-								{ src: elm.ImageURL, }
+								{ 
+									className: `wp-image-${elm.ImageId}`,
+									src: elm.ImageURL, 
+									alt: elm.ImageAlt,
+								}
 							),
 						)
 					}),
@@ -377,7 +382,8 @@
 							onSelect: (media) => {
 								if(media) {
 									tmpImages[index].ImageId = media.id.toString();
-									tmpImages[index].ImageURL = ( media.sizes.large !== undefined ? media.sizes.large.url : media.url );
+									tmpImages[index].ImageURL = media.url;
+									tmpImages[index].ImageAlt = media.alt;
 									setAttributes({ images: JSON.stringify( tmpImages ) });
 								}
 							},

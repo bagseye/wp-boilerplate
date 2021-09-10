@@ -31,7 +31,7 @@
         default: "",
       },
     },
-    parent: "wpboiler-core/card-group",
+    parent: ["wpboiler-core/card-group"],
 
     edit: function (props) {
       const { attributes, setAttributes } = props;

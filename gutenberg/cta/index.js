@@ -66,18 +66,6 @@
 				selector: 'img.cta__background',
 				attribute: 'alt'
 			},
-			mediaWidth: {
-				type: 'number',
-				source: 'attribute',
-				selector: 'img.cta__background',
-				attribute: 'width',
-			},
-			mediaHeight: {
-				type: 'number',
-				source: 'attribute',
-				selector: 'img.cta__background',
-				attribute: 'height',
-			},
 		},
 
 
@@ -92,8 +80,6 @@
 				orientationselect, 
 				mediaID, 
 				mediaURL,
-				mediaHeight,
-				mediaWidth,
 				mediaAlt,				 
 			} = attributes;
 
@@ -102,10 +88,8 @@
 			const onSelectImage = media => {
 				setAttributes({ 
 					mediaID: media.id, 
-					mediaURL: (media.sizes.cta ? media.sizes.cta.url : media.url),
+					mediaURL: media.url,
 					mediaAlt: media.alt,
-					mediaWidth: (media.sizes.cta ? media.sizes.cta.width : media.width),
-					mediaHeight: (media.sizes.cta ? media.sizes.cta.height : media.height),
 				});
 			}
 
@@ -210,7 +194,11 @@
 							Button, {
 								className: 'components-button is-tertiary',
 								style: {  marginLeft: '5px' },
-								onClick: () => setAttributes({ mediaID: '', mediaURL: '' }),
+								onClick: () => setAttributes({ 
+									mediaID: '', 
+									mediaURL: '',
+									mediaAlt: '',
+								}),
 							},
 							'Remove Image'
 						) : ''
@@ -275,9 +263,6 @@
 						{ 
 							className: `cta__background wp-image-${mediaID}`,
 							src: mediaURL,
-							loading: 'lazy',
-							width: mediaWidth,
-							height: mediaHeight,
 							alt: mediaAlt,
 						}
 					),
@@ -297,8 +282,6 @@
 				mediaID,
 				mediaURL,
 				mediaAlt,
-				mediaHeight,
-				mediaWidth,
 				orientationselect,
 				marginselect, 
 			} = attributes;
@@ -354,9 +337,6 @@
 						{
 							className: `cta__background wp-image-${mediaID}`,
 							src: mediaURL,
-							loading: 'lazy',
-							width: mediaWidth,
-							height: mediaHeight,
 							alt: mediaAlt,
 						}
 					)

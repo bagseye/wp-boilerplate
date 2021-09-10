@@ -62,8 +62,8 @@ add_filter( 'the_content', function($content){
 		foreach($imgs[1] as $imgId){
 			$image = wp_get_attachment_image_src($imgId, 'large');
 			if($image){
-				$image = '<picture>
-							<img loading="lazy" src="'. $image[0] .'" width="'. $image[1] .'" height="'. $image[2] .'" alt="" />
+				$image = '<picture>'
+							. wp_filter_content_tags( '<img class="wp-image-' . $imgId . '" src="'. $image[0] .'" alt="" />') . '
 						</picture>';
 				$content = str_ireplace("FlexiBlockImg" . $imgId, $image, $content);
 			}

@@ -51,7 +51,7 @@
 			} = attributes;
 
 			const onChangeMarginSelect = value => setAttributes({ marginselect: value });
-			const onCHangeOrientationSelect = value => setAttributes({ orientation: value });
+			const onChangeOrientationSelect = value => setAttributes({ orientation: value });
 			const onChangeRangeControl = value => setAttributes({ columnselect: value });
 
 			return el(
@@ -110,7 +110,7 @@
 									value: 'columns',
 								},
 							],
-							onChange: onCHangeOrientationSelect
+							onChange: onChangeOrientationSelect
 						})
 					),
 
