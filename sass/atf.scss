@@ -1,4 +1,6 @@
-@import './utils/_variables.scss';
+@import './utils/_variables.scss',
+        './theme/theme',
+        './theme/typography';
 
 body {
     font-family: $sansSerif;

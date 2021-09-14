@@ -1,8 +1,28 @@
+@import '../../sass/utils/variables',
+        '../../sass/utils/mixins';
+
 .cardgroupitem {
-    flex: 0 0 calc(33.333% - 27px);
+    flex: 1 1 calc(50% - #{$spacing});
+    padding-left: calc(#{$spacing} / 2);
+    padding-right: calc(#{$spacing} / 2);
+
+
+    @include tabletLarge {
+        flex: 1 1 calc(25% - #{$spacing});
+    }
+
     
     &__title,
     &__content {
         color: #fff;
+    }
+
+
+    &__title {
+        font-size: $headingSub;
+    }
+
+    &__content {
+        font-size: 1rem;
     }
 }

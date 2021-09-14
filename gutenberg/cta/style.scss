@@ -84,10 +84,45 @@
 
     &__column {
         flex: 0 0 50%;
+        
+        >* {
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
 
         .cta__heading,
         p {
             color: #fff;
+        }
+
+        >p {
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+    }
+
+    &__heading {
+        &--category {
+            font-size: $headingCategory;
+            margin-bottom: 1rem;
+        }
+
+        &--main {
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: $headingMain;
+        }
+
+        &--sub {
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: $headingSub;
         }
     }
 

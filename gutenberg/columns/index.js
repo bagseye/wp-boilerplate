@@ -8,7 +8,7 @@
 	const { useBlockProps, InnerBlocks } = wp.blockEditor;
 	const allowedBlocks = [ 'wpboiler-core/column' ];
 
-	registerBlockType( 'wpboiler/columns', {
+	registerBlockType( 'wpboiler-core/columns', {
 
 		apiVersion: 2,
 		title: __(

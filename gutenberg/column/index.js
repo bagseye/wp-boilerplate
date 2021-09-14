@@ -7,7 +7,7 @@
 	const { useBlockProps, InnerBlocks } = wp.blockEditor;
 	const allowedBlocks = [ 'core/heading', 'core/paragraph', 'core/button', 'core/list' ];
 
-	registerBlockType( 'wpboiler/column', {
+	registerBlockType( 'wpboiler-core/column', {
 
 		apiVersion: 2,
 		title: __(
@@ -23,7 +23,7 @@
 		supports: {
 			html: false,
 		},
-		parent: [ 'strut-core/columns' ],
+		parent: [ 'wpboiler-core/columns' ],
 
 		edit: function() {
 			return el(

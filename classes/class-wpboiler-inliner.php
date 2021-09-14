@@ -18,14 +18,10 @@ class WpboilerInliner {
         if(!is_admin()) {
             $criticalFonts = '<link rel="preconnect" href="https://fonts.googleapis.com">
                               <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                              <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,300&display=swap" rel="stylesheet"> ';
+                              <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet"> ';
     
             $criticalCSSContent = file_get_contents( get_template_directory_uri() . '/css/atf.css' );
-            $criticalCSS = "<style type='text/css'>
-                                <!-- BEGIN CRITICAL STYLES -->
-                                {$criticalCSSContent}
-                                <!-- END CRITICAL STYLES -->
-                            </style>";
+            $criticalCSS = "<style>{$criticalCSSContent}</style>";
 
             echo $criticalFonts . $criticalCSS;
 
