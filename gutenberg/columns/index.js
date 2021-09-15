@@ -5,7 +5,8 @@
 	var __ = wp.i18n.__;
 
 	const { useSelect } = wp.data;
-	const { useBlockProps, InnerBlocks } = wp.blockEditor;
+	const { PanelBody, RangeControl } = wp.components;
+	const { useBlockProps, InnerBlocks, InspectorControls } = wp.blockEditor;
 	const allowedBlocks = [ 'wpboiler-core/column' ];
 
 	registerBlockType( 'wpboiler-core/columns', {
@@ -24,10 +25,20 @@
 		supports: {
 			html: false,
 		},
+		attributes: {
+			columnselect: {
+				type: 'number',
+				default: 2,
+			},
+		},
 
 		edit: function(props) {
-			const { attributes, clientId } = props;
+			const { attributes, clientId, setAttributes } = props;
+			const { columnselect } = attributes;
+
 			const innerBlockCount = useSelect((select) => select('core/block-editor').getBlock(clientId).innerBlocks);
+
+			const onChangeColumnSelect = value => setAttributes({ columnselect: value });
 
 			return el(
 				'section',
@@ -35,30 +46,46 @@
 				__( 'Add columns by pressing the + icon. Maximum 4 columns', 'columns' ),
 
 				el(
+					InspectorControls,
+					null,
+
+					el(
+						PanelBody, {
+							title: 'Columns Select',
+						},
+
+						el(
+							RangeControl, {
+								value: columnselect,
+								min: 2,
+								max: 4,
+								onChange: onChangeColumnSelect
+							}
+						)
+					)
+				),
+
+				el(
 					'div',
 					{ className: 'columns__container' },
 
-					innerBlockCount.length > 3 ?
-						el(
-							InnerBlocks, {
-								allowedBlocks: allowedBlocks,
-								renderAppender: false
-							}
-						)
-						:
-						el(
-							InnerBlocks, {
-								allowedBlocks: allowedBlocks,
-							}
-						),
+					el(
+						InnerBlocks, {
+							allowedBlocks: allowedBlocks,
+						}
+					),
 				)
 			);
 		},
 
-		save: function() {
+		save: function(props) {
+
+			const { attributes } = props;
+			const { columnselect } = attributes;
+
 			return el(
 				'section',
-				{ className: 'columns' },
+				{ className: `columns columns__count--${columnselect.toString()}` },
 
 
 				el(

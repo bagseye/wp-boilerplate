@@ -30,28 +30,10 @@ function wpboiler_column_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-column-block-editor', 'column' );
 
-	$editor_css = 'column/editor.css';
-	wp_register_style(
-		'wpboiler-column-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
-	$style_css = 'column/style.css';
-	wp_register_style(
-		'wpboiler-column-block',
-		get_template_directory_uri() . "/gutenberg/$style_css",
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type(
 		'wpboiler/column',
 		array(
 			'editor_script' => 'wpboiler-column-block-editor',
-			'editor_style'  => 'wpboiler-column-block-editor',
-			'style'         => 'wpboiler-column-block',
 		)
 	);
 }

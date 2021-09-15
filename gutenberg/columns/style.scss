@@ -1,0 +1,38 @@
+@import '../../sass/utils/variables';
+
+.columns {
+    .columns__container {
+        display: grid;
+        grid-auto-rows: auto;
+        gap: $spacing;
+        padding-top: $spacing;
+        max-width: $container;
+        margin-left: auto;
+        margin-right: auto;
+
+        .column {
+            padding: 10px;
+            min-height: 100px;
+            margin: 0;
+            background-color: #fff;
+        }
+    }
+
+    &.columns__count--2 {
+        .columns__container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    &.columns__count--3 {
+        .columns__container {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &.columns__count--4 {
+        .columns__container {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}

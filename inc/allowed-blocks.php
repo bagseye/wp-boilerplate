@@ -29,7 +29,7 @@ function wpboiler_block_types( $allowed_blocks ) {
         'wpboiler-core/promo-group',
         'wpboiler-core/promo-group-item',
         'wpboiler-core/columns',
-        'wpboiler-core/columns',
+        'wpboiler-core/column',
     );
 }
 

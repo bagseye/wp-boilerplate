@@ -1,103 +1,79 @@
 @import '../../sass/utils/mixins',
         '../../sass/utils/variables';
 
-.promogroup {
-    position: relative;
-    padding-top: $spacing * 2;
-    padding-bottom: $spacing * 2;
-
-    &.columns {
-        &-2 {
-            .promogroup__container--content {
-                gap: $spacing;
-            }
-
-            .promogroup__container {
+ .promogroup {
+    &__stacked {
+        .promogroupitem {
+            .promogroupitem__container {
                 display: flex;
-                flex-wrap: wrap;
-
-                .promogroupitem {
-                    flex: 1 1 calc(50% - #{$spacing});
-
-                    &__container {
-                        flex-direction: column;
-                    }
-                }
-            }
-        }
-
-        &-3 {
-            .promogroup__container--content {
-                gap: $spacing;
             }
 
-            .promogroup__container {
-                display: flex;
-                flex-wrap: wrap;
-                
-
-                .promogroupitem {
-                    flex: 1 1 calc(33.333% - #{$spacing});
-
-                    &__container {
-                        flex-direction: column;
-                    }
-                }
-            }
-        }
-
-        &-4 {
-            .promogroup__container--content {
-                gap: $spacing;
+            .promogroupitem__media {
+                flex: 0 0 40%;
             }
 
-            .promogroup__container {
-                display: flex;
-                flex-wrap: wrap;
-
-                .promogroupitem {
-                    flex: 0 0 calc(25% - #{$spacing});
-
-                    &__container {
-                        flex-direction: column;
-                    }
-                }
+            .promogroupitem__text {
+                flex: 1 1 auto;
+                padding-left: $spacing;
             }
         }
     }
 
-    @include desktopLarge {
-        padding-top: $spacing * 6;
-        padding-bottom: $spacing * 6;
+    &__columns {
+
+        &.promogroup__columns--2 {
+            .promogroup__container--content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        &.promogroup__columns--3 {
+            .promogroup__container--content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        &.promogroup__columns--4 {
+            .promogroup__container--content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    }
+
+    .promogroup__container--content {
+        display: grid;
+        grid-auto-rows: auto;
+        gap: $spacing;
     }
 
     .promogroup__container {
-        position: relative;
-        z-index: 2;
         width: 100%;
+        max-width: $container;
         margin: 0 auto;
-        padding: 4rem 2rem;
-        gap: $spacing * 2;
+    }
 
-        @include tablet {
-            max-width: $breakpointTablet;
+    .promogroupitem {
+        .promogroupitem__title {
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: $headingSub;
         }
 
-        @include tabletLarge {
-            max-width: $breakpointTabletLarge;
+        .promogroupitem__content {
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
         }
+    }
 
-        @include desktop {
-            max-width: $breakpointDesktop;
-        }
+}
 
-        @include desktopLarge {
-            max-width: $breakpointDesktopLarge;
-        }
-
-        &--content {
-            display: flex;
-            flex-wrap: wrap;
-        }
+.promogroupitem__media {
+    img {
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: auto;
     }
 }

@@ -1,0 +1,56 @@
+@import '../../sass/utils/variables';
+
+.wp-block-wpboiler-core-columns {
+    background-color: #f5f5f5;
+    padding: $spacing;
+
+    .columns__container {
+        >.block-editor-inner-blocks {
+            >.block-editor-block-list__layout {
+                display: grid;
+                grid-auto-rows: auto;
+                gap: $spacing;
+                padding-top: $spacing;
+
+                .wp-block-wpboiler-core-column {
+                    padding: 10px;
+                    min-height: 100px;
+                    margin: 0;
+                    background-color: #fff;
+                }
+            }
+        }
+
+        
+    }
+
+    &[columnselect="2"] {
+        .columns__container {
+            >.block-editor-inner-blocks {
+                >.block-editor-block-list__layout {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        }
+    }
+
+    &[columnselect="3"] {
+        .columns__container {
+            >.block-editor-inner-blocks {
+                >.block-editor-block-list__layout {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+        }
+    }
+
+    &[columnselect="4"] {
+        .columns__container {
+            >.block-editor-inner-blocks {
+                >.block-editor-block-list__layout {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+            }
+        }
+    }
+}

@@ -145,4 +145,4 @@ function remove_wp_block_library_css(){
 }
 add_action( 'wp_enqueue_scripts', 'remove_wp_block_library_css' );
 
-add_filter( 'should_load_separate_core_block_assets', '__return_true' );
+// add_filter( 'should_load_separate_core_block_assets', '__return_true' );

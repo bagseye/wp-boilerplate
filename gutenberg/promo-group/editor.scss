@@ -2,29 +2,40 @@
         '../../sass/utils/variables';
 
  .wp-block-wpboiler-core-promo-group {
-    position: relative;
-    padding-top: $spacing * 2;
-    padding-bottom: $spacing * 2;
+     &[orientation="stacked"] {
+         .promogroup__container {
+             .promogroup__container--content {
+                 .wp-block-wpboiler-core-promo-group-item {
+                     .promogroupitem__container {
+                         display: flex;
+                     }
+
+                     .promogroupitem__media {
+                         flex: 0 0 40%;
+                     }
+
+                     .promogroupitem__text {
+                         flex: 1 1 auto;
+                         padding-left: $spacing;
+                     }
+                 }
+             }
+         }
+     }
 
     &[orientation="columns"] {
         .block-editor-inner-blocks {
             .block-editor-block-list__layout {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-
-                .promogroupitem__container {
-                    flex-direction: column;
-                }
+                display: grid;
+                grid-auto-rows: auto;
+                gap: $spacing;
             }
         }
 
         &[columnselect="2"] {
             .block-editor-inner-blocks {
                 .block-editor-block-list__layout {
-                    .wp-block-wpboiler-core-promo-group-item {
-                        flex: 0 0 50%;
-                    }
+                    grid-template-columns: repeat(2, 1fr);
                 }
             }
         }
@@ -32,9 +43,7 @@
         &[columnselect="3"] {
             .block-editor-inner-blocks {
                 .block-editor-block-list__layout {
-                    .wp-block-wpboiler-core-promo-group-item {
-                        flex: 0 0 33.333%;
-                    }
+                    grid-template-columns: repeat(3, 1fr);
                 }
             }
         }
@@ -42,51 +51,24 @@
         &[columnselect="4"] {
             .block-editor-inner-blocks {
                 .block-editor-block-list__layout {
-                    .wp-block-wpboiler-core-promo-group-item {
-                        flex: 0 0 25%;
-                    }
+                    grid-template-columns: repeat(4, 1fr);
                 }
             }
         }
     }
-
-    @include desktopLarge {
-        padding-top: $spacing * 6;
-        padding-bottom: $spacing * 6;
-    } 
 
     .promogroup__container {
-        position: relative;
-        z-index: 2;
         width: 100%;
+        max-width: $container;
         margin: 0 auto;
-        padding: 4rem 2rem;
-
-        @include tablet {
-            max-width: $breakpointTablet;
-        }
-
-        @include tabletLarge {
-            max-width: $breakpointTabletLarge;
-        }
-
-        @include desktop {
-            max-width: $breakpointDesktop;
-        }
-
-        @include desktopLarge {
-            max-width: $breakpointDesktopLarge;
-        }
-
-
-        &--content {
-            .block-editor-inner-blocks {
-                .block-editor-block-list__layout {
-                    display: flex;
-                    flex-wrap: wrap;
-                }
-            }
-        }
     }
 
+}
+
+.promogroupitem__media {
+    img {
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: center;
+    }
 }

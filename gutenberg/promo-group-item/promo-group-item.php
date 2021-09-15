@@ -30,28 +30,10 @@ function wpboiler_core_promo_group_item_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-promo-group-item-block-editor', 'promo-group-item' );
 
-	$editor_css = 'promo-group-item/editor.css';
-	wp_register_style(
-		'wpboiler-core-promo-group-item-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
-	$style_css = 'promo-group-item/style.css';
-	wp_register_style(
-		'wpboiler-core-promo-group-item-block',
-		get_template_directory_uri() . "/gutenberg/$style_css",
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/promo-group-item',
 		array(
 			'editor_script' => 'wpboiler-core-promo-group-item-block-editor',
-			'editor_style'  => 'wpboiler-core-promo-group-item-block-editor',
-			'style'         => 'wpboiler-core-promo-group-item-block',
 		)
 	);
 }
