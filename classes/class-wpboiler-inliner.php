@@ -38,7 +38,6 @@ class WpboilerInliner {
         // subdirectory/filename.css
         $generalCssFileName = array(
             'general.css',
-            'type.css',
         );
 
         foreach($generalCssFileName as $cssFileName) {
