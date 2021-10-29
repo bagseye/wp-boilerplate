@@ -30,6 +30,8 @@ function wpboiler_block_types( $allowed_blocks ) {
         'wpboiler-core/promo-group-item',
         'wpboiler-core/columns',
         'wpboiler-core/column',
+        'wpboiler-core/feed',
+        'wpboiler-core/feed-item',
     );
 }
 
@@ -41,3 +43,5 @@ include_once(TEMPLATEPATH . '/gutenberg/promo-group/promo-group.php');
 include_once(TEMPLATEPATH . '/gutenberg/promo-group-item/promo-group-item.php');
 include_once(TEMPLATEPATH . '/gutenberg/columns/columns.php');
 include_once(TEMPLATEPATH . '/gutenberg/column/column.php');
+include_once(TEMPLATEPATH . '/gutenberg/feed/feed.php');
+include_once(TEMPLATEPATH . '/gutenberg/feed-item/feed-item.php');

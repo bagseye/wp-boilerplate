@@ -1,0 +1,69 @@
+@import '../../sass/utils/variables';
+
+.wp-block-wpboiler-core-feed {
+    background-color: transparent!important;
+}
+
+.wp-block-wpboiler-core-feed-item {
+    .feed__item {
+        width: 100%;
+
+        .feed__item--select {
+            .components-combobox-control__suggestions-container {
+                background-color: #fff;
+
+                .components-form-token-field__suggestions-list {
+                    padding-left: 0;
+
+                    .components-form-token-field__suggestion {
+                        color: $body;
+
+                        &.is-selected {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+
+        .feed__item--selectlink {
+
+            label {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.feed__type--select {
+    height: 60px;
+
+    .components-select-control {
+        display: block;
+    }
+
+    
+}
+
+.feed__category--select {
+    height: 60px;
+
+    .components-select-control {
+        display: block;
+    }
+}
+
+.feed__container {
+    .block-editor-inner-blocks {
+        .block-editor-block-list__layout {
+            display: flex;
+            flex-wrap: wrap;
+
+            .wp-block-wpboiler-core-feed-item {
+                width: 50%;
+                flex-shrink: 0;
+                flex-grow: 0;
+            }
+        }
+    }
+}
