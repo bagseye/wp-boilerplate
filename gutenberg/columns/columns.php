@@ -4,7 +4,7 @@
  * Description:       Displays content in columns
  * Requires at least: 5.7
  * Requires PHP:      7.0
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Morgan Baker
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -49,10 +49,41 @@ function wpboiler_columns_block_init() {
 	register_block_type(
 		'wpboiler/columns',
 		array(
-			'editor_script' => 'wpboiler-columns-block-editor',
-			'editor_style'  => 'wpboiler-columns-block-editor',
-			'style'         => 'wpboiler-columns-block',
+			'editor_script' 	=> 'wpboiler-columns-block-editor',
+			'editor_style'  	=> 'wpboiler-columns-block-editor',
+			'style'         	=> 'wpboiler-columns-block',
+			'render_callback'	=> 'wpboiler_core_columns_render'
 		)
 	);
 }
 add_action( 'init', 'wpboiler_columns_block_init' );
+
+function wpboiler_core_columns_render( $attr, $content ) {
+	$html = '';
+
+	$classes = array();
+
+	$classes[] = $colCount = (isset($attr['columnselect']) ? 'columns__count--' . $attr['columnselect'] : 'columns__count--2');
+	$classes[] = $margins = (isset($attr['marginSelect']) ? $attr['marginSelect'] : 'margins__inContent');
+	$classes[] = $narrowContent = (isset($attr['narrowContent']) ? 'content__narrow' : '');
+	$classes[] = $reverseOrder = (isset($attr['reverseOrder']) ? 'columns__reverse' : '');
+
+	if($margins != 'margins__inContent' && $margins != 'margins__none' && isset($attr['marginDouble'])) {
+		$marginDouble = 'margins__double';
+		$classes[] = $marginDouble;
+	}
+	
+	if($colCount == 'columns__count--2' && isset($attr['columnOffset'])) {
+		$columnOffset = $attr['columnOffset'];
+		$classes[] = $columnOffset;
+	}
+
+	$html = '<section class="columns ' . implode(" ", $classes) . '">
+				<div class="columns__container">
+					' . $content . '
+				</div>
+			</section>';
+
+	return $html;
+}
+

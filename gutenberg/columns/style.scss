@@ -1,38 +1,104 @@
-@import '../../sass/utils/variables';
+@import '../../sass/utils/variables',
+        '../../sass/utils/mixins';
 
 .columns {
     .columns__container {
-        display: grid;
-        grid-auto-rows: auto;
-        gap: $spacing;
-        padding-top: $spacing;
-        max-width: $container;
-        margin-left: auto;
-        margin-right: auto;
+        gap: 1rem $spacing;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 100%;
+
+        @include tablet {
+            flex-direction: row;
+        }
 
         .column {
-            padding: 10px;
-            min-height: 100px;
-            margin: 0;
-            background-color: #fff;
+            width: 100%;
+
+            >* {
+                &:first-child {
+                    margin-top: 0;
+                }
+    
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
         }
     }
 
+    // Reverse Columns Control
+    &.columns__reverse {
+        .columns__container {
+            @media (max-width: $breakpointTablet - 1) {
+                flex-direction: column-reverse;
+            }
+        }
+    }
+
+
+    // Columns Count
     &.columns__count--2 {
         .columns__container {
-            grid-template-columns: repeat(2, 1fr);
+            .column {
+                @include tablet {
+                    width: calc(50% - (#{$spacing} / 2));
+                }
+            }
+        }
+
+        // Column Offset Control
+        &.columns__offset--6040 {
+            .columns__container {
+                .column {
+                    @include tablet {
+                        &:nth-child(odd) {
+                            width: calc(60% - (#{$spacing} / 2));
+                        }
+    
+                        &:nth-child(even) {
+                            width: calc(40% - (#{$spacing} / 2));
+                        }
+                    }
+                }
+            }
+        }
+
+        &.columns__offset--4060 {
+            .columns__container {
+                .column {
+                    @include tablet {
+                        &:nth-child(odd) {
+                            width: calc(40% - (#{$spacing} / 2));
+                        }
+    
+                        &:nth-child(even) {
+                            width: calc(60% - (#{$spacing} / 2));
+                        }
+                    } 
+                }
+            }
         }
     }
 
     &.columns__count--3 {
         .columns__container {
-            grid-template-columns: repeat(3, 1fr);
+            .column {
+                @include tablet {
+                    width: calc(33.333% - 14px);
+                }
+            }
         }
     }
 
     &.columns__count--4 {
         .columns__container {
-            grid-template-columns: repeat(4, 1fr);
+            .column {
+                @include tablet {
+                    width: calc(25% - 15px);
+                }
+            }
         }
     }
 }
