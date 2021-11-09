@@ -1,4 +1,49 @@
-h3 {
-    font-size: $h3;
+%heading__styles {
     font-weight: 700;
+    margin-top: calc(#{$spacing} / 2);
+    margin-bottom: $spacing;
+}
+
+h1 {
+    @extend %heading__styles;
+    font-size: $h1;
+    line-height: 1.35;
+}
+
+h2 {
+    @extend %heading__styles;
+    font-size: $h2;
+    line-height: 1.3;
+}
+
+h3 {
+    @extend %heading__styles;
+    font-size: $h3;
+    line-height: 1.25;
+}
+
+h4 {
+    @extend %heading__styles;
+    font-size: $h4;
+    line-height: 1.2;
+}
+
+h5 {
+    @extend %heading__styles;
+    font-size: $h5;
+    margin-bottom: calc($spacing / 2);
+    line-height: 1.2;
+}
+
+h6 {
+    @extend %heading__styles;
+    font-size: $h6;
+    margin-bottom: calc($spacing / 2);
+    line-height: 1.15;
+}
+
+p {
+    font-size: 1rem;
+    margin-top: calc(#{$spacing} / 2);
+    margin-bottom: $spacing;
 }

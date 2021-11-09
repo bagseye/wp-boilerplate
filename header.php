@@ -20,4 +20,4 @@ if( function_exists( 'wp_body_open' ) ) {
 
     <?php get_template_part( 'template-parts/header/site-header' ); ?>
 
-    <main id="main" class="site-main" role="main">
+    <main id="main" class="site-main container__main" role="main">

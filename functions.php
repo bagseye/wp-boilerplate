@@ -2,7 +2,7 @@
 
 define('THEME_NAME', 'wpboiler');
 
-require_once get_template_directory() . '/classes/class-wpboiler-inliner.php';
+// require_once get_template_directory() . '/classes/class-wpboiler-inliner.php';
 
 if(!function_exists('wpboiler_setup')) {
 
@@ -99,6 +99,11 @@ add_action('after_setup_theme', 'wpboiler_setup');
 // require get_template_directory() . '/inc/menu-functions.php';
 // require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/allowed-blocks.php';
+
+function wpboiler_enqueue_styles() {
+    wp_enqueue_style( 'wpboiler-styles-main', get_template_directory_uri() . '/css/atf.css', array(), null, 'all' );
+}
+add_action( 'wp_enqueue_scripts', 'wpboiler_enqueue_styles' );
 
 function wpboiler_block_additional_styles_enqueue() {
     /**

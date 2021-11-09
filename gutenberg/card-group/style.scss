@@ -6,11 +6,7 @@
     position: relative;
     padding-top: $spacing * 2;
     padding-bottom: $spacing * 2;
-    width: 100vw!important;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    // width: 
 
     @include desktopLarge {
         padding-top: $spacing * 6;
