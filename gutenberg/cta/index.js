@@ -76,7 +76,6 @@
         setAttributes({
           mediaID: media.id,
           mediaURL: media.url,
-          mediaAlt: media.alt,
         });
       };
 
@@ -185,7 +184,6 @@
                       setAttributes({
                         mediaID: "",
                         mediaURL: "",
-                        mediaAlt: "",
                       }),
                   },
                   "Remove Image"

@@ -32,50 +32,30 @@
       },
       mediaID: {
         type: "number",
+        default: "",
       },
       mediaURL: {
         type: "string",
-        source: "attribute",
-        selector: "img.cardgroup__background",
-        attribute: "src",
-      },
-      mediaAlt: {
-        type: "string",
-        source: "attribute",
-        selector: "img.cardgroup__background",
-        attribute: "alt",
+        default: "",
       },
       title: {
         type: "string",
-        source: "text",
-        selector: "h2.cardgroup__heading--title",
         default: "",
       },
       pretitle: {
         type: "string",
-        source: "text",
-        selector: "h3.cardgroup__heading--pre",
         default: "",
       },
       introduction: {
         type: "string",
-        source: "text",
-        selector: "p.cardgroup__introduction",
         default: "",
       },
     },
 
     edit: function (props) {
       const { attributes, setAttributes } = props;
-      const {
-        marginselect,
-        mediaID,
-        mediaURL,
-        mediaAlt,
-        title,
-        pretitle,
-        introduction,
-      } = attributes;
+      const { marginselect, mediaID, mediaURL, title, pretitle, introduction } =
+        attributes;
 
       const onChangeMarginSelect = (value) =>
         setAttributes({ marginselect: value });
@@ -84,7 +64,6 @@
         setAttributes({
           mediaID: media.id,
           mediaURL: media.url,
-          mediaAlt: media.alt,
         });
 
       return el(
@@ -157,11 +136,11 @@
                   {
                     className: "components-button is-tertiary",
                     style: { marginLeft: "5px" },
-                    onClick: () => setAttributes({ 
-                      mediaID: "", 
-                      mediaURL: "",
-                      mediaAlt: "", 
-                    }),
+                    onClick: () =>
+                      setAttributes({
+                        mediaID: "",
+                        mediaURL: "",
+                      }),
                   },
                   "Remove Image"
                 )
@@ -220,82 +199,23 @@
               "div",
               { className: "cardgroup__container--media" },
 
-              el("img", {
-                className: `cardgroup__background wp-image-${mediaID}`,
-                src: mediaURL,
-                alt: mediaAlt,
-              })
+              el(
+                "picture",
+                {},
+
+                el("img", {
+                  className: `cardgroup__background wp-image-${mediaID}`,
+                  src: mediaURL,
+                })
+              )
             )
           : ""
         // PREVIEW AREA END
       );
     },
 
-    save: function (props) {
-      const { attributes } = props;
-      const {
-        marginselect,
-        pretitle,
-        title,
-        mediaURL,
-        mediaAlt,
-        mediaID,
-        introduction,
-      } = attributes;
-
-      return el(
-        "section",
-        //   useBlockProps.save(),
-        { className: `cardgroup ${marginselect}` },
-
-        el(
-          "div",
-          { className: "cardgroup__container" },
-
-          el(
-            "div",
-            { className: "cardgroup__container--title" },
-
-            el(RichText.Content, {
-              tagName: "h3",
-              className: "cardgroup__heading cardgroup__heading--pre",
-              value: pretitle,
-            }),
-
-            el(RichText.Content, {
-              tagName: "h2",
-              className: "cardgroup__heading cardgroup__heading--title",
-              value: title,
-            }),
-
-            el(RichText.Content, {
-              tagName: "p",
-              className: "cardgroup__introduction",
-              value: introduction,
-            })
-          ),
-
-          el(
-            "div",
-            { className: "cardgroup__container--content" },
-
-            el(InnerBlocks.Content, {})
-          )
-        ),
-
-        mediaURL
-          ? el(
-              "div",
-              { className: "cardgroup__container--media" },
-
-              el("img", {
-                className: `cardgroup__background wp-image-${mediaID}`,
-                src: mediaURL,
-                alt: mediaAlt,
-              })
-            )
-          : ""
-      );
+    save: function () {
+      return el(InnerBlocks.Content, {});
     },
   });
 })(window.wp);

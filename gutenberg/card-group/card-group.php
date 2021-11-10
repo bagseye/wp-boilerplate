@@ -3,7 +3,7 @@
  * Plugin Name:       Card Group
  * Description:       Displays a group of cards. Useful for displaying snippets of information
  * Requires at least: 5.7
- * Requires PHP:      7.0
+ * Requires PHP:      7.3.5
  * Version:           1.0.0
  * Author:            Morgan Baker
  * License:           GPL-2.0-or-later
@@ -49,10 +49,76 @@ function wpboiler_core_card_group_block_init() {
 	register_block_type(
 		'wpboiler-core/card-group',
 		array(
-			'editor_script' => 'wpboiler-core-card-group-block-editor',
-			'editor_style'  => 'wpboiler-core-card-group-block-editor',
-			'style'         => 'wpboiler-core-card-group-block',
+			'editor_script' 	=> 'wpboiler-core-card-group-block-editor',
+			'editor_style'  	=> 'wpboiler-core-card-group-block-editor',
+			'style'         	=> 'wpboiler-core-card-group-block',
+			'render_callback' 	=> 'wpboiler_core_card_group_render'
 		)
 	);
 }
 add_action( 'init', 'wpboiler_core_card_group_block_init' );
+
+function wpboiler_core_card_group_render( $attr, $content ) {
+
+	$html = '';
+	$pictureMarkup = '';
+	$mediaID = '';
+	$mediaURL = '';
+	$mediaSrc = '';
+	$mediaAlt = '';
+	$classes = array();
+
+	$pretitle = (isset($attr['pretitle']) ? $attr['pretitle'] : '');
+	$title = (isset($attr['title']) ? $attr['title'] : '');
+	$introduction = (isset($attr['introduction']) ? $attr['introduction'] : '');
+
+	$classes[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
+
+	if(isset($attr['mediaID'])) {
+		$mediaID = $attr['mediaID'];
+		$mediaSrc = wp_get_attachment_image_src($mediaID, 'cta');
+		$mediaURL = $mediaSrc[0];
+		$mediaAlt = get_post_meta($mediaID, '_wp_attachment_img_alt', TRUE);
+
+		if($mediaURL) {
+
+			$pictureMarkup = '
+				<picture>
+					' . wp_filter_content_tags('<img class="cardgroup__background wp-image-' . $mediaID . '" src="' . $mediaURL . '" alt="' . $mediaAlt . '" />') . '
+				</picture>';
+		}
+	}
+
+	$html = '<section class="cardgroup container__full ' . implode(" ", $classes) . '">
+				<div class="cardgroup__container">
+					<div class="cardgroup__container--title">';
+
+						if($pretitle) {
+							$html .= '<h3 class="cardgroup__heading cardgroup__heading--pre">' . $pretitle . '</h3>';
+						}
+
+						if($title) {
+							$html .= '<h2 class="cardgroup__heading cardgroup__heading--title">' . $title . '</h2>';
+						}
+
+						if($introduction) {
+							$html .= '<p class="cardgroup__introduction">' . $introduction . '</p>';
+						}
+					
+			$html .= '</div>
+					<div class="cardgroup__container--content">
+					
+					' . $content . '
+
+					</div>
+				
+				</div>
+				<div class="cardgroup__container--media">
+					' . $pictureMarkup . '	
+				</div>
+			</section>';
+
+	return $html;
+
+
+}
