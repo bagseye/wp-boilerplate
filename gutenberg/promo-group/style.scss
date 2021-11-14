@@ -2,7 +2,6 @@
         '../../sass/utils/variables';
 
  .promogroup {
-     background-color: $brand1;
      
     &__stacked {
         .promogroupitem {
@@ -25,27 +24,33 @@
 
         &.promogroup__columns--2 {
             .promogroup__container--content {
-                // grid-template-columns: repeat(2, 1fr);
+                .promogroupitem {
+                    width: calc(50% - (#{$spacing} / 2));
+                }
             }
         }
 
         &.promogroup__columns--3 {
             .promogroup__container--content {
-                // grid-template-columns: repeat(3, 1fr);
+                .promogroupitem {
+                    width: calc(33.333% - 11px);
+                }
             }
         }
 
         &.promogroup__columns--4 {
             .promogroup__container--content {
-                // grid-template-columns: repeat(4, 1fr);
+                .promogroupitem {
+                    width: calc(25% - 12px);
+                }
             }
         }
     }
 
     .promogroup__container--content {
-        // display: grid;
-        // grid-auto-rows: auto;
         gap: $spacing;
+        display: flex;
+        flex-wrap: wrap;
     }
 
     .promogroup__container {
@@ -55,7 +60,7 @@
     }
 
     .promogroupitem {
-        background-color: $brand2;
+        background-color: $brand4;
 
         .promogroupitem__text {
             padding: $spacing;
@@ -64,7 +69,7 @@
         .promogroupitem__title {
             margin-top: 0.5rem;
             margin-bottom: 1rem;
-            font-size: $headingSub;
+            font-size: $h5;
         }
 
         .promogroupitem__content {

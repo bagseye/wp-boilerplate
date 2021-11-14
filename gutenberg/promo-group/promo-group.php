@@ -3,7 +3,7 @@
  * Plugin Name:       Promo Card Group
  * Description:       Displays multiple cards, used for promoting content and directing users. Has two layout styles - stacked and inline
  * Requires at least: 5.7
- * Requires PHP:      7.0
+ * Requires PHP:      7.3.5
  * Version:           1.0.0
  * Author:            Morgan Baker
  * License:           GPL-2.0-or-later
@@ -49,10 +49,35 @@ function wpboiler_core_promo_group_block_init() {
 	register_block_type(
 		'wpboiler-core/promo-group',
 		array(
-			'editor_script' => 'wpboiler-core-promo-group-block-editor',
-			'editor_style'  => 'wpboiler-core-promo-group-block-editor',
-			'style'         => 'wpboiler-core-promo-group-block',
+			'editor_script' 	=> 'wpboiler-core-promo-group-block-editor',
+			'editor_style'  	=> 'wpboiler-core-promo-group-block-editor',
+			'style'         	=> 'wpboiler-core-promo-group-block',
+			'render_callback'	=> 'wpboiler_core_promo_group_render'
 		)
 	);
 }
 add_action( 'init', 'wpboiler_core_promo_group_block_init' );
+
+function wpboiler_core_promo_group_render($attr, $content) {
+
+	$html = '';
+	$orientation = '';
+	$classes = array();
+
+	$classes[] = $orientation = (isset($attr['orientation']) ? $attr['orientation'] : 'promogroup__stacked');
+	$classes[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
+
+	if($orientation == 'promogroup__columns') {
+		$classes[] = $columns = (isset($attr['columnselect']) ? 'promogroup__columns--' . $attr['columnselect'] : 'promogroup__columns--2');
+	}
+
+	$html = '<section class="promogroup ' . implode(" ", $classes) . '">
+				<div class="promogroup__container">
+					<div class="promogroup__container--content">
+					' . $content . '
+					</div>
+				</div>
+			</section>';
+
+	return $html;
+}

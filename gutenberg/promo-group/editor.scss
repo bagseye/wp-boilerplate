@@ -1,74 +1,66 @@
 @import '../../sass/utils/mixins',
         '../../sass/utils/variables';
 
- .wp-block-wpboiler-core-promo-group {
-     &[orientation="stacked"] {
-         .promogroup__container {
-             .promogroup__container--content {
-                 .wp-block-wpboiler-core-promo-group-item {
-                     .promogroupitem__container {
-                         display: flex;
-                     }
-
-                     .promogroupitem__media {
-                         flex: 0 0 40%;
-                     }
-
-                     .promogroupitem__text {
-                         flex: 1 1 auto;
-                         padding-left: $spacing;
-                     }
-                 }
-             }
-         }
-     }
-
-    &[orientation="columns"] {
-        .block-editor-inner-blocks {
-            .block-editor-block-list__layout {
-                display: grid;
-                grid-auto-rows: auto;
+.wp-block-wpboiler-core-promo-group {
+    .promogroup__container--content {
+        >.block-editor-inner-blocks {
+            >.block-editor-block-list__layout {
+                display: flex;
+                flex-wrap: wrap;
                 gap: $spacing;
+            }
+        }
+    }
+
+    .wp-block-wpboiler-core-promo-group-item {
+        margin-left: 0;
+        margin-right: 0;
+        background-color: $brand4;
+    }
+
+    &[orientation="promogroup__stacked"] {
+        .wp-block-wpboiler-core-promo-group-item {
+            width: 100%;
+
+            .promogroupitem__container {
+                display: flex;
+            }
+
+            .promogroupitem__media {
+                flex: 0 0 40%;
+            }
+
+            .promogroupitem__text {
+                flex: 1 1 auto;
+                padding-left: $spacing;
+            }
+        }
+    }
+
+    &[orientation="promogroup__columns"] {
+
+        .wp-block-wpboiler-core-promo-group-item {
+            .promogroupitem__text {
+                padding: $spacing;
             }
         }
 
         &[columnselect="2"] {
-            .block-editor-inner-blocks {
-                .block-editor-block-list__layout {
-                    grid-template-columns: repeat(2, 1fr);
-                }
+            .wp-block-wpboiler-core-promo-group-item {
+                width: calc(50% - (#{$spacing} / 2));
             }
         }
 
         &[columnselect="3"] {
-            .block-editor-inner-blocks {
-                .block-editor-block-list__layout {
-                    grid-template-columns: repeat(3, 1fr);
-                }
+            .wp-block-wpboiler-core-promo-group-item {
+                width: calc(33.333% - 11px);
             }
         }
 
         &[columnselect="4"] {
-            .block-editor-inner-blocks {
-                .block-editor-block-list__layout {
-                    grid-template-columns: repeat(4, 1fr);
-                }
+            .wp-block-wpboiler-core-promo-group-item {
+                width: calc(25% - 12px);
             }
         }
-    }
-
-    .promogroup__container {
-        width: 100%;
-        max-width: $container;
-        margin: 0 auto;
-    }
-
-}
-
-.promogroupitem__media {
-    img {
-        aspect-ratio: 4 / 3;
-        object-fit: cover;
-        object-position: center;
-    }
+    }    
 }

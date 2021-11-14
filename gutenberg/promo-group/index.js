@@ -26,7 +26,7 @@
       },
       orientation: {
         type: "string",
-        default: "stacked",
+        default: "promogroup__stacked",
       },
       columnselect: {
         type: "number",
@@ -95,18 +95,18 @@
               options: [
                 {
                   label: "Stacked Items",
-                  value: "stacked",
+                  value: "promogroup__stacked",
                 },
                 {
                   label: "Columns",
-                  value: "columns",
+                  value: "promogroup__columns",
                 },
               ],
               onChange: onChangeOrientationSelect,
             })
           ),
 
-          orientation === "columns"
+          orientation === "promogroup__columns"
             ? el(
                 PanelBody,
                 {
@@ -142,32 +142,8 @@
       );
     },
 
-    save: function (props) {
-      const { attributes } = props;
-      const { marginselect, orientation, columnselect } = attributes;
-
-      return el(
-        "section",
-        {
-          className: `promogroup ${marginselect} ${
-            orientation === "columns"
-              ? `promogroup__${orientation} promogroup__${orientation}--${columnselect.toString()}`
-              : `promogroup__stacked`
-          }`,
-        },
-
-        el(
-          "div",
-          { className: "promogroup__container" },
-
-          el(
-            "div",
-            { className: "promogroup__container--content" },
-
-            el(InnerBlocks.Content, {})
-          )
-        )
-      );
+    save: function () {
+      return el(InnerBlocks.Content, {});
     },
   });
 })(window.wp);
