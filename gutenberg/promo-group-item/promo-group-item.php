@@ -3,7 +3,7 @@
  * Plugin Name:       Promo Group Item
  * Description:       A single promo group card. This is only available within a promo group block
  * Requires at least: 5.7
- * Requires PHP:      7.0
+ * Requires PHP:      7.3.5
  * Version:           1.0.0
  * Author:            Morgan Baker
  * License:           GPL-2.0-or-later
@@ -33,8 +33,55 @@ function wpboiler_core_promo_group_item_block_init() {
 	register_block_type(
 		'wpboiler-core/promo-group-item',
 		array(
-			'editor_script' => 'wpboiler-core-promo-group-item-block-editor',
+			'editor_script' 	=> 'wpboiler-core-promo-group-item-block-editor',
+			'render_callback'	=> 'wpboiler_core_promo_group_item_render'
 		)
 	);
 }
 add_action( 'init', 'wpboiler_core_promo_group_item_block_init' );
+
+function wpboiler_core_promo_group_item_render($attr, $content) {
+
+	$html = '';
+	$mediaID = '';
+	$mediaURL = '';
+	$mediaSrc = '';
+	$mediaAlt = '';
+	$pictureMarkup = '';
+
+	$heading = (isset($attr['title']) ? $attr['title'] : '');
+	$bodyContent = (isset($attr['content']) ? $attr['content'] : '');
+
+	if(isset($attr['mediaID'])) {
+		$mediaID = $attr['mediaID'];
+		$mediaSrc = wp_get_attachment_image_src($mediaID, 'promo');
+		$mediaAlt = get_post_meta($mediaID, '_wp_attachment_img_alt', TRUE);
+
+		$mediaURL = $mediaSrc[0];
+
+		$pictureMarkup = '
+			<picture>
+				' . wp_filter_content_tags('<img class="promogroupitem__media--img wp-image-' . $mediaID . '" src="' . $mediaURL . '" alt="' . $mediaAlt . '" />') . '
+			</picture>
+		';
+	}
+
+	$html = '<article class="promogroupitem">
+				<div class="promogroupitem__container">
+					<div class="promogroupitem__media">
+						' . $pictureMarkup . '
+					</div>
+					<div class="promogroupitem__text">';
+						if($heading) {
+							$html .= '<h2 class="promogroupitem__title">' . $heading . '</h2>';
+						}
+
+						if($bodyContent) {
+							$html .= '<p class="promogroupitem__content">' . $bodyContent . '</p>';
+						}	
+		$html .= '</div>
+				</div>
+			</article>';
+
+	return $html;
+}

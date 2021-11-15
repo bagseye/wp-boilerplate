@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Column
  * Description:       Displays an individual column
- * Requires at least: 5.7
+ * Requires at least: 5.3.5
  * Requires PHP:      7.0
  * Version:           1.0.0
  * Author:            Morgan Baker
@@ -33,8 +33,21 @@ function wpboiler_column_block_init() {
 	register_block_type(
 		'wpboiler/column',
 		array(
-			'editor_script' => 'wpboiler-column-block-editor',
+			'editor_script' 	=> 'wpboiler-column-block-editor',
+			'render_callback' 	=> 'wpboiler_column_render'
 		)
 	);
 }
 add_action( 'init', 'wpboiler_column_block_init' );
+
+function wpboiler_column_render($attr, $content) {
+
+	$html = '';
+
+	$html = '<div class="column">
+				' . $content . '
+			</div>';
+
+	return $html;
+
+}

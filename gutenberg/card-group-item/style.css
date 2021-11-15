@@ -1,1 +1,0 @@
-.cardgroupitem{flex:1 1 calc(50% - 1rem);padding-left:calc(1rem / 2);padding-right:calc(1rem / 2)}@media (min-width:992px){.cardgroupitem{flex:1 1 calc(25% - 1rem)}}.cardgroupitem__content,.cardgroupitem__title{color:#fff}.cardgroupitem__title{font-size:1.5rem}.cardgroupitem__content{font-size:1rem}

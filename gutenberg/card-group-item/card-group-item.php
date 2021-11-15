@@ -3,7 +3,7 @@
  * Plugin Name:       Card Group Item
  * Description:       An individual card item, which works as part of the card group block
  * Requires at least: 5.7
- * Requires PHP:      7.0
+ * Requires PHP:      7.3.5
  * Version:           1.0.0
  * Author:            Morgan Baker
  * License:           GPL-2.0-or-later
@@ -30,29 +30,35 @@ function wpboiler_core_card_group_item_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-card-group-item-block-editor', 'card-group-item' );
 
-	$editor_css = 'card-group-item/editor.css';
-	wp_register_style(
-		'wpboiler-core-card-group-item-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
-	$style_css = 'card-group-item/style.css';
-	wp_register_style(
-		'wpboiler-core-card-group-item-block',
-		get_template_directory_uri() . "/gutenberg/$style_css",
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/card-group-item',
 		array(
-			'editor_script' => 'wpboiler-core-card-group-item-block-editor',
-			'editor_style'  => 'wpboiler-core-card-group-item-block-editor',
-			'style'         => 'wpboiler-core-card-group-item-block',
+			'editor_script' 	=> 'wpboiler-core-card-group-item-block-editor',
+			'render_callback'	=> 'wpboiler_core_card_group_item_render'
 		)
 	);
 }
 add_action( 'init', 'wpboiler_core_card_group_item_block_init' );
+
+function wpboiler_core_card_group_item_render($attr, $content) {
+
+	$html = '';
+
+	$heading = (isset($attr['title']) ? $attr['title'] : '');
+	$bodyContent = (isset($attr['content']) ? $attr['content'] : '');
+
+	$html = '<article class="cardgroupitem">';
+
+				if($heading) {
+					$html .= '<h2 class="cardgroupitem__title">' . $heading . '</h2>';
+				}
+
+				if($bodyContent) {
+					$html .= '<p class="cardgroupitem__content">' . $bodyContent . '</p>';
+				}
+	
+	$html .= '</article>';
+
+	return $html;
+
+}

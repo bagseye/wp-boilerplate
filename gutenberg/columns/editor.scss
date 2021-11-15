@@ -1,7 +1,7 @@
 @import '../../sass/utils/variables',
         '../../sass/utils/mixins';
 
-.wp-block-strut-core-columns {
+.wp-block-wpboiler-core-columns {
 
     .columns__container {
         >.block-editor-inner-blocks {
@@ -16,7 +16,7 @@
                     flex-direction: row;
                 }
         
-                .wp-block-strut-core-column {
+                .wp-block-wpboiler-core-column {
                     width: 100%;
                     margin: 0;
                 }
@@ -28,7 +28,7 @@
         .columns__container {
             >.block-editor-inner-blocks {
                 >.block-editor-block-list__layout {
-                    .wp-block-strut-core-column {
+                    .wp-block-wpboiler-core-column {
                         @include tablet {
                             width: calc(50% - (#{$spacing} / 2));
                         }
@@ -42,7 +42,7 @@
         .columns__container {
             >.block-editor-inner-blocks {
                 >.block-editor-block-list__layout {
-                    .wp-block-strut-core-column {
+                    .wp-block-wpboiler-core-column {
                         @include tablet {
                             width: calc(33.333% - 14px);
                         }
@@ -56,7 +56,7 @@
         .columns__container {
             >.block-editor-inner-blocks {
                 >.block-editor-block-list__layout {
-                    .wp-block-strut-core-column {
+                    .wp-block-wpboiler-core-column {
                         @include tablet {
                             width: calc(25% - 15px);
                         }

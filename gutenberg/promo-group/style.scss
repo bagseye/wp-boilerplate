@@ -5,6 +5,8 @@
      
     &__stacked {
         .promogroupitem {
+            width: 100%;
+            
             .promogroupitem__container {
                 display: flex;
             }
@@ -33,7 +35,11 @@
         &.promogroup__columns--3 {
             .promogroup__container--content {
                 .promogroupitem {
-                    width: calc(33.333% - 11px);
+                    width: calc(50% - (#{$spacing} / 2));
+
+                    @include desktop {
+                        width: calc(33.333% - 11px);
+                    }
                 }
             }
         }
@@ -41,7 +47,11 @@
         &.promogroup__columns--4 {
             .promogroup__container--content {
                 .promogroupitem {
-                    width: calc(25% - 12px);
+                    width: calc(50% - (#{$spacing} / 2));
+
+                    @include desktop {
+                        width: calc(25% - 12px);
+                    }
                 }
             }
         }
@@ -69,7 +79,11 @@
         .promogroupitem__title {
             margin-top: 0.5rem;
             margin-bottom: 1rem;
-            font-size: $h5;
+            font-size: $h6;
+
+            @include desktop {
+                font-size: $h5;
+            }
         }
 
         .promogroupitem__content {

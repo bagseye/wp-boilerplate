@@ -20,14 +20,10 @@
     attributes: {
       title: {
         type: "string",
-        source: "text",
-        selector: "h2.cardgroupitem__title",
         default: "",
       },
       content: {
         type: "string",
-        source: "text",
-        selector: "p.cardgroupitem__content",
         default: "",
       },
     },
@@ -58,25 +54,8 @@
       );
     },
 
-    save: function (props) {
-      const { attributes } = props;
-      const { title, content } = attributes;
-      return el(
-        "article",
-        { className: 'cardgroupitem' },
-
-        el(RichText.Content, {
-          tagName: "h2",
-          className: "cardgroupitem__title",
-          value: title,
-        }),
-
-        el(RichText.Content, {
-          tagName: "p",
-          className: "cardgroupitem__content",
-          value: content,
-        })
-      );
+    save: function () {
+      return null;
     },
   });
 })(window.wp);
