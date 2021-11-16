@@ -3,7 +3,7 @@
   var el = wp.element.createElement;
   var __ = wp.i18n.__;
 
-  const { RadioControl, PanelBody, Button } = wp.components;
+  const { RadioControl, PanelBody, ToggleControl, Button } = wp.components;
   const {
     useBlockProps,
     RichText,
@@ -46,6 +46,10 @@
         type: "string",
         default: "cta__text--left",
       },
+      margindouble: {
+        type: "string",
+        default: "",
+      },
       mediaid: {
         type: "number",
         default: "",
@@ -63,6 +67,7 @@
         heading,
         subheading,
         marginselect,
+        margindouble,
         orientationselect,
         mediaid,
         mediaurl,
@@ -82,6 +87,8 @@
       return el(
         "div",
         useBlockProps(attributes),
+
+        el("p", { className: "block__title" }, __("CTA", "cta")),
 
         // INSPECTOR CONTROL BEGIN
         el(
@@ -118,6 +125,16 @@
               onChange: onChangeMarginSelect,
             })
           ),
+
+          marginselect !== "margins__none" &&
+            el(ToggleControl, {
+              label: "Double Margins?",
+              checked: margindouble,
+              onChange: () =>
+                setAttributes({
+                  margindouble: margindouble ? "" : "margins__double",
+                }),
+            }),
           // BLOCK MARGIN CONTROLS END
 
           // BLOCK ORIENTATION CONTROL BEGIN

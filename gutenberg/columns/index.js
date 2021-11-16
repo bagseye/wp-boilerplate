@@ -57,8 +57,15 @@
       } = attributes;
       return el(
         "section",
-        useBlockProps(),
-        __("Add columns by pressing the + icon. Maximum 4 columns", "columns"),
+        useBlockProps(attributes),
+
+        el("p", { className: "block__title" }, __("Columns", "columns")),
+
+        el(
+          "p",
+          null,
+          __("Add columns by pressing the + icon. Maximum 4 columns", "columns")
+        ),
 
         // INSPECTOR CONTROLS
         el(

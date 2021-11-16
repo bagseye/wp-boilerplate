@@ -1,60 +1,52 @@
-( function( wp ) {
+(function (wp) {
+  var registerBlockType = wp.blocks.registerBlockType;
+  var el = wp.element.createElement;
+  var __ = wp.i18n.__;
 
-	var registerBlockType = wp.blocks.registerBlockType;
-	var el = wp.element.createElement;
-	var __ = wp.i18n.__;
+  const { useBlockProps, InnerBlocks } = wp.blockEditor;
+  const allowedBlocks = [
+    "core/heading",
+    "core/paragraph",
+    "core/button",
+    "core/list",
+  ];
 
-	const { useBlockProps, InnerBlocks } = wp.blockEditor;
-	const allowedBlocks = [ 'core/heading', 'core/paragraph', 'core/button', 'core/list' ];
+  registerBlockType("wpboiler-core/column", {
+    apiVersion: 2,
+    title: __("Column", "column"),
+    description: __("Displays an individual column", "column"),
+    category: "widgets",
+    icon: "schedule",
+    supports: {
+      html: false,
+    },
+    parent: ["wpboiler-core/columns"],
 
-	registerBlockType( 'wpboiler-core/column', {
+    edit: function () {
+      return el(
+        "div",
+        useBlockProps(),
 
-		apiVersion: 2,
-		title: __(
-			'Column',
-			'column'
-		),
-		description: __(
-			'Displays an individual column',
-			'column'
-		),
-		category: 'widgets',
-		icon: 'schedule',
-		supports: {
-			html: false,
-		},
-		parent: [ 'wpboiler-core/columns' ],
+        el("p", { className: "block__title" }, __("Column", "column")),
 
-		edit: function() {
-			return el(
-				'div',
-				useBlockProps(),
-				
-				el(
-					'div',
-					{ className: 'column' },
+        el(
+          "div",
+          { className: "column" },
 
-					el(
-						InnerBlocks, 
-						{
-							allowedBlocks: allowedBlocks,
-						},
-					),
-				),
-			);
-		},
+          el(InnerBlocks, {
+            allowedBlocks: allowedBlocks,
+          })
+        )
+      );
+    },
 
-		save: function() {
-			return el(
-				'div',
-				{ className: 'column' },
+    save: function () {
+      return el(
+        "div",
+        { className: "column" },
 
-				el(
-					InnerBlocks.Content, {},
-				),
-			);
-		},
-	} );
-}(
-	window.wp
-) );
+        el(InnerBlocks.Content, {})
+      );
+    },
+  });
+})(window.wp);

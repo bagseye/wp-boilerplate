@@ -1,0 +1,19 @@
+@import './utils/variables';
+
+.wp-block {
+    padding: 0 1rem 1rem 1rem;
+    border-radius: 4px;
+    border: 1px dotted #aaa;
+
+    .block__title {
+        background-color: $brand2;
+        color: $brand4;
+        position: relative;
+        z-index: 2;
+        margin: 0 -1rem;
+        padding: 0.25rem 1rem;
+        font-weight: 700;
+        font-size: 0.875rem;
+
+    }
+}

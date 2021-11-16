@@ -50,6 +50,7 @@
                 }
             }
         }
+        
     }
 
     &[columnselect="4"] {
@@ -65,4 +66,42 @@
             }
         }
     }
+
+    &[columnoffset="columns__offset--4060"] {
+            .columns__container {
+                >.block-editor-inner-blocks {
+                    >.block-editor-block-list__layout {
+                        .wp-block-wpboiler-core-column {
+
+                            &:nth-child(odd) {
+                                width: calc(40% - 0.5rem);
+                            }
+
+                            &:nth-child(even) {
+                                width: calc(60% - 0.5rem);
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+        &[columnoffset="columns__offset--6040"] {
+            .columns__container {
+                >.block-editor-inner-blocks {
+                    >.block-editor-block-list__layout {
+                        .wp-block-wpboiler-core-column {
+
+                            &:nth-child(odd) {
+                                width: calc(60% - 0.5rem);
+                            }
+
+                            &:nth-child(even) {
+                                width: calc(40% - 0.5rem);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 }

@@ -8,6 +8,7 @@
 
 body {
     font-family: $sansSerif;
+    line-height: 1.5;
 }
 
 .container {
@@ -54,5 +55,49 @@ body {
         @include desktop {
             margin-bottom: $spacing * 4;
         }
+    }
+
+    &__inContent {
+        margin-top: calc(#{$spacing} / 2);
+        margin-bottom: $spacing;
+    }
+
+    &__double {
+        &.margins__topBottom {
+            margin-top: $spacing * 4;
+            margin-bottom: $spacing * 4;
+
+            @include desktop {
+                margin-top: $spacing * 8;
+                margin-bottom: $spacing * 8;
+            }
+        }
+
+        &.margins__top {
+            margin-top: $spacing * 4;
+            margin-bottom: 0;
+
+            @include desktop {
+                margin-top: $spacing * 8;
+            }
+        }
+
+        &.margins__bottom {
+            margin-top: 0;
+            margin-bottom: $spacing * 4;
+
+            @include desktop {
+                margin-bottom: $spacing * 8;
+            }
+        }
+    }
+}
+
+.content {
+    &__narrow {
+        width: 80%;
+        max-width: $narrow;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
