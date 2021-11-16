@@ -1,233 +1,194 @@
-( function( wp ) {
+(function (wp) {
+  var registerBlockType = wp.blocks.registerBlockType;
+  var el = wp.element.createElement;
+  var __ = wp.i18n.__;
+  const { RangeControl, RadioControl, ToggleControl, PanelBody } =
+    wp.components;
+  const { useBlockProps, InnerBlocks, InspectorControls } = wp.blockEditor;
+  const allowedBlocks = ["wpboiler-core/column"];
 
-	var registerBlockType = wp.blocks.registerBlockType;
-	var el = wp.element.createElement;
-	var __ = wp.i18n.__;
+  registerBlockType("wpboiler-core/columns", {
+    apiVersion: 2,
+    title: __("Columns", "columns"),
+    description: __("Displays content in columns", "columns"),
+    category: "design",
+    icon: "schedule",
+    supports: {
+      html: false,
+      alignWide: false,
+    },
+    attributes: {
+      columnselect: {
+        type: "number",
+        default: 2,
+      },
+      marginselect: {
+        type: "string",
+        default: "margins__inContent",
+      },
+      margindouble: {
+        type: "string",
+        default: "",
+      },
+      narrowcontent: {
+        type: "string",
+        default: "",
+      },
+      reverseorder: {
+        type: "string",
+        default: "",
+      },
+      columnoffset: {
+        type: "string",
+        default: "",
+      },
+    },
 
-	const { useSelect } = wp.data;
-	const { RangeControl, RadioControl, ToggleControl, PanelBody } = wp.components;
-	const { useBlockProps, InnerBlocks, InspectorControls } = wp.blockEditor;
-	const allowedBlocks = [ 'wpboiler-core/column' ];
+    edit: function (props) {
+      const { attributes, setAttributes } = props;
 
-	registerBlockType( 'wpboiler-core/columns', {
+      const {
+        columnselect,
+        marginselect,
+        margindouble,
+        narrowcontent,
+        reverseorder,
+        columnoffset,
+      } = attributes;
+      return el(
+        "section",
+        useBlockProps(),
+        __("Add columns by pressing the + icon. Maximum 4 columns", "columns"),
 
-		apiVersion: 2,
-		title: __(
-			'Columns',
-			'columns'
-		),
-		description: __(
-			'Displays content in columns',
-			'columns'
-		),
-		category: 'design',
-		icon: 'schedule',
-		supports: {
-			html: false,
-		},
-		attributes: {
-			columnselect: {
-				type: 'number',
-				default: 2,
-			},
-			marginSelect: {
-				type: 'string',
-				default: 'margins__inContent',
-			},
-			marginDouble: {
-				type: 'boolean',
-				default: false,
-			},
-			narrowContent: {
-				type: 'boolean',
-				default: false,
-			},
-			reverseOrder: {
-				type: 'boolean',
-				default: false,
-			},
-			columnOffset: {
-				type: 'string',
-				default: 'columns__offset--none'
-			},
-		},
+        // INSPECTOR CONTROLS
+        el(
+          InspectorControls,
+          null,
 
-		edit: function(props) {
-			
-			const { 
-				attributes, 
-				setAttributes, 
-				clientId 
-			} = props;
+          el(
+            PanelBody,
+            {
+              title: "Columns Select",
+            },
 
-			const { 
-				columnselect, 
-				marginSelect,
-				marginDouble,
-				narrowContent,
-				reverseOrder,
-				columnOffset 
-			} = attributes;
+            el(RangeControl, {
+              min: 2,
+              max: 4,
+              value: columnselect,
+              onChange: (value) => setAttributes({ columnselect: value }),
+            })
+          ),
 
-			const onChangeColumnSelect = value => setAttributes({ columnselect: value });
-			const onChangeMarginSelect = value => setAttributes({ marginSelect: value });
-			const onChangeMarginDoubleSelect = () => setAttributes({ marginDouble: marginDouble ? false : true });
-			const onChangeNarrowContentSelect = () => setAttributes({ narrowContent: narrowContent ? false : true });
-			const onChangeReverseOrderSelect = () => setAttributes({ reverseOrder: reverseOrder ? false : true });
-			const onChangeOffsetSelect = value => setAttributes({ columnOffset: value });
+          el(
+            PanelBody,
+            {
+              title: "Margin Select",
+            },
 
-			const innerBlockCount = useSelect((select) => select('core/block-editor').getBlock(clientId).innerBlocks);
+            el(RadioControl, {
+              selected: marginselect,
+              options: [
+                {
+                  label: "No Margins",
+                  value: "margins__none",
+                },
+                {
+                  label: "Basic / In-content Margins",
+                  value: "margins__inContent",
+                },
+                {
+                  label: "Margins Top & Bottom",
+                  value: "margins__topBottom",
+                },
+                {
+                  label: "Top Margin Only",
+                  value: "margins__top",
+                },
+                {
+                  label: "Bottom Margin Only",
+                  value: "margins__bottom",
+                },
+              ],
+              onChange: (value) => setAttributes({ marginselect: value }),
+            }),
 
-			return el(
-				'section',
-				useBlockProps(attributes),
-				__( 'Add columns by pressing the + icon. Maximum 4 columns', 'columns' ),
+            marginselect !== "margins__none"
+              ? marginselect !== "margins__inContent"
+                ? el(ToggleControl, {
+                    label: "Double Margins?",
+                    checked: margindouble,
+                    onChange: () =>
+                      setAttributes({
+                        margindouble: margindouble ? "" : "margins__double",
+                      }),
+                  })
+                : null
+              : null
+          ),
 
-				// INSPECTOR CONTROLS BEGINS
-				el(
-					InspectorControls,
-					null,
+          el(
+            PanelBody,
+            {
+              title: "Styling Controls",
+            },
 
-					el(
-						PanelBody,
-						{
-							title: 'Columns Select',
-						},
+            el(ToggleControl, {
+              label: "Narrow Content?",
+              help: "Sets the column width to match narrow text content.",
+              checked: narrowcontent,
+              onChange: () =>
+                setAttributes({
+                  narrowcontent: narrowcontent ? "" : "content__narrow",
+                }),
+            }),
 
-						el(
-							RangeControl, {
-								min: 2,
-								max: 4,
-								value: columnselect,
-								onChange: onChangeColumnSelect
-							}
-						),
-					),
+            el(ToggleControl, {
+              label: "Reverse order on mobile?",
+              help: "When on mobile devices the order of stacked items will be reversed.",
+              checked: reverseorder,
+              onChange: () =>
+                setAttributes({
+                  reverseorder: reverseorder ? "" : "columns__reverse",
+                }),
+            }),
 
-					el(
-						PanelBody, {
-							title: 'Margin Select'
-						},
+            columnselect === 2 &&
+              el(RadioControl, {
+                label: "Offset columns?",
+                help: "For a design choice, the columns can be offset. This option is only available for 2 column layouts.",
+                selected: columnoffset,
+                options: [
+                  {
+                    label: "No offset",
+                    value: "",
+                  },
+                  {
+                    label: "60 / 40",
+                    value: "columns__offset--6040",
+                  },
+                  {
+                    label: "40 / 60",
+                    value: "columns__offset--4060",
+                  },
+                ],
+                onChange: (value) => setAttributes({ columnoffset: value }),
+              })
+          )
+        ),
 
-						el(
-							RadioControl,
-							{
-								selected: marginSelect,
-								options: [
-									{
-										label: 'No Margins',
-										value: 'margins__none'
-									},
-									{
-										label: 'Basic / In-content Margins',
-										value: 'margins__inContent'
-									},
-									{
-										label: 'Margins Top & Bottom',
-										value: 'margins__topBottom'
-									},
-									{
-										label: 'Top Margin Only',
-										value: 'margins__top'
-									},
-									{
-										label: 'Bottom Margin Only',
-										value: 'margins__bottom'
-									},
-								],
-								onChange: onChangeMarginSelect
-							}
-						),
+        el(
+          "div",
+          { className: "columns__container" },
 
-						(marginSelect !== 'margins__none' ? 
-		
-							(marginSelect !== 'margins__inContent' ? el(
-								ToggleControl,
-								{
-									label: 'Double Margins?',
-									checked: marginDouble,
-									onChange: onChangeMarginDoubleSelect
-								}
-							) : null) 
-							
-						: null),
-						
-					),
+          el(InnerBlocks, {
+            allowedBlocks: allowedBlocks,
+          })
+        )
+      );
+    },
 
-					el(
-						PanelBody, {
-							title: 'Styling Controls'
-						},
-
-						el(
-							ToggleControl, 
-							{
-								label: 'Narrow content?',
-								help: 'Sets the column width to match narrow text content.',
-								checked: narrowContent,
-								onChange: onChangeNarrowContentSelect
-							}
-						),
-
-						el(
-							ToggleControl,
-							{
-								label: 'Reverse order on mobile?',
-								help: 'When on mobile devices the order of stacked items will be reversed.',
-								checked: reverseOrder,
-								onChange: onChangeReverseOrderSelect
-							}
-						),
-
-						(columnselect === 2 ? el(
-							RadioControl,
-							{
-								label: 'Offset columns?',
-								help: 'For a design choice, the columns can be offset. This option is only available for 2 column layouts.',
-								selected: columnOffset,
-								options: [
-									{
-										label: 'No offset',
-										value: 'columns__offset--none',
-									},
-									{
-										label: '60 / 40',
-										value: 'columns__offset--6040',
-									},
-									{
-										label: '40 / 60',
-										value: 'columns__offset--4060',
-									},
-								],
-								onChange: onChangeOffsetSelect
-							}
-						) : null),
-
-						
-					),
-				),
-				// INSPECTOR CONTROLS END
-
-				// PREVIEW AREA BEGIN
-				el(
-					'div',
-					{ className: 'columns__container' },
-
-					el(
-						InnerBlocks, {
-							allowedBlocks: allowedBlocks,
-						}
-					)
-						
-				),
-				// PREVIEW AREA END
-			);
-		},
-
-		save: function() {	
-			return el(InnerBlocks.Content, {});
-		},
-	} );
-}(
-	window.wp
-) );
+    save: function () {
+      return el(InnerBlocks.Content, {});
+    },
+  });
+})(window.wp);

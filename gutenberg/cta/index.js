@@ -46,11 +46,11 @@
         type: "string",
         default: "cta__text--left",
       },
-      mediaID: {
+      mediaid: {
         type: "number",
         default: "",
       },
-      mediaURL: {
+      mediaurl: {
         type: "string",
         default: "",
       },
@@ -64,8 +64,8 @@
         subheading,
         marginselect,
         orientationselect,
-        mediaID,
-        mediaURL,
+        mediaid,
+        mediaurl,
       } = attributes;
 
       const onChangeMarginSelect = (value) =>
@@ -74,8 +74,8 @@
         setAttributes({ orientationselect: value });
       const onSelectImage = (media) => {
         setAttributes({
-          mediaID: media.id,
-          mediaURL: media.url,
+          mediaid: media.id,
+          mediaurl: media.url,
         });
       };
 
@@ -159,7 +159,7 @@
             el(MediaUpload, {
               onSelect: onSelectImage,
               allowedTypes: "image",
-              value: mediaID,
+              value: mediaid,
               render: (obj) => {
                 return el(
                   Button,
@@ -167,14 +167,14 @@
                     className: "components-button is-primary",
                     onClick: obj.open,
                   },
-                  !mediaID
+                  !mediaid
                     ? __("Upload Image", "cta")
                     : __("Replace Image", "cta")
                 );
               },
             }),
 
-            mediaID
+            mediaid
               ? el(
                   Button,
                   {
@@ -182,8 +182,8 @@
                     style: { marginLeft: "5px" },
                     onClick: () =>
                       setAttributes({
-                        mediaID: "",
-                        mediaURL: "",
+                        mediaid: "",
+                        mediaurl: "",
                       }),
                   },
                   "Remove Image"
@@ -233,13 +233,13 @@
           )
         ),
 
-        mediaURL &&
+        mediaurl &&
           el(
             "div",
             { className: "cta__container--media" },
 
             el("img", {
-              src: mediaURL,
+              src: mediaurl,
             })
           )
 

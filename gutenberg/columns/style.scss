@@ -31,7 +31,7 @@
     // Reverse Columns Control
     &.columns__reverse {
         .columns__container {
-            @media (max-width: $breakpointTablet - 1) {
+            @media (max-width: calc(#{$breakpointTablet} - 1)) {
                 flex-direction: column-reverse;
             }
         }

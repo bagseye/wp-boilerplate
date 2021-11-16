@@ -76,8 +76,8 @@ function wpboiler_core_cta_render( $attr, $content ) {
 	$classes[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
 	$classes[] = $margins = (isset($attr['orientationselect']) ? $attr['orientationselect'] : 'cta__text--left');
 
-	if(isset($attr['mediaID'])) {
-		$mediaID = $attr['mediaID'];
+	if(isset($attr['mediaid'])) {
+		$mediaID = $attr['mediaid'];
 		$mediaSrc = wp_get_attachment_image_src($mediaID, 'cta');
 		$mediaAlt = get_post_meta($mediaID, '_wp_attachment_img_alt', TRUE);
 
