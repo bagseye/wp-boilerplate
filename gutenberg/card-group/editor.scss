@@ -26,9 +26,9 @@
                 gap: $spacing;
 
                 .wp-block-wpboiler-core-card-group-item {
-                    flex: 1 1 25%;
-                    padding-left: calc(#{$spacing} / 2);
-                    padding-right: calc(#{$spacing} / 2);
+                    flex: 1 1 calc(25% - 12px);
+                    padding-left: $spacing;
+                    padding-right: $spacing;
 
                     .cardgroupitem {
                         &__title,

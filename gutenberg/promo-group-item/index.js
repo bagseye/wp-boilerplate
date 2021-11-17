@@ -54,6 +54,12 @@
         useBlockProps(attributes),
 
         el(
+          "p",
+          { className: "block__title" },
+          __("Promo Group Item", "promo-group-item")
+        ),
+
+        el(
           InspectorControls,
           null,
 

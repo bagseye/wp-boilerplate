@@ -66,13 +66,17 @@ function wpboiler_core_card_group_render( $attr, $content ) {
 	$mediaURL = '';
 	$mediaSrc = '';
 	$mediaAlt = '';
-	$classes = array();
+	$modifiers = array();
 
 	$pretitle = (isset($attr['pretitle']) ? $attr['pretitle'] : '');
 	$title = (isset($attr['title']) ? $attr['title'] : '');
 	$introduction = (isset($attr['introduction']) ? $attr['introduction'] : '');
 
-	$classes[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
+	$modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
+
+	if($margins != 'margins__none' && isset($attr['marginsdouble'])) {
+		$modifiers[] = $marginsDouble = $attr['marginsdouble'];
+	}
 
 	if(isset($attr['mediaID'])) {
 		$mediaID = $attr['mediaID'];
@@ -89,7 +93,7 @@ function wpboiler_core_card_group_render( $attr, $content ) {
 		}
 	}
 
-	$html = '<section class="cardgroup container__full ' . implode(" ", $classes) . '">
+	$html = '<section class="cardgroup container__full ' . implode(" ", $modifiers) . '">
 				<div class="cardgroup__container">
 					<div class="cardgroup__container--title">';
 

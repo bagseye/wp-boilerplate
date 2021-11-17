@@ -62,16 +62,20 @@ function wpboiler_core_promo_group_render($attr, $content) {
 
 	$html = '';
 	$orientation = '';
-	$classes = array();
+	$modifier = array();
 
-	$classes[] = $orientation = (isset($attr['orientation']) ? $attr['orientation'] : 'promogroup__stacked');
-	$classes[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
+	$modifier[] = $orientation = (isset($attr['orientation']) ? $attr['orientation'] : 'promogroup__stacked');
+	$modifier[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
 
 	if($orientation == 'promogroup__columns') {
-		$classes[] = $columns = (isset($attr['columnselect']) ? 'promogroup__columns--' . $attr['columnselect'] : 'promogroup__columns--2');
+		$modifier[] = $columns = (isset($attr['columnselect']) ? 'promogroup__columns--' . $attr['columnselect'] : 'promogroup__columns--2');
 	}
 
-	$html = '<section class="promogroup ' . implode(" ", $classes) . '">
+	if($margins != 'margins__none' && isset($attr['marginsdouble'])) {
+		$modifier[] = $marginsDouble = $attr['marginsdouble'];
+	}
+
+	$html = '<section class="promogroup ' . implode(" ", $modifier) . '">
 				<div class="promogroup__container">
 					<div class="promogroup__container--content">
 					' . $content . '

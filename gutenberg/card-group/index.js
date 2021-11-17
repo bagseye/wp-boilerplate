@@ -3,7 +3,7 @@
   var el = wp.element.createElement;
   var __ = wp.i18n.__;
 
-  const { RadioControl, PanelBody, Button } = wp.components;
+  const { RadioControl, ToggleControl, PanelBody, Button } = wp.components;
   const {
     useBlockProps,
     RichText,
@@ -30,6 +30,10 @@
         type: "string",
         default: "margins__none",
       },
+      marginsdouble: {
+        type: "string",
+        default: "",
+      },
       mediaID: {
         type: "number",
         default: "",
@@ -54,8 +58,15 @@
 
     edit: function (props) {
       const { attributes, setAttributes } = props;
-      const { marginselect, mediaID, mediaURL, title, pretitle, introduction } =
-        attributes;
+      const {
+        marginselect,
+        marginsdouble,
+        mediaID,
+        mediaURL,
+        title,
+        pretitle,
+        introduction,
+      } = attributes;
 
       const onChangeMarginSelect = (value) =>
         setAttributes({ marginselect: value });
@@ -69,6 +80,8 @@
       return el(
         "div",
         useBlockProps(attributes),
+
+        el("p", { className: "block__title" }, __("Card Group", "card-group")),
 
         // INSPECTOR CONTROL BEGIN
         el(
@@ -102,7 +115,17 @@
                 },
               ],
               onChange: onChangeMarginSelect,
-            })
+            }),
+
+            marginselect !== "margins__none" &&
+              el(ToggleControl, {
+                label: "Double Margins?",
+                checked: marginsdouble,
+                onChange: () =>
+                  setAttributes({
+                    marginsdouble: marginsdouble ? "" : "margins__double",
+                  }),
+              })
           ),
 
           // IMAGE UPLOAD BEGIN

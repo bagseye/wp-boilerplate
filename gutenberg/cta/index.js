@@ -123,18 +123,19 @@
                 },
               ],
               onChange: onChangeMarginSelect,
-            })
+            }),
+
+            marginselect !== "margins__none" &&
+              el(ToggleControl, {
+                label: "Double Margins?",
+                checked: margindouble,
+                onChange: () =>
+                  setAttributes({
+                    margindouble: margindouble ? "" : "margins__double",
+                  }),
+              })
           ),
 
-          marginselect !== "margins__none" &&
-            el(ToggleControl, {
-              label: "Double Margins?",
-              checked: margindouble,
-              onChange: () =>
-                setAttributes({
-                  margindouble: margindouble ? "" : "margins__double",
-                }),
-            }),
           // BLOCK MARGIN CONTROLS END
 
           // BLOCK ORIENTATION CONTROL BEGIN

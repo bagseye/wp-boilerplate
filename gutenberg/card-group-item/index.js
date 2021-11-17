@@ -34,7 +34,13 @@
       const { title, content } = attributes;
       return el(
         "article",
-        useBlockProps(),
+        useBlockProps(attributes),
+
+        el(
+          "p",
+          { className: "block__title" },
+          __("Card Group Item", "card-group-item")
+        ),
 
         el(RichText, {
           tagName: "h2",

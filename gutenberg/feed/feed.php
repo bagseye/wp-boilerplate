@@ -3,7 +3,7 @@
  * Plugin Name:       Feed
  * Description:       Displays a feed of posts or pages
  * Requires at least: 5.7
- * Requires PHP:      7.0
+ * Requires PHP:      7.3.5
  * Version:           1.0.0
  * Author:            Morgan Baker
  * License:           GPL-2.0-or-later
@@ -85,10 +85,16 @@ add_action( 'init', 'wpboiler_core_feed_block_init' );
 function wpboiler_core_feed_render( $attr, $content ) {
 
 	$html = '';
+	$modifiers = array();
 
 
 	$type = ((isset($attr['postType']) && $attr['postType'] === 'category') ? 'category' : 'custom');
 	$catID = ((isset($attr['categoryID']) && is_numeric($attr['categoryID'])) ? $attr['categoryID'] : 1);
+	$modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
+
+	if($margins != 'margins__none' && isset($attr['doubleMargins'])) {
+		$modifiers[] = $marginsDouble = $attr['doubleMargins'];
+	}
 
 	// If set to category overwrite set blog posts with specific cat 
 	if($type == 'category') {
@@ -113,7 +119,7 @@ function wpboiler_core_feed_render( $attr, $content ) {
 		wp_reset_postdata();
 	}
 
-	$html = "<section class='feed'>
+	$html = "<section class='feed " . implode(" ", $modifiers) . "'>
 				<div class='feed__container'>";
 
 				$html .= $content;

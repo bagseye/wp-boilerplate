@@ -3,7 +3,8 @@
   var el = wp.element.createElement;
   var __ = wp.i18n.__;
 
-  const { RadioControl, PanelBody, RangeControl } = wp.components;
+  const { RadioControl, ToggleControl, PanelBody, RangeControl } =
+    wp.components;
   const { useBlockProps, InspectorControls, InnerBlocks } = wp.blockEditor;
   const allowedBlocks = ["wpboiler-core/promo-group-item"];
 
@@ -32,11 +33,16 @@
         type: "number",
         default: 2,
       },
+      marginsdouble: {
+        type: "string",
+        default: "",
+      },
     },
 
     edit: function (props) {
       const { attributes, setAttributes } = props;
-      const { marginselect, orientation, columnselect } = attributes;
+      const { marginselect, orientation, columnselect, marginsdouble } =
+        attributes;
 
       const onChangeMarginSelect = (value) =>
         setAttributes({ marginselect: value });
@@ -48,6 +54,12 @@
       return el(
         "section",
         useBlockProps(attributes),
+
+        el(
+          "p",
+          { className: "block__title" },
+          __("Promo Group", "promo-group")
+        ),
 
         // INSPECTOR CONTROL BEGIN
         el(
@@ -81,7 +93,17 @@
                 },
               ],
               onChange: onChangeMarginSelect,
-            })
+            }),
+
+            marginselect !== "margins__none" &&
+              el(ToggleControl, {
+                label: "Double Margins?",
+                checked: marginsdouble,
+                onChange: () =>
+                  setAttributes({
+                    marginsdouble: marginsdouble ? "" : "margins__double",
+                  }),
+              })
           ),
 
           el(

@@ -9,6 +9,7 @@ if(!function_exists('wpboiler_setup')) {
     function wpboiler_setup() {
         add_image_size( 'promo', 600 );
         add_image_size( 'cta', 2000 );
+        add_image_size( 'post-item', 1000 );
         
         add_theme_support( 'post-thumbnails' );
 
