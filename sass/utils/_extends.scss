@@ -1,0 +1,9 @@
+%padding__styles {
+    padding-top: $spacing *2;
+    padding-bottom: $spacing * 2;
+
+    @include desktop {
+        padding-top: $spacing * 4;
+        padding-bottom: $spacing * 4;
+    }
+}

@@ -1,0 +1,42 @@
+@import '../../sass/utils/variables',
+        '../../sass/utils/mixins',
+        '../../sass/utils/extends';
+
+div.panel {
+    @extend %padding__styles;
+    max-width: 100%;
+
+    &.brand1 {
+        background-color: $brand1;
+        color: #fff;
+    }
+
+    &.brand2 {
+        background-color: $brand2;
+        color: #fff;
+    }
+
+    &.brand3 {
+        background-color: $brand3;
+    }
+
+    &.brand4 {
+        background-color: $brand4;
+    }
+
+    &__container {
+        max-width: $container;
+        margin-left: auto;
+        margin-right: auto;
+
+        >* {
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

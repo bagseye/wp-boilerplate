@@ -65,7 +65,7 @@ if(!function_exists('wpboiler_setup')) {
         add_theme_support( 'custom-units', array() );
     
         $brand1 = '#161616';
-        $brand2 = '#0093ca';
+        $brand2 = '#333';
         $brand3 = '#ffffff';
         $brand4 = '#f2f5f6';
     

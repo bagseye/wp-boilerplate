@@ -32,6 +32,7 @@ function wpboiler_block_types( $allowed_blocks ) {
         'wpboiler-core/column',
         'wpboiler-core/feed',
         'wpboiler-core/feed-item',
+        'wpboiler-core/panel'
     );
 }
 
@@ -45,3 +46,4 @@ include_once(TEMPLATEPATH . '/gutenberg/columns/columns.php');
 include_once(TEMPLATEPATH . '/gutenberg/column/column.php');
 include_once(TEMPLATEPATH . '/gutenberg/feed/feed.php');
 include_once(TEMPLATEPATH . '/gutenberg/feed-item/feed-item.php');
+include_once(TEMPLATEPATH . '/gutenberg/panel/panel.php');
