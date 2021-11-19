@@ -100,6 +100,7 @@ add_action('after_setup_theme', 'wpboiler_setup');
 // require get_template_directory() . '/inc/menu-functions.php';
 // require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/allowed-blocks.php';
+require get_template_directory() . '/inc/acf-functions.php';
 
 function wpboiler_enqueue_styles() {
     wp_enqueue_style( 'wpboiler-styles-main', get_template_directory_uri() . '/css/atf.css', array(), null, 'all' );
