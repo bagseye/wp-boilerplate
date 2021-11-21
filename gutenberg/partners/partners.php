@@ -61,21 +61,42 @@ add_action( 'init', 'wpboiler_core_partners_block_init' );
 function wpboiler_core_partners_render($attr, $content, $block) {
 
 	$html = '';
+	$modifiers = array();
+
+	$modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
+
+	if($margins != 'margins__none' && isset($attr['margindouble'])) {
+		$modifiers[] = $attr['margindouble'];
+	}
 
 	if(have_rows('partner_links', 'option')) :
-		$html = '<section class="partners">
-					<div class="partners__container">';
+		$html = '<section class="partners ' . implode(" ", $modifiers) . '">
+					<div class="partners__container">
+						<div class="partners__items">';
 		
-					while(have_rows('partner_links', 'option')) : the_row();
+						while(have_rows('partner_links', 'option')) : the_row();
 
-					$title = get_sub_field('partner_name', 'option');
-					$image = get_sub_field('partner_image', 'option');
-					$link = get_sub_field('partner_link', 'option');
+						$anchorStart = '';
+						$anchorEnd = '';
 
-					echo '<p>' . $title . '</p>';
+						$title = get_sub_field('partner_name', 'option');
+						$image = get_sub_field('partner_image', 'option');
+						$link = get_sub_field('partner_link', 'option');
 
-					endwhile;
+						if(!empty($link)) {
+							$anchorStart = '<a href="' . $link . '" target="_blank" >';
+							$anchorEnd = '</a>';
+						}
+
+						$html .= '<div class="partners__item">' 
+									. $anchorStart
+									. wp_filter_content_tags('<img class="wp-image-' . $image['ID'] . '"  src="' . $image['url'] . '" />') 
+									. $anchorEnd
+								. '</div>';
+
+						endwhile;
 			$html .= "</div>
+					</div>
 				</section>";
 	endif;
 
