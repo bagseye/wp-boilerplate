@@ -33,7 +33,8 @@ function wpboiler_block_types( $allowed_blocks ) {
         'wpboiler-core/feed',
         'wpboiler-core/feed-item',
         'wpboiler-core/panel',
-        'wpboiler-core/partners'
+        'wpboiler-core/partners',
+        'wpboiler-core/faqs'
     );
 }
 
@@ -49,3 +50,4 @@ include_once(TEMPLATEPATH . '/gutenberg/feed/feed.php');
 include_once(TEMPLATEPATH . '/gutenberg/feed-item/feed-item.php');
 include_once(TEMPLATEPATH . '/gutenberg/panel/panel.php');
 include_once(TEMPLATEPATH . '/gutenberg/partners/partners.php');
+include_once(TEMPLATEPATH . '/gutenberg/faqs/faqs.php');
