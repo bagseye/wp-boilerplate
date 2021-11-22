@@ -1,0 +1,113 @@
+@import '../../sass/utils/variables';
+
+.faq {
+
+    &__container {
+        max-width: $narrow;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing 0;
+    }
+
+    &__question {
+        background-color: transparent;
+        border: none;
+        display: block;
+        padding: $spacing;
+        padding-right: 54px;
+        font-size: $h6;
+        font-weight: 700;
+        background-color: $brand4;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        position: relative;
+
+        &:before,
+        &:after {
+            content: '';
+            display: block;
+            background-color: $brand1;
+            position: absolute;
+        }
+
+        &:before {
+            height: 24px;
+            width: 4px;
+            right: 26px;
+            top: $spacing;
+        }
+
+        &:after {
+            width: 24px;
+            height: 4px;
+            right: $spacing;
+            top: 26px;
+        }
+
+        
+
+        &.faq__open {
+            + .faq__answer {
+                height: auto;
+                padding: $spacing;
+            }
+
+            &:before {
+                display: none;
+            }
+        }
+    }
+
+    &__answer {
+        display: block;
+        height: 0;
+        overflow: hidden;
+        padding-left: $spacing;
+        padding-right: $spacing; 
+    }
+}
+
+.brand1,
+.brand2 {
+    .faq__item {
+        color: #fff;
+    }
+    .faq__question {
+        color: #fff;
+    }
+}
+
+.brand2 {
+    .faq__question {
+        color: $brand1;
+    }
+}
+
+.brand4 {
+    .faq__question {
+        background-color: $brand2;
+        color: #fff;
+
+        &:before,
+        &:after {
+            background-color: #fff;
+        }
+    }
+}
+
+.brand1 {
+    .faq__question {
+        background-color: $brand2;
+
+        &:before,
+        &:after {
+            background-color: #fff;
+        }
+    }
+}

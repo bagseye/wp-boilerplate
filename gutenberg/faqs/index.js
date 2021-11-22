@@ -86,7 +86,7 @@
         el(
           "p",
           null,
-          __("To modify these icons select FAQs in the main admin menu", "faqs")
+          __("To modify these select FAQs in the main admin menu", "faqs")
         )
       );
     },
