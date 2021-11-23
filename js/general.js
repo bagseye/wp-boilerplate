@@ -1,4 +1,5 @@
 const faqItem = document.querySelectorAll(".faq__item");
+const hero = document.querySelector(".hero");
 
 if (faqItem.length > 1) {
   faqItem.forEach((item) => {
@@ -10,4 +11,8 @@ if (faqItem.length > 1) {
 
 function toggleFaq(faqItem) {
   faqItem.classList.toggle("faq__open");
+}
+
+if (hero) {
+  new Splide(hero).mount();
 }

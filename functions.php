@@ -105,6 +105,11 @@ require get_template_directory() . '/inc/acf-functions.php';
 function wpboiler_enqueue_styles() {
     wp_enqueue_style( 'wpboiler-styles-main', get_template_directory_uri() . '/css/atf.css', array(), null, 'all' );
     wp_enqueue_script( 'wpboiler-scripts-main', get_template_directory_uri() . '/js/general.js', array(), null, true );
+    
+    if(is_front_page()) {
+        wp_enqueue_style( 'wpboiler-splide-styles', get_template_directory_uri() . '/css/splide.css', array(), null, 'all' );
+        wp_enqueue_script( 'wpboiler-splide-script', get_template_directory_uri() . '/js/splide.js', array(), null, true );
+    }
 }
 // function wpboiler_enqueue_scripts() {
 

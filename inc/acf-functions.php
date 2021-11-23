@@ -8,6 +8,16 @@ function wpboiler_acf_op_init() {
     if( function_exists('acf_add_options_page') ) {
 
         // Register options page 
+        $hero_options_page = acf_add_options_page(array(
+            'page_title'    => __('Homepage Hero Settings'),
+            'menu_title'    => __('Hero'),
+            'menu_slug'     => 'homepage-hero-settings',
+            'capability'    => 'edit_posts',
+            'redirect'      => false,
+            'update_button' => __('Update Hero'),
+            'icon_url'      => 'dashicons-shield-alt',
+        ));
+
         $partners_options_page = acf_add_options_page(array(
             'page_title'    => __('Partner Images'),
             'menu_title'    => __('Partners'),
@@ -27,5 +37,7 @@ function wpboiler_acf_op_init() {
             'update_button' => __('Update FAQs'),
             'icon_url'      => 'dashicons-format-status',
         ));
+
+
     }
 }
