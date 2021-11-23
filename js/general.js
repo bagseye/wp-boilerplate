@@ -14,5 +14,11 @@ function toggleFaq(faqItem) {
 }
 
 if (hero) {
-  new Splide(hero).mount();
+  new Splide(hero, {
+    type: "fade",
+    rewind: true,
+    arrows: false,
+    pagination: false,
+    autoplay: true,
+  }).mount();
 }

@@ -28,12 +28,15 @@ $wrapper_classes .= has_nav_menu( 'primary' ) ? ' has-menu' : '';
                 ?>
 
                 <div class="hero__slide splide__slide">
-                    <div class="hero__slide--content">
-                        <h2 class="hero__title"><?php echo $title ?></h2>
-                        <h4 class="hero__title--sub"><?php echo $subTitle ?></h4>
-                    </div>
-                    <div class="hero__slide--media">
-                        <?php echo wp_filter_content_tags('<img class="wp-image-' . $image['ID'] . '" src="' . $image['url'] . '" />') ?>
+                    <div class="hero__container--content">
+                        <div class="hero__slide--content">
+                            <h2 class="hero__title"><?php echo $title ?></h2>
+                            <h4 class="hero__title--sub"><?php echo $subTitle ?></h4>
+                        </div>
+                        <div class="hero__slide--media">
+                            <?php echo wp_filter_content_tags('<img class="wp-image-' . $image['ID'] . '" src="' . $image['url'] . '" />') ?>
+                        </div>
+
                     </div>
                 </div>
 
