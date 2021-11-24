@@ -96,9 +96,9 @@ if(!function_exists('wpboiler_setup')) {
 add_action('after_setup_theme', 'wpboiler_setup');
 
 // require get_template_directory() . '/classes/class-wpboiler-svg-icons.php';
-// require get_template_directory() . '/inc/template-functions.php';
+require get_template_directory() . '/inc/template-functions.php';
 // require get_template_directory() . '/inc/menu-functions.php';
-// require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/allowed-blocks.php';
 require get_template_directory() . '/inc/acf-functions.php';
 
