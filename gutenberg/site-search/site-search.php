@@ -62,11 +62,22 @@ add_action( 'init', 'wpboiler_core_site_search_block_init' );
 function wpboiler_core_site_search_render($attr, $content) {
 
 	$html = '';
+	$modifiers = array();
 
-	$html = '<form id="searchform" method="get" action="' . esc_url(home_url('/')) . '">
-				<input type="text" class="search-field" name="s" placeholder="Search" value="' . get_search_query() . '">
-				<input type="submit" value="Search">
-			</form>';
+	$modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__topBottom');
+
+	if($margins != 'margins__none' && isset($attr['margindouble'])) {
+		$modifiers[] = $attr['margindouble'];
+	}
+
+	$html = '<div class="sitesearch ' . implode(" ", $modifiers) . '">
+				<div class="sitesearch__container">
+					<form id="searchform" method="get" action="' . esc_url(home_url('/')) . '">
+						<input class="sitesearch__field" type="text" name="s" placeholder="Search" value="' . get_search_query() . '">
+						<input class="sitesearch__submit" type="submit" value="Search">
+					</form>
+				</div>
+			</div>';
 
 	return $html;
 }

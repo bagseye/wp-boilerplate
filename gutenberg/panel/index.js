@@ -19,6 +19,7 @@
     "wpboiler-core/promo-group",
     "wpboiler-core/partners",
     "wpboiler-core/faqs",
+    "wpboiler-core/site-search",
   ];
 
   registerBlockType("wpboiler-core/panel", {

@@ -1,12 +1,1 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
-
-.wp-block-wpboiler-core-site-search {
-	background-color: #000;
-	color: #fff;
-	padding: 2px;
-}
+.sitesearch__container{width:100%;max-width:740px;margin-left:auto;margin-right:auto}.sitesearch__container form{width:100%;height:60px;display:flex;border:1px solid #333}.sitesearch__container input{height:100%;padding:0 1rem}.sitesearch__field{flex-grow:1;border:none}.sitesearch__submit{flex-shrink:0;flex-basis:175px;border:none;cursor:pointer}
