@@ -93,11 +93,15 @@ function wpboiler_core_callout_render($attr, $content) {
 				<div class="callout__container">
 					<div class="callout__media">
 						' . $pictureMarkup . '
-					</div>
-					<div class="callout__content">
-						' . $content . '
-					</div>
-				</div>
+					</div>';
+
+					if($content) {
+						$html .= '<div class="callout__content">
+									' . $content . '
+								</div>';
+					}
+					
+		$html .= '</div>
 			</div>';
 
 	return $html;

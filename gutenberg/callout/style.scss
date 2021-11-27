@@ -30,4 +30,16 @@
             object-position: center;
         }
     }
+
+    &__content {
+        padding-top: $spacing;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: $spacing;
+    }
+
+    &__item {
+        flex: 0 1 calc(33.333% - 11px);
+    }
 }

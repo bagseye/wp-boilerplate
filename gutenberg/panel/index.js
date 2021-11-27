@@ -21,6 +21,7 @@
     "wpboiler-core/faqs",
     "wpboiler-core/site-search",
     "wpboiler-core/customer-testimonials",
+    "wpboiler-core/callout",
   ];
 
   registerBlockType("wpboiler-core/panel", {

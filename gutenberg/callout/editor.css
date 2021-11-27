@@ -1,9 +1,1 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
-
-.wp-block-wpboiler-core-callout {
-	border: 1px dotted #f00;
-}
+.wp-block-wpboiler-core-callout .callout__content>.block-editor-inner-blocks{width:100%}.wp-block-wpboiler-core-callout .callout__content>.block-editor-inner-blocks>.block-editor-block-list__layout{display:flex;flex-wrap:wrap}.wp-block-wpboiler-core-callout .callout__content>.block-editor-inner-blocks>.block-editor-block-list__layout .wp-block-wpboiler-core-callout-item{flex:0 1 33.333%}

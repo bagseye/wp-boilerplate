@@ -37,6 +37,7 @@ function wpboiler_block_types( $allowed_blocks ) {
         'wpboiler-core/faqs',
         'wpboiler-core/site-search',
         'wpboiler-core/callout',
+        'wpboiler-core/callout-item',
         'wpboiler-core/customer-testimonials'
     );
 }
@@ -56,4 +57,5 @@ include_once(TEMPLATEPATH . '/gutenberg/partners/partners.php');
 include_once(TEMPLATEPATH . '/gutenberg/faqs/faqs.php');
 include_once(TEMPLATEPATH . '/gutenberg/site-search/site-search.php');
 include_once(TEMPLATEPATH . '/gutenberg/callout/callout.php');
+include_once(TEMPLATEPATH . '/gutenberg/callout-item/callout-item.php');
 include_once(TEMPLATEPATH . '/gutenberg/customer-testimonials/customer-testimonials.php');
