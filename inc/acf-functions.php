@@ -38,6 +38,16 @@ function wpboiler_acf_op_init() {
             'icon_url'      => 'dashicons-format-status',
         ));
 
+        $testimonials_options_page = acf_add_options_page(array(
+            'page_title'    => __('Customer Testimonials'),
+            'menu_title'    => __('Testimonials'),
+            'menu_slug'     => 'customer-testimonials',
+            'capability'    => 'edit_posts',
+            'redirect'      => false,
+            'update_button' => __('Update Testimonials'),
+            'icon_url'      => 'dashicons-heart',
+        ));
+
 
     }
 }

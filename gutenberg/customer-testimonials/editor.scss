@@ -1,0 +1,21 @@
+@import '../../sass/utils/variables';
+
+.wp-block-wpboiler-core-customer-testimonials {
+    text-align: center;
+
+    .block__title {
+        text-align: left;
+    }
+}
+
+.wp-block-wpboiler-core-panel {
+    &.has-brand-1-background-color,
+    &.has-brand-2-background-color {
+        .wp-block-wpboiler-core-customer-testimonials {
+            >* {
+                color: #fff;
+            }
+        }
+    }
+}
+

@@ -103,10 +103,8 @@ require get_template_directory() . '/inc/allowed-blocks.php';
 require get_template_directory() . '/inc/acf-functions.php';
 
 function wpboiler_enqueue_styles() {
-    if(is_front_page()) {
-        wp_enqueue_style( 'wpboiler-splide-styles', get_template_directory_uri() . '/css/splide-core.min.css', array(), null, 'all' );
-        wp_enqueue_script( 'wpboiler-splide-script', get_template_directory_uri() . '/js/splide.min.js', array(), null, true );
-    }
+    wp_enqueue_style( 'wpboiler-splide-styles', get_template_directory_uri() . '/css/splide-core.min.css', array(), null, 'all' );
+    wp_enqueue_script( 'wpboiler-splide-script', get_template_directory_uri() . '/js/splide.min.js', array(), null, true );
     wp_enqueue_style( 'wpboiler-styles-main', get_template_directory_uri() . '/css/atf.css', array(), null, 'all' );
     wp_enqueue_script( 'wpboiler-scripts-main', get_template_directory_uri() . '/js/general.js', array(), null, true );
 }
