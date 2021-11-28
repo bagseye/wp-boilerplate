@@ -8,6 +8,16 @@ function wpboiler_acf_op_init() {
     if( function_exists('acf_add_options_page') ) {
 
         // Register options page 
+        $alert_options_page = acf_add_options_page(array(
+            'page_title'    => __('Alert Message Settings'),
+            'menu_title'    => __('Alert Message'),
+            'menu_slug'     => 'alert-message-settings',
+            'capability'    => 'edit_posts',
+            'redirect'      => false,
+            'update_button' => __('Update Alert Message'),
+            'icon_url'      => 'dashicons-info',
+        ));
+
         $hero_options_page = acf_add_options_page(array(
             'page_title'    => __('Homepage Hero Settings'),
             'menu_title'    => __('Hero'),

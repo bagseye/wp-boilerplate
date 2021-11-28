@@ -1,0 +1,16 @@
+.alert {
+    background-color: $brand4;
+    padding: calc(#{$spacing} / 2) $spacing; 
+
+    &__container {
+        max-width: $container;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        
+        p {
+            font-size: 0.875rem;
+            margin: 0;
+        }
+    }
+}

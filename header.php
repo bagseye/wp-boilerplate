@@ -18,6 +18,23 @@ if( function_exists( 'wp_body_open' ) ) {
 
     <a href="#content" class="skip-link screen-reader-text"><?php esc_html_e( 'Skip to content', 'wpboiler' ); ?></a>
 
+    <?php 
+    
+    $showAlert = get_field('show_alert_message', 'option');
+    $alertMessage = get_field('alert_message', 'option');
+    $includeLink = get_field('include_link', 'option');
+    $alertLink = get_field('alert_link', 'option');
+
+    if($showAlert && isset($alertMessage)) : ?>
+
+    <div class="alert">
+        <div class="alert__container">
+            <p><?php echo $alertMessage ?><?php echo ($includeLink && isset($alertLink)) ? ' <a href="' . $alertLink . '">Find out more</a>' : '' ?></p>
+        </div>
+    </div>
+
+    <?php endif; ?>
+
     <?php get_template_part( 'template-parts/header/site-header' ); ?>
 
     <main id="main" class="site-main container__main" role="main">
