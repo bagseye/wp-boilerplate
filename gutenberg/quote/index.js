@@ -2,49 +2,34 @@
   var registerBlockType = wp.blocks.registerBlockType;
   var el = wp.element.createElement;
   var __ = wp.i18n.__;
-  const { RadioControl, PanelBody, ToggleControl } = wp.components;
-  const { useBlockProps, InspectorControls, InnerBlocks } = wp.blockEditor;
-  const allowedBlocks = [
-    "core/paragraph",
-    "core/heading",
-    "core/buttons",
-    "core/separator",
-    "core/list",
-    "core/table",
-    "core/image",
-    "wpboiler-core/columns",
-    "wpboiler-core/feed",
-    "wpboiler-core/flexiblock",
-    "wpboiler-core/promo-group",
-    "wpboiler-core/partners",
-    "wpboiler-core/faqs",
-    "wpboiler-core/site-search",
-    "wpboiler-core/customer-testimonials",
-    "wpboiler-core/callout",
-    "wpboiler-core/quote",
-  ];
+  const { RadioControl, ToggleControl, PanelBody } = wp.components;
+  const { useBlockProps, InspectorControls, RichText } = wp.blockEditor;
 
-  registerBlockType("wpboiler-core/panel", {
+  registerBlockType("wpboiler-core/quote", {
     apiVersion: 2,
-    title: __("Panel", "panel"),
-    description: __("Creates a full-width panel", "panel"),
+    title: __("Quote", "quote"),
+    description: __("Displays a single quote", "quote"),
     category: "design",
-    icon: "button",
+    icon: "format-quote",
     supports: {
       // Removes support for an HTML mode.
       html: false,
       alignWide: false,
-      color: {
-        text: false,
-        backgroundColor: true,
-      },
     },
     attributes: {
+      quoteContent: {
+        type: "string",
+        default: "",
+      },
+      quoteName: {
+        type: "string",
+        default: "",
+      },
       marginselect: {
         type: "string",
         default: "margins__none",
       },
-      marginsdouble: {
+      margindouble: {
         type: "string",
         default: "",
       },
@@ -52,18 +37,19 @@
 
     edit: function (props) {
       const { attributes, setAttributes } = props;
-      const { marginselect, marginsdouble } = attributes;
+      const { quoteContent, quoteName, marginselect, margindouble } =
+        attributes;
       return el(
         "div",
         useBlockProps(attributes),
 
-        el("p", { className: "block__title" }, __("Panel", "panel")),
+        el("p", { className: "block__title" }, __("Quote", "quote")),
 
+        // INSPECTOR CONTROLS
         el(
           InspectorControls,
           null,
 
-          // BLOCK MARGINS
           el(
             PanelBody,
             {
@@ -96,24 +82,44 @@
             marginselect !== "margins__none" &&
               el(ToggleControl, {
                 label: "Double Margins?",
-                checked: marginsdouble,
+                checked: margindouble,
                 onChange: () =>
                   setAttributes({
-                    marginsdouble: marginsdouble ? "" : "margins__double",
+                    margindouble: margindouble ? "" : "margins__double",
                   }),
               })
           )
         ),
+        // INSPECTOR CONTROLS
 
-        el(InnerBlocks, {
-          allowedBlocks: allowedBlocks,
-          dropZone: true,
-        })
+        el(
+          "figure",
+          { className: "quote" },
+
+          el(
+            "blockquote",
+            null,
+
+            el(RichText, {
+              tagName: "p",
+              placeholder: "Enter a quote here...",
+              value: quoteContent ? quoteContent : "",
+              onChange: (value) => setAttributes({ quoteContent: value }),
+            })
+          ),
+
+          el(RichText, {
+            tagName: "figcaption",
+            placeholder: "Enter the name here",
+            value: quoteName ? quoteName : "",
+            onChange: (value) => setAttributes({ quoteName: value }),
+          })
+        )
       );
     },
 
     save: function () {
-      return el(InnerBlocks.Content, {});
+      return null;
     },
   });
 })(window.wp);

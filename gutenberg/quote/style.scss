@@ -1,0 +1,28 @@
+@import '../../sass/utils/variables',
+        '../../sass/utils/mixins';
+
+figure.quote {
+    max-width: $narrow;
+    text-align: center;
+
+    blockquote {
+        >p {
+            font-size: $h4;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+    }
+
+    figcaption {
+        font-size: $h6;
+        line-height: 1.15;
+    }
+}
+
+// When in a panel block
+.panel {
+    .quote {
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
