@@ -2,47 +2,26 @@
   var registerBlockType = wp.blocks.registerBlockType;
   var el = wp.element.createElement;
   var __ = wp.i18n.__;
-  const { RadioControl, PanelBody, ToggleControl } = wp.components;
-  const { useBlockProps, InspectorControls, InnerBlocks } = wp.blockEditor;
-  const allowedBlocks = [
-    "core/paragraph",
-    "core/heading",
-    "core/buttons",
-    "core/list",
-    "core/table",
-    "core/image",
-    "wpboiler-core/columns",
-    "wpboiler-core/feed",
-    "wpboiler-core/flexiblock",
-    "wpboiler-core/promo-group",
-    "wpboiler-core/partners",
-    "wpboiler-core/faqs",
-    "wpboiler-core/site-search",
-    "wpboiler-core/customer-testimonials",
-    "wpboiler-core/callout",
-    "wpboiler-core/quote",
-    "wpboiler-core/separator",
-  ];
+  const { RadioControl, ToggleControl, PanelBody } = wp.components;
+  const { useBlockProps, InspectorControls } = wp.blockEditor;
 
-  registerBlockType("wpboiler-core/panel", {
+  registerBlockType("wpboiler-core/separator", {
     apiVersion: 2,
-    title: __("Panel", "panel"),
-    description: __("Creates a full-width panel", "panel"),
-    category: "design",
-    icon: "button",
+    title: __("Separator", "separator"),
+    description: __(
+      "A styling block that separates content using a horizontal line",
+      "separator"
+    ),
+    category: "widgets",
+    icon: "minus",
     supports: {
       // Removes support for an HTML mode.
       html: false,
-      alignWide: false,
-      color: {
-        text: false,
-        backgroundColor: true,
-      },
     },
     attributes: {
       marginselect: {
         type: "string",
-        default: "margins__none",
+        default: "margins__topBottom",
       },
       marginsdouble: {
         type: "string",
@@ -57,13 +36,13 @@
         "div",
         useBlockProps(attributes),
 
-        el("p", { className: "block__title" }, __("Panel", "panel")),
+        el("p", { className: "block__title" }, __("Separator", "separator")),
 
+        // INSPECTOR CONTROLS
         el(
           InspectorControls,
           null,
 
-          // BLOCK MARGINS
           el(
             PanelBody,
             {
@@ -104,16 +83,14 @@
               })
           )
         ),
+        // INSPECTOR CONTROLS
 
-        el(InnerBlocks, {
-          allowedBlocks: allowedBlocks,
-          dropZone: true,
-        })
+        el("hr", null)
       );
     },
 
     save: function () {
-      return el(InnerBlocks.Content, {});
+      return null;
     },
   });
 })(window.wp);

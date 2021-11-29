@@ -1,0 +1,76 @@
+<?php
+/**
+ * Plugin Name:       Separator
+ * Description:       A styling block that separates content using a horizontal line
+ * Requires at least: 5.7
+ * Requires PHP:      7.3.5
+ * Version:           1.0.0
+ * Author:            Morgan Baker
+ * License:           GPL-2.0-or-later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       separator
+ *
+ * @package           wpboiler-core
+ */
+
+
+function wpboiler_core_separator_block_init() {
+	$dir = get_template_directory() . '/gutenberg';
+
+	$index_js = 'separator/index.js';
+	wp_register_script(
+		'wpboiler-core-separator-block-editor',
+		get_template_directory_uri() . "/gutenberg/$index_js",
+		array(
+			'wp-block-editor',
+			'wp-blocks',
+			'wp-i18n',
+			'wp-element',
+		),
+		filemtime( "$dir/$index_js" )
+	);
+	wp_set_script_translations( 'wpboiler-core-separator-block-editor', 'separator' );
+
+	$editor_css = 'separator/editor.css';
+	wp_register_style(
+		'wpboiler-core-separator-block-editor',
+		get_template_directory_uri() . "/gutenberg/$editor_css",
+		array(),
+		filemtime( "$dir/$editor_css" )
+	);
+
+	$style_css = 'separator/style.css';
+	wp_register_style(
+		'wpboiler-core-separator-block',
+		get_template_directory_uri() . "/gutenberg/$style_css",
+		array(),
+		filemtime( "$dir/$style_css" )
+	);
+
+	register_block_type(
+		'wpboiler-core/separator',
+		array(
+			'editor_script' 	=> 'wpboiler-core-separator-block-editor',
+			'editor_style'  	=> 'wpboiler-core-separator-block-editor',
+			'style'         	=> 'wpboiler-core-separator-block',
+			'render_callback'	=> 'wpboiler_core_separator_render',
+		)
+	);
+}
+add_action( 'init', 'wpboiler_core_separator_block_init' );
+
+function wpboiler_core_separator_render($attr, $content) {
+
+	$html = '';
+	$modifiers = array();
+
+	$modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__topBottom');
+
+	if($margins != 'margins__none' && isset($attr['marginsdouble'])) {
+		$modifiers[] = $marginDouble = $attr['marginsdouble'];
+	}
+
+	$html = '<hr class="separator ' . implode(" ", $modifiers) . '" />';
+
+	return $html;
+}

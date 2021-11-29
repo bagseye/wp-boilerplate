@@ -11,7 +11,6 @@ function wpboiler_block_types( $allowed_blocks ) {
         'core/heading',
         'core/buttons',
         'core/button',
-        'core/separator',
         'core/list',
         'core/image',
         'core/table',
@@ -40,6 +39,7 @@ function wpboiler_block_types( $allowed_blocks ) {
         'wpboiler-core/customer-testimonials',
         'wpboiler-core/quote',
         'wpboiler-core/banner-image',
+        'wpboiler-core/separator',
     );
 }
 
@@ -62,3 +62,4 @@ include_once(TEMPLATEPATH . '/gutenberg/callout-item/callout-item.php');
 include_once(TEMPLATEPATH . '/gutenberg/customer-testimonials/customer-testimonials.php');
 include_once(TEMPLATEPATH . '/gutenberg/quote/quote.php');
 include_once(TEMPLATEPATH . '/gutenberg/banner-image/banner-image.php');
+include_once(TEMPLATEPATH . '/gutenberg/separator/separator.php');

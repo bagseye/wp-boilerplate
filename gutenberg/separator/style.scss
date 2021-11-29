@@ -1,0 +1,23 @@
+@import '../../sass/utils/variables';
+
+hr.separator {
+    max-width: $narrow;
+    height: 1px;
+    border: none;
+    background-color: $brand2;
+    box-sizing: border-box;
+}
+
+.panel {
+    &.brand1 {
+        hr.separator {
+            background-color: $brand4;
+        }
+    }
+
+    &.brand2 {
+        hr.separator {
+            background-color: $brand1;
+        }
+    }
+}

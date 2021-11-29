@@ -30,9 +30,13 @@ h4 {
 
 h5 {
     @extend %heading__styles;
-    font-size: $h5;
+    font-size: $h5Mobile;
     margin-bottom: calc($spacing / 2);
     line-height: 1.2;
+
+    @include desktop {
+        font-size: $h5;
+    }
 }
 
 h6 {

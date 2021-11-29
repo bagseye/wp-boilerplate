@@ -37,9 +37,29 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: $spacing;
+
+        >* {
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        
     }
 
     &__item {
         flex: 0 1 calc(33.333% - 11px);
+
+        &--content {
+            font-size: 0.875rem;
+
+            @include desktop {
+                font-size: 1rem;
+            }
+        }
     }
 }
