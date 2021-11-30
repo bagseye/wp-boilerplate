@@ -1,0 +1,11 @@
+@import '../../sass/utils/variables',
+        '../../sass/utils/mixins';
+
+
+.fixedspacer {
+    height: $spacing * 4;
+
+    @include desktop {
+        height: $spacing * 8;
+    }
+}

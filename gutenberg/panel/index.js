@@ -22,6 +22,7 @@
     "wpboiler-core/callout",
     "wpboiler-core/quote",
     "wpboiler-core/separator",
+    "wpboiler-core/fixed-spacer",
   ];
 
   registerBlockType("wpboiler-core/panel", {

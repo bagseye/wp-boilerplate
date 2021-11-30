@@ -40,6 +40,7 @@ function wpboiler_block_types( $allowed_blocks ) {
         'wpboiler-core/quote',
         'wpboiler-core/banner-image',
         'wpboiler-core/separator',
+        'wpboiler-core/fixed-spacer',
     );
 }
 
@@ -63,3 +64,4 @@ include_once(TEMPLATEPATH . '/gutenberg/customer-testimonials/customer-testimoni
 include_once(TEMPLATEPATH . '/gutenberg/quote/quote.php');
 include_once(TEMPLATEPATH . '/gutenberg/banner-image/banner-image.php');
 include_once(TEMPLATEPATH . '/gutenberg/separator/separator.php');
+include_once(TEMPLATEPATH . '/gutenberg/fixed-spacer/fixed-spacer.php');
