@@ -1,6 +1,7 @@
 const faqItem = document.querySelectorAll(".faq__item");
 const testimonials = document.querySelectorAll(".testimonials");
 const hero = document.querySelector(".hero");
+const navButton = document.querySelector("#navigationButton");
 
 if (faqItem.length >= 1) {
   faqItem.forEach((item) => {
@@ -52,3 +53,33 @@ if (testimonials.length >= 1) {
     }).mount();
   });
 }
+
+function toggleNav() {
+  const body = document.body;
+  if (body.classList.contains("navigation__open")) {
+    body.classList.remove("navigation__open");
+    const scrollY = body.style.top;
+    body.style.position = "";
+    body.style.top = "";
+    window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    navButton.setAttribute("aria-expanded", "false");
+  } else {
+    body.classList.add("navigation__open");
+    const scrollY =
+      document.documentElement.style.getPropertyValue("--scroll-y");
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}`;
+    navButton.setAttribute("aria-expanded", "true");
+  }
+}
+
+if (navButton) {
+  navButton.addEventListener("click", toggleNav);
+}
+
+window.addEventListener("scroll", () => {
+  document.documentElement.style.setProperty(
+    "--scroll-y",
+    `${window.scrollY}px`
+  );
+});

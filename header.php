@@ -16,8 +16,6 @@ if( function_exists( 'wp_body_open' ) ) {
 ?>
 <div id="page" class="site">
 
-    <a href="#content" class="skip-link screen-reader-text"><?php esc_html_e( 'Skip to content', 'wpboiler' ); ?></a>
-
     <?php 
     
     $showAlert = get_field('show_alert_message', 'option');

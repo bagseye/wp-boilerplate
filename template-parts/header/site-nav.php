@@ -1,15 +1,8 @@
 <?php if( has_nav_menu( 'primary' ) ) : ?>
-    <nav id="site-navigation" class="primary-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary menu', 'wpboiler' ); ?>">
-        <div class="menu-button-container">
-            <button id="primary-mobile-menu" class="button" aria-controls="primary-menu-list" aria-expanded="false">
-                <span class="dropdown-icon open">
-                    <?php esc_html_e( 'Menu', 'wpboiler' ); ?>
-                    <?php echo wpboiler_get_icon_svg( 'ui', 'menu' ); ?>  
-                </span>
-                <span class="dropdown-icon close">
-                    <?php esc_html_e( 'Close', 'wpboiler' ); ?>
-                    <?php echo wpboiler_get_icon_svg( 'ui', 'close' ); ?>
-                </span>
+    <nav id="siteNavigation" class="navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary menu', 'wpboiler' ); ?>">
+        <div class="navigation__button--container">
+            <button id="navigationButton" class="navigation__button" aria-controls="headerNavigation" aria-expanded="false">
+                Menu
             </button>
         </div>
 
@@ -30,13 +23,17 @@
                 populateNav($menu, $menuItem->menu_item_parent, $menuItem->ID, $tmpItem);
             }
 
-            echo '<ul>';
+            echo '<div class="navigation__flyout">
+                    <div class="navigation__flyout--container">
+                        <ul id="headerNavigation">';
 
-            foreach($menu as $menuItm) {
-                paintNav($menuItm);
-            }
+                        foreach($menu as $menuItm) {
+                            paintNav($menuItm);
+                        }
 
-            echo '</ul>';
+                echo '</ul>
+                    </div>
+                  </div>';
         }
         ?>
     </nav>

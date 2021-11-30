@@ -1,0 +1,48 @@
+
+
+.navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: $spacing * 2;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    background-color: $brand1;
+
+    &__flyout {
+        background-color: $brand1;
+        color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        transition: transform 0.3s;
+        transform: translateX(100%);
+
+        &--container {
+            height: 100%;
+            padding: $spacing * 5 $spacing;
+            width: 100%;
+            max-width: $container;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    }
+
+    &__button {
+        &--container {
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    &__open {
+        .navigation__flyout {
+            transform: translateX(0);
+        }
+    }
+}
