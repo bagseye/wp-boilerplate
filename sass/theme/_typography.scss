@@ -18,8 +18,12 @@ h2 {
 
 h3 {
     @extend %heading__styles;
-    font-size: $h3;
+    font-size: $h3Mobile;
     line-height: 1.25;
+
+    @include desktop {
+        font-size: $h3;
+    }
 }
 
 h4 {

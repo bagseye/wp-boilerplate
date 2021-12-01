@@ -1,4 +1,4 @@
-<section class="noresults noresults__notfound">
+<section>
 	<header>
 		<?php if ( is_search() ) : ?>
 
