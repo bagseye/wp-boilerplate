@@ -215,3 +215,5 @@ function wpboiler_get_blog_post_card( $postID ) {
     return $html;
 
 }
+
+

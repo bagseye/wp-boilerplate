@@ -1,8 +1,20 @@
 <?php 
 
-get_header();
+get_header(); ?>
 
-if(have_posts()) { ?>
+<div style="padding-top: 200px"></div>
+
+<?php $cats = get_categories(); 
+
+var_dump($cats);
+?>
+
+<select name="" id="" onchange="getSelect(this)">
+    <?php foreach($cats as $cat) : ?>
+        <option value="<?php echo $cat->slug ?>"><?php echo $cat->name ?></option>
+    <?php endforeach; ?>
+</select>
+<?php if(have_posts()) { ?>
 
     <div class="postlist">
         <div class="postlist__container">
@@ -29,6 +41,8 @@ if(have_posts()) { ?>
             
         </div>
     </div>
+
+    <?php wp_dropdown_categories(); ?>
 
     <?php
 } else {

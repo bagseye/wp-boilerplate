@@ -83,3 +83,8 @@ window.addEventListener("scroll", () => {
     `${window.scrollY}px`
   );
 });
+
+function getSelect(selectObject) {
+  var value = selectObject.value;
+  window.location.pathname = "/category/" + value;
+}
