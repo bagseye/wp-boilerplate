@@ -20,6 +20,8 @@
             </ul>
         </nav>
     <?php endif; ?>
+    
+    <?php echo get_template_part('template-parts/social/social') ?>
     <div class="copyright">
         <p>&copy; <?php echo date('Y') ?> <?php echo bloginfo( 'name' ) ?></p>
         <p><?php 

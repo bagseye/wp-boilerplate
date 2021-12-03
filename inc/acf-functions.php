@@ -58,6 +58,16 @@ function wpboiler_acf_op_init() {
             'icon_url'      => 'dashicons-heart',
         ));
 
+        $socials_options_page = acf_add_options_page(array(
+            'page_title'    => __('Social Media Settings'),
+            'menu_title'    => __('Social Links'),
+            'menu_slug'     => 'social-media-settings',
+            'capability'    => 'edit_posts',
+            'redirect'      => false,
+            'update_button' => __('Update Social Links'),
+            'icon_url'      => 'dashicons-groups',
+        ));
+
 
     }
 }
