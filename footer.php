@@ -21,7 +21,9 @@
         </nav>
     <?php endif; ?>
     
-    <?php echo get_template_part('template-parts/social/social') ?>
+    <?php echo get_template_part('template-parts/contact/social'); ?>
+
+    <?php echo get_template_part('template-parts/contact/contact-methods'); ?>
     <div class="copyright">
         <p>&copy; <?php echo date('Y') ?> <?php echo bloginfo( 'name' ) ?></p>
         <p><?php 

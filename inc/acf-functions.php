@@ -68,6 +68,16 @@ function wpboiler_acf_op_init() {
             'icon_url'      => 'dashicons-groups',
         ));
 
+        $contact_options_page = acf_add_options_page(array(
+            'page_title'    => __('Contact Methods'),
+            'menu_title'    => __('Contacts'),
+            'menu_slug'     => 'contact-methods-settings',
+            'capability'    => 'edit_posts',
+            'redirect'      => false,
+            'update_button' => __('Update Contact Methods'),
+            'icon_url'      => 'dashicons-phone',
+        ));
+
 
     }
 }
