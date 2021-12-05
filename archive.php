@@ -2,8 +2,9 @@
 
 <?php echo get_template_part('template-parts/filtering/filters', 'blog'); ?>
 
-<h1><?php single_cat_title(); ?></h1>
-<p><?php echo category_description(); ?></p>
+<?php $description = get_the_archive_description(); ?>
+
+<?php the_archive_title('<h1>', '</h1>'); ?>
 
 <?php if(have_posts()) : ?>
 

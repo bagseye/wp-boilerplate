@@ -2,8 +2,8 @@
 
 <?php echo get_template_part('template-parts/filtering/filters', 'blog'); ?>
 
-<h1><?php single_cat_title(); ?></h1>
-<p><?php echo category_description(); ?></p>
+<h1><?php echo get_the_author(); ?></h1>
+<p><?php echo get_the_author_meta('description'); ?></p>
 
 <?php if(have_posts()) : ?>
 
