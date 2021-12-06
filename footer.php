@@ -20,6 +20,8 @@
             </ul>
         </nav>
     <?php endif; ?>
+
+    <?php echo get_template_part('template-parts/footer/footer', 'nav'); ?>
     
     <?php echo get_template_part('template-parts/contact/social'); ?>
 
