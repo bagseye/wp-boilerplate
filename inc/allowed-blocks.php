@@ -41,6 +41,8 @@ function wpboiler_block_types( $allowed_blocks ) {
         'wpboiler-core/banner-image',
         'wpboiler-core/separator',
         'wpboiler-core/fixed-spacer',
+        'wpboiler-core/hero',
+        'wpboiler-core/hero-slide',
     );
 }
 
@@ -65,3 +67,5 @@ include_once(TEMPLATEPATH . '/gutenberg/quote/quote.php');
 include_once(TEMPLATEPATH . '/gutenberg/banner-image/banner-image.php');
 include_once(TEMPLATEPATH . '/gutenberg/separator/separator.php');
 include_once(TEMPLATEPATH . '/gutenberg/fixed-spacer/fixed-spacer.php');
+include_once(TEMPLATEPATH . '/gutenberg/hero/hero.php');
+include_once(TEMPLATEPATH . '/gutenberg/hero-slide/hero-slide.php');
