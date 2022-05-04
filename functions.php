@@ -57,7 +57,7 @@ if(!function_exists('wpboiler_setup')) {
         add_editor_style( $editor_stylesheet_path );
     
         add_theme_support( 'responsive-embeds' );
-        add_theme_support( 'editor-font-sizes' );
+        add_theme_support( 'editor-font-sizes', array() );
         add_theme_support( 'disable-custom-font-sizes' );
         add_theme_support( 'disable-custom-colors' );
         add_theme_support( 'disable-custom-gradients' );
