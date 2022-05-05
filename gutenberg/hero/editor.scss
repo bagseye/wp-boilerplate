@@ -1,6 +1,39 @@
-.wp-block-wpboiler-core-hero-slide {
-    position: relative;
+.wp-block.wp-block-wpboiler-core-hero-slide {
+
     .hero-slide {
+
+        &__toggleContainer {
+            &.slide__closed {
+                .hero-slide__preview {
+                    height: 0;
+                    padding: 0;
+                    overflow: hidden;
+                }
+            }
+
+            &.slide__open {
+                .hero-slide__preview {
+                    padding: 20px;
+                    height: auto;
+
+                }
+            }
+        }
+
+        &__preview {
+            position: relative;
+        }
+
+        &__titleArea {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            button {
+                border: 1px solid #000;
+                border-radius: 4px;
+            }
+        }
 
         &__image {
             position: absolute;

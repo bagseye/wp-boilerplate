@@ -39,12 +39,17 @@
         type: "string",
         default: "",
       },
+      slidestate: {
+        type: "boolean",
+        default: false,
+      },
     },
     parent: ["wpboiler-core/hero"],
 
     edit: function (props) {
       const { attributes, setAttributes } = props;
-      const { pretitle, title, introduction, mediaid, mediaurl } = attributes;
+      const { pretitle, title, introduction, mediaid, mediaurl, slidestate } =
+        attributes;
 
       const onSelectImage = (media) => {
         setAttributes({
@@ -53,108 +58,135 @@
         });
       };
 
+      const onChangeSlideState = () => {
+        setAttributes({
+          slidestate: !slidestate,
+        });
+      };
+
       return el(
         "div",
         useBlockProps(attributes),
-        el(
-          "p",
-          { className: "block__title" },
-          __("Hero Slide", `${blockName}`)
-        ),
 
-        // PREVIEW AREA BEGIN
         el(
           "div",
-          { className: `${blockName}` },
-
-          // BACKGROUND IMAGE PREVIEW
-          mediaid &&
-            el("img", {
-              className: `${blockName}__image`,
-              src: mediaurl,
-            }),
+          {
+            className: `${blockName}__toggleContainer ${
+              slidestate ? "slide__open" : "slide__closed"
+            }`,
+          },
 
           el(
             "div",
-            { className: `${blockName}__container` },
+            { className: `${blockName}__titleArea` },
 
-            // PRE TITLE
-            el(RichText, {
-              tagName: "h3",
-              placeholder: "Enter a pre-title here",
-              className: `${blockName}__title--pre`,
-              value: pretitle ? pretitle : "",
-              onChange: (value) => setAttributes({ pretitle: value }),
-            }),
+            el("p", { className: "title" }, __("Hero Slide", `${blockName}`)),
 
-            // TITLE
-            el(RichText, {
-              tagName: "h1",
-              placeholder: "Enter a title here",
-              className: `${blockName}__title`,
-              value: title ? title : "",
-              onChange: (value) => setAttributes({ title: value }),
-            }),
+            el(
+              Button,
+              {
+                onClick: onChangeSlideState,
+              },
+              !slidestate
+                ? __("Open to Edit", `${blockName}`)
+                : __("Close", `${blockName}`)
+            )
+          ),
 
-            // INTRODUCTION
-            el(RichText, {
-              tagName: "p",
-              placeholder: "Enter an introduction here",
-              className: `${blockName}__title--intro`,
-              value: introduction ? introduction : "",
-              onChange: (value) => setAttributes({ introduction: value }),
-            }),
+          // PREVIEW AREA BEGIN
+          el(
+            "div",
+            { className: `${blockName}__preview` },
 
-            // CONTENT
+            // BACKGROUND IMAGE PREVIEW
+            mediaid &&
+              el("img", {
+                className: `${blockName}__image`,
+                src: mediaurl,
+              }),
+
             el(
               "div",
-              {
-                className: `${blockName}__content`,
-              },
+              { className: `${blockName}__container` },
 
-              el(InnerBlocks, {
-                allowedBlocks: allowedBlocks,
-              })
-            ),
+              // PRE TITLE
+              el(RichText, {
+                tagName: "h3",
+                placeholder: "Enter a pre-title here",
+                className: `${blockName}__title--pre`,
+                value: pretitle ? pretitle : "",
+                onChange: (value) => setAttributes({ pretitle: value }),
+              }),
 
-            // IMAGE UPLOAD
-            el(MediaUpload, {
-              onSelect: onSelectImage,
-              allowedTypes: "image",
-              value: mediaid,
-              render: (obj) => {
-                return el(
-                  Button,
-                  {
-                    className: "components-button is-primary",
-                    onClick: obj.open,
-                  },
-                  !mediaid
-                    ? __("Upload Image", `${blockName}`)
-                    : __("Replace Image", `${blockName}`)
-                );
-              },
-            }),
+              // TITLE
+              el(RichText, {
+                tagName: "h1",
+                placeholder: "Enter a title here",
+                className: `${blockName}__title`,
+                value: title ? title : "",
+                onChange: (value) => setAttributes({ title: value }),
+              }),
 
-            mediaid
-              ? el(
-                  Button,
-                  {
-                    className: "components-button is-tertiary",
-                    style: { marginLeft: "5px" },
-                    onClick: () =>
-                      setAttributes({
-                        mediaid: "",
-                        mediaurl: "",
-                      }),
-                  },
-                  __("Remove Image", `${blockName}`)
-                )
-              : ""
+              // INTRODUCTION
+              el(RichText, {
+                tagName: "p",
+                placeholder: "Enter an introduction here",
+                className: `${blockName}__title--intro`,
+                value: introduction ? introduction : "",
+                onChange: (value) => setAttributes({ introduction: value }),
+              }),
+
+              // CONTENT
+              el(
+                "div",
+                {
+                  className: `${blockName}__content`,
+                },
+
+                el(InnerBlocks, {
+                  allowedBlocks: allowedBlocks,
+                })
+              ),
+
+              // IMAGE UPLOAD
+              el(MediaUpload, {
+                onSelect: onSelectImage,
+                allowedTypes: "image",
+                value: mediaid,
+                render: (obj) => {
+                  return el(
+                    Button,
+                    {
+                      className: "components-button is-primary",
+                      onClick: obj.open,
+                    },
+                    !mediaid
+                      ? __("Upload Image", `${blockName}`)
+                      : __("Replace Image", `${blockName}`)
+                  );
+                },
+              }),
+
+              mediaid
+                ? el(
+                    Button,
+                    {
+                      className: "components-button is-tertiary",
+                      style: { marginLeft: "5px" },
+                      onClick: () =>
+                        setAttributes({
+                          mediaid: "",
+                          mediaurl: "",
+                        }),
+                    },
+                    __("Remove Image", `${blockName}`)
+                  )
+                : ""
+            )
           )
-        )
 
-        // PREVIEW AREA END
+          // PREVIEW AREA END
+        )
       );
     },
 
