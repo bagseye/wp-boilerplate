@@ -70,6 +70,7 @@
           // BACKGROUND IMAGE PREVIEW
           mediaid &&
             el("img", {
+              className: `${blockName}__image`,
               src: mediaurl,
             }),
 

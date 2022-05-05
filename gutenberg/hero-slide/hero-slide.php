@@ -43,54 +43,45 @@ add_action( 'init', 'wpboiler_core_hero_slide_block_init' );
 
 function wpboiler_core_hero_slide_render($attr, $content) {
 
-	// $html = '';
-	// $mediaID = '';
-	// $mediaURL = '';
-	// $mediaSrc = '';
-	// $mediaAlt = '';
-	// $pictureMarkup = '';
-	// $modifiers = array();
+	$html = $pre_title_markup = $title_markup = $introduction_markup = $image_markup = null;
 
-	// $modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__topBottom');
+	$pre_title = (isset($attr['pretitle']) ? $attr['pretitle'] : null);
+	$title = (isset($attr['title']) ? $attr['title'] : null);
+	$introduction = (isset($attr['introduction']) ? $attr['introduction'] : null);
+	$media_id = (isset($attr['mediaid']) ? $attr['mediaid'] : null);
 
-	// if($margins != 'margins__none' && isset($attr['marginsdouble'])) {
-	// 	$modifiers[] = $attr['marginsdouble'];
-	// }
+	if($pre_title && !empty($pre_title)) {
+		$pre_title_markup = "<h3 class='hero__title--pre'>{$pre_title}</h3>";
+	}
 
-	// if(isset($attr['mediaID'])) {
-	// 	$mediaID = $attr['mediaID'];
-	// 	$mediaSrc = wp_get_attachment_image_src($mediaID, 'post-item');
-	// 	$mediaAlt = get_post_meta($mediaID, '_wp_attachment_img_alt', TRUE);
+	if($title && !empty($title)) {
+		$title_markup = "<h2 class='hero__title'>{$title}</h2>";
+	}
 
-	// 	$mediaURL = $mediaSrc[0];
+	if($introduction && !empty($introduction)) {
+		$introduction_markup = "<h2 class='hero__introduction'>{$introduction}</h2>";
+	}
 
-	// 	$pictureMarkup = '
-	// 		<picture>
-	// 			' . wp_filter_content_tags('<img class="callout__background wp-image-' . $mediaID . '" src="' . $mediaURL . '" alt="' . $mediaAlt . '" />') . '
-	// 		</picture>
-	// 	';
-	// }
+	if($media_id && is_numeric($media_id)) {
+		$media_src = wp_get_attachment_image_src($media_id, 'cta');
+		$media_alt = get_post_meta($media_id, '_wp_attachment_img_alt', TRUE);
 
-	// $html = '<div class="callout ' . implode(" ", $modifiers) . '">
-	// 			<div class="callout__container">
-	// 				<div class="callout__media">
-	// 					' . $pictureMarkup . '
-	// 				</div>';
+		$image_markup = '
+			<picture>
+				' . wp_filter_content_tags('<img class="wp-image-' . $media_id . '" src="' . $media_src[0] . '" alt="' . $media_alt . '" />') . '
+			</picture>
+		';
+	}
 
-	// 				if($content) {
-	// 					$html .= '<div class="callout__content">
-	// 								' . $content . '
-	// 							</div>';
-	// 				}
-					
-	// 	$html .= '</div>
-	// 		</div>';
+	$html = "<div class='hero-slide__slide splide__slide'>
+				{$image_markup}
+				<div class='hero-slide__container'>
+					{$pre_title_markup}
+					{$title_markup}
+					{$introduction_markup}
+					{$content}
+				</div>
+			</div>";
 
-	// return $html;
-
-    $html = null;
-
-    $html  = '<div class="hero__slide splide__slide">
-                ' . $content . '
-            </div>';
+	return $html;
 }

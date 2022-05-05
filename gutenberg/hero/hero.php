@@ -61,6 +61,12 @@ add_action( 'init', 'wpboiler_core_hero_block_init' );
 
 function wpboiler_core_hero_render($attr, $content) {
 
+	$html = null;
+
+	$html = "<div class='hero'>{$content}</div>";
+
+	return $html;
+
 	// $html = '';
 	// $mediaID = '';
 	// $mediaURL = '';

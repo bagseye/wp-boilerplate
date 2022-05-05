@@ -1,0 +1,31 @@
+.wp-block-wpboiler-core-hero-slide {
+    position: relative;
+    .hero-slide {
+
+        &__image {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        &__title {
+            color: #fff;
+
+            &--pre,
+            &--intro {
+                color: #fff;
+            }
+        }
+
+        &__container {
+            position: relative;
+            z-index: 1;
+        }
+
+    }
+
+}
