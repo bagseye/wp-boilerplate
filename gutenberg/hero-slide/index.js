@@ -59,9 +59,9 @@
       };
 
       const onChangeSlideState = () => {
-        setAttributes({
-          slidestate: !slidestate,
-        });
+        // setAttributes({
+        //   slidestate: !slidestate,
+        // });
       };
 
       return el(
@@ -76,22 +76,49 @@
             }`,
           },
 
+          // START .titleArea
           el(
             "div",
             { className: `${blockName}__titleArea` },
 
-            el("p", { className: "title" }, __("Hero Slide", `${blockName}`)),
-
+            // START .titleArea--name
             el(
-              Button,
+              "div",
               {
-                onClick: onChangeSlideState,
+                className: `${blockName}__titleArea--name`,
               },
-              !slidestate
-                ? __("Open to Edit", `${blockName}`)
-                : __("Close", `${blockName}`)
+              el("p", {}, __("Hero Slide", `${blockName}`))
+            ),
+            // END .titleArea--name
+
+            // START .titleArea--title
+            title &&
+              el(
+                "div",
+                {
+                  className: `${blockName}__titleArea--title`,
+                },
+                el("p", {}, title)
+              ),
+            // END .titleArea--title
+
+            // START .titleArea--toggle
+            el(
+              "div",
+              { className: `${blockName}__titleArea--toggle` },
+              el(
+                Button,
+                {
+                  onClick: onChangeSlideState,
+                },
+                !slidestate
+                  ? __("Open to Edit", `${blockName}`)
+                  : __("Close", `${blockName}`)
+              )
             )
+            // END .titleArea--toggle
           ),
+          // END .titleArea
 
           // PREVIEW AREA BEGIN
           el(
