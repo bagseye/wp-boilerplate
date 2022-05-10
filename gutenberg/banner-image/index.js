@@ -16,11 +16,11 @@
       html: false,
     },
     attributes: {
-      mediaID: {
+      mediaid: {
         type: "number",
         default: "",
       },
-      mediaURL: {
+      mediaurl: {
         type: "string",
         default: "",
       },
@@ -36,7 +36,7 @@
 
     edit: function (props) {
       const { attributes, setAttributes } = props;
-      const { marginselect, marginsdouble, mediaID, mediaURL } = attributes;
+      const { marginselect, marginsdouble, mediaid, mediaurl } = attributes;
       return el(
         "div",
         useBlockProps(attributes),
@@ -100,12 +100,12 @@
               el(MediaUpload, {
                 onSelect: (media) => {
                   setAttributes({
-                    mediaID: media.id,
-                    mediaURL: media.url,
+                    mediaid: media.id,
+                    mediaurl: media.url,
                   });
                 },
                 allowedTypes: "image",
-                value: mediaID,
+                value: mediaid,
                 render: (obj) => {
                   return el(
                     Button,
@@ -113,20 +113,20 @@
                       className: "components-button is-primary",
                       onClick: obj.open,
                     },
-                    !mediaID
+                    !mediaid
                       ? __("Upload Image", "banner-image")
                       : __("Replace Image", "banner-image")
                   );
                 },
               }),
 
-              mediaID &&
+              mediaid &&
                 el(
                   Button,
                   {
                     className: "components-button is-tertiary",
                     style: { marginLeft: "5px" },
-                    onClick: () => setAttributes({ mediaID: "", mediaURL: "" }),
+                    onClick: () => setAttributes({ mediaid: "", mediaurl: "" }),
                   },
                   "Remove Image"
                 )
@@ -144,9 +144,9 @@
             "div",
             { className: "bannerimage__media" },
 
-            mediaID &&
+            mediaid &&
               el("img", {
-                src: mediaURL,
+                src: mediaurl,
               })
           )
         )

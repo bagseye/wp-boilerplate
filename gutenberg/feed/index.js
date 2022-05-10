@@ -19,11 +19,11 @@
       html: false,
     },
     attributes: {
-      postType: {
+      posttype: {
         type: "string",
         default: "custom",
       },
-      categoryID: {
+      categoryid: {
         type: "string",
         default: "-1",
       },
@@ -35,7 +35,7 @@
         type: "string",
         default: "margins__none",
       },
-      doubleMargins: {
+      doublemargins: {
         type: "string",
         default: "",
       },
@@ -43,7 +43,7 @@
 
     edit: function (props) {
       const { attributes, setAttributes, clientId } = props;
-      const { heading, marginselect, doubleMargins, postType, categoryID } =
+      const { heading, marginselect, doublemargins, posttype, categoryid } =
         attributes;
 
       const decodeHtml = function (html) {
@@ -108,10 +108,10 @@
             marginselect !== "margins__none" &&
               el(ToggleControl, {
                 label: "Double Margins?",
-                checked: doubleMargins,
+                checked: doublemargins,
                 onChange: () =>
                   setAttributes({
-                    doubleMargins: doubleMargins ? "" : "margins__double",
+                    doublemargins: doublemargins ? "" : "margins__double",
                   }),
               })
           )
@@ -139,7 +139,7 @@
 
               el(SelectControl, {
                 label: "Select the type of feed you want to show",
-                value: postType,
+                value: posttype,
                 options: [
                   {
                     label: "Custom",
@@ -150,11 +150,11 @@
                     value: "category",
                   },
                 ],
-                onChange: (val) => setAttributes({ postType: val }),
+                onChange: (val) => setAttributes({ posttype: val }),
               })
             ),
 
-            postType === "custom"
+            posttype === "custom"
               ? el(
                   "div",
                   { className: "feed__container" },
@@ -181,9 +181,9 @@
 
                   el(SelectControl, {
                     label: "Category",
-                    value: categoryID,
+                    value: categoryid,
                     options: datalistOptions,
-                    onChange: (val) => setAttributes({ categoryID: val }),
+                    onChange: (val) => setAttributes({ categoryid: val }),
                   })
                 )
           )

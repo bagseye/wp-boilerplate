@@ -20,11 +20,11 @@
       html: false,
     },
     attributes: {
-      mediaID: {
+      mediaid: {
         type: "number",
         default: "",
       },
-      mediaURL: {
+      mediaurl: {
         type: "string",
         default: "",
       },
@@ -41,12 +41,12 @@
 
     edit: function (props) {
       const { attributes, setAttributes } = props;
-      const { title, content, mediaID, mediaURL } = attributes;
+      const { title, content, mediaid, mediaurl } = attributes;
 
       const onSelectImage = (media) =>
         setAttributes({
-          mediaID: media.id,
-          mediaURL: media.url,
+          mediaid: media.id,
+          mediaurl: media.url,
         });
 
       return el(
@@ -73,7 +73,7 @@
             el(MediaUpload, {
               onSelect: onSelectImage,
               allowedTypes: "image",
-              value: mediaID,
+              value: mediaid,
               render: (obj) => {
                 return el(
                   Button,
@@ -81,14 +81,14 @@
                     className: "components-button is-primary",
                     onClick: obj.open,
                   },
-                  !mediaID
+                  !mediaid
                     ? __("Upload Image", "card-group")
                     : __("Replace Image", "card-group")
                 );
               },
             }),
 
-            mediaID
+            mediaid
               ? el(
                   Button,
                   {
@@ -96,8 +96,8 @@
                     style: { marginLeft: "5px" },
                     onClick: () =>
                       setAttributes({
-                        mediaID: "",
-                        mediaURL: "",
+                        mediaid: "",
+                        mediaurl: "",
                       }),
                   },
                   "Remove Image"
@@ -111,14 +111,14 @@
           "div",
           { className: "promogroupitem__container" },
 
-          mediaURL
+          mediaurl
             ? el(
                 "div",
                 { className: "promogroupitem__media" },
 
                 el("img", {
-                  className: `promogroupitem__media--img wp-image-${mediaID}`,
-                  src: mediaURL,
+                  className: `promogroupitem__media--img wp-image-${mediaid}`,
+                  src: mediaurl,
                 })
               )
             : "",

@@ -59,62 +59,25 @@ function wpboiler_core_hero_block_init() {
 }
 add_action( 'init', 'wpboiler_core_hero_block_init' );
 
-function wpboiler_core_hero_render($attr, $content) {
+function wpboiler_core_hero_render($attr, $content, $block) {
 
 	$html = null;
 
-	$html = "<div class='hero'>{$content}</div>";
+	$html = '<section class="hero splide">
+				<div class="hero__track splide__track">
+					<div class="hero__list splide__list">
+						' . $content . '
+					</div>
+				</div>
+			</section>';
+
+	// If its just a single slide, remove all splide functionality
+	if(count($block->parsed_block['innerBlocks']) < 2) {
+		$html = str_replace('splide__track', '', $html);
+		$html = str_replace('splide__list', '', $html);
+		$html = str_replace('splide__slide', '', $html);
+		$html = str_replace('splide', '', $html);
+	}
 
 	return $html;
-
-	// $html = '';
-	// $mediaID = '';
-	// $mediaURL = '';
-	// $mediaSrc = '';
-	// $mediaAlt = '';
-	// $pictureMarkup = '';
-	// $modifiers = array();
-
-	// $modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__topBottom');
-
-	// if($margins != 'margins__none' && isset($attr['marginsdouble'])) {
-	// 	$modifiers[] = $attr['marginsdouble'];
-	// }
-
-	// if(isset($attr['mediaID'])) {
-	// 	$mediaID = $attr['mediaID'];
-	// 	$mediaSrc = wp_get_attachment_image_src($mediaID, 'post-item');
-	// 	$mediaAlt = get_post_meta($mediaID, '_wp_attachment_img_alt', TRUE);
-
-	// 	$mediaURL = $mediaSrc[0];
-
-	// 	$pictureMarkup = '
-	// 		<picture>
-	// 			' . wp_filter_content_tags('<img class="callout__background wp-image-' . $mediaID . '" src="' . $mediaURL . '" alt="' . $mediaAlt . '" />') . '
-	// 		</picture>
-	// 	';
-	// }
-
-	// $html = '<div class="callout ' . implode(" ", $modifiers) . '">
-	// 			<div class="callout__container">
-	// 				<div class="callout__media">
-	// 					' . $pictureMarkup . '
-	// 				</div>';
-
-	// 				if($content) {
-	// 					$html .= '<div class="callout__content">
-	// 								' . $content . '
-	// 							</div>';
-	// 				}
-					
-	// 	$html .= '</div>
-	// 		</div>';
-
-	// return $html;
-
-    $html = null;
-
-    $html  = '<section class="hero splide">
-                ' . $content . '
-            </section>';
 }

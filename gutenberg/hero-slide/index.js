@@ -40,8 +40,8 @@
         default: "",
       },
       slidestate: {
-        type: "boolean",
-        default: false,
+        type: "string",
+        default: 0,
       },
     },
     parent: ["wpboiler-core/hero"],
@@ -59,9 +59,9 @@
       };
 
       const onChangeSlideState = () => {
-        // setAttributes({
-        //   slidestate: !slidestate,
-        // });
+        setAttributes({
+          slidestate: slidestate ? 0 : 1,
+        });
       };
 
       return el(
@@ -79,13 +79,13 @@
           // START .titleArea
           el(
             "div",
-            { className: `${blockName}__titleArea` },
+            { className: `block__titleArea` },
 
             // START .titleArea--name
             el(
               "div",
               {
-                className: `${blockName}__titleArea--name`,
+                className: `block__titleArea--name`,
               },
               el("p", {}, __("Hero Slide", `${blockName}`))
             ),
@@ -96,7 +96,7 @@
               el(
                 "div",
                 {
-                  className: `${blockName}__titleArea--title`,
+                  className: `block__titleArea--title`,
                 },
                 el("p", {}, title)
               ),
@@ -105,7 +105,7 @@
             // START .titleArea--toggle
             el(
               "div",
-              { className: `${blockName}__titleArea--toggle` },
+              { className: `block__titleArea--toggle` },
               el(
                 Button,
                 {

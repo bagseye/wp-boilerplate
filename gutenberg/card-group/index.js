@@ -34,11 +34,11 @@
         type: "string",
         default: "",
       },
-      mediaID: {
+      mediaid: {
         type: "number",
         default: "",
       },
-      mediaURL: {
+      mediaurl: {
         type: "string",
         default: "",
       },
@@ -61,8 +61,8 @@
       const {
         marginselect,
         marginsdouble,
-        mediaID,
-        mediaURL,
+        mediaid,
+        mediaurl,
         title,
         pretitle,
         introduction,
@@ -73,8 +73,8 @@
 
       const onSelectImage = (media) =>
         setAttributes({
-          mediaID: media.id,
-          mediaURL: media.url,
+          mediaid: media.id,
+          mediaurl: media.url,
         });
 
       return el(
@@ -138,7 +138,7 @@
             el(MediaUpload, {
               onSelect: onSelectImage,
               allowedTypes: "image",
-              value: mediaID,
+              value: mediaid,
               render: (obj) => {
                 return el(
                   Button,
@@ -146,14 +146,14 @@
                     className: "components-button is-primary",
                     onClick: obj.open,
                   },
-                  !mediaID
+                  !mediaid
                     ? __("Upload Image", "card-group")
                     : __("Replace Image", "card-group")
                 );
               },
             }),
 
-            mediaID
+            mediaid
               ? el(
                   Button,
                   {
@@ -161,8 +161,8 @@
                     style: { marginLeft: "5px" },
                     onClick: () =>
                       setAttributes({
-                        mediaID: "",
-                        mediaURL: "",
+                        mediaid: "",
+                        mediaurl: "",
                       }),
                   },
                   "Remove Image"
@@ -217,7 +217,7 @@
           )
         ),
 
-        mediaURL
+        mediaurl
           ? el(
               "div",
               { className: "cardgroup__container--media" },
@@ -227,8 +227,8 @@
                 {},
 
                 el("img", {
-                  className: `cardgroup__background wp-image-${mediaID}`,
-                  src: mediaURL,
+                  className: `cardgroup__background wp-image-${mediaid}`,
+                  src: mediaurl,
                 })
               )
             )

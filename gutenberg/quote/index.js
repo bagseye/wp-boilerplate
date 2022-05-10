@@ -17,11 +17,11 @@
       alignWide: false,
     },
     attributes: {
-      quoteContent: {
+      quotecontent: {
         type: "string",
         default: "",
       },
-      quoteName: {
+      quotename: {
         type: "string",
         default: "",
       },
@@ -37,7 +37,7 @@
 
     edit: function (props) {
       const { attributes, setAttributes } = props;
-      const { quoteContent, quoteName, marginselect, margindouble } =
+      const { quotecontent, quotename, marginselect, margindouble } =
         attributes;
       return el(
         "div",
@@ -103,16 +103,16 @@
             el(RichText, {
               tagName: "p",
               placeholder: "Enter a quote here...",
-              value: quoteContent ? quoteContent : "",
-              onChange: (value) => setAttributes({ quoteContent: value }),
+              value: quotecontent ? quotecontent : "",
+              onChange: (value) => setAttributes({ quotecontent: value }),
             })
           ),
 
           el(RichText, {
             tagName: "figcaption",
             placeholder: "Enter the name here",
-            value: quoteName ? quoteName : "",
-            onChange: (value) => setAttributes({ quoteName: value }),
+            value: quotename ? quotename : "",
+            onChange: (value) => setAttributes({ quotename: value }),
           })
         )
       );

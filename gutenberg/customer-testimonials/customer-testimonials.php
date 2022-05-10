@@ -63,7 +63,7 @@ function wpboiler_core_customer_testimonials_render( $attr, $content ) {
 	$html = '';
 	$modifiers = array();
 
-	$modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : $attr['marginselect']);
+	$modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
 
 	if($margins != 'margins__none' && isset($attr['margindouble'])) {
 		$modifiers[] = $attr['margindouble'];

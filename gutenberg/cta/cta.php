@@ -62,8 +62,8 @@ add_action( 'init', 'wpboiler_core_cta_block_init' );
 function wpboiler_core_cta_render( $attr, $content ) {
 
 	$html = '';
-	$mediaID = '';
-	$mediaURL = '';
+	$mediaid = '';
+	$mediaurl = '';
 	$mediaSrc = '';
 	$mediaAlt = '';
 	$pictureMarkup = '';
@@ -81,15 +81,15 @@ function wpboiler_core_cta_render( $attr, $content ) {
 	}
 
 	if(isset($attr['mediaid'])) {
-		$mediaID = $attr['mediaid'];
-		$mediaSrc = wp_get_attachment_image_src($mediaID, 'cta');
-		$mediaAlt = get_post_meta($mediaID, '_wp_attachment_img_alt', TRUE);
+		$mediaid = $attr['mediaid'];
+		$mediaSrc = wp_get_attachment_image_src($mediaid, 'cta');
+		$mediaAlt = get_post_meta($mediaid, '_wp_attachment_img_alt', TRUE);
 
-		$mediaURL = $mediaSrc[0];
+		$mediaurl = $mediaSrc[0];
 
 		$pictureMarkup = '
 			<picture>
-				' . wp_filter_content_tags('<img class="cta__background wp-image-' . $mediaID . '" src="' . $mediaURL . '" alt="' . $mediaAlt . '" />') . '
+				' . wp_filter_content_tags('<img class="cta__background wp-image-' . $mediaid . '" src="' . $mediaurl . '" alt="' . $mediaAlt . '" />') . '
 			</picture>
 		';
 	}

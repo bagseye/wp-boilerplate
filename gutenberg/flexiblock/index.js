@@ -1,425 +1,382 @@
-( function( wp ) {
+(function (wp) {
+  var registerBlockType = wp.blocks.registerBlockType;
+  var el = wp.element.createElement;
+  var __ = wp.i18n.__;
 
-	var registerBlockType = wp.blocks.registerBlockType;
-	var el = wp.element.createElement;
-	var __ = wp.i18n.__;
+  const { RadioControl, PanelBody, Button } = wp.components;
+  const {
+    useBlockProps,
+    RichText,
+    InspectorControls,
+    InnerBlocks,
+    MediaUpload,
+  } = wp.blockEditor;
+  const allowedBlocks = ["core/paragraph", "core/button"];
 
-	const { RadioControl, PanelBody, Button } = wp.components;
-	const { useBlockProps, RichText, InspectorControls, InnerBlocks, MediaUpload } = wp.blockEditor;
-	const allowedBlocks = [ 'core/paragraph', 'core/button' ];
+  registerBlockType("wpboiler-core/flexiblock", {
+    apiVersion: 2,
 
-	registerBlockType( 'wpboiler-core/flexiblock', {
+    title: __("Flexi Block", "flexiblock"),
+    description: __(
+      "Allows for flexible layouts that can be used to display images and text",
+      "flexiblock"
+    ),
+    category: "layout",
+    icon: "admin-settings",
+    supports: {
+      html: false,
+      color: {
+        text: false,
+      },
+    },
+    attributes: {
+      category: {
+        type: "string",
+        default: "",
+      },
+      heading: {
+        type: "string",
+        default: "",
+      },
+      subHeading: {
+        type: "string",
+        default: "",
+      },
+      marginSelect: {
+        type: "string",
+        default: "margins__none",
+      },
+      orientationSelect: {
+        type: "string",
+        default: "images__right",
+      },
+      backgroundcolor: {
+        type: "string",
+        default: "black",
+      },
+      images: {
+        type: "string",
+        default: "[]",
+      },
+    },
 
-		apiVersion: 2,
+    edit: function (props) {
+      const { attributes, setAttributes } = props;
 
-		title: __(
-			'Flexi Block',
-			'flexiblock'
-		),
-		description: __(
-			'Allows for flexible layouts that can be used to display images and text',
-			'flexiblock'
-		),
-		category: 'layout',
-		icon: 'admin-settings',
-		supports: {
-			html: false,
-			color: {
-				text: false
-			},
-		},
-		attributes: {
-			category: {
-				type: 'string',
-				default: ""
-			},
-			heading: {
-				type: 'string',
-				default: "",
-			},
-			subHeading: {
-				type: 'string',
-				default: ""
-			},
-			marginSelect: {
-				type: 'string',
-				default: 'margins__none',
-			},
-			orientationSelect: {
-				type: 'string',
-				default: 'images__right',
-			},
-			backgroundColor: {
-				type: 'string',
-				default: 'black',
-			},
-			images: {
-				type: 'string',
-				default: "[]",
-			},
-		},
+      const {
+        category,
+        heading,
+        subHeading,
+        marginSelect,
+        orientationSelect,
+        images,
+      } = attributes;
 
-		edit: function(props) {
+      const onChangeMarginSelect = (newValue) =>
+        setAttributes({ marginSelect: newValue });
+      const onChangeOrientationSelect = (newValue) =>
+        setAttributes({ orientationSelect: newValue });
 
-			const { attributes, setAttributes } = props;
+      let tmpImages = JSON.parse(images);
 
-			const { 
-				category, 
-				heading, 
-				subHeading, 
-				marginSelect,
-				orientationSelect,
-				images,
-			} = attributes;
+      return el(
+        "div",
+        useBlockProps(attributes),
 
-			const onChangeMarginSelect = (newValue) => setAttributes({ marginSelect: newValue });
-			const onChangeOrientationSelect = (newValue) => setAttributes({ orientationSelect: newValue });
+        // INSPECTOR CONTROLS BEGIN
+        el(
+          InspectorControls,
+          null,
 
-			let tmpImages = JSON.parse(images);
+          // BLOCK MARGINS CONTROL BEGIN
+          el(
+            PanelBody,
+            {
+              title: "Margins",
+            },
 
-			return el(
-				'div',
-				useBlockProps(attributes),
-				
-				// INSPECTOR CONTROLS BEGIN
-				el(
-					InspectorControls,
-					null,
+            el(RadioControl, {
+              selected: marginSelect,
+              options: [
+                {
+                  label: "No Margins",
+                  value: "margins__none",
+                },
+                {
+                  label: "Margins Top & Bottom",
+                  value: "margins__topBottom",
+                },
+                {
+                  label: "Top Margin Only",
+                  value: "margins__top",
+                },
+                {
+                  label: "Bottom Margin Only",
+                  value: "margins__bottom",
+                },
+              ],
+              onChange: onChangeMarginSelect,
+            })
+          ),
+          // BLOCK MARGINS CONTROL ENDS
 
-					// BLOCK MARGINS CONTROL BEGIN
-					el(
-						PanelBody, {
-							title: 'Margins'
-						},
+          // BLOCK ORIENTATION CONTROL BEGIN
+          el(
+            PanelBody,
+            {
+              title: "Orientation",
+            },
 
-						el(
-							RadioControl,
-							{
-								selected: marginSelect,
-								options: [
-									{
-										label: 'No Margins',
-										value: 'margins__none'
-									},
-									{
-										label: 'Margins Top & Bottom',
-										value: 'margins__topBottom'
-									},
-									{
-										label: 'Top Margin Only',
-										value: 'margins__top'
-									},
-									{
-										label: 'Bottom Margin Only',
-										value: 'margins__bottom'
-									},
-								],
-								onChange: onChangeMarginSelect
-							}
-						),
-					),
-					// BLOCK MARGINS CONTROL ENDS
+            el(RadioControl, {
+              selected: orientationSelect,
+              options: [
+                {
+                  label: "Images Right",
+                  value: "images__right",
+                },
+                {
+                  label: "Images Left",
+                  value: "images__left",
+                },
+              ],
+              onChange: onChangeOrientationSelect,
+            })
+          ),
+          // BLOCK ORIENTATION CONTROL ENDS
 
-					// BLOCK ORIENTATION CONTROL BEGIN
-					el(
-						PanelBody, {
-							title: 'Orientation'
-						},
+          // BLOCK IMAGE UPLOADS CONTROL BEGIN
+          el(
+            PanelBody,
+            {
+              title: "Image Uploads",
+            },
 
-						el(
-							RadioControl, {
-								selected: orientationSelect,
-								options: [
-									{
-										label: 'Images Right',
-										value: 'images__right',
-									},
-									{
-										label: 'Images Left',
-										value: 'images__left',
-									},
-								],
-								onChange: onChangeOrientationSelect
-							},
-						)
-					),
-					// BLOCK ORIENTATION CONTROL ENDS
+            tmpImages.length < 2
+              ? el(
+                  Button,
+                  {
+                    className: "button block__panel--btn",
+                    onClick: () => {
+                      tmpImages.push({
+                        ImageId: "",
+                        ImageURL: "",
+                        ImageAlt: "",
+                      });
+                      setAttributes({ images: JSON.stringify(tmpImages) });
+                    },
+                  },
+                  "Add Image"
+                )
+              : "",
+            paintFlexiBlockImages(props, tmpImages)
+          )
+          // BLOCK IMAGE UPLOADS CONTROL ENDS
+        ),
+        // INSPECTOR CONTROLS END
 
-					// BLOCK IMAGE UPLOADS CONTROL BEGIN
-					el(
-						PanelBody, {
-							title: 'Image Uploads',
-						},
+        // BLOCK CONTAINER BEGINS
+        el(
+          "div",
+          { className: "block__container" },
 
-						(tmpImages.length < 2 ? 
-						el(
-							Button, {
-								className: 'button block__panel--btn',
-								onClick: () => {
-									tmpImages.push({
-										ImageId: '',
-										ImageURL: '',
-										ImageAlt: '',
-									});
-									setAttributes({ images: JSON.stringify(tmpImages) });
-								},
-							},
-							'Add Image'
-						) : ''),
+          el(
+            "div",
+            { className: "block__column" },
 
-						paintFlexiBlockImages( props, tmpImages ),
-					),
-					// BLOCK IMAGE UPLOADS CONTROL ENDS
-				),
-				// INSPECTOR CONTROLS END
+            el(RichText, {
+              tagName: "p",
+              placeholder: "Enter a category here...",
+              className: "block__heading--category",
+              value: category ? category : "",
+              onChange: (value) => setAttributes({ category: value }),
+            }),
 
+            el(RichText, {
+              tagName: "h2",
+              placeholder: "Enter a title here...",
+              className: "block__heading",
+              value: heading ? heading : "",
+              onChange: (value) => setAttributes({ heading: value }),
+            }),
 
-				// BLOCK CONTAINER BEGINS
-				el(
-					'div',
-					{ className: 'block__container' },
+            el(RichText, {
+              tagName: "h3",
+              placeholder: "Enter a sub-title here...",
+              className: "block__heading--sub",
+              value: subHeading ? subHeading : "",
+              onChange: (value) => setAttributes({ subHeading: value }),
+            }),
 
-					el(
-						'div',
-						{ className: 'block__column' },
+            el(InnerBlocks, {
+              allowedBlocks: allowedBlocks,
+              templateLock: false,
+            })
+          ),
 
-						el(
-							RichText, {
-								tagName: 'p',
-								placeholder: 'Enter a category here...',
-								className: 'block__heading--category',
-								value: ( category ? category : '' ),
-								onChange: value => setAttributes( { category: value } ),
-							}
-						),
+          tmpImages.map((elm) => {
+            return el(
+              "div",
+              { className: "block__column block__column--media" },
 
-						el(
-							RichText, {
-								tagName: 'h2',
-								placeholder: 'Enter a title here...',
-								className: 'block__heading',
-								value: ( heading ? heading : '' ),
-								onChange: value => setAttributes( { heading: value } ),
-							}
-						),
+              el("img", {
+                className: `wp-image-${elm.ImageId}`,
+                src: elm.ImageURL,
+                alt: elm.ImageAlt,
+              })
+            );
+          })
+        )
+        // BLOCK CONTAINER ENDS
+      );
+    },
 
-						el(
-							RichText, {
-								tagName: 'h3',
-								placeholder: 'Enter a sub-title here...',
-								className: 'block__heading--sub',
-								value: ( subHeading ? subHeading : '' ),
-								onChange: value => setAttributes( { subHeading: value } ),
-							}
-						),
+    save: function (props) {
+      const { attributes } = props;
+      const {
+        category,
+        heading,
+        subHeading,
+        marginSelect,
+        orientationSelect,
+        backgroundcolor,
+        images,
+      } = attributes;
 
-						el(
-							InnerBlocks, {
-								allowedBlocks: allowedBlocks,
-								templateLock: false,
-							}
-						),
-					),
+      // Build up the modifier classes
+      let mainFlexiClasses = [];
+      // If a background color has been chosen, add its modifier
+      if (backgroundcolor != "") {
+        mainFlexiClasses.push("flexi__hasbgcolor");
+        mainFlexiClasses.push(`flexi__hasbgcolor--${backgroundcolor}`);
+      }
+      // If the orientation has changed add its modifier
+      if (orientationSelect != "") {
+        mainFlexiClasses.push(orientationSelect);
+      }
+      // Then add the margin values
+      mainFlexiClasses.push(marginSelect);
 
-					tmpImages.map( (elm) => {
-						return el(
-							'div',
-							{ className: 'block__column block__column--media' },
-	
-							el(
-								'img',
-								{ 
-									className: `wp-image-${elm.ImageId}`,
-									src: elm.ImageURL, 
-									alt: elm.ImageAlt,
-								}
-							),
-						)
-					}),
-				),
-				// BLOCK CONTAINER ENDS	
-			)
-		},
+      // Get all the images
+      let tmpImages = JSON.parse(images);
 
-		save: function( props ) {
+      let imagesContainer = [];
+      tmpImages.forEach((elm) => {
+        if (elm.ImageId != "" && /^\d+$/.test(elm.ImageId)) {
+          imagesContainer.push(
+            el(
+              "div",
+              { className: "flexi__column flexi__column--media" },
+              `FlexiBlockImg${elm.ImageId}`
+            )
+          );
+        }
+      });
 
-			const { attributes } = props;
-			const { 
-				category, 
-				heading, 
-				subHeading, 
-				marginSelect,
-				orientationSelect,
-				backgroundColor,
-				images,
-			} = attributes;
-			
+      return el(
+        "section",
+        { className: `flexi ${mainFlexiClasses.join(" ")}` },
 
+        el(
+          "div",
+          { className: "flexi__container" },
 
-			// Build up the modifier classes
-			let mainFlexiClasses = [];
-			// If a background color has been chosen, add its modifier
-			if(backgroundColor != '') {
-				mainFlexiClasses.push("flexi__hasbgcolor");
-				mainFlexiClasses.push(`flexi__hasbgcolor--${backgroundColor}`);
-			}
-			// If the orientation has changed add its modifier
-			if(orientationSelect != '') {
-				mainFlexiClasses.push(orientationSelect);
-			}
-			// Then add the margin values
-			mainFlexiClasses.push(marginSelect);
+          el(
+            "div",
+            { className: "flexi__column" },
 
+            category != ""
+              ? el(
+                  "h3",
+                  { className: "flexi__heading--category" },
 
+                  el(RichText.Content, {
+                    tag: "p",
+                    value: category,
+                  })
+                )
+              : "",
+            heading != ""
+              ? el(
+                  "h2",
+                  { className: "flexi__heading" },
 
-			// Get all the images
-			let tmpImages = JSON.parse(images);
+                  el(RichText.Content, {
+                    tag: "h2",
+                    value: heading,
+                  })
+                )
+              : "",
+            subHeading != ""
+              ? el(
+                  "h3",
+                  { className: "flexi__heading--sub" },
 
-			let imagesContainer = [];
-			tmpImages.forEach((elm) => {
-				if(elm.ImageId != '' && /^\d+$/.test(elm.ImageId) ) {
-					imagesContainer.push(
-						el(
-							'div',
-							{ className: 'flexi__column flexi__column--media' },
-							`FlexiBlockImg${elm.ImageId}`
-						)
-					);
-				}
-			})
-			
-			return el(
-				'section',
-				{ className: `flexi ${mainFlexiClasses.join(" ")}` },
+                  el(RichText.Content, {
+                    tag: "h3",
+                    value: subHeading,
+                  })
+                )
+              : "",
+            el(InnerBlocks.Content, {})
+          ),
 
-				el(
-					'div',
-					{ className: 'flexi__container' },
+          imagesContainer
+        )
+      );
+    },
+  });
 
-					el(
-						'div',
-						{ className: 'flexi__column' },
+  function paintFlexiBlockImages(props, tmpImages) {
+    const { setAttributes } = props;
 
-						( category != '' ?
-							el(
-								'h3',
-								{ className: 'flexi__heading--category' },
+    let tmpObj = [];
 
-								el(
-									RichText.Content,
-									{
-										tag: 'p',
-										value: category,
-									}
-								)
-							) 
-							: '' 
-						),
+    tmpImages.forEach((elm, index) => {
+      tmpObj.push(
+        el(
+          "div",
+          { style: { padding: "10px 0" } },
 
-						( heading != '' ? 
-							el(
-								'h2',
-								{ className: 'flexi__heading' },
+          el("p", null, `Image ${index + 1}`),
 
-								el(
-									RichText.Content,
-									{
-										tag: 'h2',
-										value: heading
-									}
-								)
-							)
-						: ''
-						),
+          el(MediaUpload, {
+            onSelect: (media) => {
+              if (media) {
+                tmpImages[index].ImageId = media.id.toString();
+                tmpImages[index].ImageURL = media.url;
+                tmpImages[index].ImageAlt = media.alt;
+                setAttributes({ images: JSON.stringify(tmpImages) });
+              }
+            },
+            type: "image",
+            render: (obj) => {
+              return el(
+                Button,
+                {
+                  className: "button",
+                  onClick: obj.open,
+                  style: { marginRight: "5px" },
+                },
+                "Browse..."
+              );
+            },
+          }),
 
-						( subHeading != '' ? 
-							el(
-								'h3',
-								{ className: 'flexi__heading--sub' },
+          el(
+            Button,
+            {
+              className: "button",
+              onClick: () => {
+                tmpImages.splice(index, 1);
+                setAttributes({ images: JSON.stringify(tmpImages) });
+              },
+            },
+            "Remove Image"
+          )
+        )
+      );
+    });
 
-								el(
-									RichText.Content,
-									{
-										tag: 'h3',
-										value: subHeading,
-									}
-								)
-							)
-						: ''
-						),
-
-						el(
-							InnerBlocks.Content, {}
-						)
-					),
-
-					imagesContainer
-				)
-			);
-		},
-	} );
-
-	function paintFlexiBlockImages( props, tmpImages ) {
-		const { setAttributes } = props;
-
-		let tmpObj = [];
-
-		tmpImages.forEach((elm, index) => {
-			tmpObj.push(
-				el(
-					'div',
-					{style: {padding: '10px 0' } },
-
-					el(
-						'p',
-						null,
-						`Image ${index + 1}`
-					),
-
-					el(
-						MediaUpload,
-						{
-							onSelect: (media) => {
-								if(media) {
-									tmpImages[index].ImageId = media.id.toString();
-									tmpImages[index].ImageURL = media.url;
-									tmpImages[index].ImageAlt = media.alt;
-									setAttributes({ images: JSON.stringify( tmpImages ) });
-								}
-							},
-							type: 'image',
-							render: ( obj ) => {
-								return el(
-	
-									Button,
-									{
-										className: 'button',
-										onClick: obj.open,
-										style: { marginRight: '5px' },
-									},
-									'Browse...'
-
-								);
-							}
-						}
-					),
-
-					el(
-						Button, {
-							className: 'button',
-							onClick: () => {
-								tmpImages.splice(index, 1);
-								setAttributes({ images: JSON.stringify( tmpImages ) });
-							}
-						},
-						'Remove Image'
-					),
-				)
-			)
-		});
-
-		return tmpObj;
-	}
-}(
-	window.wp
-) );
+    return tmpObj;
+  }
+})(window.wp);

@@ -63,7 +63,7 @@ function wpboiler_core_panel_render($attr, $content) {
 	$html = '';
 	$modifiers = array();
 
-	$modifiers[] = $backgroundColor = (isset($attr['backgroundColor']) ? $attr['backgroundColor'] : '');
+	$modifiers[] = $backgroundcolor = (isset($attr['backgroundColor']) ? $attr['backgroundColor'] : '');
 	$modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
 
 	if($margins != 'margins__none' && isset($attr['marginsdouble'])) {

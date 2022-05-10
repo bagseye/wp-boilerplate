@@ -62,8 +62,8 @@ function wpboiler_core_card_group_render( $attr, $content ) {
 
 	$html = '';
 	$pictureMarkup = '';
-	$mediaID = '';
-	$mediaURL = '';
+	$mediaid = '';
+	$mediaurl = '';
 	$mediaSrc = '';
 	$mediaAlt = '';
 	$modifiers = array();
@@ -78,17 +78,17 @@ function wpboiler_core_card_group_render( $attr, $content ) {
 		$modifiers[] = $marginsDouble = $attr['marginsdouble'];
 	}
 
-	if(isset($attr['mediaID'])) {
-		$mediaID = $attr['mediaID'];
-		$mediaSrc = wp_get_attachment_image_src($mediaID, 'cta');
-		$mediaURL = $mediaSrc[0];
-		$mediaAlt = get_post_meta($mediaID, '_wp_attachment_img_alt', TRUE);
+	if(isset($attr['mediaid'])) {
+		$mediaid = $attr['mediaid'];
+		$mediaSrc = wp_get_attachment_image_src($mediaid, 'cta');
+		$mediaurl = $mediaSrc[0];
+		$mediaAlt = get_post_meta($mediaid, '_wp_attachment_img_alt', TRUE);
 
-		if($mediaURL) {
+		if($mediaurl) {
 
 			$pictureMarkup = '
 				<picture>
-					' . wp_filter_content_tags('<img class="cardgroup__background wp-image-' . $mediaID . '" src="' . $mediaURL . '" alt="' . $mediaAlt . '" />') . '
+					' . wp_filter_content_tags('<img class="cardgroup__background wp-image-' . $mediaid . '" src="' . $mediaurl . '" alt="' . $mediaAlt . '" />') . '
 				</picture>';
 		}
 	}

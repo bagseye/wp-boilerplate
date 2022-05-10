@@ -24,53 +24,7 @@
 
         &__preview {
             position: relative;
-        }
-
-        &__titleArea {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0 20px;
-
-            &--name {
-                flex-shrink: 0;
-                background-color: #333;
-                padding: 10px 20px;
-                align-self: stretch;
-                display: flex;
-                align-items: center;
-
-                p {
-                    color: #fff;
-                    margin: 0;
-                }
-            }
-
-            &--toggle {
-                padding-top: 10px;
-                padding-bottom: 10px;
-
-                button {
-                    border: 1px solid #000;
-                    border-radius: 4px;
-                    flex-shrink: 0;
-                    margin-right: 20px;
-                }
-            }
-
-            &--title {
-                flex-grow: 1;
-                overflow: hidden;
-
-                p {
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    font-weight: 700;
-                    font-size: 22px;
-                    margin: 0;
-                }
-            }
+            background-color: #aaa;
         }
 
         &__image {
@@ -95,6 +49,14 @@
         &__container {
             position: relative;
             z-index: 1;
+        }
+
+        &__content {
+            .block-editor-inner-blocks {
+                .wp-block {
+                    margin-left: 0;
+                }
+            }
         }
 
     }

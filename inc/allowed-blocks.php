@@ -3,7 +3,7 @@
 * Allow the following blocks in the editor
 *
 */
-add_filter( 'allowed_block_types', 'wpboiler_block_types', 10, 2 );
+add_filter( 'allowed_block_types_all', 'wpboiler_block_types', 10, 2 );
 
 function wpboiler_block_types( $allowed_blocks ) {
     return array(

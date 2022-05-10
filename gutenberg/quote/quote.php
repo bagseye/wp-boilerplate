@@ -69,16 +69,16 @@ function wpboiler_core_quote_render($attr, $content) {
 		$modifiers[] = $marginDouble = $attr['margindouble'];
 	}
 
-	$quoteContent = (isset($attr['quoteContent']) ? $attr['quoteContent'] : '');
-	$quoteName = (isset($attr['quoteName']) ? $attr['quoteName'] : '');
+	$quotecontent = (isset($attr['quotecontent']) ? $attr['quotecontent'] : '');
+	$quotename = (isset($attr['quotename']) ? $attr['quotename'] : '');
 
 	$html = '<figure class="quote ' . implode(" ", $modifiers) . '">
 				<blockquote>
-					<p>' . $quoteContent . '</p>
+					<p>' . $quotecontent . '</p>
 				</blockquote>';
 
-				if($quoteName) {
-					$html .= '<figcaption>' . $quoteName .'</figcaption>';
+				if($quotename) {
+					$html .= '<figcaption>' . $quotename .'</figcaption>';
 				}
 	$html .= '</figure>';
 

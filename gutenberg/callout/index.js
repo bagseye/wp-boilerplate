@@ -27,11 +27,11 @@
         type: "string",
         default: "",
       },
-      mediaID: {
+      mediaid: {
         type: "number",
         default: "",
       },
-      mediaURL: {
+      mediaurl: {
         type: "string",
         default: "",
       },
@@ -39,12 +39,12 @@
 
     edit: function (props) {
       const { attributes, setAttributes } = props;
-      const { marginselect, marginsdouble, mediaID, mediaURL } = attributes;
+      const { marginselect, marginsdouble, mediaid, mediaurl } = attributes;
 
       const onSelectImage = (media) =>
         setAttributes({
-          mediaID: media.id,
-          mediaURL: media.url,
+          mediaid: media.id,
+          mediaurl: media.url,
         });
 
       return el(
@@ -107,7 +107,7 @@
             el(MediaUpload, {
               onSelect: onSelectImage,
               allowedTypes: "image",
-              value: mediaID,
+              value: mediaid,
               render: (obj) => {
                 return el(
                   Button,
@@ -115,14 +115,14 @@
                     className: "components-button is-primary",
                     onClick: obj.open,
                   },
-                  !mediaID
+                  !mediaid
                     ? __("Upload Image", "card-group")
                     : __("Replace Image", "card-group")
                 );
               },
             }),
 
-            mediaID
+            mediaid
               ? el(
                   Button,
                   {
@@ -130,8 +130,8 @@
                     style: { marginLeft: "5px" },
                     onClick: () =>
                       setAttributes({
-                        mediaID: "",
-                        mediaURL: "",
+                        mediaid: "",
+                        mediaurl: "",
                       }),
                   },
                   "Remove Image"
@@ -151,7 +151,7 @@
             "div",
             { className: "callout__container" },
 
-            mediaURL
+            mediaurl
               ? el(
                   "div",
                   { className: "callout__media" },
@@ -161,8 +161,8 @@
                     {},
 
                     el("img", {
-                      className: `callout__background wp-image-${mediaID}`,
-                      src: mediaURL,
+                      className: `callout__background wp-image-${mediaid}`,
+                      src: mediaurl,
                     })
                   )
                 )

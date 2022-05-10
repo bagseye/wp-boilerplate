@@ -88,12 +88,12 @@ function wpboiler_core_feed_render( $attr, $content ) {
 	$modifiers = array();
 
 
-	$type = ((isset($attr['postType']) && $attr['postType'] === 'category') ? 'category' : 'custom');
-	$catID = ((isset($attr['categoryID']) && is_numeric($attr['categoryID'])) ? $attr['categoryID'] : 1);
+	$type = ((isset($attr['posttype']) && $attr['posttype'] === 'category') ? 'category' : 'custom');
+	$catID = ((isset($attr['categoryid']) && is_numeric($attr['categoryid'])) ? $attr['categoryid'] : 1);
 	$modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
 
-	if($margins != 'margins__none' && isset($attr['doubleMargins'])) {
-		$modifiers[] = $marginsDouble = $attr['doubleMargins'];
+	if($margins != 'margins__none' && isset($attr['doublemargins'])) {
+		$modifiers[] = $marginsDouble = $attr['doublemargins'];
 	}
 
 	// If set to category overwrite set blog posts with specific cat 

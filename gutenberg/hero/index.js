@@ -4,6 +4,7 @@
   const __ = wp.i18n.__;
   const { RadioControl, ToggleControl, PanelBody } = wp.components;
   const { useBlockProps, InspectorControls, InnerBlocks } = wp.blockEditor;
+  const { useSelect } = wp.data;
   const allowedBlocks = ["wpboiler-core/hero-slide"];
   const blockName = "hero";
 
@@ -33,8 +34,12 @@
     },
 
     edit: function (props) {
-      const { attributes, setAttributes } = props;
+      const { attributes, setAttributes, clientId } = props;
       const { marginselect, marginsdouble } = attributes;
+
+      const innerBlockCount = useSelect(
+        (select) => select("core/block-editor").getBlock(clientId).innerBlocks
+      );
 
       return el(
         "div",
@@ -101,9 +106,14 @@
               "div",
               { className: `${blockName}__content` },
 
-              el(InnerBlocks, {
-                allowedBlocks: allowedBlocks,
-              })
+              // Set a maximum number of slides allowed in the block
+              innerBlockCount.length < 8
+                ? el(InnerBlocks, {
+                    allowedBlocks: allowedBlocks,
+                  })
+                : el(InnerBlocks, {
+                    renderAppender: false,
+                  })
             )
           )
         )
