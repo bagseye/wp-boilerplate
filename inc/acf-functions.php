@@ -18,16 +18,6 @@ function wpboiler_acf_op_init() {
             'icon_url'      => 'dashicons-info',
         ));
 
-        $hero_options_page = acf_add_options_page(array(
-            'page_title'    => __('Homepage Hero Settings'),
-            'menu_title'    => __('Hero'),
-            'menu_slug'     => 'homepage-hero-settings',
-            'capability'    => 'edit_posts',
-            'redirect'      => false,
-            'update_button' => __('Update Hero'),
-            'icon_url'      => 'dashicons-shield-alt',
-        ));
-
         $partners_options_page = acf_add_options_page(array(
             'page_title'    => __('Partner Images'),
             'menu_title'    => __('Partners'),

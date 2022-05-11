@@ -1,6 +1,6 @@
 const faqItem = document.querySelectorAll(".faq__item");
 const testimonials = document.querySelectorAll(".testimonials");
-const hero = document.querySelector(".hero");
+const heroBanners = document.querySelectorAll(".hero.splide");
 const navButton = document.querySelector("#navigationButton");
 
 if (faqItem.length >= 1) {
@@ -15,22 +15,24 @@ function toggleFaq(faqItem) {
   faqItem.classList.toggle("faq__open");
 }
 
-if (hero) {
-  new Splide(hero, {
-    type: "fade",
-    rewind: true,
-    arrows: false,
-    pagination: false,
-    autoplay: true,
-    classes: {
-      arrows: "splide__arrows hero__arrows",
-      arrow: "splide__arrow hero__arrow",
-      prev: "splide__arrow--prev hero__arrow--prev",
-      next: "splide__arrow--next hero__arrow--next",
-      pagination: "splide__pagination hero__pagination",
-      page: "splide__pagination__page hero__pagination--page",
-    },
-  }).mount();
+if (heroBanners.length > 0) {
+  heroBanners.forEach((heroBanner) => {
+    new Splide(heroBanner, {
+      type: "fade",
+      rewind: true,
+      arrows: false,
+      pagination: false,
+      autoplay: true,
+      classes: {
+        arrows: "splide__arrows hero__arrows",
+        arrow: "splide__arrow hero__arrow",
+        prev: "splide__arrow--prev hero__arrow--prev",
+        next: "splide__arrow--next hero__arrow--next",
+        pagination: "splide__pagination hero__pagination",
+        page: "splide__pagination__page hero__pagination--page",
+      },
+    }).mount();
+  });
 }
 
 if (testimonials.length >= 1) {

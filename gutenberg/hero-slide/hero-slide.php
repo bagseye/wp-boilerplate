@@ -67,19 +67,23 @@ function wpboiler_core_hero_slide_render($attr, $content) {
 		$media_alt = get_post_meta($media_id, '_wp_attachment_img_alt', TRUE);
 
 		$image_markup = '
-			<picture>
-				' . wp_filter_content_tags('<img class="wp-image-' . $media_id . '" src="' . $media_src[0] . '" alt="' . $media_alt . '" />') . '
-			</picture>
+			<div class="hero__slide--media">
+				<picture>
+					' . wp_filter_content_tags('<img class="wp-image-' . $media_id . '" src="' . $media_src[0] . '" alt="' . $media_alt . '" />') . '
+				</picture>
+			</div>
 		';
 	}
 
-	$html = "<div class='hero-slide__slide splide__slide'>
-				{$image_markup}
-				<div class='hero-slide__container'>
-					{$pre_title_markup}
-					{$title_markup}
-					{$introduction_markup}
-					{$content}
+	$html = "<div class='hero__slide splide__slide'>
+				<div class='hero__container--content'>
+					<div class='hero__slide--content'>
+						{$pre_title_markup}
+						{$title_markup}
+						{$introduction_markup}
+						{$content}
+					</div>
+					{$image_markup}
 				</div>
 			</div>";
 

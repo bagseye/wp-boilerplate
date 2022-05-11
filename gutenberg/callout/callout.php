@@ -83,17 +83,17 @@ function wpboiler_core_callout_render($attr, $content) {
 		$mediaurl = $mediaSrc[0];
 
 		$pictureMarkup = '
-			<picture>
-				' . wp_filter_content_tags('<img class="callout__background wp-image-' . $mediaid . '" src="' . $mediaurl . '" alt="' . $mediaAlt . '" />') . '
-			</picture>
+			<div class="callout__media">
+				<picture>
+					' . wp_filter_content_tags('<img class="callout__background wp-image-' . $mediaid . '" src="' . $mediaurl . '" alt="' . $mediaAlt . '" />') . '
+				</picture>
+			</div>
 		';
 	}
 
 	$html = '<div class="callout ' . implode(" ", $modifiers) . '">
 				<div class="callout__container">
-					<div class="callout__media">
-						' . $pictureMarkup . '
-					</div>';
+					' . $pictureMarkup . '';
 
 					if($content) {
 						$html .= '<div class="callout__content">

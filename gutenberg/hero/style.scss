@@ -1,4 +1,56 @@
+@import '../../sass/utils/variables';
+
+section.hero {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .hero {
     height: 100vh;
     width: 100%;
+
+
+    &__container--content {
+        color: #fff;
+        max-width: $container;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: $spacing * 2;
+        padding-right: $spacing * 2;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero__slide {
+        height: 100%;
+        position: relative;
+
+        &--content {
+            
+            z-index: 1;
+            max-width: 500px;
+        }
+
+        &--media {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    }
+
+    .hero__track,
+    .hero__list {
+        height: inherit;
+    }
 }
