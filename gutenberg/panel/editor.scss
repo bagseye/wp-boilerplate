@@ -1,6 +1,9 @@
 @import '../../sass/utils/variables';
 
+
 .wp-block-wpboiler-core-panel {
+    padding: 0!important;
+    
     &[backgroundcolor="brand1"] {
         background-color: $brand1;
         color: #fff;
@@ -31,5 +34,10 @@
         background-color: $brand4;
     }
 
-
+    .panel {
+        &__preview {
+            padding-left: $spacing;
+            padding-right: $spacing;
+        }
+    }
 }

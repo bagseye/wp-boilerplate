@@ -24,11 +24,12 @@
     "wpboiler-core/separator",
     "wpboiler-core/fixed-spacer",
   ];
+  const blockName = "panel";
 
   registerBlockType("wpboiler-core/panel", {
     apiVersion: 2,
-    title: __("Panel", "panel"),
-    description: __("Creates a full-width panel", "panel"),
+    title: __("Panel", `${blockName}`),
+    description: __("Creates a full-width panel", `${blockName}`),
     category: "design",
     icon: "button",
     supports: {
@@ -58,7 +59,22 @@
         "div",
         useBlockProps(attributes),
 
-        el("p", { className: "block__title" }, __("Panel", "panel")),
+        // START .titleArea
+        el(
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Panel", `${blockName}`))
+          )
+          // END .titleArea--name
+        ),
+        // END .titleArea
 
         el(
           InspectorControls,
@@ -106,10 +122,27 @@
           )
         ),
 
-        el(InnerBlocks, {
-          allowedBlocks: allowedBlocks,
-          dropZone: true,
-        })
+        // PREVIEW AREA BEGIN
+        el(
+          "div",
+          { className: `${blockName}__preview` },
+
+          el(
+            "div",
+            { className: `${blockName}__container` },
+
+            el(
+              "div",
+              { className: `${blockName}__content` },
+
+              el(InnerBlocks, {
+                allowedBlocks: allowedBlocks,
+                dropZone: true,
+              })
+            )
+          )
+        )
+        // PREVIEW AREA END
       );
     },
 

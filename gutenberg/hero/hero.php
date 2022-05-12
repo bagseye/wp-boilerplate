@@ -62,8 +62,11 @@ add_action( 'init', 'wpboiler_core_hero_block_init' );
 function wpboiler_core_hero_render($attr, $content, $block) {
 
 	$html = null;
+	$modifiers = array();
+	$modifiers[] = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
+	$modifiers[] = (isset($attr['marginsdouble']) ? $attr['marginsdouble'] : '');
 
-	$html = '<section class="hero splide">
+	$html = '<section class="hero splide ' . implode(' ', $modifiers) . '">
 				<div class="hero__track splide__track">
 					<div class="hero__list splide__list">
 						' . $content . '

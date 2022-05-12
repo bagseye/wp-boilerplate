@@ -1,3 +1,34 @@
+.wp-block.wp-block-wpboiler-core-hero {
+    padding-left: 0!important;
+    padding-right: 0!important;
+
+    .hero {
+        &__preview {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        &__content {
+            >.block-editor-inner-blocks {
+                >.block-editor-block-list__layout {
+                    padding-bottom: 40px;
+
+                    >.block-list-appender {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        padding: 5px;
+                        border: none;
+                    }
+                }
+    
+            }
+        }
+
+    }
+}
+
+
 .wp-block.wp-block-wpboiler-core-hero-slide {
     padding: 0!important;
     overflow: hidden;
@@ -55,6 +86,17 @@
             .block-editor-inner-blocks {
                 .wp-block {
                     margin-left: 0;
+                }
+                >.block-editor-block-list__layout {
+                    padding-bottom: 30px;
+
+                    >.block-list-appender {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        padding: 5px;
+                        border: none;
+                    }
                 }
             }
         }

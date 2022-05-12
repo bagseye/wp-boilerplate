@@ -44,7 +44,23 @@
       return el(
         "div",
         useBlockProps(attributes),
-        el("p", { className: "block__title" }, __("Hero", `${blockName}`)),
+
+        // START .titleArea
+        el(
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Hero", `${blockName}`))
+          )
+          // END .titleArea--name
+        ),
+        // END .titleArea
 
         // INSPECTOR CONTROL BEGIN
         el(
@@ -96,7 +112,7 @@
         // PREVIEW AREA BEGIN
         el(
           "div",
-          { className: `${blockName}` },
+          { className: `${blockName}__preview` },
 
           el(
             "div",
@@ -117,7 +133,6 @@
             )
           )
         )
-
         // PREVIEW AREA END
       );
     },

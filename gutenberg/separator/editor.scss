@@ -1,0 +1,13 @@
+@import '../../sass/utils/variables';
+
+.wp-block.wp-block-wpboiler-core-separator {
+    padding-left: 0!important;
+    padding-right: 0!important;
+    padding-bottom: 0!important;
+
+    .separator {
+        &__container {
+            padding: $spacing;
+        }
+    }
+}

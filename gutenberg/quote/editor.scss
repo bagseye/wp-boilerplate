@@ -1,11 +1,9 @@
 @import '../../sass/utils/variables';
 
-.wp-block-wpboiler-core-quote {
+.wp-block.wp-block-wpboiler-core-quote {
+    padding-left: 0!important;
+    padding-right: 0!important;
     text-align: center;
-
-    .block__title {
-        text-align: left;
-    }
 }
 
 .wp-block-wpboiler-core-panel {

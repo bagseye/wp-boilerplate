@@ -4,11 +4,12 @@
   var __ = wp.i18n.__;
   const { RadioControl, ToggleControl, PanelBody } = wp.components;
   const { useBlockProps, InspectorControls, RichText } = wp.blockEditor;
+  const blockName = "quote";
 
   registerBlockType("wpboiler-core/quote", {
     apiVersion: 2,
-    title: __("Quote", "quote"),
-    description: __("Displays a single quote", "quote"),
+    title: __("Quote", `${blockName}`),
+    description: __("Displays a single quote", `${blockName}`),
     category: "design",
     icon: "format-quote",
     supports: {
@@ -43,7 +44,22 @@
         "div",
         useBlockProps(attributes),
 
-        el("p", { className: "block__title" }, __("Quote", "quote")),
+        // START .titleArea
+        el(
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Quote", `${blockName}`))
+          )
+          // END .titleArea--name
+        ),
+        // END .titleArea
 
         // INSPECTOR CONTROLS
         el(
@@ -92,29 +108,46 @@
         ),
         // INSPECTOR CONTROLS
 
+        // PREVIEW AREA BEGIN
         el(
-          "figure",
-          { className: "quote" },
+          "div",
+          { className: `${blockName}__preview` },
 
           el(
-            "blockquote",
-            null,
+            "div",
+            { className: `${blockName}__container` },
 
-            el(RichText, {
-              tagName: "p",
-              placeholder: "Enter a quote here...",
-              value: quotecontent ? quotecontent : "",
-              onChange: (value) => setAttributes({ quotecontent: value }),
-            })
-          ),
+            el(
+              "div",
+              { className: `${blockName}__content` },
 
-          el(RichText, {
-            tagName: "figcaption",
-            placeholder: "Enter the name here",
-            value: quotename ? quotename : "",
-            onChange: (value) => setAttributes({ quotename: value }),
-          })
+              el(
+                "figure",
+                { className: `${blockName}` },
+
+                el(
+                  "blockquote",
+                  null,
+
+                  el(RichText, {
+                    tagName: "p",
+                    placeholder: "Enter a quote here...",
+                    value: quotecontent ? quotecontent : "",
+                    onChange: (value) => setAttributes({ quotecontent: value }),
+                  })
+                ),
+
+                el(RichText, {
+                  tagName: "figcaption",
+                  placeholder: "Enter the name here",
+                  value: quotename ? quotename : "",
+                  onChange: (value) => setAttributes({ quotename: value }),
+                })
+              )
+            )
+          )
         )
+        // PREVIEW AREA END
       );
     },
 

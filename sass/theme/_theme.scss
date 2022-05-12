@@ -57,6 +57,11 @@ body {
         }
     }
 
+    &__none {
+        margin-top: 0!important;
+        margin-bottom: 0!important;
+    }
+
     &__inContent {
         margin-top: calc(#{$spacing} / 2);
         margin-bottom: $spacing;

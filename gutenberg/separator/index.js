@@ -4,13 +4,14 @@
   var __ = wp.i18n.__;
   const { RadioControl, ToggleControl, PanelBody } = wp.components;
   const { useBlockProps, InspectorControls } = wp.blockEditor;
+  const blockName = "separator";
 
   registerBlockType("wpboiler-core/separator", {
     apiVersion: 2,
-    title: __("Separator", "separator"),
+    title: __("Separator", `${blockName}`),
     description: __(
       "A styling block that separates content using a horizontal line",
-      "separator"
+      `${blockName}`
     ),
     category: "widgets",
     icon: "minus",
@@ -36,7 +37,22 @@
         "div",
         useBlockProps(attributes),
 
-        el("p", { className: "block__title" }, __("Separator", "separator")),
+        // START .titleArea
+        el(
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Separator", `${blockName}`))
+          )
+          // END .titleArea--name
+        ),
+        // END .titleArea
 
         // INSPECTOR CONTROLS
         el(
@@ -85,7 +101,24 @@
         ),
         // INSPECTOR CONTROLS
 
-        el("hr", null)
+        // PREVIEW AREA BEGIN
+        el(
+          "div",
+          { className: `${blockName}__preview` },
+
+          el(
+            "div",
+            { className: `${blockName}__container` },
+
+            el(
+              "div",
+              { className: `${blockName}__content` },
+
+              el("hr", null)
+            )
+          )
+        )
+        // PREVIEW AREA END
       );
     },
 

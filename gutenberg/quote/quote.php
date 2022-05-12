@@ -64,9 +64,8 @@ function wpboiler_core_quote_render($attr, $content) {
 	$modifiers = array();
 
 	$modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
-
 	if($margins != 'margins__none' && isset($attr['margindouble'])) {
-		$modifiers[] = $marginDouble = $attr['margindouble'];
+		$modifiers[] = $attr['margindouble'];
 	}
 
 	$quotecontent = (isset($attr['quotecontent']) ? $attr['quotecontent'] : '');

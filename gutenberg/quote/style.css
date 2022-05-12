@@ -1,1 +1,1 @@
-figure.quote{max-width:740px;text-align:center}figure.quote blockquote>p{font-size:1.75rem;font-weight:700;line-height:1.2}figure.quote figcaption{font-size:1.25rem;line-height:1.15}.panel .quote{margin-right:auto;margin-left:auto}
+figure.quote{max-width:740px;text-align:center}figure.quote blockquote{margin-top:0;margin-bottom:1rem}figure.quote blockquote>p{font-size:1.75rem;font-weight:700;line-height:1.2;margin-top:0;margin-bottom:0}figure.quote figcaption{font-size:1.25rem;line-height:1.15}.panel .quote{margin-right:auto;margin-left:auto}
