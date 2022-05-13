@@ -4,11 +4,12 @@
   var __ = wp.i18n.__;
   const { RadioControl, ToggleControl, PanelBody, Button } = wp.components;
   const { useBlockProps, InspectorControls, MediaUpload } = wp.blockEditor;
+  const blockName = "banner-image";
 
   registerBlockType("wpboiler-core/banner-image", {
     apiVersion: 2,
-    title: __("Banner Image", "banner-image"),
-    description: __("Displays a full-width image", "banner-image"),
+    title: __("Banner Image", `${blockName}`),
+    description: __("Displays a full-width image", `${blockName}`),
     category: "design",
     icon: "cover-image",
     supports: {
@@ -41,11 +42,22 @@
         "div",
         useBlockProps(attributes),
 
+        // START .titleArea
         el(
-          "p",
-          { className: "block__title" },
-          __("Banner Image", "banner-image")
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Banner Image", `${blockName}`))
+          )
+          // END .titleArea--name
         ),
+        // END .titleArea
 
         // INSPECTOR CONTROLS
         el(
@@ -136,20 +148,42 @@
 
         // INSPECTOR CONTROLS
 
+        // PREVIEW AREA BEGIN
         el(
           "div",
-          { className: "bannerimage" },
+          { className: `${blockName}__preview` },
 
           el(
             "div",
-            { className: "bannerimage__media" },
+            { className: `${blockName}__container` },
 
-            mediaid &&
-              el("img", {
-                src: mediaurl,
-              })
+            el(
+              "div",
+              { className: `${blockName}__content` },
+
+              mediaid &&
+                el("img", {
+                  src: mediaurl,
+                })
+            )
           )
         )
+        // PREVIEW AREA END
+
+        // el(
+        //   "div",
+        //   { className: "bannerimage" },
+
+        //   el(
+        //     "div",
+        //     { className: "bannerimage__media" },
+
+        //     mediaid &&
+        //       el("img", {
+        //         src: mediaurl,
+        //       })
+        //   )
+        // )
       );
     },
 

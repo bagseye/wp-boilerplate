@@ -60,7 +60,7 @@ add_action( 'init', 'wpboiler_core_panel_block_init' );
 
 function wpboiler_core_panel_render($attr, $content) {
 
-	$html = '';
+	$html = $backgroundcolor = $margins = '';
 	$modifiers = array();
 
 	$modifiers[] = $backgroundcolor = (isset($attr['backgroundColor']) ? $attr['backgroundColor'] : '');

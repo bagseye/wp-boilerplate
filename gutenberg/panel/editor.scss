@@ -3,36 +3,6 @@
 
 .wp-block-wpboiler-core-panel {
     padding: 0!important;
-    
-    &[backgroundcolor="brand1"] {
-        background-color: $brand1;
-        color: #fff;
-
-        .block-editor-block-list__layout {
-            >* {
-                color: #fff;
-            }
-        }
-    }
-
-    &[backgroundcolor="brand2"] {
-        background-color: $brand2;
-        color: #fff;
-
-        .block-editor-block-list__layout {
-            >* {
-                color: #fff;
-            }
-        }
-    }
-
-    &[backgroundcolor="brand3"] {
-        background-color: $brand3;
-    }
-
-    &[backgroundcolor="brand4"] {
-        background-color: $brand4;
-    }
 
     .panel {
         &__preview {

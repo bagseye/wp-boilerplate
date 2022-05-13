@@ -60,12 +60,7 @@ function wpboiler_core_banner_image_block_init() {
 add_action( 'init', 'wpboiler_core_banner_image_block_init' );
 
 function wpboiler_core_banner_image_render($attr, $content) {
-	$html = '';
-	$mediaid = '';
-	$mediaurl = '';
-	$mediaSrc = '';
-	$mediaAlt = '';
-	$pictureMarkup = '';
+	$html = $mediaid = $mediaurl = $mediaSrc = $mediaAlt = $pictureMarkup = '';
 	$modifiers = array();
 
 	$modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
