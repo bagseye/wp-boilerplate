@@ -70,17 +70,7 @@ function wpboiler_core_banner_image_render($attr, $content) {
 	}
 
 	if(isset($attr['mediaid'])) {
-		$mediaid = $attr['mediaid'];
-		$mediaSrc = wp_get_attachment_image_src($mediaid, 'cta');
-		$mediaAlt = get_post_meta($mediaid, '_wp_attachment_img_alt', TRUE);
-
-		$mediaurl = $mediaSrc[0];
-
-		$pictureMarkup = '
-			<picture>
-				' . wp_filter_content_tags('<img class="wp-image-' . $mediaid . '" src="' . $mediaurl . '" alt="' . $mediaAlt . '" />') . '
-			</picture>
-		';
+		$pictureMarkup = createImage($attr['mediaid'], 'cta');
 	}
 
 	$html = '<div class="bannerimage ' . implode(" ", $modifiers) . '">

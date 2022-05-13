@@ -101,6 +101,7 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/allowed-blocks.php';
 require get_template_directory() . '/inc/acf-functions.php';
+require get_template_directory() . '/inc/custom-hooks.php';
 
 function wpboiler_enqueue_styles() {
     wp_enqueue_style( 'wpboiler-splide-styles', get_template_directory_uri() . '/css/splide-core.min.css', array(), null, 'all' );
