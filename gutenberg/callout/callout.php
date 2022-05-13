@@ -61,12 +61,7 @@ add_action( 'init', 'wpboiler_core_callout_block_init' );
 
 function wpboiler_core_callout_render($attr, $content) {
 
-	$html = '';
-	$mediaid = '';
-	$mediaurl = '';
-	$mediaSrc = '';
-	$mediaAlt = '';
-	$pictureMarkup = '';
+	$html = $mediaid = $mediaurl = $mediaSrc = $mediaAlt = $pictureMarkup = '';
 	$modifiers = array();
 
 	$modifiers[] = $margins = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__topBottom');

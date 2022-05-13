@@ -2,9 +2,13 @@
 
 .wp-block-wpboiler-core-customer-testimonials {
     text-align: center;
+    padding: 0!important;
 
-    .block__title {
-        text-align: left;
+    .customer-testimonials {
+        &__preview {
+            padding-left: $spacing;
+            padding-right: $spacing;
+        }
     }
 }
 

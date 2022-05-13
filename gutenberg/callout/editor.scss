@@ -1,7 +1,15 @@
 @import '../../sass/utils/variables';
 
 .wp-block-wpboiler-core-callout {
-    .callout__content {
+    padding: 0!important;
+    .callout {
+        &__preview {
+            padding-left: $spacing;
+            padding-right: $spacing;
+        }
+    }
+
+    .callout__text {
         >.block-editor-inner-blocks {
             width: 100%;
 
@@ -14,6 +22,13 @@
                 }
             }
         }
+    }
+}
+
+.has-brand-1-background-color,
+.has-brand-2-background-color {
+    .wp-block-wpboiler-core-callout-item {
+        color: #fff;
     }
 }
 

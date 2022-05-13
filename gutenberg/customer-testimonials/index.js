@@ -4,13 +4,14 @@
   var __ = wp.i18n.__;
   const { RadioControl, PanelBody, ToggleControl } = wp.components;
   const { useBlockProps, InspectorControls } = wp.blockEditor;
+  const blockName = "customer-testimonials";
 
   registerBlockType("wpboiler-core/customer-testimonials", {
     apiVersion: 2,
-    title: __("Customer Testimonials", "customer-testimonials"),
+    title: __("Customer Testimonials", `${blockName}`),
     description: __(
       "Displays customer testimonials in a slideshow",
-      "customer-testimonials"
+      `${blockName}`
     ),
     category: "design",
     icon: "heart",
@@ -37,11 +38,22 @@
         "div",
         useBlockProps(attributes),
 
+        // START .titleArea
         el(
-          "p",
-          { className: "block__title" },
-          __("Customer Testimonials", "customer-testimonials")
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Customer Testimonials", `${blockName}`))
+          )
+          // END .titleArea--name
         ),
+        // END .titleArea
 
         // INSPECTOR CONTROLS
         el(
@@ -91,16 +103,33 @@
 
         // INSPECTOR CONTROLS
 
-        el("h2", null, __("Customer Testimonials", "customer-testimonials")),
-
+        // PREVIEW AREA BEGIN
         el(
-          "p",
-          null,
-          __(
-            "To modify these select Testimonials in the main admin menu",
-            "customer-testimonials"
+          "div",
+          { className: `${blockName}__preview` },
+
+          el(
+            "div",
+            { className: `${blockName}__container` },
+
+            el(
+              "div",
+              { className: `${blockName}__content` },
+
+              el("h2", null, __("Customer Testimonials", `${blockName}`)),
+
+              el(
+                "p",
+                null,
+                __(
+                  "To modify these select Testimonials in the main admin menu",
+                  `${blockName}`
+                )
+              )
+            )
           )
         )
+        // PREVIEW AREA END
       );
     },
 

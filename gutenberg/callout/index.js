@@ -6,11 +6,15 @@
   const { useBlockProps, InspectorControls, InnerBlocks, MediaUpload } =
     wp.blockEditor;
   const allowedBlocks = ["wpboiler-core/callout-item"];
+  const blockName = "callout";
 
   registerBlockType("wpboiler-core/callout", {
     apiVersion: 2,
-    title: __("Callout", "callout"),
-    description: __("Displays an image with up to 3 detail areas", "callout"),
+    title: __("Callout", `${blockName}`),
+    description: __(
+      "Displays an image with up to 3 detail areas",
+      `${blockName}`
+    ),
     category: "design",
     icon: "megaphone",
     supports: {
@@ -50,7 +54,23 @@
       return el(
         "div",
         useBlockProps(attributes),
-        el("p", { className: "block__title" }, __("Callout", "callout")),
+
+        // START .titleArea
+        el(
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Callout", `${blockName}`))
+          )
+          // END .titleArea--name
+        ),
+        // END .titleArea
 
         // INSPECTOR CONTROL BEGIN
         el(
@@ -145,40 +165,44 @@
         // PREVIEW AREA BEGIN
         el(
           "div",
-          { className: "callout" },
+          { className: `${blockName}__preview` },
 
           el(
             "div",
-            { className: "callout__container" },
-
-            mediaurl
-              ? el(
-                  "div",
-                  { className: "callout__media" },
-
-                  el(
-                    "picture",
-                    {},
-
-                    el("img", {
-                      className: `callout__background wp-image-${mediaid}`,
-                      src: mediaurl,
-                    })
-                  )
-                )
-              : "",
+            { className: `${blockName}__container` },
 
             el(
               "div",
-              { className: "callout__content" },
+              { className: `${blockName}__content` },
 
-              el(InnerBlocks, {
-                allowedBlocks: allowedBlocks,
-              })
+              mediaurl
+                ? el(
+                    "div",
+                    { className: `${$blockName}__media` },
+
+                    el(
+                      "picture",
+                      {},
+
+                      el("img", {
+                        className: `${blockName}__background wp-image-${mediaid}`,
+                        src: mediaurl,
+                      })
+                    )
+                  )
+                : "",
+
+              el(
+                "div",
+                { className: `${blockName}__text` },
+
+                el(InnerBlocks, {
+                  allowedBlocks: allowedBlocks,
+                })
+              )
             )
           )
         )
-
         // PREVIEW AREA END
       );
     },
