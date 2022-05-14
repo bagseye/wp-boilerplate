@@ -3,11 +3,12 @@
   var el = wp.element.createElement;
   var __ = wp.i18n.__;
   const { useBlockProps, RichText } = wp.blockEditor;
+  const blockName = "callout-item";
 
   registerBlockType("wpboiler-core/callout-item", {
     apiVersion: 2,
-    title: __("Callout Item", "callout-item"),
-    description: __("An individual callout item", "callout-item"),
+    title: __("Callout Item", `${blockName}`),
+    description: __("An individual callout item", `${blockName}`),
     category: "widgets",
     icon: "megaphone",
     supports: {
@@ -34,27 +35,55 @@
         "div",
         useBlockProps(attributes),
 
+        // START .titleArea
         el(
-          "p",
-          { className: "block__title" },
-          __("Callout Item", "callout-item")
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Callout Item", `${blockName}`))
+          )
+          // END .titleArea--name
         ),
+        // END .titleArea
 
-        el(RichText, {
-          tagName: "h3",
-          placeholder: "Enter a title here",
-          className: "callout__item--title",
-          value: title ? title : "",
-          onChange: (value) => setAttributes({ title: value }),
-        }),
+        // PREVIEW AREA BEGIN
+        el(
+          "div",
+          { className: `${blockName}__preview` },
 
-        el(RichText, {
-          tagName: "p",
-          placeholder: "Enter the content here",
-          className: "callout__item--content",
-          value: content ? content : "",
-          onChange: (value) => setAttributes({ content: value }),
-        })
+          el(
+            "div",
+            { className: `${blockName}__container` },
+
+            el(
+              "div",
+              { className: `${blockName}__content` },
+
+              el(RichText, {
+                tagName: "h3",
+                placeholder: "Enter a title here",
+                className: "callout__item--title",
+                value: title ? title : "",
+                onChange: (value) => setAttributes({ title: value }),
+              }),
+
+              el(RichText, {
+                tagName: "p",
+                placeholder: "Enter the content here",
+                className: "callout__item--content",
+                value: content ? content : "",
+                onChange: (value) => setAttributes({ content: value }),
+              })
+            )
+          )
+        )
+        // PREVIEW AREA END
       );
     },
 

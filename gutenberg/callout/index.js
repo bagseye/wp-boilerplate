@@ -178,7 +178,7 @@
               mediaurl
                 ? el(
                     "div",
-                    { className: `${$blockName}__media` },
+                    { className: `${blockName}__media` },
 
                     el(
                       "picture",

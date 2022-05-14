@@ -16,11 +16,32 @@
             >.block-editor-block-list__layout {
                 display: flex;
                 flex-wrap: wrap;
+                padding-bottom: 40px;
+
+                >.block-list-appender {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    padding: 5px;
+                    border: none;
+                }
     
                 .wp-block-wpboiler-core-callout-item {
                     flex: 0 1 33.333%;
                 }
             }
+        }
+    }
+}
+
+.wp-block-wpboiler-core-callout-item {
+    padding: 0!important;
+
+    .callout-item {
+        &__preview {
+            padding-left: $spacing;
+            padding-right: $spacing;
+            padding-bottom: $spacing;
         }
     }
 }

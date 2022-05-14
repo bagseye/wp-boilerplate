@@ -169,21 +169,6 @@
           )
         )
         // PREVIEW AREA END
-
-        // el(
-        //   "div",
-        //   { className: "bannerimage" },
-
-        //   el(
-        //     "div",
-        //     { className: "bannerimage__media" },
-
-        //     mediaid &&
-        //       el("img", {
-        //         src: mediaurl,
-        //       })
-        //   )
-        // )
       );
     },
 
