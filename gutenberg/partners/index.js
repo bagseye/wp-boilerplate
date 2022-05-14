@@ -5,11 +5,12 @@
 
   const { RadioControl, PanelBody, ToggleControl } = wp.components;
   const { useBlockProps, InspectorControls } = wp.blockEditor;
+  const blockName = "partners";
 
   registerBlockType("wpboiler-core/partners", {
     apiVersion: 2,
-    title: __("Partners", "partners"),
-    description: __("Displays a list of global partner logos", "partners"),
+    title: __("Partners", `${blockName}`),
+    description: __("Displays a list of global partner logos", `${blockName}`),
     category: "design",
     icon: "rest-api",
     supports: {
@@ -36,7 +37,22 @@
         "div",
         useBlockProps(attributes),
 
-        el("p", { className: "block__title" }, __("Partners", "partners")),
+        // START .titleArea
+        el(
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Partners", `${blockName}`))
+          )
+          // END .titleArea--name
+        ),
+        // END .titleArea
 
         // INSPECTOR CONTROLS
         el(
@@ -84,16 +100,33 @@
           )
         ),
 
-        el("h2", null, __("Partner Logos", "partners")),
-
+        // PREVIEW AREA BEGIN
         el(
-          "p",
-          null,
-          __(
-            "To modify these icons select Partners in the main admin menu",
-            "partners"
+          "div",
+          { className: `${blockName}__preview` },
+
+          el(
+            "div",
+            { className: `${blockName}__container` },
+
+            el(
+              "div",
+              { className: `${blockName}__content` },
+
+              el("h2", null, __("Partner Logos", `${blockName}`)),
+
+              el(
+                "p",
+                null,
+                __(
+                  "To modify these icons select Partners in the main admin menu",
+                  `${blockName}`
+                )
+              )
+            )
           )
         )
+        // PREVIEW AREA END
       );
     },
 

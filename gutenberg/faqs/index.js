@@ -4,11 +4,12 @@
   var __ = wp.i18n.__;
   const { RadioControl, PanelBody, ToggleControl } = wp.components;
   const { useBlockProps, InspectorControls } = wp.blockEditor;
+  const blockName = "faqs";
 
   registerBlockType("wpboiler-core/faqs", {
     apiVersion: 2,
-    title: __("FAQs", "faqs"),
-    description: __("Displays an FAQ block", "faqs"),
+    title: __("FAQs", `${blockName}`),
+    description: __("Displays an FAQ block", `${blockName}`),
     category: "design",
     icon: "format-status",
     supports: {
@@ -33,7 +34,22 @@
         "div",
         useBlockProps(attributes),
 
-        el("p", { className: "block__title" }, __("FAQs", "faqs")),
+        // START .titleArea
+        el(
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("FAQs", `${blockName}`))
+          )
+          // END .titleArea--name
+        ),
+        // END .titleArea
 
         // INSPECTOR CONTROLS
         el(
@@ -81,13 +97,33 @@
           )
         ),
 
-        el("h2", null, __("Frequently Asked Questions", "faqs")),
-
+        // PREVIEW AREA BEGIN
         el(
-          "p",
-          null,
-          __("To modify these select FAQs in the main admin menu", "faqs")
+          "div",
+          { className: `${blockName}__preview` },
+
+          el(
+            "div",
+            { className: `${blockName}__container` },
+
+            el(
+              "div",
+              { className: `${blockName}__content` },
+
+              el("h2", null, __("Frequently Asked Questions", `${blockName}`)),
+
+              el(
+                "p",
+                null,
+                __(
+                  "To modify these select FAQs in the main admin menu",
+                  `${blockName}`
+                )
+              )
+            )
+          )
         )
+        // PREVIEW AREA END
       );
     },
 

@@ -1,3 +1,17 @@
+@import '../../sass/utils/variables';
+
+
+.wp-block-wpboiler-core-site-search {
+    padding: 0!important;
+    text-align: center;
+
+    .site-search {
+        &__preview {
+            padding-left: $spacing;
+            padding-right: $spacing;
+        }
+    }
+}
 
 .has-brand-1-background-color,
 .has-brand-2-background-color {

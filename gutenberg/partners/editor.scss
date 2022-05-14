@@ -1,10 +1,14 @@
 @import '../../sass/utils/variables';
 
 .wp-block-wpboiler-core-partners {
+    padding: 0!important;
     text-align: center;
 
-    .block__title {
-        text-align: left;
+    .site-search {
+        &__preview {
+            padding-left: $spacing;
+            padding-right: $spacing;
+        }
     }
 }
 

@@ -4,11 +4,12 @@
   var __ = wp.i18n.__;
   const { RadioControl, PanelBody, ToggleControl } = wp.components;
   const { useBlockProps, InspectorControls } = wp.blockEditor;
+  const blockName = "site-search";
 
   registerBlockType("wpboiler-core/site-search", {
     apiVersion: 2,
-    title: __("Site Search", "site-search"),
-    description: __("Displays a search form", "site-search"),
+    title: __("Site Search", `${blockName}`),
+    description: __("Displays a search form", `${blockName}`),
     category: "widgets",
     icon: "search",
     supports: {
@@ -33,11 +34,22 @@
         "div",
         useBlockProps(attributes),
 
+        // START .titleArea
         el(
-          "p",
-          { className: "block__title" },
-          __("Site Search", "site-search")
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Site Search", `${blockName}`))
+          )
+          // END .titleArea--name
         ),
+        // END .titleArea
 
         // INSPECTOR CONTROLS
         el(
@@ -86,12 +98,24 @@
         ),
         // INSPECTOR CONTROLS
 
+        // PREVIEW AREA BEGIN
         el(
           "div",
-          { className: "sitesearch" },
+          { className: `${blockName}__preview` },
 
-          el("h2", null, __("Site Search Appears Here", "site-search"))
+          el(
+            "div",
+            { className: `${blockName}__container` },
+
+            el(
+              "div",
+              { className: `${blockName}__content` },
+
+              el("h2", null, __("Site Search Appears Here", `${blockName}`))
+            )
+          )
         )
+        // PREVIEW AREA END
       );
     },
 
