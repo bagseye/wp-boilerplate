@@ -2,8 +2,15 @@
         '../../sass/utils/mixins';
 
 .wp-block-wpboiler-core-columns {
+    padding: 0!important;
+    .columns {
+        &__preview {
+            padding-left: $spacing;
+            padding-right: $spacing;
+        }
+    }
 
-    .columns__container {
+    .columns__content {
         >.block-editor-inner-blocks {
             >.block-editor-block-list__layout {
                 gap: $spacing;
@@ -25,7 +32,7 @@
     }
 
     &[columnselect="2"] {
-        .columns__container {
+        .columns__content {
             >.block-editor-inner-blocks {
                 >.block-editor-block-list__layout {
                     .wp-block-wpboiler-core-column {
@@ -39,7 +46,7 @@
     }
 
     &[columnselect="3"] {
-        .columns__container {
+        .columns__content {
             >.block-editor-inner-blocks {
                 >.block-editor-block-list__layout {
                     .wp-block-wpboiler-core-column {
@@ -54,7 +61,7 @@
     }
 
     &[columnselect="4"] {
-        .columns__container {
+        .columns__content {
             >.block-editor-inner-blocks {
                 >.block-editor-block-list__layout {
                     .wp-block-wpboiler-core-column {
@@ -68,7 +75,7 @@
     }
 
     &[columnoffset="columns__offset--4060"] {
-            .columns__container {
+            .columns__content {
                 >.block-editor-inner-blocks {
                     >.block-editor-block-list__layout {
                         .wp-block-wpboiler-core-column {
@@ -87,7 +94,7 @@
             
         }
         &[columnoffset="columns__offset--6040"] {
-            .columns__container {
+            .columns__content {
                 >.block-editor-inner-blocks {
                     >.block-editor-block-list__layout {
                         .wp-block-wpboiler-core-column {
@@ -104,4 +111,14 @@
                 }
             }
         }
+}
+
+.wp-block-wpboiler-core-column {
+    padding: 0!important;
+    .column {
+        &__preview {
+            padding-left: $spacing;
+            padding-right: $spacing;
+        }
+    }
 }

@@ -3,12 +3,44 @@
 
 .wp-block-wpboiler-core-cta {
     position: relative;
-    background-color: #000;
+    padding: 0!important;
+
+    .cta {
+        &__preview {
+            background-color: #000;
+            padding-left: $spacing;
+            padding-right: $spacing;
+        }
+    }
+
+    .cta__column {
+        position: relative;
+        z-index: 2;
+
+        >.block-editor-inner-blocks {
+            >.block-editor-block-list__layout {
+                >* {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
 
     &[orientationselect="cta__text--left"] {
         .cta__container {
             justify-content: flex-start;
             text-align: left;
+        }
+
+        .cta__column {
+            >.block-editor-inner-blocks {
+                >.block-editor-block-list__layout {
+                    >* {
+                        margin-left: 0;
+                        margin-right: auto;
+                    }
+                }
+            }
         }
     }
 
@@ -17,6 +49,17 @@
             justify-content: center;
             text-align: center;
         }
+
+        .cta__column {
+            >.block-editor-inner-blocks {
+                >.block-editor-block-list__layout {
+                    >* {
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                }
+            }
+        }
     }
 
     &[orientationselect="cta__text--right"] {
@@ -24,13 +67,26 @@
             justify-content: flex-end;
             text-align: right;
         }
+
+        .cta__column {
+            >.block-editor-inner-blocks {
+                >.block-editor-block-list__layout {
+                    >* {
+                        margin-left: auto;
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
     }
+
+
 
     .cta__container--media {
         position: absolute;
         top: 0;
-        left: 0;
-        right: 0;
+        left: calc(#{$spacing} * -1);
+        right: calc(#{$spacing} * -1);
         bottom: 0;
         z-index: 1;
 

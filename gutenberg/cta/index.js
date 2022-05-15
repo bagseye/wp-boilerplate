@@ -12,13 +12,14 @@
     MediaUpload,
   } = wp.blockEditor;
   const allowedBlocks = ["core/paragraph", "core/button"];
+  const blockName = "cta";
 
   registerBlockType("wpboiler-core/cta", {
     apiVersion: 2,
-    title: __("Call to Action", "cta"),
+    title: __("Call to Action", `${blockName}`),
     description: __(
       "Displays text and media to guide users to other areas of the site and grab their attention",
-      "cta"
+      `${blockName}`
     ),
     category: "design",
     icon: "megaphone",
@@ -88,7 +89,22 @@
         "div",
         useBlockProps(attributes),
 
-        el("p", { className: "block__title" }, __("CTA", "cta")),
+        // START .titleArea
+        el(
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("CTA", `${blockName}`))
+          )
+          // END .titleArea--name
+        ),
+        // END .titleArea
 
         // INSPECTOR CONTROL BEGIN
         el(
@@ -186,8 +202,8 @@
                     onClick: obj.open,
                   },
                   !mediaid
-                    ? __("Upload Image", "cta")
-                    : __("Replace Image", "cta")
+                    ? __("Upload Image", `${blockName}`)
+                    : __("Replace Image", `${blockName}`)
                 );
               },
             }),
@@ -212,54 +228,116 @@
         ),
         // INSPECTOR CONTROL END
 
-        // PREVIEW AREA STARTS
+        // PREVIEW AREA BEGIN
         el(
           "div",
-          { className: "cta__container" },
+          { className: `${blockName}__preview` },
 
           el(
             "div",
-            { className: "cta__column" },
+            { className: `${blockName}__container` },
 
-            el(RichText, {
-              tagName: "h3",
-              placeholder: "Enter a category here...",
-              className: "cta__heading cta__heading--category",
-              value: category ? category : "",
-              onChange: (value) => setAttributes({ category: value }),
-            }),
+            el(
+              "div",
+              { className: `${blockName}__content` },
 
-            el(RichText, {
-              tagName: "h2",
-              placeholder: "Enter a heading here...",
-              className: "cta__heading cta__heading--main",
-              value: heading ? heading : "",
-              onChange: (value) => setAttributes({ heading: value }),
-            }),
+              el(
+                "div",
+                { className: `${blockName}__column` },
 
-            el(RichText, {
-              tagName: "h3",
-              placeholder: "Enter a subtitle here...",
-              className: "cta__heading cta__heading--sub",
-              value: subheading ? subheading : "",
-              onChange: (value) => setAttributes({ subheading: value }),
-            }),
+                el(RichText, {
+                  tagName: "h3",
+                  placeholder: "Enter a category here...",
+                  className: `${blockName}__heading ${blockName}__heading--category`,
+                  value: category ? category : "",
+                  onChange: (value) => setAttributes({ category: value }),
+                }),
 
-            el(InnerBlocks, {
-              allowedBlocks: allowedBlocks,
-            })
+                el(RichText, {
+                  tagName: "h2",
+                  placeholder: "Enter a heading here...",
+                  className: `${blockName}__heading ${blockName}__heading--main`,
+                  value: heading ? heading : "",
+                  onChange: (value) => setAttributes({ heading: value }),
+                }),
+
+                el(RichText, {
+                  tagName: "h3",
+                  placeholder: "Enter a subtitle here...",
+                  className: `${blockName}__heading ${blockName}__heading--sub`,
+                  value: subheading ? subheading : "",
+                  onChange: (value) => setAttributes({ subheading: value }),
+                }),
+
+                el(InnerBlocks, {
+                  allowedBlocks: allowedBlocks,
+                })
+              )
+            ),
+
+            mediaurl &&
+              el(
+                "div",
+                {
+                  className: `${blockName}__container--media`,
+                },
+
+                el("img", {
+                  src: mediaurl,
+                })
+              )
           )
-        ),
+        )
+        // PREVIEW AREA END
 
-        mediaurl &&
-          el(
-            "div",
-            { className: "cta__container--media" },
+        // PREVIEW AREA STARTS
+        // el(
+        //   "div",
+        //   { className: "cta__container" },
 
-            el("img", {
-              src: mediaurl,
-            })
-          )
+        //   el(
+        //     "div",
+        //     { className: "cta__column" },
+
+        //     el(RichText, {
+        //       tagName: "h3",
+        //       placeholder: "Enter a category here...",
+        //       className: "cta__heading cta__heading--category",
+        //       value: category ? category : "",
+        //       onChange: (value) => setAttributes({ category: value }),
+        //     }),
+
+        //     el(RichText, {
+        //       tagName: "h2",
+        //       placeholder: "Enter a heading here...",
+        //       className: "cta__heading cta__heading--main",
+        //       value: heading ? heading : "",
+        //       onChange: (value) => setAttributes({ heading: value }),
+        //     }),
+
+        //     el(RichText, {
+        //       tagName: "h3",
+        //       placeholder: "Enter a subtitle here...",
+        //       className: "cta__heading cta__heading--sub",
+        //       value: subheading ? subheading : "",
+        //       onChange: (value) => setAttributes({ subheading: value }),
+        //     }),
+
+        //     el(InnerBlocks, {
+        //       allowedBlocks: allowedBlocks,
+        //     })
+        //   )
+        // ),
+
+        // mediaurl &&
+        //   el(
+        //     "div",
+        //     { className: "cta__container--media" },
+
+        //     el("img", {
+        //       src: mediaurl,
+        //     })
+        //   )
 
         // PREVIEW AREA ENDS
       );

@@ -10,11 +10,12 @@
     "core/button",
     "core/list",
   ];
+  const blockName = "column";
 
   registerBlockType("wpboiler-core/column", {
     apiVersion: 2,
-    title: __("Column", "column"),
-    description: __("Displays an individual column", "column"),
+    title: __("Column", `${blockName}`),
+    description: __("Displays an individual column", `${blockName}`),
     category: "widgets",
     icon: "schedule",
     supports: {
@@ -27,23 +28,50 @@
         "div",
         useBlockProps(),
 
-        el("p", { className: "block__title" }, __("Column", "column")),
-
+        // START .titleArea
         el(
           "div",
-          { className: "column" },
+          { className: `block__titleArea` },
 
-          el(InnerBlocks, {
-            allowedBlocks: allowedBlocks,
-          })
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Column", `${blockName}`))
+          )
+          // END .titleArea--name
+        ),
+        // END .titleArea
+
+        // PREVIEW AREA BEGIN
+        el(
+          "div",
+          { className: `${blockName}__preview` },
+
+          el(
+            "div",
+            { className: `${blockName}__container` },
+
+            el(
+              "div",
+              { className: `${blockName}__content` },
+
+              el(InnerBlocks, {
+                allowedBlocks: allowedBlocks,
+              })
+            )
+          )
         )
+        // PREVIEW AREA END
       );
     },
 
     save: function () {
       return el(
         "div",
-        { className: "column" },
+        { className: `${blockName}` },
 
         el(InnerBlocks.Content, {})
       );

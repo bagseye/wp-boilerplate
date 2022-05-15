@@ -2,7 +2,16 @@
         '../../sass/utils/variables';
 
 .wp-block-wpboiler-core-promo-group {
-    .promogroup__container--content {
+    padding: 0!important;
+
+    .promo-group {
+        &__preview {
+            padding-left: $spacing;
+            padding-right: $spacing;
+        }
+    }
+
+    .promo-group__content {
         >.block-editor-inner-blocks {
             >.block-editor-block-list__layout {
                 display: flex;

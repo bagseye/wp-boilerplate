@@ -6,11 +6,12 @@
     wp.components;
   const { useBlockProps, InnerBlocks, InspectorControls } = wp.blockEditor;
   const allowedBlocks = ["wpboiler-core/column"];
+  const blockName = "columns";
 
   registerBlockType("wpboiler-core/columns", {
     apiVersion: 2,
-    title: __("Columns", "columns"),
-    description: __("Displays content in columns", "columns"),
+    title: __("Columns", `${blockName}`),
+    description: __("Displays content in columns", `${blockName}`),
     category: "design",
     icon: "schedule",
     supports: {
@@ -59,13 +60,22 @@
         "section",
         useBlockProps(attributes),
 
-        el("p", { className: "block__title" }, __("Columns", "columns")),
-
+        // START .titleArea
         el(
-          "p",
-          null,
-          __("Add columns by pressing the + icon. Maximum 4 columns", "columns")
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Columns", `${blockName}`))
+          )
+          // END .titleArea--name
         ),
+        // END .titleArea
 
         // INSPECTOR CONTROLS
         el(
@@ -183,14 +193,35 @@
           )
         ),
 
+        // PREVIEW AREA BEGIN
         el(
           "div",
-          { className: "columns__container" },
+          { className: `${blockName}__preview` },
 
-          el(InnerBlocks, {
-            allowedBlocks: allowedBlocks,
-          })
+          el(
+            "div",
+            { className: `${blockName}__container` },
+
+            el(
+              "div",
+              { className: `${blockName}__content` },
+
+              el(
+                "p",
+                null,
+                __(
+                  "Add columns by pressing the + icon. Maximum 4 columns",
+                  `${blockName}`
+                )
+              ),
+
+              el(InnerBlocks, {
+                allowedBlocks: allowedBlocks,
+              })
+            )
+          )
         )
+        // PREVIEW AREA END
       );
     },
 

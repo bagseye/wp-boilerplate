@@ -2,6 +2,14 @@
 
 .wp-block-wpboiler-core-faqs {
     text-align: center;
+    padding: 0!important;
+    
+    .faqs {
+        &__preview {
+            padding-left: $spacing;
+            padding-right: $spacing;
+        }
+    }
 }
 
 .wp-block-wpboiler-core-panel {

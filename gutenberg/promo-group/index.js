@@ -7,13 +7,14 @@
     wp.components;
   const { useBlockProps, InspectorControls, InnerBlocks } = wp.blockEditor;
   const allowedBlocks = ["wpboiler-core/promo-group-item"];
+  const blockName = "promo-group";
 
   registerBlockType("wpboiler-core/promo-group", {
     apiVersion: 2,
-    title: __("Promo Card Group", "promo-group"),
+    title: __("Promo Card Group", `${blockName}`),
     description: __(
       "Displays multiple cards, used for promoting content and directing users. Has two layout styles - stacked and inline",
-      "promo-group"
+      `${blockName}`
     ),
     category: "design",
     icon: "grid-view",
@@ -55,11 +56,22 @@
         "section",
         useBlockProps(attributes),
 
+        // START .titleArea
         el(
-          "p",
-          { className: "block__title" },
-          __("Promo Group", "promo-group")
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Promo Group", `${blockName}`))
+          )
+          // END .titleArea--name
         ),
+        // END .titleArea
 
         // INSPECTOR CONTROL BEGIN
         el(
@@ -149,18 +161,39 @@
         // PREVIEW AREA BEGIN
         el(
           "div",
-          { className: "promogroup__container" },
+          { className: `${blockName}__preview` },
 
           el(
             "div",
-            { className: "promogroup__container--content" },
+            { className: `${blockName}__container` },
 
-            el(InnerBlocks, {
-              allowedBlocks: allowedBlocks,
-            })
+            el(
+              "div",
+              { className: `${blockName}__content` },
+
+              el(InnerBlocks, {
+                allowedBlocks: allowedBlocks,
+              })
+            )
           )
         )
         // PREVIEW AREA END
+
+        // // PREVIEW AREA BEGIN
+        // el(
+        //   "div",
+        //   { className: "promogroup__container" },
+
+        //   el(
+        //     "div",
+        //     { className: "promogroup__container--content" },
+
+        //     el(InnerBlocks, {
+        //       allowedBlocks: allowedBlocks,
+        //     })
+        //   )
+        // )
+        // // PREVIEW AREA END
       );
     },
 
