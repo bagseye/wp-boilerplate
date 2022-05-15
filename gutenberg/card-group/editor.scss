@@ -48,13 +48,18 @@
 
                 .wp-block-wpboiler-core-card-group-item {
                     flex: 1 1 calc(25% - 12px);
-                    padding-left: $spacing;
-                    padding-right: $spacing;
+                    padding: 0!important;
 
-                    .cardgroupitem {
+
+                    .card-group-item {
                         &__title,
                         &__content {
                             color: #fff;
+                        }
+
+                        &__preview {
+                            padding-left: $spacing;
+                            padding-right: $spacing;
                         }
                     }
                 }

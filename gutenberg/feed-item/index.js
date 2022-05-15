@@ -1,106 +1,117 @@
-( function( wp ) {
+(function (wp) {
+  var registerBlockType = wp.blocks.registerBlockType;
+  var el = wp.element.createElement;
+  var __ = wp.i18n.__;
+  var useBlockProps = wp.blockEditor.useBlockProps;
+  var ComboboxControl = wp.components.ComboboxControl;
+  const blockName = "feed-item";
 
-	var registerBlockType = wp.blocks.registerBlockType;
-	var el = wp.element.createElement;
-	var __ = wp.i18n.__;
-	var useBlockProps = wp.blockEditor.useBlockProps;
-	var ComboboxControl = wp.components.ComboboxControl;
+  registerBlockType("wpboiler-core/feed-item", {
+    apiVersion: 2,
+    title: __("Feed Item", `${blockName}`),
+    description: __("An individual post item", `${blockName}`),
+    category: "widgets",
+    icon: "pressthis",
+    supports: {
+      html: false,
+    },
+    attributes: {
+      postID: {
+        type: "number",
+      },
+    },
+    parent: ["wpboiler-core/feed"],
 
-	registerBlockType( 'wpboiler-core/feed-item', {
+    getEditWrapperProps(props) {
+      return {
+        "data-size": props.Size,
+      };
+    },
 
-		apiVersion: 2,
-		title: __(
-			'Feed Item',
-			'feed-item'
-		),
-		description: __(
-			'An individual post item',
-			'feed-item'
-		),
-		category: 'widgets',
-		icon: 'pressthis',
-		supports: {
-			html: false,
-		},
-		attributes: {
-			postID: {
-				type: 'number',
-			},
-		},
-		parent: [ 'wpboiler-core/feed' ],
+    edit: function (props) {
+      const { attributes, setAttributes } = props;
+      const { postID } = attributes;
 
-		getEditWrapperProps(props) {
-			return {
-				'data-size' : props.Size,
-			};
-		},
+      const decodeHtml = function (html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+      };
 
-		edit: function(props) {
-			const { attributes, setAttributes } = props;
-			const { postID } = attributes;
+      let datalistOptions = [];
+      wpboilerPosts.forEach((elm) => {
+        datalistOptions.push({
+          value: elm.ID,
+          label: decodeHtml(elm.Title),
+        });
+      });
 
-			const decodeHtml = function(html) {
-				var txt = document.createElement("textarea");
-				txt.innerHTML = html;
-				return txt.value;
-			}
+      return el(
+        "div",
+        useBlockProps(),
 
-			let datalistOptions = [];
-			wpboilerPosts.forEach( elm => {
-				datalistOptions.push({
-					value: elm.ID,
-					label: decodeHtml(elm.Title),
-				});
-			});
+        // START .titleArea
+        el(
+          "div",
+          { className: `block__titleArea` },
 
-			return el(
-				'div',
-				useBlockProps(),
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Feed Item", `${blockName}`))
+          )
+          // END .titleArea--name
+        ),
+        // END .titleArea
 
-				el(
-					'p',
-					{ className: 'block__title' },
-					__( 'Feed Item', 'feed-item' )
-				),
+        // PREVIEW AREA BEGIN
+        el(
+          "div",
+          { className: `${blockName}__preview` },
 
+          el(
+            "div",
+            { className: `${blockName}__container` },
 
-				el(
-					'article',
-					{ className:  'feed__item'},
+            el(
+              "div",
+              { className: `${blockName}__content` },
 
-					el(
-						'div',
-						{ className: 'feed__item--select' },
+              el(
+                "div",
+                { className: `${blockName}__container--select` },
 
-						el(
-							ComboboxControl, 
-							{
-								onChange: val => setAttributes({ postID: val }),
-								onInputChange: inputValue => {
-									return setFilteredOptions(
-										datalistOptions.filter(option => {
-											return option.label.toLowerCase().startsWith(inputValue.toLowerCase());
-										})
-									)
-								},
-								label: 'Select a post from the list...',
-								hideLabelFromVision: false,
-								autoComplete: 'off',
-								className: 'feed__item--selectlink',
-								options: datalistOptions,
-								value: ((postID) ? postID : ''),
-							}
-						),
-					),
-				),
-			);
-		},
+                el(ComboboxControl, {
+                  onChange: (val) => setAttributes({ postID: val }),
+                  onInputChange: (inputValue) => {
+                    return setFilteredOptions(
+                      datalistOptions.filter((option) => {
+                        return option.label
+                          .toLowerCase()
+                          .startsWith(inputValue.toLowerCase());
+                      })
+                    );
+                  },
+                  label: "Select a post from the list...",
+                  hideLabelFromVision: false,
+                  autoComplete: "off",
+                  className: `${blockName}__item--selectlink`,
+                  options: datalistOptions,
+                  value: postID ? postID : "",
+                })
+              )
+            )
+          )
+        )
+        // PREVIEW AREA END
+      );
+    },
 
-
-		save: function() {
-			return null;
-		},
-	} );
-}(
-	window.wp
-) );
+    save: function () {
+      return null;
+    },
+  });
+})(window.wp);

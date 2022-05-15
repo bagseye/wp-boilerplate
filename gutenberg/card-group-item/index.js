@@ -4,13 +4,14 @@
   var __ = wp.i18n.__;
 
   const { useBlockProps, RichText } = wp.blockEditor;
+  const blockName = "card-group-item";
 
   registerBlockType("wpboiler-core/card-group-item", {
     apiVersion: 2,
-    title: __("Card Group Item", "card-group-item"),
+    title: __("Card Group Item", `${blockName}`),
     description: __(
       "An individual card item, which works as part of the card group block",
-      "card-group-item"
+      `${blockName}`
     ),
     category: "widgets",
     icon: "media-default",
@@ -36,27 +37,55 @@
         "article",
         useBlockProps(attributes),
 
+        // START .titleArea
         el(
-          "p",
-          { className: "block__title" },
-          __("Card Group Item", "card-group-item")
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Card Group Item", `${blockName}`))
+          )
+          // END .titleArea--name
         ),
+        // END .titleArea
 
-        el(RichText, {
-          tagName: "h2",
-          placeholder: "Add a title here...",
-          className: "cardgroupitem__title",
-          value: title ? title : "",
-          onChange: (value) => setAttributes({ title: value }),
-        }),
+        // PREVIEW AREA BEGIN
+        el(
+          "div",
+          { className: `${blockName}__preview` },
 
-        el(RichText, {
-          tagName: "p",
-          placeholder: "Add the content here...",
-          className: "cardgroupitem__content",
-          value: content ? content : "",
-          onChange: (value) => setAttributes({ content: value }),
-        })
+          el(
+            "div",
+            { className: `${blockName}__container` },
+
+            el(
+              "div",
+              { className: `${blockName}__content` },
+
+              el(RichText, {
+                tagName: "h2",
+                placeholder: "Add a title here...",
+                className: `${blockName}__title`,
+                value: title ? title : "",
+                onChange: (value) => setAttributes({ title: value }),
+              }),
+
+              el(RichText, {
+                tagName: "p",
+                placeholder: "Add the content here...",
+                className: `${blockName}__content`,
+                value: content ? content : "",
+                onChange: (value) => setAttributes({ content: value }),
+              })
+            )
+          )
+        )
+        // PREVIEW AREA END
       );
     },
 

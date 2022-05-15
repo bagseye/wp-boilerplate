@@ -1,14 +1,20 @@
 @import '../../sass/utils/variables';
 
 .wp-block-wpboiler-core-feed {
-    background-color: transparent!important;
+    padding: 0!important;
+
+    .feed {
+        &__preview {
+            padding: $spacing;
+        }
+    }
 }
 
 .wp-block-wpboiler-core-feed-item {
     .feed__item {
         width: 100%;
 
-        .feed__item--select {
+        .feed__container--items {
             .components-combobox-control__suggestions-container {
                 background-color: #fff;
 
@@ -25,17 +31,10 @@
                 }
             }
         }
-
-        .feed__item--selectlink {
-
-            label {
-                color: #fff;
-            }
-        }
     }
 }
 
-.feed__type--select {
+.feed__container--select {
     height: 60px;
 
     .components-select-control {
@@ -43,14 +42,6 @@
     }
 
     
-}
-
-.feed__category--select {
-    height: 60px;
-
-    .components-select-control {
-        display: block;
-    }
 }
 
 .feed__container {
@@ -64,6 +55,13 @@
                 width: 50%;
                 flex-shrink: 0;
                 flex-grow: 0;
+                padding: 0!important;
+
+                .feed-item {
+                    &__preview {
+                        padding: $spacing;
+                    }
+                }
             }
         }
     }

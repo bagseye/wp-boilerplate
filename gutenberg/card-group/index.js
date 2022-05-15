@@ -259,67 +259,6 @@
           )
         )
         // PREVIEW AREA END
-
-        // PREVIEW AREA BEGIN
-        // el(
-        //   "div",
-        //   { className: "cardgroup__container" },
-
-        //   el(
-        //     "div",
-        //     { className: "cardgroup__container--title" },
-
-        //     el(RichText, {
-        //       tagName: "h3",
-        //       placeholder: "Add a pre-title here...",
-        //       className: "cardgroup__heading cardgroup__heading--pre",
-        //       value: pretitle ? pretitle : "",
-        //       onChange: (value) => setAttributes({ pretitle: value }),
-        //     }),
-
-        //     el(RichText, {
-        //       tagName: "h2",
-        //       placeholder: "Add a title here...",
-        //       className: "cardgroup__heading cardgroup__heading--title",
-        //       value: title ? title : "",
-        //       onChange: (value) => setAttributes({ title: value }),
-        //     }),
-
-        //     el(RichText, {
-        //       tagName: "p",
-        //       placeholder: "Enter introduction text here...",
-        //       className: "cardgroup__introduction",
-        //       value: introduction ? introduction : "",
-        //       onChange: (value) => setAttributes({ introduction: value }),
-        //     })
-        //   ),
-
-        //   el(
-        //     "div",
-        //     { className: "cardgroup__container--content" },
-
-        //     el(InnerBlocks, {
-        //       allowedBlocks: allowedBlocks,
-        //     })
-        //   )
-        // ),
-
-        // mediaurl
-        //   ? el(
-        //       "div",
-        //       { className: "cardgroup__container--media" },
-
-        //       el(
-        //         "picture",
-        //         {},
-
-        //         el("img", {
-        //           src: mediaurl,
-        //         })
-        //       )
-        //     )
-        //   : ""
-        // PREVIEW AREA END
       );
     },
 

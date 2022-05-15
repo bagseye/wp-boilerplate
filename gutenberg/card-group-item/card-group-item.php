@@ -49,11 +49,11 @@ function wpboiler_core_card_group_item_render($attr, $content) {
 
 	$html = '<article class="cardgroupitem">';
 
-				if($heading) {
+				if($heading && !empty($heading)) {
 					$html .= '<h2 class="cardgroupitem__title">' . $heading . '</h2>';
 				}
 
-				if($bodyContent) {
+				if($bodyContent && !empty($bodyContent)) {
 					$html .= '<p class="cardgroupitem__content">' . $bodyContent . '</p>';
 				}
 	
