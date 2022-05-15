@@ -42,28 +42,13 @@ add_action( 'init', 'wpboiler_core_promo_group_item_block_init' );
 
 function wpboiler_core_promo_group_item_render($attr, $content) {
 
-	$html = '';
-	$mediaid = '';
-	$mediaurl = '';
-	$mediaSrc = '';
-	$mediaAlt = '';
-	$pictureMarkup = '';
+	$html = $mediaid = $mediaurl = $mediaSrc = $mediaAlt = $pictureMarkup = '';
 
 	$heading = (isset($attr['title']) ? $attr['title'] : '');
 	$bodyContent = (isset($attr['content']) ? $attr['content'] : '');
 
 	if(isset($attr['mediaid'])) {
-		$mediaid = $attr['mediaid'];
-		$mediaSrc = wp_get_attachment_image_src($mediaid, 'promo');
-		$mediaAlt = get_post_meta($mediaid, '_wp_attachment_img_alt', TRUE);
-
-		$mediaurl = $mediaSrc[0];
-
-		$pictureMarkup = '
-			<picture>
-				' . wp_filter_content_tags('<img class="promogroupitem__media--img wp-image-' . $mediaid . '" src="' . $mediaurl . '" alt="' . $mediaAlt . '" />') . '
-			</picture>
-		';
+		$pictureMarkup = createImage($attr['mediaid'], 'promo');
 	}
 
 	$html = '<article class="promogroupitem">

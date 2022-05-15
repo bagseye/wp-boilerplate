@@ -60,12 +60,7 @@ add_action( 'init', 'wpboiler_core_card_group_block_init' );
 
 function wpboiler_core_card_group_render( $attr, $content ) {
 
-	$html = '';
-	$pictureMarkup = '';
-	$mediaid = '';
-	$mediaurl = '';
-	$mediaSrc = '';
-	$mediaAlt = '';
+	$html = $pictureMarkup = $mediaid = $mediaurl = $mediaSrc = $mediaAlt = '';
 	$modifiers = array();
 
 	$pretitle = (isset($attr['pretitle']) ? $attr['pretitle'] : '');
@@ -79,33 +74,22 @@ function wpboiler_core_card_group_render( $attr, $content ) {
 	}
 
 	if(isset($attr['mediaid'])) {
-		$mediaid = $attr['mediaid'];
-		$mediaSrc = wp_get_attachment_image_src($mediaid, 'cta');
-		$mediaurl = $mediaSrc[0];
-		$mediaAlt = get_post_meta($mediaid, '_wp_attachment_img_alt', TRUE);
-
-		if($mediaurl) {
-
-			$pictureMarkup = '
-				<picture>
-					' . wp_filter_content_tags('<img class="cardgroup__background wp-image-' . $mediaid . '" src="' . $mediaurl . '" alt="' . $mediaAlt . '" />') . '
-				</picture>';
-		}
+		$pictureMarkup = createImage($attr['mediaid']);
 	}
 
 	$html = '<section class="cardgroup container__full ' . implode(" ", $modifiers) . '">
 				<div class="cardgroup__container">
 					<div class="cardgroup__container--title">';
 
-						if($pretitle) {
+						if($pretitle && !empty($pretitle)) {
 							$html .= '<h3 class="cardgroup__heading cardgroup__heading--pre">' . $pretitle . '</h3>';
 						}
 
-						if($title) {
+						if($title && !empty($title)) {
 							$html .= '<h2 class="cardgroup__heading cardgroup__heading--title">' . $title . '</h2>';
 						}
 
-						if($introduction) {
+						if($introduction && !empty($introduction)) {
 							$html .= '<p class="cardgroup__introduction">' . $introduction . '</p>';
 						}
 					

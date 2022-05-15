@@ -6,13 +6,14 @@
   const { PanelBody, Button } = wp.components;
   const { useBlockProps, RichText, InspectorControls, MediaUpload } =
     wp.blockEditor;
+  const blockName = "promo-group-item";
 
   registerBlockType("wpboiler-core/promo-group-item", {
     apiVersion: 2,
-    title: __("Promo Group Item", "promo-group-item"),
+    title: __("Promo Group Item", `${blockName}`),
     description: __(
       "A single promo group card. This is only available within a promo group block",
-      "promo-group-item"
+      `${blockName}`
     ),
     category: "widgets",
     icon: "grid-view",
@@ -53,11 +54,22 @@
         "article",
         useBlockProps(attributes),
 
+        // START .titleArea
         el(
-          "p",
-          { className: "block__title" },
-          __("Promo Group Item", "promo-group-item")
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Promo Group Item", `${blockName}`))
+          )
+          // END .titleArea--name
         ),
+        // END .titleArea
 
         el(
           InspectorControls,
@@ -82,8 +94,8 @@
                     onClick: obj.open,
                   },
                   !mediaid
-                    ? __("Upload Image", "card-group")
-                    : __("Replace Image", "card-group")
+                    ? __("Upload Image", `${blockName}`)
+                    : __("Replace Image", `${blockName}`)
                 );
               },
             }),
@@ -107,43 +119,54 @@
           // IMAGE UPLOAD END
         ),
 
+        // PREVIEW AREA BEGIN
         el(
           "div",
-          { className: "promogroupitem__container" },
-
-          mediaurl
-            ? el(
-                "div",
-                { className: "promogroupitem__media" },
-
-                el("img", {
-                  className: `promogroupitem__media--img wp-image-${mediaid}`,
-                  src: mediaurl,
-                })
-              )
-            : "",
+          { className: `${blockName}__preview` },
 
           el(
             "div",
-            { className: "promogroupitem__text" },
+            { className: `${blockName}__container` },
 
-            el(RichText, {
-              tagName: "h2",
-              placeholder: "Add a title here...",
-              className: "promogroupitem__title",
-              value: title ? title : "",
-              onChange: (value) => setAttributes({ title: value }),
-            }),
+            el(
+              "div",
+              { className: `${blockName}__content` },
 
-            el(RichText, {
-              tagName: "p",
-              placeholder: "Add your content here...",
-              className: "promogroupitem__content",
-              value: content ? content : "",
-              onChange: (value) => setAttributes({ content: value }),
-            })
+              mediaurl
+                ? el(
+                    "div",
+                    { className: `${blockName}__media` },
+
+                    el("img", {
+                      src: mediaurl,
+                    })
+                  )
+                : "",
+
+              el(
+                "div",
+                { className: `${blockName}__text ` },
+
+                el(RichText, {
+                  tagName: "h2",
+                  placeholder: "Add a title here...",
+                  className: "promogroupitem__title",
+                  value: title ? title : "",
+                  onChange: (value) => setAttributes({ title: value }),
+                }),
+
+                el(RichText, {
+                  tagName: "p",
+                  placeholder: "Add your content here...",
+                  className: "promogroupitem__content",
+                  value: content ? content : "",
+                  onChange: (value) => setAttributes({ content: value }),
+                })
+              )
+            )
           )
         )
+        // PREVIEW AREA END
       );
     },
 

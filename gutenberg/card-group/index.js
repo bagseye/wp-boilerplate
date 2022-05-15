@@ -12,13 +12,14 @@
     MediaUpload,
   } = wp.blockEditor;
   const allowedBlocks = ["wpboiler-core/card-group-item"];
+  const blockName = "card-group";
 
   registerBlockType("wpboiler-core/card-group", {
     apiVersion: 2,
-    title: __("Card Group", "card-group"),
+    title: __("Card Group", `${blockName}`),
     description: __(
       "Displays a group of cards. Useful for displaying snippets of information",
-      "card-group"
+      `${blockName}`
     ),
     category: "design",
     icon: "columns",
@@ -81,7 +82,22 @@
         "div",
         useBlockProps(attributes),
 
-        el("p", { className: "block__title" }, __("Card Group", "card-group")),
+        // START .titleArea
+        el(
+          "div",
+          { className: `block__titleArea` },
+
+          // START .titleArea--name
+          el(
+            "div",
+            {
+              className: `block__titleArea--name`,
+            },
+            el("p", {}, __("Card Group", `${blockName}`))
+          )
+          // END .titleArea--name
+        ),
+        // END .titleArea
 
         // INSPECTOR CONTROL BEGIN
         el(
@@ -147,8 +163,8 @@
                     onClick: obj.open,
                   },
                   !mediaid
-                    ? __("Upload Image", "card-group")
-                    : __("Replace Image", "card-group")
+                    ? __("Upload Image", `${blockName}`)
+                    : __("Replace Image", `${blockName}`)
                 );
               },
             }),
@@ -176,63 +192,133 @@
         // PREVIEW AREA BEGIN
         el(
           "div",
-          { className: "cardgroup__container" },
+          { className: `${blockName}__preview` },
 
           el(
             "div",
-            { className: "cardgroup__container--title" },
+            { className: `${blockName}__container` },
 
-            el(RichText, {
-              tagName: "h3",
-              placeholder: "Add a pre-title here...",
-              className: "cardgroup__heading cardgroup__heading--pre",
-              value: pretitle ? pretitle : "",
-              onChange: (value) => setAttributes({ pretitle: value }),
-            }),
-
-            el(RichText, {
-              tagName: "h2",
-              placeholder: "Add a title here...",
-              className: "cardgroup__heading cardgroup__heading--title",
-              value: title ? title : "",
-              onChange: (value) => setAttributes({ title: value }),
-            }),
-
-            el(RichText, {
-              tagName: "p",
-              placeholder: "Enter introduction text here...",
-              className: "cardgroup__introduction",
-              value: introduction ? introduction : "",
-              onChange: (value) => setAttributes({ introduction: value }),
-            })
-          ),
-
-          el(
-            "div",
-            { className: "cardgroup__container--content" },
-
-            el(InnerBlocks, {
-              allowedBlocks: allowedBlocks,
-            })
-          )
-        ),
-
-        mediaurl
-          ? el(
+            el(
               "div",
-              { className: "cardgroup__container--media" },
+              { className: `${blockName}__content` },
+
+              mediaurl
+                ? el(
+                    "div",
+                    { className: `${blockName}__container--media` },
+
+                    el(
+                      "picture",
+                      {},
+
+                      el("img", {
+                        src: mediaurl,
+                      })
+                    )
+                  )
+                : "",
 
               el(
-                "picture",
-                {},
+                "div",
+                { className: `${blockName}__container--title` },
 
-                el("img", {
-                  className: `cardgroup__background wp-image-${mediaid}`,
-                  src: mediaurl,
+                el(RichText, {
+                  tagName: "h3",
+                  placeholder: "Add a pre-title here...",
+                  className: `${blockName}__heading ${blockName}__heading--pre`,
+                  value: pretitle ? pretitle : "",
+                  onChange: (value) => setAttributes({ pretitle: value }),
+                }),
+
+                el(RichText, {
+                  tagName: "h2",
+                  placeholder: "Add a title here...",
+                  className: `${blockName}__heading ${blockName}__heading--title`,
+                  value: title ? title : "",
+                  onChange: (value) => setAttributes({ title: value }),
+                }),
+
+                el(RichText, {
+                  tagName: "p",
+                  placeholder: "Enter introduction text here...",
+                  className: `${blockName}__introduction`,
+                  value: introduction ? introduction : "",
+                  onChange: (value) => setAttributes({ introduction: value }),
+                })
+              ),
+
+              el(
+                "div",
+                { className: `${blockName}__container--text` },
+
+                el(InnerBlocks, {
+                  allowedBlocks: allowedBlocks,
                 })
               )
             )
-          : ""
+          )
+        )
+        // PREVIEW AREA END
+
+        // PREVIEW AREA BEGIN
+        // el(
+        //   "div",
+        //   { className: "cardgroup__container" },
+
+        //   el(
+        //     "div",
+        //     { className: "cardgroup__container--title" },
+
+        //     el(RichText, {
+        //       tagName: "h3",
+        //       placeholder: "Add a pre-title here...",
+        //       className: "cardgroup__heading cardgroup__heading--pre",
+        //       value: pretitle ? pretitle : "",
+        //       onChange: (value) => setAttributes({ pretitle: value }),
+        //     }),
+
+        //     el(RichText, {
+        //       tagName: "h2",
+        //       placeholder: "Add a title here...",
+        //       className: "cardgroup__heading cardgroup__heading--title",
+        //       value: title ? title : "",
+        //       onChange: (value) => setAttributes({ title: value }),
+        //     }),
+
+        //     el(RichText, {
+        //       tagName: "p",
+        //       placeholder: "Enter introduction text here...",
+        //       className: "cardgroup__introduction",
+        //       value: introduction ? introduction : "",
+        //       onChange: (value) => setAttributes({ introduction: value }),
+        //     })
+        //   ),
+
+        //   el(
+        //     "div",
+        //     { className: "cardgroup__container--content" },
+
+        //     el(InnerBlocks, {
+        //       allowedBlocks: allowedBlocks,
+        //     })
+        //   )
+        // ),
+
+        // mediaurl
+        //   ? el(
+        //       "div",
+        //       { className: "cardgroup__container--media" },
+
+        //       el(
+        //         "picture",
+        //         {},
+
+        //         el("img", {
+        //           src: mediaurl,
+        //         })
+        //       )
+        //     )
+        //   : ""
         // PREVIEW AREA END
       );
     },

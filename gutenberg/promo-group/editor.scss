@@ -6,8 +6,7 @@
 
     .promo-group {
         &__preview {
-            padding-left: $spacing;
-            padding-right: $spacing;
+            padding: $spacing;
         }
     }
 
@@ -17,6 +16,15 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: $spacing;
+                padding-bottom: 60px;
+
+                >.block-list-appender {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    padding: 5px;
+                    border: none;
+                }
             }
         }
     }
@@ -24,21 +32,28 @@
     .wp-block-wpboiler-core-promo-group-item {
         margin: 0;
         background-color: $brand4;
+        padding: 0!important;
+
+        .promo-group-item {
+            &__preview {
+                padding: 0 0 $spacing 0;
+            }
+        }
     }
 
     &[orientation="promogroup__stacked"] {
         .wp-block-wpboiler-core-promo-group-item {
             width: 100%;
 
-            .promogroupitem__container {
+            .promo-group-item__container {
                 display: flex;
             }
 
-            .promogroupitem__media {
+            .promo-group-item__media {
                 flex: 0 0 40%;
             }
 
-            .promogroupitem__text {
+            .promo-group-item__text {
                 flex: 1 1 auto;
                 padding-left: $spacing;
             }
@@ -48,7 +63,7 @@
     &[orientation="promogroup__columns"] {
 
         .wp-block-wpboiler-core-promo-group-item {
-            .promogroupitem__text {
+            .promo-group-item__text {
                 padding: $spacing;
             }
         }
