@@ -173,6 +173,10 @@ function wpboiler_get_blog_post_card($postID) {
 
     $title = get_the_title($postID);
     $link = get_the_permalink($postID);
+    $date = get_the_date('d F Y', $postID);
+    $excerpt = get_the_excerpt($postID);
+    $author_name = get_the_author_meta('display_name');
+    $image = '';
 
     if(get_post_thumbnail_id( $postID )) {
 
@@ -208,6 +212,10 @@ function wpboiler_get_blog_post_card($postID) {
                 <div class='news__item--content'>
                     <div class='news__item--author'></div>
                     <h3>{$title}</h3>
+                    <p>{$date}</p>
+                    <p>{$excerpt}</p>
+                    <p>{$author_name}</p>
+                    <p>{$cardCategoryName}</p>
                     <span class='btn'>Read on</span>
                 </div>
             </a>";

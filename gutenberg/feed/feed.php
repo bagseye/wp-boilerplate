@@ -110,22 +110,32 @@ function wpboiler_core_feed_render( $attr, $content ) {
 		));
 
 		if($catPosts->have_posts()) {
+
+			$html .= "<section class='feed " . implode(" ", $modifiers) . "'>
+					<div class='feed__container'>";
+
 			while($catPosts->have_posts()) {
 				$catPosts->the_post();
-				$postItem .= wpboiler_get_blog_post_card(get_the_ID());
+
+				$html .= wpboiler_get_blog_post_card(get_the_ID());
 			}
+
+			$html .= "</div>
+			</section>";
 		}
 
 		wp_reset_postdata();
+	} else {
+		$html = "<section class='feed " . implode(" ", $modifiers) . "'>
+					<div class='feed__container'>";
+
+					$html .= $content;
+					
+			$html .= "</div>
+				</section>";
 	}
 
-	$html = "<section class='feed " . implode(" ", $modifiers) . "'>
-				<div class='feed__container'>";
 
-				$html .= $content;
-				
-		$html .= "</div>
-			</section>";
 
 	return $html;
 }

@@ -1,7 +1,13 @@
 .postlist {
+    padding-top: $spacing * 4;
     &__items {
         display: flex;
-        flex-wrap: wrap;
         gap: $spacing;
+        flex-direction: column;
+
+        @include desktop {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
     }
 }

@@ -57,7 +57,7 @@
       wpboilerFeedCategories.forEach((elm) => {
         datalistOptions.push({
           value: elm.ID,
-          label: decodeHtml(elm.name),
+          label: decodeHtml(elm.Name),
         });
       });
 
