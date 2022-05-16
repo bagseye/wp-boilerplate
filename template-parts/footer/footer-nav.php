@@ -1,4 +1,4 @@
-<nav id="footerNavigation" role="navigation" aria-label="<?php esc_attr_e('Footer menu', 'wpboiler') ?>">
+<nav id="footerNavigation" class="footernavigation" role="navigation" aria-label="<?php esc_attr_e('Footer menu', 'wpboiler') ?>">
 
     <?php 
     

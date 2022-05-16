@@ -10,6 +10,8 @@
             'youtube'
         );
 
+        echo '<ul>';
+
         foreach($socials as $social) {
             $socialField = get_field($social, 'option');
 
@@ -17,6 +19,8 @@
                 echo sprintf('<li><a href="%s" target="_blank" rel="nofollow noreferrer">%s</a></li>', $socialField, $social);
             }
         }
+
+        echo '</ul>';
         
         ?>
     </div>

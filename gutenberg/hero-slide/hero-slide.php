@@ -63,16 +63,7 @@ function wpboiler_core_hero_slide_render($attr, $content) {
 	}
 
 	if($media_id && is_numeric($media_id)) {
-		$media_src = wp_get_attachment_image_src($media_id, 'cta');
-		$media_alt = get_post_meta($media_id, '_wp_attachment_img_alt', TRUE);
-
-		$image_markup = '
-			<div class="hero__slide--media">
-				<picture>
-					' . wp_filter_content_tags('<img class="wp-image-' . $media_id . '" src="' . $media_src[0] . '" alt="' . $media_alt . '" />') . '
-				</picture>
-			</div>
-		';
+		$image_markup = '<div class="hero__slide--media">' . createImage($media_id, 'cta') . '</div>';
 	}
 
 	$html = "<div class='hero__slide splide__slide'>

@@ -165,10 +165,11 @@ add_action( 'wp_enqueue_scripts', 'remove_wp_block_library_css' );
  * @return string $cardHtml
  * 
  */
-function wpboiler_get_blog_post_card( $postID ) {
-    $html = null;
+function wpboiler_get_blog_post_card($postID) {
 
-    if( !is_numeric($postID) ) return '';
+    $html = '';
+
+    if(!is_numeric($postID)) return '';
 
     $title = get_the_title($postID);
     $link = get_the_permalink($postID);
@@ -198,24 +199,18 @@ function wpboiler_get_blog_post_card( $postID ) {
         }
     }
 
-    $html = <<<EOT
-    <a href="{$link}" class="news__item">
-        <div class="news__item--media">
-            <picture>
-                {$image}
-            </picture>
-        </div>
-        <div class="news__item--content">
-            <div class="news__item--author">
-            </div>
-            <h3>{$title}</h3>
-            <span class="btn">Read on</span>
-        </div>
-    </a>
-    EOT;
+    $html = "<a href='{$link}' class='news__item'>
+                <div class='news__item--media'>
+                    <picture>
+                        {$image}
+                    </picture>
+                </div>
+                <div class='news__item--content'>
+                    <div class='news__item--author'></div>
+                    <h3>{$title}</h3>
+                    <span class='btn'>Read on</span>
+                </div>
+            </a>";
 
     return $html;
-
 }
-
-
