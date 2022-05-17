@@ -1,6 +1,6 @@
 
 
-.navigation {
+.headernavigation {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,6 +10,7 @@
     display: flex;
     justify-content: flex-end;
     background-color: $brand1;
+    height: 90px;
 
     &__flyout {
         background-color: $brand1;
@@ -41,7 +42,7 @@
     }
 
     &__open {
-        .navigation__flyout {
+        .headernavigation__flyout {
             transform: translateX(0);
         }
     }

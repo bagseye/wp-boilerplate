@@ -1,6 +1,11 @@
 .alert {
     background-color: $brand4;
     padding: calc(#{$spacing} / 2) $spacing; 
+    position: fixed;
+    top: 90px;
+    left: 0;
+    width: 100%;
+
 
     &__container {
         max-width: $container;

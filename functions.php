@@ -210,7 +210,7 @@ function wpboiler_get_blog_post_card($postID) {
                     </picture>
                 </div>
                 <div class='news__item--content'>
-                    <div class='news__item--author'></div>
+                 <div class='news__item--author'></div>
                     <h3>{$title}</h3>
                     <p>{$date}</p>
                     <p>{$excerpt}</p>

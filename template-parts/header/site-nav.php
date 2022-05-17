@@ -1,7 +1,7 @@
 <?php if( has_nav_menu( 'primary' ) ) : ?>
-    <nav id="siteNavigation" class="navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary menu', 'wpboiler' ); ?>">
-        <div class="navigation__button--container">
-            <button id="navigationButton" class="navigation__button" aria-controls="headerNavigation" aria-expanded="false">
+    <nav id="siteNavigation" class="headernavigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary menu', 'wpboiler' ); ?>">
+        <div class="headernavigation__button--container">
+            <button id="navigationButton" class="headernavigation__button" aria-controls="headerNavigation" aria-expanded="false">
                 Menu
             </button>
         </div>
@@ -23,8 +23,8 @@
                 populateNav($menu, $menuItem->menu_item_parent, $menuItem->ID, $tmpItem);
             }
 
-            echo '<div class="navigation__flyout">
-                    <div class="navigation__flyout--container">
+            echo '<div class="headernavigation__flyout">
+                    <div class="headernavigation__flyout--container">
                         <ul id="headerNavigation">';
 
                         foreach($menu as $menuItm) {
@@ -45,13 +45,13 @@ function paintNav($menuItm) {
 
     if(isset($menuItm['Children']) && is_array($menuItm['Children']) && count($menuItm['Children']) > 0) {
 
-        echo '<li class="navigation__hasChildren">';
+        echo '<li class="headernavigation__hasChildren">';
             echo '<a href="' . $menuItm['Item']['Link'] . '">
                     ' . $menuItm['Item']['Text'] . '
                   </a>';
 
             // SUB ITEMS
-            echo '<div class="navigation__main--sub">
+            echo '<div class="headernavigation__main--sub">
                     <ul>';
 
                     foreach($menuItm['Children'] as $childMenu) {
