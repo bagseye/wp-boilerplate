@@ -1,5 +1,5 @@
 <?php if( has_nav_menu( 'primary' ) ) : ?>
-    <nav id="siteNavigation" class="headernavigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary menu', 'wpboiler' ); ?>">
+    <nav id="siteNavigation" class="headernavigation" aria-label="<?php esc_attr_e( 'Primary menu', 'wpboiler' ); ?>">
         <div class="headernavigation__button--container">
             <button id="navigationButton" class="headernavigation__button" aria-controls="headerNavigation" aria-expanded="false">
                 Menu
@@ -32,7 +32,9 @@
                         }
 
                 echo '</ul>
+                        
                     </div>
+
                   </div>';
         }
         ?>
@@ -51,15 +53,13 @@ function paintNav($menuItm) {
                   </a>';
 
             // SUB ITEMS
-            echo '<div class="headernavigation__main--sub">
-                    <ul>';
+            echo '<ul class="headernavigation__main--sub">';
 
                     foreach($menuItm['Children'] as $childMenu) {
                         paintNav($childMenu);
                     }
 
               echo '</ul>
-                  </div>
               </li>';
     } else {
         echo '<li>

@@ -1,6 +1,6 @@
 </main>
 
-<footer class="footer" role="contentinfo">
+<footer class="footer">
     <div class="footer__container">
 
         <?php echo get_template_part('template-parts/footer/footer', 'nav'); ?>

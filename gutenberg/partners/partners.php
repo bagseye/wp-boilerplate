@@ -90,7 +90,7 @@ function wpboiler_core_partners_render($attr, $content, $block) {
 
 						$html .= '<div class="partners__item">' 
 									. $anchorStart
-									. wp_filter_content_tags('<img class="wp-image-' . $image['ID'] . '"  src="' . $image['url'] . '" />') 
+									. wp_filter_content_tags('<img class="wp-image-' . $image['ID'] . '"  src="' . $image['sizes']['promo'] . '" alt="' . $image['alt'] . '" />') 
 									. $anchorEnd
 								. '</div>';
 
