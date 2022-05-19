@@ -13,9 +13,9 @@
         the_post(); 
         get_template_part('template-parts/content/content', 'excerpt');
 
-        $price = get_post_meta(get_the_ID(), 'service_price', true);
+        $type = get_post_meta(get_the_ID(), '_service_type_meta_key', true);
 
-        var_dump($price);
+        var_dump($type);
         ?>
 
     <?php endwhile; ?>

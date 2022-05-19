@@ -48,7 +48,7 @@ class boilerplate_service_pt {
             'show_in_rest' => true
         );
 
-        register_post_type('boilerplate_service', $args);
+        register_post_type('service', $args);
     }
 
 
