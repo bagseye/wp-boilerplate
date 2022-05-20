@@ -22,8 +22,10 @@ get_header(); ?>
             </div>
 
             <?php 
+
+            wpboiler_numeric_posts_nav();
             
-            wpboiler_the_posts_navigation(); 
+            //wpboiler_the_posts_navigation(); 
             
             ?>
             

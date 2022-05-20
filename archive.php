@@ -16,7 +16,7 @@
 
     <?php endwhile; ?>
 
-    <?php wpboiler_the_posts_navigation(); ?>
+    <?php wpboiler_numeric_posts_nav(); ?>
 
 <?php else : ?>
     <?php get_template_part('template-parts/content/content', 'none'); ?>

@@ -20,7 +20,7 @@
 
     <?php endwhile; ?>
 
-    <?php wpboiler_the_posts_navigation(); ?>
+    <?php //wpboiler_the_posts_navigation(); ?>
 
 <?php else : ?>
     <?php get_template_part('template-parts/content/content', 'none'); ?>
