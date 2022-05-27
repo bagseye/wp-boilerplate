@@ -3,17 +3,17 @@
 <footer class="footer">
     <div class="footer__container">
 
-        <?php echo get_template_part('template-parts/footer/footer', 'nav'); ?>
+        <?php get_template_part('template-parts/footer/footer', 'nav'); ?>
 
-        <?php echo get_template_part('template-parts/contact/social'); ?>
+        <?php get_template_part('template-parts/contact/social'); ?>
 
-        <?php echo get_template_part('template-parts/contact/contact-methods'); ?>
+        <?php get_template_part('template-parts/contact/contact-methods'); ?>
 
     </div>
     <div class="footer__container">
 
         <div class="copyright">
-            <p>&copy; <?php echo date('Y') ?> <?php echo bloginfo( 'name' ) ?></p>
+            <p>&copy; <?= date('Y') ?> <?= bloginfo( 'name' ) ?></p>
             <p>
             <?php 
             printf(
