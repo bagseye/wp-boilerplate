@@ -1,1 +1,1 @@
-
+console.log("critical loaded");
