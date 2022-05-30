@@ -1,64 +1,7 @@
 <?php 
 
-/**
- * Names of custom core blocks
- * These are blocks not part of the basic WP installation
- * 
-*/
-$all_wpboiler_core_blocks = array(
-        'flexiblock',
-        'cta',
-        'card-group',
-        'card-group-item',
-        'promo-group',
-        'promo-group-item',
-        'columns',
-        'column',
-        'feed',
-        'feed-item',
-        'panel',
-        'partners',
-        'faqs',
-        'site-search',
-        'callout',
-        'callout-item',
-        'customer-testimonials',
-        'quote',
-        'banner-image',
-        'separator',
-        'fixed-spacer',
-        'hero',
-        'hero-slide'
-    );
-
-class IncludeAllowedBlocks {
-
-    public function __construct($custom_blocks_arr) {
-        $this->include_allowed_blocks($custom_blocks_arr);
-    }
-
-    protected function include_allowed_blocks($blocks_arr) {
-        foreach($blocks_arr as $allowed_block) {
-            include_once(TEMPLATEPATH . '/gutenberg/' . $allowed_block . '/' . $allowed_block . '.php');
-        }
-    }
-}
-
-new IncludeAllowedBlocks($all_wpboiler_core_blocks);
-
-
-/**
-* Allow the following blocks in the editor
-*
-*/
-add_filter( 'allowed_block_types_all', 'wpboiler_block_types', 10, 2 );
-
-function wpboiler_block_types( $allowed_blocks, $editor_context ) {
-
-    // Limit blocks in 'post' post type
-    if($editor_context->post->post_type == 'post') {
-        // Return an array containing the allowed block types
-        // return $selected_wp_core_blocks;
+function wpboiler_allowed_blocks( $allowed_block_types, $editor_context ) {
+    if ( 'post' === $editor_context->post->post_type ) {
         return array(
             'core/paragraph',
             'core/heading',
@@ -74,10 +17,7 @@ function wpboiler_block_types( $allowed_blocks, $editor_context ) {
             'core-embed/youtube',
             'core/html',
         );
-
-        // Allow defaults in all other post types
     } else {
-
         return array(
             'core/paragraph',
             'core/heading',
@@ -117,26 +57,33 @@ function wpboiler_block_types( $allowed_blocks, $editor_context ) {
             'wpboiler-core/hero-slide',
         );
     }
+ 
+    // return $blocks;
 }
+ 
+add_filter( 'allowed_block_types_all', 'wpboiler_allowed_blocks', 10, 2 );
 
-// function wpse_allowed_block_types($allowed_block_types, $post) {
-    // Limit blocks in 'post' post type
-    // if($post->post_type == 'post') {
-    //     // Return an array containing the allowed block types
-    //     return array(
-    //         'core/paragraph',
-    //         'core/heading'
-    //     );
-    // }
-    // Limit blocks in 'page' post type
-    // elseif($post->post_type == 'page') {
-    //     return array(
-    //         'core/list'
-    //     );
-    // }
-    // Allow defaults in all other post types
-    // else {
-    //     return $allowed_block_types;
-    // }
-// }
-// add_filter('allowed_block_types', 'wpse_allowed_block_types', 10, 2);
+include_once(TEMPLATEPATH . '/gutenberg/flexiblock/flexiblock.php');
+include_once(TEMPLATEPATH . '/gutenberg/cta/cta.php');
+include_once(TEMPLATEPATH . '/gutenberg/card-group/card-group.php');
+include_once(TEMPLATEPATH . '/gutenberg/card-group-item/card-group-item.php');
+include_once(TEMPLATEPATH . '/gutenberg/promo-group/promo-group.php');
+include_once(TEMPLATEPATH . '/gutenberg/promo-group-item/promo-group-item.php');
+include_once(TEMPLATEPATH . '/gutenberg/columns/columns.php');
+include_once(TEMPLATEPATH . '/gutenberg/column/column.php');
+include_once(TEMPLATEPATH . '/gutenberg/feed/feed.php');
+include_once(TEMPLATEPATH . '/gutenberg/feed-item/feed-item.php');
+include_once(TEMPLATEPATH . '/gutenberg/panel/panel.php');
+include_once(TEMPLATEPATH . '/gutenberg/partners/partners.php');
+include_once(TEMPLATEPATH . '/gutenberg/faqs/faqs.php');
+include_once(TEMPLATEPATH . '/gutenberg/site-search/site-search.php');
+include_once(TEMPLATEPATH . '/gutenberg/card-group-item/card-group-item.php');
+include_once(TEMPLATEPATH . '/gutenberg/callout/callout.php');
+include_once(TEMPLATEPATH . '/gutenberg/callout-item/callout-item.php');
+include_once(TEMPLATEPATH . '/gutenberg/customer-testimonials/customer-testimonials.php');
+include_once(TEMPLATEPATH . '/gutenberg/quote/quote.php');
+include_once(TEMPLATEPATH . '/gutenberg/banner-image/banner-image.php');
+include_once(TEMPLATEPATH . '/gutenberg/separator/separator.php');
+include_once(TEMPLATEPATH . '/gutenberg/fixed-spacer/fixed-spacer.php');
+include_once(TEMPLATEPATH . '/gutenberg/hero/hero.php');
+include_once(TEMPLATEPATH . '/gutenberg/hero-slide/hero-slide.php');

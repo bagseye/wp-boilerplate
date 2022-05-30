@@ -6,11 +6,10 @@ define('THEME_NAME', 'wpboiler');
 define('CACHE_VERSION', '1.0.0');
 
 // require_once get_template_directory() . '/classes/class-wpboiler-inliner.php';
-require get_template_directory() . '/classes/class-allowed-blocks.php';
 // require get_template_directory() . '/classes/class-wpboiler-svg-icons.php';
 require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/template-tags.php';
-// require get_template_directory() . '/inc/allowed-blocks.php';
+require get_template_directory() . '/inc/allowed-blocks.php';
 require get_template_directory() . '/inc/acf-functions.php';
 require get_template_directory() . '/inc/custom-hooks.php';
 require get_template_directory() . '/inc/post-types.php';
