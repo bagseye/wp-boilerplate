@@ -91,29 +91,6 @@ if(!function_exists('wpboiler_setup')) {
 
     function wpboiler_setup() {
 
-        $brandColors = array(
-            array(
-                'name' => esc_html__( 'Brand 1', THEME_NAME ),
-                'slug' => 'brand1',
-                'color' => '#161616',
-            ),
-            array(
-                'name' => esc_html__( 'Brand 2', THEME_NAME ),
-                'slug' => 'brand2',
-                'color' => '#333',
-            ),
-            array(
-                'name' => esc_html__( 'Brand 3', THEME_NAME ),
-                'slug' => 'brand3',
-                'color' => '#fff',
-            ),
-            array(
-                'name' => esc_html__( 'Brand 4', THEME_NAME ),
-                'slug' => 'brand4',
-                'color' => '#f2f5f6',
-            ),
-        );
-
         /**
          * CUSTOM IMAGE SIZES
         */
@@ -129,13 +106,6 @@ if(!function_exists('wpboiler_setup')) {
         add_theme_support( 'title-tag' );
         add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script' ) );
         add_theme_support( 'responsive-embeds' );
-        add_theme_support( 'disable-custom-font-sizes' );
-        add_theme_support( 'editor-font-sizes', array() );
-        add_theme_support( 'disable-custom-colors' );
-        add_theme_support( 'disable-custom-gradients' );
-        add_theme_support( 'editor-gradient-presets', array() );
-        add_theme_support( 'custom-units', array() );
-        add_theme_support( 'editor-color-palette', $brandColors );
         add_theme_support( 'editor-styles' );
     
         add_post_type_support( 'page', 'excerpt' );

@@ -1,22 +1,73 @@
 {
     "version": 2,
     "settings": {
-        "layout": {
-            "contentSize": "1200px"
+      "layout": {
+        "contentSize": "1200px"
+      },
+      "typography": {
+        "customFontSize": false,
+        "dropCap": false,
+        "fontWeight": false,
+        "lineHeight": false,
+        "fontStyle": false,
+        "fontSizes": [],
+        "letterSpacing": false,
+        "textTransform": false
+      },
+      "color": {
+        "custom": false,
+        "customGradient": false,
+        "defaultGradients": false,
+        "customDuotone": false,
+        "link": true,
+        "background": false,
+        "defaultPalette": false,
+        "palette": [
+            {
+                "slug": "brand1",
+                "color": "#161616",
+                "name": "Brand 1"
+            },
+            {
+                "slug": "brand2",
+                "color": "#333",
+                "name": "Brand 2"
+            },
+            {
+                "slug": "brand3",
+                "color": "#fff",
+                "name": "Brand 3"
+            },
+            {
+                "slug": "brand4",
+                "color": "#f2f5f6",
+                "name": "Brand 4"
+            }
+        ]
+      },
+      "spacing": {
+        "padding": false,
+        "margin": false,
+        "units": []
+      },
+      "border": {
+          "color": false,
+          "radius": false,
+          "style": false,
+          "width": false
+      },
+      "blocks": {
+        "core/paragraph": {
+          "color": {
+            "background": false
+          }
         },
-        "typography": {
-            "dropCap": false,
-            "letterSpacing": false,
-            "fontWeight": false,
-            "fontStyle": false,
-            "textTransform": false
-        },
-        "blocks": {
-            "core/paragraph": {
-                "color": {
-                    "background": false
-                }
+        "core/list": {
+            "color": {
+              "background": false,
+              "customGradient": false
             }
         }
+      }
     }
 }
