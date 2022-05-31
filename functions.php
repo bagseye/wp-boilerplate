@@ -142,6 +142,8 @@ if(!function_exists('wpboiler_setup')) {
     
         add_editor_style( './css/style-editor.css' );
 
+        remove_theme_support( 'core-block-patterns' );
+
 
         // NAV MENU REGISTRATION
         register_nav_menus(

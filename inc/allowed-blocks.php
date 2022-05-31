@@ -1,4 +1,15 @@
 <?php 
+/**
+ * Allowed blocks
+ * 
+ * This determines what blocks are allowed in the editor
+ * with the aim of reducing the impact of WordPress updates.
+ * Only the blocks in the following arrays are allowed in the editor.
+ * If adding a cusstom block, it must be added to one of/all arrays (depending on requirements)
+ * and the route to it's directory must be included too.
+ * 
+ * 
+*/
 
 function wpboiler_allowed_blocks( $allowed_block_types, $editor_context ) {
     if ( 'post' === $editor_context->post->post_type ) {
@@ -63,6 +74,15 @@ function wpboiler_allowed_blocks( $allowed_block_types, $editor_context ) {
  
 add_filter( 'allowed_block_types_all', 'wpboiler_allowed_blocks', 10, 2 );
 
+
+
+/**
+ * Include custom blocks
+ * Instead of loading custom blocks as plugins, they are side-loaded into the editor
+ * Whenever a new custom block is made, include it's directory here
+ * 
+ * 
+*/
 include_once(TEMPLATEPATH . '/gutenberg/flexiblock/flexiblock.php');
 include_once(TEMPLATEPATH . '/gutenberg/cta/cta.php');
 include_once(TEMPLATEPATH . '/gutenberg/card-group/card-group.php');

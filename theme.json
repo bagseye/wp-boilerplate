@@ -1,0 +1,22 @@
+{
+    "version": 2,
+    "settings": {
+        "layout": {
+            "contentSize": "1200px"
+        },
+        "typography": {
+            "dropCap": false,
+            "letterSpacing": false,
+            "fontWeight": false,
+            "fontStyle": false,
+            "textTransform": false
+        },
+        "blocks": {
+            "core/paragraph": {
+                "color": {
+                    "background": false
+                }
+            }
+        }
+    }
+}
