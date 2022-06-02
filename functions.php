@@ -136,7 +136,8 @@ function wpboiler_scripts_init() {
     wp_enqueue_style( 'wpboiler-styles', get_template_directory_uri() . '/css/atf.css' );
 
     wp_enqueue_script( 'wpboiler-splide-js', get_template_directory_uri() . '/js/splide.min.js', array(), CACHE_VERSION, true );
-    wp_enqueue_script( 'wpboiler-app-js', get_template_directory_uri() . '/dist/app.js', array(), CACHE_VERSION, true );
+    // wp_enqueue_script( 'wpboiler-app-js', get_template_directory_uri() . '/dist/app.js', array(), CACHE_VERSION, true );
+        wp_enqueue_script( 'wpboiler-app-js', get_template_directory_uri() . '/dist/bundle.js', array(), CACHE_VERSION, true );
     wp_enqueue_script( 'wpboiler-general-js', get_template_directory_uri() . '/js/general.js', array(), CACHE_VERSION, true );
 
     // Remove basic block styles for WP core blocks
