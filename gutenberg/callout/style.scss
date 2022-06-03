@@ -3,6 +3,8 @@
         '../../sass/utils/extends';
 
 .callout {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
     
     &__container {
         max-width: 900px;

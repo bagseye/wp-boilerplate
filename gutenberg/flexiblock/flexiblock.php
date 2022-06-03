@@ -38,20 +38,11 @@ function wpboiler_core_flexiblock_block_init() {
 		filemtime( "$dir/$editor_css" )
 	);
 
-	$style_css = 'flexiblock/style.css';
-	wp_register_style(
-		'wpboiler-core-flexiblock-block',
-		get_template_directory_uri() . "/gutenberg/$style_css",
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/flexiblock',
 		array(
 			'editor_script' 	=> 'wpboiler-core-flexiblock-block-editor',
 			'editor_style'  	=> 'wpboiler-core-flexiblock-block-editor',
-			'style'         	=> 'wpboiler-core-flexiblock-block',
 		)
 	);
 }

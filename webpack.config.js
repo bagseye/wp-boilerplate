@@ -1,11 +1,29 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
+const entryPoints = {
+  app: "/js/app.js",
+  style: "/sass/main.scss",
+};
 
 module.exports = {
-  entry: "./js/app.js",
+  entry: entryPoints,
+  devtool: "inline-source-map",
   output: {
-    filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
+    filename: "[name].js",
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
+    new BrowserSyncPlugin(
+      {
+        proxy: "http://wpboilerplate.local",
+      },
+      { reload: false }
+    ),
+  ],
   module: {
     rules: [
       {
@@ -17,6 +35,10 @@ module.exports = {
             presets: ["@babel/preset-env"],
           },
         },
+      },
+      {
+        test: /\.s?[c]ss$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
     ],
   },

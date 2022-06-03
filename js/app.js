@@ -23,3 +23,8 @@ if (testimonials.length >= 1) {
 if (heroBanners.length > 0) {
   assignHero(heroBanners);
 }
+
+function getSelect(selectObject) {
+  var value = selectObject.value;
+  window.location.pathname = "/category/" + value;
+}

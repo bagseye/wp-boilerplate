@@ -2,6 +2,8 @@
         '../../sass/utils/mixins';
 
 .cta {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
     position: relative;
     background-color: #000;
     padding-top: $spacing * 2;

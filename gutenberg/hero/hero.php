@@ -38,20 +38,11 @@ function wpboiler_core_hero_block_init() {
 		filemtime( "$dir/$editor_css" )
 	);
 
-	$style_css = 'hero/style.css';
-	wp_register_style(
-		'wpboiler-core-hero-block',
-		get_template_directory_uri() . "/gutenberg/$style_css",
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/hero',
 		array(
 			'editor_script' 	=> 'wpboiler-core-hero-block-editor',
 			'editor_style'  	=> 'wpboiler-core-hero-block-editor',
-			'style'         	=> 'wpboiler-core-hero-block',
 			'render_callback'	=> 'wpboiler_core_hero_render'
 
 		)

@@ -2,6 +2,9 @@
         '../../sass/utils/mixins';
 
 .columns {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
+    
     .columns__container {
         gap: 1rem $spacing;
         display: flex;

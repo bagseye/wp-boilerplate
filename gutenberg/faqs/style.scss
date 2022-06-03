@@ -1,6 +1,9 @@
 @import '../../sass/utils/variables';
 
 .faq {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
+
 
     &__container {
         max-width: $narrow;

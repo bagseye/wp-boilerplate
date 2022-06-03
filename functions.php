@@ -5,7 +5,6 @@ define('THEME_NAME', 'wpboiler');
 // change this version number
 define('CACHE_VERSION', '1.0.0');
 
-// require_once get_template_directory() . '/classes/class-wpboiler-inliner.php';
 // require get_template_directory() . '/classes/class-wpboiler-svg-icons.php';
 require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/template-tags.php';
@@ -133,12 +132,10 @@ add_action('after_setup_theme', 'wpboiler_setup');
 function wpboiler_scripts_init() {
 
     wp_enqueue_style( 'wpboiler-splide-css', get_template_directory_uri() . '/css/splide-core.min.css', array(), CACHE_VERSION, 'all' );
-    wp_enqueue_style( 'wpboiler-styles', get_template_directory_uri() . '/css/atf.css' );
+    wp_enqueue_style( 'wpboiler-styles', get_template_directory_uri() . '/dist/style.css' );
 
     wp_enqueue_script( 'wpboiler-splide-js', get_template_directory_uri() . '/js/splide.min.js', array(), CACHE_VERSION, true );
-    // wp_enqueue_script( 'wpboiler-app-js', get_template_directory_uri() . '/dist/app.js', array(), CACHE_VERSION, true );
-        wp_enqueue_script( 'wpboiler-app-js', get_template_directory_uri() . '/dist/bundle.js', array(), CACHE_VERSION, true );
-    wp_enqueue_script( 'wpboiler-general-js', get_template_directory_uri() . '/js/general.js', array(), CACHE_VERSION, true );
+    wp_enqueue_script( 'wpboiler-app-js', get_template_directory_uri() . '/dist/app.js', array(), CACHE_VERSION, true );
 
     // Remove basic block styles for WP core blocks
     wp_dequeue_style( 'wp-block-library' );
