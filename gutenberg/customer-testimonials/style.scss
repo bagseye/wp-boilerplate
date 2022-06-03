@@ -6,6 +6,9 @@ section.testimonials {
 }
 
 .testimonials {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
+    
     &__item {
         text-align: center;
 

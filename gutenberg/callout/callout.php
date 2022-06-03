@@ -38,20 +38,11 @@ function wpboiler_core_callout_block_init() {
 		filemtime( "$dir/$editor_css" )
 	);
 
-	$style_css = 'callout/style.css';
-	wp_register_style(
-		'wpboiler-core-callout-block',
-		get_template_directory_uri() . "/gutenberg/$style_css",
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/callout',
 		array(
 			'editor_script' 	=> 'wpboiler-core-callout-block-editor',
 			'editor_style'  	=> 'wpboiler-core-callout-block-editor',
-			'style'         	=> 'wpboiler-core-callout-block',
 			'render_callback'	=> 'wpboiler_core_callout_render'
 
 		)

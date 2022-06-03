@@ -38,20 +38,11 @@ function wpboiler_core_faqs_block_init() {
 		filemtime( "$dir/$editor_css" )
 	);
 
-	$style_css = 'faqs/style.css';
-	wp_register_style(
-		'wpboiler-core-faqs-block',
-		get_template_directory_uri() . "/gutenberg/$style_css",
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/faqs',
 		array(
 			'editor_script' 	=> 'wpboiler-core-faqs-block-editor',
 			'editor_style'  	=> 'wpboiler-core-faqs-block-editor',
-			'style'         	=> 'wpboiler-core-faqs-block',
 			'render_callback'	=> 'wpboiler_core_faqs_render'
 		)
 	);

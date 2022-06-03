@@ -39,20 +39,11 @@ function wpboiler_core_banner_image_block_init() {
 		filemtime( "$dir/$editor_css" )
 	);
 
-	$style_css = 'banner-image/style.css';
-	wp_register_style(
-		'wpboiler-core-banner-image-block',
-		get_template_directory_uri() . "/gutenberg/$style_css",
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/banner-image',
 		array(
 			'editor_script' 	=> 'wpboiler-core-banner-image-block-editor',
 			'editor_style'  	=> 'wpboiler-core-banner-image-block-editor',
-			'style'         	=> 'wpboiler-core-banner-image-block',
 			'render_callback'	=> 'wpboiler_core_banner_image_render'
 		)
 	);

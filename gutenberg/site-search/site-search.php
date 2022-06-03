@@ -39,20 +39,11 @@ function wpboiler_core_site_search_block_init() {
 		filemtime( "$dir/$editor_css" )
 	);
 
-	$style_css = 'site-search/style.css';
-	wp_register_style(
-		'wpboiler-core-site-search-block',
-		get_template_directory_uri() . "/gutenberg/$style_css",
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/site-search',
 		array(
 			'editor_script' 	=> 'wpboiler-core-site-search-block-editor',
 			'editor_style'  	=> 'wpboiler-core-site-search-block-editor',
-			'style'         	=> 'wpboiler-core-site-search-block',
 			'render_callback'	=> 'wpboiler_core_site_search_render'
 		)
 	);

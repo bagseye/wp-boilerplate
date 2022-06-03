@@ -30,14 +30,6 @@ function wpboiler_core_fixed_spacer_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-fixed-spacer-block-editor', 'fixed-spacer' );
 
-	$style_css = 'fixed-spacer/style.css';
-	wp_register_style(
-		'wpboiler-core-fixed-spacer-block',
-		get_template_directory_uri() . "/gutenberg/$style_css",
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/fixed-spacer',
 		array(

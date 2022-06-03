@@ -38,20 +38,11 @@ function wpboiler_core_columns_block_init() {
 		filemtime( "$dir/$editor_css" )
 	);
 
-	$style_css = 'columns/style.css';
-	wp_register_style(
-		'wpboiler-core-columns-block',
-		get_template_directory_uri() . "/gutenberg/$style_css",
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/columns',
 		array(
 			'editor_script' 	=> 'wpboiler-core-columns-block-editor',
 			'editor_style'  	=> 'wpboiler-core-columns-block-editor',
-			'style'         	=> 'wpboiler-core-columns-block',
 			'render_callback' 	=> 'wpboiler_core_columns_render'
 		)
 	);

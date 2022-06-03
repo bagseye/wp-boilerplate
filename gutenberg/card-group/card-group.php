@@ -38,20 +38,11 @@ function wpboiler_core_card_group_block_init() {
 		filemtime( "$dir/$editor_css" )
 	);
 
-	$style_css = 'card-group/style.css';
-	wp_register_style(
-		'wpboiler-core-card-group-block',
-		get_template_directory_uri() . "/gutenberg/$style_css",
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/card-group',
 		array(
 			'editor_script' 	=> 'wpboiler-core-card-group-block-editor',
 			'editor_style'  	=> 'wpboiler-core-card-group-block-editor',
-			'style'         	=> 'wpboiler-core-card-group-block',
 			'render_callback' 	=> 'wpboiler_core_card_group_render'
 		)
 	);
