@@ -2,6 +2,8 @@
         '../../sass/utils/mixins';
 
 figure.quote {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
     max-width: $narrow;
     text-align: center;
 

@@ -1,6 +1,8 @@
 @import '../../sass/utils/variables';
 
 .feed {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
     &__container {
         display: flex;
         gap: 1rem;

@@ -4,6 +4,8 @@
 div.bannerimage {
     max-width: 100%;
     padding: 0;
+    content-visibility: auto;
+    contain-intrinsic-size: 600px;
 
     &__media {
         @include aspectRatio(16,7);

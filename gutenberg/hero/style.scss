@@ -9,6 +9,9 @@ section.hero {
 }
 
 .hero {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
+    
     &__container--content {
         color: #fff;
         max-width: $container;

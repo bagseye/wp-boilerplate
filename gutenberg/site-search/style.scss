@@ -2,6 +2,9 @@
         '../../sass/utils/mixins';
 
 .sitesearch {
+    content-visibility: auto;
+    contain-intrinsic-size: 400px;
+    
     &__container {
         width: 100%;
         max-width: $narrow;

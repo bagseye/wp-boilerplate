@@ -3,6 +3,8 @@
 
 
 .fixedspacer {
+    content-visibility: auto;
+    contain-intrinsic-size: 400px;
     height: $spacing * 4;
 
     @include desktop {

@@ -2,6 +2,8 @@
         '../../sass/utils/mixins';
 
 .flexi {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
 
     &__hasbgcolor {
         padding-top: $spacing * 2;

@@ -1,6 +1,8 @@
 @import '../../sass/utils/variables';
 
 hr.separator {
+    content-visibility: auto;
+    contain-intrinsic-size: 100px;
     max-width: $narrow;
     height: 2px;
     border: none;

@@ -2,6 +2,8 @@
         '../../sass/utils/mixins';
 
 .partners {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
 
     &__container {
         display: block;
