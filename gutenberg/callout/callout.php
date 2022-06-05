@@ -30,19 +30,10 @@ function wpboiler_core_callout_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-callout-block-editor', 'callout' );
 
-	$editor_css = 'callout/editor.css';
-	wp_register_style(
-		'wpboiler-core-callout-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/callout',
 		array(
 			'editor_script' 	=> 'wpboiler-core-callout-block-editor',
-			'editor_style'  	=> 'wpboiler-core-callout-block-editor',
 			'render_callback'	=> 'wpboiler_core_callout_render'
 
 		)

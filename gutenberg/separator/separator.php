@@ -31,20 +31,10 @@ function wpboiler_core_separator_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-separator-block-editor', 'separator' );
 
-	$editor_css = 'separator/editor.css';
-	wp_register_style(
-		'wpboiler-core-separator-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/separator',
 		array(
 			'editor_script' 	=> 'wpboiler-core-separator-block-editor',
-			'editor_style'  	=> 'wpboiler-core-separator-block-editor',
-			'style'         	=> 'wpboiler-core-separator-block',
 			'render_callback'	=> 'wpboiler_core_separator_render',
 		)
 	);

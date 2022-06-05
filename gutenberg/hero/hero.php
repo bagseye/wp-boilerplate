@@ -30,19 +30,10 @@ function wpboiler_core_hero_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-hero-block-editor', 'hero' );
 
-	$editor_css = 'hero/editor.css';
-	wp_register_style(
-		'wpboiler-core-hero-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/hero',
 		array(
 			'editor_script' 	=> 'wpboiler-core-hero-block-editor',
-			'editor_style'  	=> 'wpboiler-core-hero-block-editor',
 			'render_callback'	=> 'wpboiler_core_hero_render'
 
 		)

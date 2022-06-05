@@ -30,19 +30,10 @@ function wpboiler_core_quote_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-quote-block-editor', 'quote' );
 
-	$editor_css = 'quote/editor.css';
-	wp_register_style(
-		'wpboiler-core-quote-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/quote',
 		array(
 			'editor_script' 	=> 'wpboiler-core-quote-block-editor',
-			'editor_style'  	=> 'wpboiler-core-quote-block-editor',
 			'render_callback'	=> 'wpboiler_core_quote_render'
 		)
 	);

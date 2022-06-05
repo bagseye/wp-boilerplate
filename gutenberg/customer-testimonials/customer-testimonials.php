@@ -30,19 +30,10 @@ function wpboiler_core_customer_testimonials_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-customer-testimonials-block-editor', 'customer-testimonials' );
 
-	$editor_css = 'customer-testimonials/editor.css';
-	wp_register_style(
-		'wpboiler-core-customer-testimonials-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/customer-testimonials',
 		array(
 			'editor_script' 	=> 'wpboiler-core-customer-testimonials-block-editor',
-			'editor_style'  	=> 'wpboiler-core-customer-testimonials-block-editor',
 			'render_callback'	=> 'wpboiler_core_customer_testimonials_render'
 		)
 	);

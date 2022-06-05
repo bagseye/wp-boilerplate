@@ -34,7 +34,7 @@ function wpboiler_core_fixed_spacer_block_init() {
 		'wpboiler-core/fixed-spacer',
 		array(
 			'editor_script' 	=> 'wpboiler-core-fixed-spacer-block-editor',
-			'style'         	=> 'wpboiler-core-fixed-spacer-block',
+			// 'style'         	=> 'wpboiler-core-fixed-spacer-block',
 			'render_callback'	=> 'wpboiler_core_fixed_spacer_render',
 		)
 	);

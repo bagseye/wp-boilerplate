@@ -31,19 +31,10 @@ function wpboiler_core_site_search_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-site-search-block-editor', 'site-search' );
 
-	$editor_css = 'site-search/editor.css';
-	wp_register_style(
-		'wpboiler-core-site-search-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/site-search',
 		array(
 			'editor_script' 	=> 'wpboiler-core-site-search-block-editor',
-			'editor_style'  	=> 'wpboiler-core-site-search-block-editor',
 			'render_callback'	=> 'wpboiler_core_site_search_render'
 		)
 	);

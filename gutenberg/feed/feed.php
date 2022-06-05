@@ -54,19 +54,10 @@ function wpboiler_core_feed_block_init() {
 	wp_reset_postdata();
 	wp_localize_script( 'wpboiler-core-feed-block-editor', 'wpboilerFeedCategories', $catList );
 
-	$editor_css = 'feed/editor.css';
-	wp_register_style(
-		'wpboiler-core-feed-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/feed',
 		array(
 			'editor_script' 	=> 'wpboiler-core-feed-block-editor',
-			'editor_style'  	=> 'wpboiler-core-feed-block-editor',
 			'render_callback' 	=> 'wpboiler_core_feed_render',
 		)
 	);

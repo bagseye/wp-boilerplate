@@ -31,19 +31,10 @@ function wpboiler_core_cta_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-cta-block-editor', 'cta' );
 
-	$editor_css = 'cta/editor.css';
-	wp_register_style(
-		'wpboiler-core-cta-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/cta',
 		array(
 			'editor_script' 	=> 'wpboiler-core-cta-block-editor',
-			'editor_style'  	=> 'wpboiler-core-cta-block-editor',
 			'render_callback' 	=> 'wpboiler_core_cta_render',
 		)
 	);

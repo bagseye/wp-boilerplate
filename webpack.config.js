@@ -4,6 +4,7 @@ const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 const entryPoints = {
   app: "/js/app.js",
   style: "/sass/main.scss",
+  editorStyle: "/sass/editor-styles.scss",
 };
 
 module.exports = {
@@ -13,6 +14,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
   },
+  mode: "development",
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].css",

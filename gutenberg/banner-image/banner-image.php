@@ -31,19 +31,10 @@ function wpboiler_core_banner_image_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-banner-image-block-editor', 'banner-image' );
 
-	$editor_css = 'banner-image/editor.css';
-	wp_register_style(
-		'wpboiler-core-banner-image-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/banner-image',
 		array(
 			'editor_script' 	=> 'wpboiler-core-banner-image-block-editor',
-			'editor_style'  	=> 'wpboiler-core-banner-image-block-editor',
 			'render_callback'	=> 'wpboiler_core_banner_image_render'
 		)
 	);

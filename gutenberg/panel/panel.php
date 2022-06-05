@@ -30,19 +30,10 @@ function wpboiler_core_panel_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-panel-block-editor', 'panel' );
 
-	$editor_css = 'panel/editor.css';
-	wp_register_style(
-		'wpboiler-core-panel-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/panel',
 		array(
 			'editor_script' 	=> 'wpboiler-core-panel-block-editor',
-			'editor_style'  	=> 'wpboiler-core-panel-block-editor',
 			'render_callback'	=> 'wpboiler_core_panel_render'
 		)
 	);

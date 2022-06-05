@@ -1,0 +1,165 @@
+@import './utils/variables',
+        './utils/mixins';
+
+.wp-block {
+    padding: 0 1rem 1rem 1rem;
+    border-radius: 4px;
+    border: 1px dotted #aaa;
+    font-family: $sansSerif;
+
+    .block__title {
+        background-color: $brand2;
+        color: $brand4;
+        position: relative;
+        z-index: 2;
+        margin: 0 -1rem 1rem -1rem;
+        padding: 0.25rem 1rem;
+        font-weight: 700;
+        font-size: 0.875rem;
+    }
+
+    .block__titleArea {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0 20px;
+
+        &--name,
+        &--title {
+            p {
+                font-weight: 700;
+                margin: 0;
+            }
+        }
+
+        &--name,
+        &--toggle {
+            padding: 10px;
+            flex-shrink: 0;
+        }
+
+        &--name {
+            background-color: #333;
+            align-self: stretch;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+            p {
+                color: #fff;
+                font-weight: 400;
+            }
+        }
+
+        &--title {
+            flex-grow: 1;
+            overflow: hidden;
+
+            p {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 20px;
+            }
+        }
+
+        &--toggle {
+            button {
+                border: 1px solid #000;
+                border-radius: 4px;
+                
+            }
+        }
+    }
+}
+
+.has-brand-1-background-color {
+    background-color: $brand1;
+
+    color: #fff;
+}
+
+.has-brand-2-background-color {
+    background-color: $brand2;
+
+    color: #fff;
+}
+
+.has-brand-3-background-color {
+    background-color: $brand3;
+}
+
+.has-brand-4-background-color {
+    background-color: $brand4;
+}
+
+h1 {
+    font-size: $h1Mobile;
+
+    @include desktop {
+        font-size: $h1;
+    }
+}
+
+h2 {
+    font-size: $h2Mobile;
+
+    @include desktop {
+        font-size: $h2;
+    }
+}
+
+h3 {
+    font-size: $h3Mobile;
+
+    @include desktop {
+        font-size: $h3;
+    }
+}
+
+h4 {
+    font-size: $h4Mobile;
+
+    @include desktop {
+        font-size: $h4;
+    }
+}
+
+h5 {
+    font-size: $h5Mobile;
+
+    @include desktop {
+        font-size: $h5;
+    }
+}
+
+h6 {
+    font-size: $h6;
+}
+
+.wp-block {
+    &-paragraph {
+        &.is-style-lead {
+            font-size: 1.3rem;
+        }
+    }
+}
+
+@import '../gutenberg/banner-image/editor.scss',
+        '../gutenberg/callout/editor.scss',
+        '../gutenberg/card-group/editor.scss',
+        '../gutenberg/columns/editor.scss',
+        '../gutenberg/cta/editor.scss',
+        '../gutenberg/customer-testimonials/editor.scss',
+        '../gutenberg/faqs/editor.scss',
+        '../gutenberg/feed/editor.scss',
+        '../gutenberg/flexiblock/editor.scss',
+        '../gutenberg/hero/editor.scss',
+        '../gutenberg/panel/editor.scss',
+        '../gutenberg/partners/editor.scss',
+        '../gutenberg/promo-group/editor.scss',
+        '../gutenberg/quote/editor.scss',
+        '../gutenberg/separator/editor.scss',
+        '../gutenberg/site-search/editor.scss';

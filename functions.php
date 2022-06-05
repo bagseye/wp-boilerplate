@@ -109,7 +109,8 @@ if(!function_exists('wpboiler_setup')) {
     
         add_post_type_support( 'page', 'excerpt' );
     
-        add_editor_style( './css/style-editor.css' );
+        // add_editor_style( './css/style-editor.css' );
+        add_editor_style( './dist/editorStyle.css' );
 
         remove_theme_support( 'core-block-patterns' );
 

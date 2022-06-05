@@ -30,19 +30,10 @@ function wpboiler_core_faqs_block_init() {
 	);
 	wp_set_script_translations( 'wpboiler-core-faqs-block-editor', 'faqs' );
 
-	$editor_css = 'faqs/editor.css';
-	wp_register_style(
-		'wpboiler-core-faqs-block-editor',
-		get_template_directory_uri() . "/gutenberg/$editor_css",
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
-
 	register_block_type(
 		'wpboiler-core/faqs',
 		array(
 			'editor_script' 	=> 'wpboiler-core-faqs-block-editor',
-			'editor_style'  	=> 'wpboiler-core-faqs-block-editor',
 			'render_callback'	=> 'wpboiler_core_faqs_render'
 		)
 	);
