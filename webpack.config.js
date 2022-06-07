@@ -1,6 +1,5 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 const entryPoints = {
   app: "/js/app.js",
   style: "/sass/main.scss",
@@ -13,18 +12,14 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
+    clean: true,
   },
   mode: "development",
+  devtool: "inline-source-map",
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
-    new BrowserSyncPlugin(
-      {
-        proxy: "http://wpboilerplate.local",
-      },
-      { reload: false }
-    ),
   ],
   module: {
     rules: [
