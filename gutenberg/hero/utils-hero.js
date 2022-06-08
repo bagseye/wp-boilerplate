@@ -1,3 +1,6 @@
+import Splide from '@splidejs/splide';
+import '@splidejs/splide/css/core';
+
 export const heroBanners = document.querySelectorAll(".hero.splide");
 
 export function assignHero(items) {

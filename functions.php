@@ -132,10 +132,9 @@ add_action('after_setup_theme', 'wpboiler_setup');
 */
 function wpboiler_scripts_init() {
 
-    wp_enqueue_style( 'wpboiler-splide-css', get_template_directory_uri() . '/css/splide-core.min.css', array(), CACHE_VERSION, 'all' );
     wp_enqueue_style( 'wpboiler-styles', get_template_directory_uri() . '/dist/style.css' );
+    wp_enqueue_style( 'wpboiler-app-styles', get_template_directory_uri() . '/dist/app.css' );
 
-    wp_enqueue_script( 'wpboiler-splide-js', get_template_directory_uri() . '/js/splide.min.js', array(), CACHE_VERSION, true );
     wp_enqueue_script( 'wpboiler-app-js', get_template_directory_uri() . '/dist/app.js', array(), CACHE_VERSION, true );
 
     // Remove basic block styles for WP core blocks

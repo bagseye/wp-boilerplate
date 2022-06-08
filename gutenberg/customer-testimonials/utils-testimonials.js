@@ -1,3 +1,6 @@
+import Splide from '@splidejs/splide';
+import '@splidejs/splide/css/core';
+
 export const testimonials = document.querySelectorAll(".testimonials");
 
 export function assignTestimonials(items) {
