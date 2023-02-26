@@ -2,7 +2,7 @@
     "version": 2,
     "settings": {
       "layout": {
-        "contentSize": "1200px"
+        "contentSize": "960px"
       },
       "typography": {
         "customFontSize": false,
@@ -19,7 +19,7 @@
         "customGradient": false,
         "defaultGradients": false,
         "customDuotone": false,
-        "link": true,
+        "link": false,
         "background": false,
         "defaultPalette": false,
         "palette": [
@@ -69,5 +69,12 @@
             }
         }
       }
+    },
+    "styles": {
+      "typography": {
+        "fontFamily": "'Helvetica Neue', Helvetica, -apple-system, Arial, sans-serif",
+        "lineHeight": "1.6"
+      }
     }
+    
 }

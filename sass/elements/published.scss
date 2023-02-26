@@ -1,0 +1,24 @@
+.e-published {
+  padding-bottom: calc(#{$spacing} / 2);
+  margin-top: $spacing;
+  margin-bottom: $spacing;
+  border-bottom: 0.2em solid $brand1;
+  width: 75%;
+  max-width: 450px;
+
+  &__message {
+    .e-published & {
+      margin-top: 0;
+      margin-bottom: 0;
+      color: $brand1;
+      font-weight: 700;
+    }
+  }
+
+  &__date {
+    .e-published & {
+      color: $brand2;
+      font-weight: 400;
+    }
+  }
+}

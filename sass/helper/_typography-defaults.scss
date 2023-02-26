@@ -1,0 +1,243 @@
+%link {
+  text-decoration: underline;
+  text-decoration-color: $brand1;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.1em;
+  transition: text-decoration-color 0.15s ease;
+  color: $brand1;
+
+  &:hover {
+      text-decoration-color: rgba($brand1, 0.25);
+  }
+}
+
+%block-margin {
+  margin-top: 0.25rem;
+  margin-bottom: 1.25rem;
+}
+
+%block-margin-large {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+%heading {
+  color: $brand1;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+
+  a {
+    @extend %link;
+  }
+}
+
+%heading-color-alt {
+  color: $brand2;
+}
+
+%heading-one {
+  @extend %block-margin;
+  @extend %heading;
+  font-size: clamp(2rem, 7vw, 3rem);
+}
+
+%heading-two {
+  @extend %block-margin;
+  @extend %heading;
+  font-size: clamp(1.8rem, 7vw, 2.75rem);
+}
+
+%heading-three {
+  @extend %block-margin;
+  @extend %heading;
+  @extend %heading-color-alt;
+  font-size: clamp(1.6rem, 7vw, 2.5rem);
+}
+
+%heading-four {
+  @extend %block-margin;
+  @extend %heading;
+  @extend %heading-color-alt;
+  font-size: clamp(1.4rem, 7vw, 2.25rem);
+}
+
+%heading-five {
+  @extend %block-margin;
+  @extend %heading;
+  @extend %heading-color-alt;
+  font-size: clamp(1.2rem, 7vw, 2rem);
+}
+
+%heading-six {
+  @extend %block-margin;
+  @extend %heading;
+  @extend %heading-color-alt;
+  font-size: clamp(1rem, 7vw, 1.75rem);
+}
+
+%paragraph {
+  @extend %block-margin;
+  font-size: clamp(1rem, 4vw, 1.2rem);
+
+  a {
+    @extend %link;
+  }
+
+  &.is-style-lead {
+    font-size: clamp(1.25rem, 4vw, 1.6rem);
+    font-weight: 500;
+  }
+}
+
+%list {
+  @extend %block-margin;
+  padding-left: $spacing;
+  
+  li {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    
+    a {
+      @extend %link;
+    }
+  }
+}
+
+%blockquote {
+  @extend %block-margin-large;
+  margin-left: 0;
+  margin-right: auto;
+  width: 85%;
+  max-width: 600px;
+
+  >* {
+    &:first-child {
+      margin-top: 0
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  p {
+    @extend %heading-five;
+    line-height: 1.1;
+  }
+
+  &.has-text-align-left {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  &.has-text-align-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &.has-text-align-right {
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
+%image {
+  @extend %block-margin-large;
+  margin-left: auto;
+  margin-right: auto;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  figcaption {
+    text-align: center;
+    padding-top: 1rem;
+    a {
+      @extend %link;
+    }
+  }
+}
+
+%table {
+  @extend %block-margin-large;
+  margin-left: 0;
+  margin-right: 0;
+  overflow-x: scroll;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    min-width: 400px;
+
+    thead {
+      tr {
+        background-color: $brand2;
+        color: #fff;
+        text-align: left;
+
+        a {
+          @extend %link;
+          color: #fff;
+          text-decoration-color: #fff;
+
+          &:hover {
+            text-decoration-color: rgba(#fff, 0.25);
+          }
+        }
+      }
+    }
+
+    th,
+    td {
+      padding: 0.8rem 1rem;
+
+      a {
+        @extend %link;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid $brand4;
+
+        &:nth-of-type(even) {
+          background-color: #f3f3f3;
+        }
+
+        &:last-of-type {
+          border-bottom: 0.2em solid $brand2;
+        }
+      }
+    }
+  }
+
+  .wp-element-caption {
+    text-align: center;
+    font-size: 0.8rem;
+    padding-top: 0.5rem;
+    font-style: italic;
+  }
+}
+
+.has-text-align {
+  &-left {
+    text-align: left;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
+}

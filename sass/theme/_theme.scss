@@ -12,22 +12,22 @@ body {
     padding-top: $spacing * 5;
 }
 
-.container {
-    &__main {
-        >* {
-            padding-left: $spacing * 2;
-            padding-right: $spacing * 2;
-            max-width: $container;
-            margin-left: auto;
-            margin-right: auto;
-            box-sizing: content-box;
-        }
+// .container {
+//     &__main {
+//         >* {
+//             padding-left: $spacing * 2;
+//             padding-right: $spacing * 2;
+//             max-width: $container;
+//             margin-left: auto;
+//             margin-right: auto;
+//             box-sizing: content-box;
+//         }
 
-        .container__full {
-            max-width: 100%;
-        }
-    }
-}
+//         .container__full {
+//             max-width: 100%;
+//         }
+//     }
+// }
 
 .margins {
     &__topBottom {

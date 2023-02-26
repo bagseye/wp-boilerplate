@@ -1,0 +1,6 @@
+@import './container.scss';
+
+.h-container-small {
+  @extend %container;
+  max-width: $containerSmall;
+}

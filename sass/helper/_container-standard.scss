@@ -1,0 +1,6 @@
+@import './container.scss';
+
+.h-container-standard {
+  @extend %container;
+  max-width: $containerStandard;
+}
