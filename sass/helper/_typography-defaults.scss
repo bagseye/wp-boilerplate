@@ -107,8 +107,6 @@
   @extend %block-margin-large;
   margin-left: 0;
   margin-right: auto;
-  width: 85%;
-  max-width: 600px;
 
   >* {
     &:first-child {
@@ -123,6 +121,13 @@
   p {
     @extend %heading-five;
     line-height: 1.1;
+  }
+
+  cite {
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    font-style: normal;
+    display: inline-block;
+    line-height: 1.2;
   }
 
   &.has-text-align-left {
@@ -155,6 +160,8 @@
   figcaption {
     text-align: center;
     padding-top: 1rem;
+    line-height: 1.2;
+    
     a {
       @extend %link;
     }

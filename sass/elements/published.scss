@@ -2,12 +2,13 @@
   padding-bottom: calc(#{$spacing} / 2);
   margin-top: $spacing;
   margin-bottom: $spacing;
-  border-bottom: 0.2em solid $brand1;
-  width: 75%;
-  max-width: 450px;
+  border-bottom: 0.15em solid rgba($brand1, 0.25);
+  width: 85%;
+  max-width: 500px;
 
   &__message {
     .e-published & {
+      @extend %paragraph;
       margin-top: 0;
       margin-bottom: 0;
       color: $brand1;

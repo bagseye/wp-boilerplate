@@ -25,7 +25,11 @@
 
     &-3 {
       @extend %grid-padding;
-      grid-column: 1 / span 3;
+      grid-column: 1 / span 5;
+          
+      @media(min-width: 760px) {
+        grid-column: 1 / span 3;
+      }
     }
 
     &-4 {

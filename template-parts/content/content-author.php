@@ -19,7 +19,7 @@ $author_avatar = get_avatar($author_id, 120, 'retro', $author_name . ' avatar');
                 </figure>
             </div>
             <div class="e-author__content">
-                <p class="e-author__name">Written by <?= $author_name ?></p>
+                <p class="e-author__name">Written by <span><?= $author_name ?></span></p>
                 <?php if($author_description && !empty($author_description)) : ?>
                     <p class="e-author__description"><?= $author_description ?></p>
                 <?php endif; ?>
