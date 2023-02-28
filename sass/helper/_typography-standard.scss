@@ -36,27 +36,10 @@
 
   .wp-block-quote {
     @extend %blockquote;
-    width: 85%;
-    max-width: 500px;
-
-    cite {
-      font-weight: 700;
-      border-top: 0.15em solid rgba($brand1, 0.25);
-      padding-top: calc(#{$spacing} / 2);
-      margin-top: calc($spacing / 2);
-    }
   }
 
   .wp-block-image {
     @extend %image;
-
-    figcaption {
-      display: inline-block;
-      text-align: left;
-      padding-top: calc(#{$spacing} / 2);
-      width: 85%;
-      max-width: 500px;
-    }
   }
 
   .wp-block-table {
@@ -82,8 +65,9 @@
 
     &.is-style-basic .wp-block-button__link {
       &:hover {
-        background-color: $brand1;
-        color: $white;
+        background-color: transparent;
+        border-color: $brand2;
+        color: $brand2;
       }
     }
   }

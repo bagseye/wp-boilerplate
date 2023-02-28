@@ -37,6 +37,10 @@ p.wp-block-paragraph {
 
 blockquote.wp-block-quote {
     @extend %blockquote;
+
+    cite {
+        display: inline-block!important;
+    }
 }
 
 figure.wp-block-image.wp-block {

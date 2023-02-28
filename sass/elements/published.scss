@@ -5,6 +5,7 @@
   border-bottom: 0.15em solid rgba($brand1, 0.25);
   width: 85%;
   max-width: 500px;
+  font-weight: 700;
 
   &__message {
     .e-published & {
@@ -12,14 +13,15 @@
       margin-top: 0;
       margin-bottom: 0;
       color: $brand1;
-      font-weight: 700;
     }
   }
 
   &__date {
     .e-published & {
       color: $brand2;
-      font-weight: 400;
+      font-family: $serif;
+      font-style: italic;
+      font-size: $paragraphSerif;
     }
   }
 }

@@ -7,8 +7,12 @@
   color: $brand1;
 
   &:hover {
-      text-decoration-color: rgba($brand1, 0.25);
+      text-decoration-color: $brand2;
   }
+}
+
+%alternate-font {
+  font-family: $serif;
 }
 
 %block-margin {
@@ -26,6 +30,10 @@
   line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.025em;
+
+  [class*="-serif-"] {
+    @extend %alternate-font;
+  }
 
   a {
     @extend %link;
@@ -51,28 +59,29 @@
 %heading-three {
   @extend %block-margin;
   @extend %heading;
-  @extend %heading-color-alt;
   font-size: $heading3;
+
+  [class*="-serif-"] {
+    font-size: $heading3Serif;  
+    font-weight: 700;
+  }
 }
 
 %heading-four {
   @extend %block-margin;
   @extend %heading;
-  @extend %heading-color-alt;
   font-size: $heading4;
 }
 
 %heading-five {
   @extend %block-margin;
   @extend %heading;
-  @extend %heading-color-alt;
   font-size: $heading5;
 }
 
 %heading-six {
   @extend %block-margin;
   @extend %heading;
-  @extend %heading-color-alt;
   font-size: $heading6;
 }
 
@@ -106,7 +115,7 @@
 %blockquote {
   @extend %block-margin-large;
   margin-left: 0;
-  margin-right: auto;
+  margin-right: 0;
 
   >* {
     &:first-child {
@@ -121,28 +130,45 @@
   p {
     @extend %heading-five;
     line-height: 1.1;
+    width: 85%;
+    max-width: 500px;
   }
 
   cite {
+    color: $brand2;
+    font-family: $serif;
     font-size: $paragraphSmall;
-    font-style: normal;
+    font-style: italic;
+    font-weight: 700;
     display: inline-block;
     line-height: 1.2;
+    border-top: 0.1em solid rgba($brand1, 0.25);
+    padding-top: calc(#{$spacing} / 2);
+    margin-top: calc($spacing / 2);
   }
 
   &.has-text-align-left {
-    margin-left: 0;
-    margin-right: auto;
+    p,
+    cite {
+      margin-left: 0;
+      margin-right: auto;
+    }
   }
 
   &.has-text-align-center {
-    margin-left: auto;
-    margin-right: auto;
+    p,
+    cite {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   &.has-text-align-right {
-    margin-left: auto;
-    margin-right: 0;
+    p,
+    cite {
+      margin-left: auto;
+      margin-right: 0;
+    }
   }
 }
 
@@ -158,8 +184,11 @@
   }
 
   figcaption {
-    text-align: center;
-    padding-top: calc($spacing / 2);
+    display: inline-block;
+    text-align: left;
+    padding-top: calc(#{$spacing} / 2);
+    width: 85%;
+    max-width: 500px;
     line-height: 1.2;
     
     a {
@@ -187,7 +216,7 @@
 
     thead {
       tr {
-        background-color: $brand2;
+        background-color: $brand1;
         color: $white;
         text-align: left;
 
@@ -197,7 +226,7 @@
           text-decoration-color: $white;
 
           &:hover {
-            text-decoration-color: rgba($white, 0.25);
+            text-decoration-color: $brand2;
           }
         }
       }
@@ -221,7 +250,7 @@
         }
 
         &:last-of-type {
-          border-bottom: 0.2em solid $brand2;
+          border-bottom: 0.1em solid $brand2;
         }
       }
     }
