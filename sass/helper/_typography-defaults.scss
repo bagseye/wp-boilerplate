@@ -12,13 +12,13 @@
 }
 
 %block-margin {
-  margin-top: 0.25rem;
-  margin-bottom: 1.25rem;
+  margin-top: calc($spacing / 3);
+  margin-bottom: $spacing;
 }
 
 %block-margin-large {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-top: calc($spacing * 2);
+  margin-bottom: calc($spacing * 2);
 }
 
 %heading {
@@ -39,53 +39,53 @@
 %heading-one {
   @extend %block-margin;
   @extend %heading;
-  font-size: clamp(2rem, 7vw, 3rem);
+  font-size: $heading1;
 }
 
 %heading-two {
   @extend %block-margin;
   @extend %heading;
-  font-size: clamp(1.8rem, 7vw, 2.75rem);
+  font-size: $heading2;
 }
 
 %heading-three {
   @extend %block-margin;
   @extend %heading;
   @extend %heading-color-alt;
-  font-size: clamp(1.6rem, 7vw, 2.5rem);
+  font-size: $heading3;
 }
 
 %heading-four {
   @extend %block-margin;
   @extend %heading;
   @extend %heading-color-alt;
-  font-size: clamp(1.4rem, 7vw, 2.25rem);
+  font-size: $heading4;
 }
 
 %heading-five {
   @extend %block-margin;
   @extend %heading;
   @extend %heading-color-alt;
-  font-size: clamp(1.2rem, 7vw, 2rem);
+  font-size: $heading5;
 }
 
 %heading-six {
   @extend %block-margin;
   @extend %heading;
   @extend %heading-color-alt;
-  font-size: clamp(1rem, 7vw, 1.75rem);
+  font-size: $heading6;
 }
 
 %paragraph {
   @extend %block-margin;
-  font-size: clamp(1rem, 4vw, 1.2rem);
+  font-size: $paragraph;
 
   a {
     @extend %link;
   }
 
   &.is-style-lead {
-    font-size: clamp(1.25rem, 4vw, 1.6rem);
+    font-size: $paragraphLead;
     font-weight: 500;
   }
 }
@@ -95,7 +95,7 @@
   padding-left: $spacing;
   
   li {
-    font-size: clamp(1rem, 4vw, 1.2rem);
+    font-size: $paragraph;
     
     a {
       @extend %link;
@@ -124,7 +124,7 @@
   }
 
   cite {
-    font-size: clamp(0.85rem, 2vw, 1rem);
+    font-size: $paragraphSmall;
     font-style: normal;
     display: inline-block;
     line-height: 1.2;
@@ -159,7 +159,7 @@
 
   figcaption {
     text-align: center;
-    padding-top: 1rem;
+    padding-top: calc($spacing / 2);
     line-height: 1.2;
     
     a {
@@ -188,16 +188,16 @@
     thead {
       tr {
         background-color: $brand2;
-        color: #fff;
+        color: $white;
         text-align: left;
 
         a {
           @extend %link;
-          color: #fff;
-          text-decoration-color: #fff;
+          color: $white;
+          text-decoration-color: $white;
 
           &:hover {
-            text-decoration-color: rgba(#fff, 0.25);
+            text-decoration-color: rgba($white, 0.25);
           }
         }
       }
@@ -205,7 +205,7 @@
 
     th,
     td {
-      padding: 0.8rem 1rem;
+      padding: calc($spacing / 2) $spacing;
 
       a {
         @extend %link;
@@ -229,9 +229,31 @@
 
   .wp-element-caption {
     text-align: center;
-    font-size: 0.8rem;
-    padding-top: 0.5rem;
+    font-size: $paragraphSmall;
+    padding-top: calc($spacing / 2);
     font-style: italic;
+  }
+}
+
+%buttons {
+  @extend %block-margin-large;
+}
+
+%button {
+  background-color: $black;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 0;
+  font-family: $sansSerif;
+  font-size: $paragraph;
+  font-weight: 700;
+  padding: calc($spacing / 2) $spacing;
+  border: 0.1em solid $black;
+
+  .is-style-basic & {
+    background-color: transparent;
+    color: $black;
   }
 }
 

@@ -4,7 +4,7 @@
   width: 85%;
   max-width: 500px;
   border-top: 0.15em solid rgba($brand1, 0.25);
-  padding-top: calc(#{$spacing} / 2);
+  padding-top: calc(#{$spacing} / 1);
              
   @media(min-width: 760px) {
     margin-top: calc($spacing * 3);

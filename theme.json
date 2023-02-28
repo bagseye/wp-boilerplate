@@ -11,6 +11,13 @@
         "lineHeight": false,
         "fontStyle": false,
         "fontSizes": [],
+        "fontFamilies": [
+          {
+            "fontFamily": "Garamond, Times, Palatino, serif",
+            "name": "Serif System Font",
+            "slug": "serif-system-font"
+          }
+        ],
         "letterSpacing": false,
         "textTransform": false
       },
@@ -30,7 +37,7 @@
             },
             {
                 "slug": "brand2",
-                "color": "#333",
+                "color": "#777777",
                 "name": "Brand 2"
             },
             {
@@ -42,7 +49,12 @@
                 "slug": "brand4",
                 "color": "#f2f5f6",
                 "name": "Brand 4"
-            }
+            },
+            {
+              "slug": "brand1serif",
+              "color": "#161616",
+              "name": "Brand 1 Serif"
+          }
         ]
       },
       "spacing": {
@@ -67,6 +79,11 @@
               "background": false,
               "customGradient": false
             }
+        },
+        "core/button": {
+          "border": {
+            "radius": false
+          }
         }
       }
     },

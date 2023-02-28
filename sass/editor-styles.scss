@@ -51,6 +51,16 @@ figure.wp-block-table {
     @extend %list;
 }
 
+.wp-block-buttons {
+    @extend %buttons;
+}
+
+.wp-block-button {
+    &__link {
+        @extend %button;
+    }
+}
+
 // @import './utils/variables',
 //         './utils/mixins';
 

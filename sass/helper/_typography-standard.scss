@@ -62,4 +62,29 @@
   .wp-block-table {
     @extend %table;
   }
+
+  .wp-block-buttons {
+    @extend %buttons;
+  }
+
+  .wp-block-button {
+    &__link {
+      @extend %button;
+      transition: background-color 0.2s ease-in,
+                  border-color 0.2s ease-in,
+                  color 0.2s ease-in;
+
+      &:hover {
+        background-color: $brand2;
+        border-color: $brand2;
+      }
+    }
+
+    &.is-style-basic .wp-block-button__link {
+      &:hover {
+        background-color: $brand1;
+        color: $white;
+      }
+    }
+  }
 }
