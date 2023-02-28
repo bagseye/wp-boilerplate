@@ -1,15 +1,22 @@
 .footernavigation {
+    padding-right: $spacing;
 
-    ul {
+    &__title {
+        margin-top: 0;
+        margin-bottom: calc($spacing / 2);
+        font-size: $paragraph;
+    }
+
+    &__list {
         margin: 0;
         padding: 0;
         list-style: none;
 
-        li {
-            a {
-                color: #fff;
-                text-decoration: none;
-            }
+        &--item {
+            // a {
+            //     color: ;
+            //     text-decoration: none;
+            // }
         }
     }
 }

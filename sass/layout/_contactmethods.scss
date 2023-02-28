@@ -1,13 +1,21 @@
 .contactmethods {
-    ul {
-        padding: 0;
+    &__title {
+        margin-top: 0;
+        margin-bottom: calc($spacing / 2);
+        font-size: $paragraph;
+    }
+
+    &__list {
         margin: 0;
+        padding: 0;
         list-style: none;
-        li {
-            a {
-                color: #fff;
-                text-decoration: none;
-            }
+
+        &--item {
+            margin-bottom: calc($spacing / 3);
+            // a {
+            //     color: ;
+            //     text-decoration: none;
+            // }
         }
     }
 

@@ -1,21 +1,49 @@
 .footer {
-    background-color: $brand1;
-    padding: $spacing;
-    color: #fff;
+    padding-top: calc($spacing * 2);
+    padding-bottom: $spacing;
+    // background-color: $brand1;
+    // padding: $spacing;
+    // color: #fff;
 
     &__container {
-        max-width: $container;
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-        flex-direction: column;
+        // max-width: $container;
+        // margin-left: auto;
+        // margin-right: auto;
+        // display: flex;
+        // flex-direction: column;
 
-        @include desktop {
-            flex-direction: row;
+        // @include desktop {
+        //     flex-direction: row;
+        // }
+
+        // >* {
+        //     flex: 1 1 0;
+        // }
+    }
+
+    &__items {
+        @media(min-width: 760px) {
+            display: flex;
         }
+    }
 
-        >* {
-            flex: 1 1 0;
+    &__logo {
+        padding-top: calc($spacing * 1);
+        h3 {
+            font-size: $heading5;
+        }
+        span {
+            display: block;
+            color: $brand2;
+            font-family: $serif;
+            font-style: italic;
+        }
+    }
+
+    &__copyright {
+        p {
+            margin: 0;
+            font-size: $paragraphSmall;
         }
     }
 }

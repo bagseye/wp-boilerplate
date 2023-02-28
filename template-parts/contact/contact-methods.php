@@ -1,6 +1,7 @@
 <div class="contactmethods">
     <div class="contactmethods__container">
-        <ul>
+        <h5 class="contactmethods__title">Contact</h5>
+        <ul class="contactmethods__list">
             <?php 
 
             $phone = get_field('phone_number', 'option');
@@ -8,11 +9,11 @@
             $address = get_field('address', 'option');  
             
             if(isset($phone) && !empty($phone)) {
-                echo '<li><a href="tel:' . $phone . '">' . $phone . '</a></li>';
+                echo '<li class="contactmethods__list--item"><a href="tel:' . $phone . '">' . $phone . '</a></li>';
             }
 
             if(isset($email) && !empty($phone)) {
-                echo '<li><a href="mailto:' . $email . '">' . $email . '</a></li>';
+                echo '<li class="contactmethods__list--item"><a href="mailto:' . $email . '">' . $email . '</a></li>';
             }
             
             ?>

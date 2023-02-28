@@ -1,30 +1,26 @@
 </main>
 
 <footer class="footer">
-    <div class="footer__container">
+    <div class="footer__inner">
+        <div class="footer__container h-container-large grid">
+            <div class="footer__items grid__span-3">
+                <?php get_template_part('template-parts/footer/footer', 'nav'); ?>
+        
+                <?php get_template_part('template-parts/contact/social'); ?>
+        
+                <?php get_template_part('template-parts/contact/contact-methods'); ?>
+            </div>
 
-        <?php get_template_part('template-parts/footer/footer', 'nav'); ?>
-
-        <?php get_template_part('template-parts/contact/social'); ?>
-
-        <?php get_template_part('template-parts/contact/contact-methods'); ?>
-
-    </div>
-    <div class="footer__container">
-
-        <div class="copyright">
-            <p>&copy; <?= date('Y') ?> <?= bloginfo( 'name' ) ?></p>
-            <p>
-            <?php 
-            printf(
-                esc_html__( 'Designed & developed by %s', 'wpboiler' ),
-                '<a href="' . esc_url( __( 'https://www.morganbaker.dev', 'wpboiler' ) ) . '">Morgan Baker Development</a>'
-            );
-            ?>
-            </p>
+            <div class="grid__span-3-5">
+                <div class="footer__logo">
+                    <h3>Morgan Baker <span>Development</span></h3>
+                </div>
+                <div class="footer__copyright">
+                    <p>&copy; <?= date('Y') ?> <?= bloginfo( 'name' ) ?></p>
+                </div>
+            </div>
         </div>
-
-    </div>  
+    </div>
 
 </footer>
 

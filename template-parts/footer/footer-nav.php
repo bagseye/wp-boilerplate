@@ -1,5 +1,5 @@
 <nav id="footerNavigation" class="footernavigation" aria-label="<?php esc_attr_e('Footer menu', 'wpboiler') ?>">
-
+    <h5 class="footernavigation__title">Services</h5>
     <?php 
     
     $footerMenuItems = wp_get_nav_menu_items('footer-navigation');
@@ -16,7 +16,7 @@
 
             populateFooterNav($footerMenu, $footerMenuItem->menu_item_parent, $footerMenuItem->ID, $tmpItem);
         }
-        echo '<ul>';
+        echo '<ul class="footernavigation__list">';
         
             foreach($footerMenu as $footerMenuItm) {
                 paintFooterNav($footerMenuItm);
@@ -32,7 +32,7 @@
 <?php 
 
 function paintFooterNav($footerMenuItm) {
-    echo '<li>
+    echo '<li class="footernavigation__list--item">
             <a href="' . $footerMenuItm['Item']['Link'] . '">' . $footerMenuItm['Item']['Text'] . '</a>
         </li>';
 }
