@@ -2,21 +2,10 @@
     padding-right: $spacing;
 
     &__title {
-        margin-top: 0;
-        margin-bottom: calc($spacing / 2);
-        font-size: $paragraph;
+        @extend %footer-menu-title;
     }
 
     &__list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-
-        &--item {
-            // a {
-            //     color: ;
-            //     text-decoration: none;
-            // }
-        }
+        @extend %footer-menu;
     }
 }

@@ -1,0 +1,28 @@
+.e-categories {
+  margin-top: $spacing;
+  width: 85%;
+  max-width: 500px;
+
+  &__header {
+    margin-bottom: calc($spacing / 2);
+  }
+
+  &__heading {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: $paragraph;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        margin-right: calc($spacing / 2);
+        margin-bottom: calc($spacing / 3);
+    }
+  }
+}

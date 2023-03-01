@@ -1,6 +1,11 @@
 %grid-padding {
   padding-left: calc(#{$spacing} / 2);
   padding-right: calc(#{$spacing} / 2);
+
+  @media(min-width: 760px) {
+    padding-left: $spacing;
+    padding-right: $spacing;
+  }
 }
 
 .grid {

@@ -6,6 +6,10 @@
     
         <?php the_content(); ?>
 
+    </div>
+    <div class="grid__span-3-5">
         <?php get_template_part( 'template-parts/content/content', 'author' ); ?>
+        <?php get_template_part( 'template-parts/content/content', 'categories' ); ?>
     </div>
 </article>
+<?php get_template_part( 'template-parts/content/content', 'related' ); ?>

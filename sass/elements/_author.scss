@@ -1,38 +1,29 @@
 .e-author {
-  margin-top: calc($spacing * 2);
+  margin-top: calc($spacing / 2);
   margin-bottom: $spacing;
   width: 85%;
   max-width: 500px;
-  border-top: 0.15em solid rgba($brand1, 0.25);
-  padding-top: calc(#{$spacing} / 1);
-             
-  @media(min-width: 760px) {
-    margin-top: calc($spacing * 3);
-  }
+  padding-bottom: $spacing;
 
   &__container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-        
-    @media(min-width: 760px) {
-      flex-direction: row;
-    }
   }
 
   &__media {
     flex-shrink: 0;
     flex-grow: 0;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.25);
            
     @media(min-width: 760px) {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
     }
 
     img {
@@ -56,11 +47,6 @@
 
   &__content {
     padding-top: calc($spacing / 2);
-            
-    @media(min-width: 760px) {
-      padding-top: 0;
-      padding-left: calc($spacing / 2);
-    }
   }
 
   &__name {
