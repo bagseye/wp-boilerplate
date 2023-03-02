@@ -1,4 +1,4 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class('h-type-standard h-container-large grid'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class('p-single h-type-standard h-container-large grid'); ?>>
     <div class="grid__span-3">
         <?php the_title('<h1>', '</h1>'); ?>
 

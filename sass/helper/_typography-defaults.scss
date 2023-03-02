@@ -275,14 +275,30 @@
   display: inline-block;
   border-radius: 0;
   font-family: $sansSerif;
-  font-size: $paragraph;
+  font-size: $paragraphSmall;
   font-weight: 700;
-  padding: calc($spacing / 2) $spacing;
+  padding: calc($spacing / 3) $spacing;
   border: 0.1em solid $black;
+  transition: background-color 0.2s ease-in,
+              border-color 0.2s ease-in,
+              color 0.2s ease-in;
+
+  &:hover {
+    background-color: $brand2;
+    border-color: $brand2;
+  }
 
   .is-style-basic & {
     background-color: transparent;
     color: $black;
+  }
+
+  .is-style-basic:hover & {
+    &.wp-block-button__link {
+      background-color: transparent;
+      border-color: $brand2;
+      color: $brand2;
+    }
   }
 }
 

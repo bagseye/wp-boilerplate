@@ -1,0 +1,5 @@
+.e-btn {
+  &__link {
+    @extend %button;
+  }
+}

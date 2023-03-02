@@ -1,0 +1,10 @@
+.p-single {
+  .e-published {
+    padding-bottom: calc(#{$spacing} / 2);
+    margin-top: $spacing;
+    margin-bottom: $spacing;
+    border-bottom: 0.15em solid rgba($brand1, 0.25);
+    width: 85%;
+    max-width: 500px;
+  }
+}
