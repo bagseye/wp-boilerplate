@@ -1,41 +1,50 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const entryPoints = {
-  app: "/js/app.js",
-  style: "/sass/main.scss",
-  editorStyle: "/sass/editor-styles.scss",
+const path = require('path');
+
+// Webpack Configuration
+// https://webpack.js.org/configuration/
+// I/O path settings
+const rootOutputPath = path.resolve(__dirname, 'dist');
+const outputPaths = {
+  js: 'js',
+  css: 'css',
+  images: 'images',
+  fonts: 'fonts',
 };
 
 module.exports = {
-  entry: entryPoints,
-  devtool: "inline-source-map",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].js",
-    clean: true,
+  entry: {
+    app: './src/entries/app.entry.js',
   },
-  mode: "development",
-  devtool: "inline-source-map",
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-    }),
-  ],
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: `${outputPaths.js}[name].bundle.js`,
+    chunkFilename: `${outputPaths.js}[name].bundle.js`,
+  },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env"],
-          },
-        },
-      },
-      {
-        test: /\.s?[c]ss$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Translates CSS into CommonJS
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    'postcss-preset-env',
+                    {
+                      // Options
+                    },
+                  ],
+                ],
+              },
+            },
+          }
+          // Compiles Sass to CSS
+          'sass-loader',
+        ],
       },
     ],
   },
