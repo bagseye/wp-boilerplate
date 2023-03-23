@@ -1,0 +1,65 @@
+
+
+
+$breakpointDesktopLarge: 1600px;
+$breakpointDesktop: 1024px;
+$breakpointTabletLarge: 992px;
+$breakpointIpad: 768px;
+$breakpointTablet: 600px;
+$breakpointIphone5: 375px;
+
+
+
+$h1Mobile: 2.5rem;
+$h1: 3rem;
+$h2Mobile: 2rem;
+$h2: 2.5rem;
+$h3Mobile: 1.5rem;
+$h3: 2rem;
+$h4Mobile: 1.25rem;
+$h4: 1.75rem;
+$h5Mobile: 1.2rem;
+$h5: 1.5rem;
+$h6: 1.25rem;
+
+$headingCategory: 1.25rem;
+$headingMain: 2.5rem;
+$headingSub: 1.5rem;
+
+$container: 1400px;
+$narrow: 740px;
+
+
+
+
+
+
+
+$sansSerif: 'Helvetica Neue', Helvetica, -apple-system, Arial, sans-serif;
+$serif: 'ITC Bodoni 72', 'Didot', 'Times New Roman', 'Times', 'Georgia';
+
+$heading1: clamp(2rem, 7vw, 3rem);
+$heading2: clamp(1.8rem, 7vw, 2.75rem);
+$heading3: clamp(1.6rem, 7vw, 2.5rem);
+$heading3Serif: clamp(1.85rem, 7vw, 2.8rem);
+$heading4: clamp(1.4rem, 7vw, 2.25rem);
+$heading5: clamp(1.2rem, 7vw, 2rem);
+$heading6: clamp(1rem, 7vw, 1.75rem);
+
+$black: #000000;
+$white: #ffffff;
+$brand1: #3a3a3a;
+$brand2: #ff3300;
+$brand3: #ffffff;
+$brand4: #f2f5f6;
+
+$spacing: 1.75rem;
+
+$containerLarge: 1400px;
+$containerStandard: 1180px;
+$containerSmall: 960px;
+
+$paragraph: clamp(1rem, 3vw, 1.2rem);
+$paragraphLead: clamp(1.25rem, 3vw, 1.6rem);
+$paragraphSmall: clamp(0.85rem, 2vw, 1rem);
+$paragraphSerif: clamp(1.1rem, 3.35vw, 1.35rem);

@@ -1,0 +1,9 @@
+// The global defaults for all containers
+// used as an @extend rule
+%container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $spacing;
+  padding-right: $spacing;
+  box-sizing: content-box;
+}
