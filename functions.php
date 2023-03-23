@@ -187,4 +187,19 @@ function wpboiler_the_html_classes() {
     echo 'class="' . esc_attr( $classes ) . '"';
 }
 
+function wpboiler_scripts_loader() {
+    if(is_front_page()) {
+        $html = file_get_contents(__DIR__ . '/dist/index.html'); // get the contents of the generated index.html file using HtmlWebpackPlugin
+        preg_match_all('/<script src="([^"]+)"><\/script>/', $html, $matches); // get all the script tags
+
+        foreach($matches[1] as $script) {
+            $file_path = '/wp-content/themes/wp-boilerplate/dist/' . $script; // get the file path
+            $file_url = get_template_directory_uri() . $file_path; // get the file url
+
+            wp_enqueue_script(basename($script, '.js'), $file_url, array(), null, true); // enqueue the script
+        }
+    }
+}
+add_action('wp_enqueue_scripts', 'wpboiler_scripts_loader');
+
 
