@@ -1,3 +1,10 @@
+<?php 
+
+if(!defined('ABSPATH')) {
+    exit;
+}
+
+?>
 <div class="socialmedia">
     <div class="socialmedia__container">
         <?php 
@@ -13,10 +20,10 @@
         echo '<ul>';
 
         foreach($socials as $social) {
-            $socialField = get_field($social, 'option');
+            $socialField = get_field('social_' . $social, 'option');
 
             if(isset($socialField) && !empty($socialField)) {
-                echo sprintf('<li><a href="%s" target="_blank" rel="nofollow noreferrer">%s</a></li>', $socialField, $social);
+                echo sprintf('<li><a href="%s" target="_blank" rel="nofollow noreferrer">%s</a></li>', $socialField['url'], $socialField['name']);
             }
         }
 

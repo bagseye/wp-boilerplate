@@ -1,0 +1,48 @@
+@mixin iphone5-only {
+  @media (max-width: $breakpointIphone5) { @content; }
+}
+
+@mixin tabletLarge {
+  @media (min-width: $breakpointTabletLarge) { @content; }
+}
+
+@mixin tablet {
+  @media (min-width: $breakpointTablet) { @content; }
+}
+
+@mixin ipad {
+  @media (min-width: $breakpointIpad) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpointDesktop) { @content; }
+}
+
+@mixin desktopLarge {
+  @media (min-width: $breakpointDesktopLarge) { @content; }
+}
+
+@mixin aspectRatio($width, $height) {
+  position: relative;
+
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: calc((#{$height} / #{$width}) * 100%);
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+}
+
+
+
+
+

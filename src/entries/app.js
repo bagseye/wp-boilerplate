@@ -6,6 +6,7 @@ import '../scss/base/_normalize.scss';
 import '../scss/elements/_author.scss';
 import '../scss/elements/_categories.scss';
 import '../scss/helper/_container-large.scss';
+import '../scss/elements/_footer.scss';
 import '../scss/helper/_grid.scss';
 import '../scss/pages/_single.scss';
 import '../scss/elements/_published.scss';
