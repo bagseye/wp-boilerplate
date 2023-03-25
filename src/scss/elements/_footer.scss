@@ -23,7 +23,15 @@
   // padding: $spacing;
   // color: #fff;
 
+  &__col {
+    border-top: 1px solid $black;
+    padding-top: $spacing;
+    background-color: red;
+    border: green;
+  }
+
   &__container {
+
       // max-width: $container;
       // margin-left: auto;
       // margin-right: auto;
@@ -95,17 +103,11 @@
 }
 
 .socialmedia {
-  ul {
-    @extend %footer-menu;
-      // padding: 0;
-      // margin: 0;
-      // list-style: none;
+  &__title {
+      @extend %footer-menu-title;
+  }
 
-      li {
-          a {
-              // color: #fff;
-              text-decoration: none;
-          }
-      }
+  &__list {
+    @extend %footer-menu;
   }
 }

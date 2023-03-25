@@ -51,4 +51,38 @@ module.exports = {
       },
     ],
   },
+  watch: true,
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
+    },
+    hot: true,
+    /**
+     * This is the proxy that will be used to serve the files
+     * from the local server. This is needed because the
+     * devServer is running on a different port than the
+     * local server.
+    */
+    proxy: {
+      '/': {
+        target: 'http://localhost:8888',
+        changeOrigin: true,
+      }
+    }
+  },
+  /**
+   * Set the watch options to ignore the node_modules folder
+   *  */ 
+  watchOptions: {
+    ignored: /node_modules/,
+    aggregateTimeout: 300,
+    poll: 1000,
+  },
+  // Enable caching for improved performance during development
+  cache: {
+    type: 'filesystem',
+    buildDependencies: {
+      config: [__filename],
+    },
+  }
 }

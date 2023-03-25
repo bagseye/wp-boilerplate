@@ -3,7 +3,7 @@
 <footer class="footer">
     <div class="footer__inner">
         <div class="footer__container h-container-large grid">
-            <div class="footer__items grid__span-3">
+            <div class="footer__col footer__items grid__span-3">
                 <?php get_template_part('template-parts/footer/footer', 'nav'); ?>
         
                 <?php get_template_part('template-parts/contact/social'); ?>
@@ -11,7 +11,7 @@
                 <?php get_template_part('template-parts/contact/contact-methods'); ?>
             </div>
 
-            <div class="grid__span-3-5">
+            <div class="footer__col grid__span-3-5">
                 <div class="footer__logo">
                     <h3>Morgan Baker <span>Development</span></h3>
                 </div>

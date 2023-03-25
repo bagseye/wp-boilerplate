@@ -5,30 +5,29 @@ if(!defined('ABSPATH')) {
 }
 
 ?>
-<div class="socialmedia">
-    <div class="socialmedia__container">
-        <?php 
+<nav class="socialmedia">
+    <h5 class="socialmedia__title">Social</h5>
+    <?php 
 
-        $socials = array(
-            'facebook',
-            'twitter',
-            'instagram',
-            'linkedin',
-            'youtube'
-        );
+    $socials = array(
+        'facebook',
+        'twitter',
+        'instagram',
+        'linkedin',
+        'youtube'
+    );
 
-        echo '<ul>';
+    echo '<ul class="socialmedia__list">';
 
-        foreach($socials as $social) {
-            $socialField = get_field('social_' . $social, 'option');
+    foreach($socials as $social) {
+        $socialField = get_field('social_' . $social, 'option');
 
-            if(isset($socialField) && !empty($socialField)) {
-                echo sprintf('<li><a href="%s" target="_blank" rel="nofollow noreferrer">%s</a></li>', $socialField['url'], $socialField['name']);
-            }
+        if(isset($socialField) && !empty($socialField)) {
+            echo sprintf('<li><a href="%s" target="_blank" rel="nofollow noreferrer">%s</a></li>', $socialField['url'], $socialField['name']);
         }
+    }
 
-        echo '</ul>';
-        
-        ?>
-    </div>
-</div>
+    echo '</ul>';
+    
+    ?>
+</nav>
