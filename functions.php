@@ -132,10 +132,10 @@ add_action('after_setup_theme', 'wpboiler_setup');
 */
 function wpboiler_scripts_init() {
 
-    wp_enqueue_style( 'wpboiler-styles', get_template_directory_uri() . '/dist/style.css' );
-    wp_enqueue_style( 'wpboiler-app-styles', get_template_directory_uri() . '/dist/app.css' );
+    // wp_enqueue_style( 'wpboiler-styles', get_template_directory_uri() . '/dist/style.css' );
+    // wp_enqueue_style( 'wpboiler-app-styles', get_template_directory_uri() . '/dist/app.css' );
 
-    wp_enqueue_script( 'wpboiler-app-js', get_template_directory_uri() . '/dist/app.js', array(), CACHE_VERSION, true );
+    // wp_enqueue_script( 'wpboiler-app-js', get_template_directory_uri() . '/dist/app.js', array(), CACHE_VERSION, true );
 
     // Remove basic block styles for WP core blocks
     wp_dequeue_style( 'wp-block-library' );
@@ -208,22 +208,30 @@ function wpboiler_scripts_loader() {
 add_action('wp_enqueue_scripts', 'wpboiler_scripts_loader');
 
 function wpboiler_styles_loader() {
-    // if(is_front_page()) {
-        $html = file_get_contents(__DIR__ . '/dist/index.html'); // get the contents of the generated index.html file using HtmlWebpackPlugin
-        // get all the link tags
-        // we want to inject the link tags in the header using the file HtmlWebpackPlugin generates
-        // this will supply the correct hash for the file
-        preg_match_all('/<link.*?\s+href="([^"]+\.css)".*?>/i', $html, $matches);
-
-        foreach($matches[1] as $style) {
-            $file_path = '/wp-content/themes/wp-boilerplate/dist/' . $style; // get the file path
-            // $file_url = get_template_directory_uri() . $file_path; // get the file url
-            $file_url = $style; // get the file url
-
-            var_dump(basename($style, '.css'));
-
-            wp_enqueue_style(basename($style, '.css'), $file_url, array(), false, 'all'); // enqueue the styles
-        }
+    /**
+     * @TODO: If builds and devs work ok, remove the commented code below
+    */
+    // if(WP_ENV === 'development') {
+        // wp_enqueue_style('wp-boilerplate-main', 'http://localhost:8080/wp-content/themes/wp-boilerplate/dist/app.css', [], null);
+        // wp_enqueue_script('wp-boilerplate-main', 'http://localhost:8080/wp-content/themes/wp-boilerplate/dist/app.js', [], null, true);
+    // } else {
+        // if(is_front_page()) {
+            $html = file_get_contents(__DIR__ . '/dist/index.html'); // get the contents of the generated index.html file using HtmlWebpackPlugin
+            // get all the link tags
+            // we want to inject the link tags in the header using the file HtmlWebpackPlugin generates
+            // this will supply the correct hash for the file
+            preg_match_all('/<link.*?\s+href="([^"]+\.css)".*?>/i', $html, $matches);
+    
+            foreach($matches[1] as $style) {
+                $file_path = '/wp-content/themes/wp-boilerplate/dist/' . $style; // get the file path
+                // $file_url = get_template_directory_uri() . $file_path; // get the file url
+                $file_url = $style; // get the file url
+    
+                var_dump(basename($style, '.css'));
+    
+                wp_enqueue_style(basename($style, '.css'), $file_url, array(), false, 'all'); // enqueue the styles
+            }
+        // }
     // }
 }
 add_action('wp_enqueue_scripts', 'wpboiler_styles_loader');
