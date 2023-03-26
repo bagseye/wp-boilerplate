@@ -1,6 +1,14 @@
+<?php 
+
+if(!defined('ABSPATH')) {
+    exit;
+}
+
+?>
+
 </main>
 
-<footer class="footer">
+<footer class="footer" role="contentinfo">
     <div class="footer__inner">
         <div class="footer__container h-container-large grid">
             <div class="footer__col footer__items grid__span-3">
@@ -21,7 +29,6 @@
             </div>
         </div>
     </div>
-
 </footer>
 
 </div><!-- #page -->

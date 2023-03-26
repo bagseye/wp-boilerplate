@@ -3,7 +3,16 @@
 %footer-menu-title {
   margin-top: 0;
   margin-bottom: calc($spacing / 2);
-  font-size: $paragraph;
+  font-size: $paragraphDesktop;
+
+  @include desktop {
+    font-size: $paragraphTablet;
+  }
+
+  @include tablet {
+    font-size: $paragraph;
+    margin-bottom: calc($spacing / 3);
+  }
 }
 
 %footer-menu {
@@ -13,6 +22,15 @@
 
   li {
       margin-bottom: calc($spacing / 3);
+      font-size: $paragraphDesktop;
+
+      @include desktop {
+        font-size: $paragraphTablet;
+      }
+    
+      @include tablet {
+        font-size: $paragraph;
+      }
   }
 }
 
@@ -32,9 +50,30 @@
       padding-top: $spacing;
       padding-bottom: $spacing;
     }
+
+    nav {
+      margin-bottom: calc($spacing * 2);
+
+      @include tablet {
+        margin-bottom: $spacing;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &__container &__col {
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+    
+
     @include tablet {
       padding-left: 0;
       padding-right: 0;
@@ -43,15 +82,7 @@
 
   &__container {
     
-    // >* {
-    //   &:first-child {
-    //     padding-left: 0;
-    //   }
-  
-    //   &:last-child {
-    //     padding-right: 0;
-    //   }
-    // }
+
       // max-width: $container;
       // margin-left: auto;
       // margin-right: auto;
@@ -68,20 +99,27 @@
   }
 
   &__items {
-      @media(min-width: 760px) {
-          display: flex;
+      display: flex;
+
+      @include tablet {
+        display: block;
       }
   }
 
   &__logo {
-      padding-top: calc($spacing * 1);
+      margin-bottom: calc($spacing / 3);
 
-      @include tablet {
-        padding-top: 0;
-      }
       h3 {
           margin: 0;
-          font-size: $heading5;
+          font-size: $heading5Desktop;
+          
+          @include desktop {
+            font-size: $heading5Tablet;
+          }
+
+          @include tablet {
+            font-size: $heading5;
+          }
       }
       span {
           display: block;
@@ -94,13 +132,26 @@
   &__copyright {
       p {
           margin: 0;
-          font-size: $paragraphSmall;
+          font-size: $paragraphSmallDesktop;
+          color: $brand1;
+
+          @include desktop {
+            font-size: $paragraphSmallTablet;
+          }
+
+          @include tablet {
+            font-size: $paragraphSmall;
+          }
       }
   }
 }
 
 .footernavigation {
   padding-right: calc($spacing * 2);
+
+  @include desktop {
+    padding-right: $spacing;
+  }
 
   @include tablet {
     padding-right: 0;
@@ -133,6 +184,10 @@
 
 .socialmedia {
   padding-right: calc($spacing * 2);
+
+  @include desktop {
+    padding-right: $spacing;
+  }
 
   @include tablet {
     padding-right: 0;

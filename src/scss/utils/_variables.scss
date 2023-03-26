@@ -1,12 +1,7 @@
 
 
 
-$breakpointDesktopLarge: 1360px;
-$breakpointDesktop: 1060px;
-$breakpointTabletLarge: 860px;
-$breakpointIpad: 760px;
-$breakpointTablet: 560px;
-$breakpointIphone5: 320px;
+
 
 
 
@@ -59,7 +54,26 @@ $containerLarge: 1400px;
 $containerStandard: 1180px;
 $containerSmall: 960px;
 
-$paragraph: clamp(1rem, 3vw, 1.2rem);
+$breakpointDesktopLarge: 1360px;
+$breakpointDesktop: 1060px;
+$breakpointTabletLarge: 860px;
+$breakpointIpad: 760px;
+$breakpointTablet: 560px;
+$breakpointIphone5: 320px;
+
+
 $paragraphLead: clamp(1.25rem, 3vw, 1.6rem);
-$paragraphSmall: clamp(0.85rem, 2vw, 1rem);
+
 $paragraphSerif: clamp(1.1rem, 3.35vw, 1.35rem);
+
+$paragraph: 0.85rem;
+$paragraphTablet: 1rem;
+$paragraphDesktop: 1.15rem;
+
+$paragraphSmall: 0.75rem;
+$paragraphSmallTablet: 0.85rem;
+$paragraphSmallDesktop: 0.95rem;
+
+$heading5: 1.1rem;
+$heading5Tablet: 1.35rem;
+$heading5Desktop: 1.65rem;

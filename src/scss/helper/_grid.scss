@@ -1,12 +1,12 @@
 @import '../utils/variables';
 
 %grid-padding {
-  padding-left: calc(#{$spacing} / 2);
-  padding-right: calc(#{$spacing} / 2);
+  padding-left: $spacing;
+  padding-right: $spacing;
 
-  @media(min-width: 760px) {
-    padding-left: $spacing;
-    padding-right: $spacing;
+  @include tablet {
+    padding-left: calc(#{$spacing} / 2);
+    padding-right: calc(#{$spacing} / 2);
   }
 }
 
@@ -18,10 +18,10 @@
   &__span {
     &-1 {
       @extend %grid-padding;
-      grid-column: 1 / span 2;
-    
-      @media(min-width: 760px) {
-        grid-column: 1 / span 1;
+      grid-column: 1 / span 1;
+
+      @include tablet {
+        grid-column: 1 / span 2;
       }
     }
 
@@ -31,19 +31,19 @@
     }
 
     &-3 {
-      @extend %grid-padding;
-      grid-column: 1 / span 5;
-          
-      @media(min-width: 760px) {
-        grid-column: 1 / span 3;
+      @extend %grid-padding; 
+      grid-column: 1 / span 3;
+
+      @include tablet {
+        grid-column: 1 / span 5;
       }
 
       &-5 {
         @extend %grid-padding;
-        grid-column: 1 / span 5;
+        grid-column: 4 / span 2;
 
-        @media(min-width: 760px) {
-          grid-column: 4 / span 2;
+        @include tablet {
+          grid-column: 1 / span 5;
         }
       }
     }

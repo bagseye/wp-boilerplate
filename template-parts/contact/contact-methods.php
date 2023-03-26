@@ -4,18 +4,19 @@ if(!defined('ABSPATH')) {
     exit;
 }
 
+$phone = get_field('phone_number', 'option');
+$email = get_field('email_address', 'option');
+$address = get_field('address', 'option'); 
+
 ?>
 
-<div class="contactmethods">
+<?php if(!empty($phone) || !empty($email) || !empty($address)) : ?>
+<nav class="contactmethods">
     <div class="contactmethods__container" itemscope itemtype="https://schema.org/LocalBusiness">
         <h5 class="contactmethods__title">Contact</h5>
         <ul class="contactmethods__list">
             <?php 
-
-            $phone = get_field('phone_number', 'option');
-            $email = get_field('email_address', 'option');
-            $address = get_field('address', 'option');  
-            
+ 
             if(!empty($phone)) {
                 $phone_esc = esc_html($phone);
                 echo "<li class='contactmethods__list--item'><a href='tel:{$phone_esc}' aria-label='Phone number' itemprop='telephone'>{$phone_esc}</a></li>";
@@ -35,4 +36,5 @@ if(!defined('ABSPATH')) {
             }
         ?>
     </div>
-</div>
+</nav>
+<?php endif; ?>
