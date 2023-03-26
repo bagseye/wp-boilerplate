@@ -5,8 +5,9 @@ if(!defined('ABSPATH')) {
 }
 
 ?>
-<nav class="socialmedia">
+<nav class="socialmedia" itemscope itemtype="https://schema.org/Organization">
     <h5 class="socialmedia__title">Social</h5>
+    <ul class="socialmedia__list">
     <?php 
 
     $socials = array(
@@ -17,17 +18,16 @@ if(!defined('ABSPATH')) {
         'youtube'
     );
 
-    echo '<ul class="socialmedia__list">';
-
     foreach($socials as $social) {
         $socialField = get_field('social_' . $social, 'option');
 
         if(isset($socialField) && !empty($socialField)) {
-            echo sprintf('<li><a href="%s" target="_blank" rel="nofollow noreferrer">%s</a></li>', $socialField['url'], $socialField['name']);
+            $url = esc_url($socialField['url']);
+            $name = esc_html($socialField['name']);
+            echo "<li><a href='{$url}' target='_blank' rel='nofollow noreferrer' aria-label='{$name}' itemProp='sameAs'>{$name}</a></li>";
         }
     }
-
-    echo '</ul>';
     
     ?>
+    </ul>
 </nav>

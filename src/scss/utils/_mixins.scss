@@ -3,23 +3,23 @@
 }
 
 @mixin tabletLarge {
-  @media (min-width: $breakpointTabletLarge) { @content; }
+  @media (max-width: $breakpointTabletLarge) { @content; }
 }
 
 @mixin tablet {
-  @media (min-width: $breakpointTablet) { @content; }
+  @media (max-width: $breakpointTablet) { @content; }
 }
 
 @mixin ipad {
-  @media (min-width: $breakpointIpad) { @content; }
+  @media (max-width: $breakpointIpad) { @content; }
 }
 
 @mixin desktop {
-  @media (min-width: $breakpointDesktop) { @content; }
+  @media (max-width: $breakpointDesktop) { @content; }
 }
 
 @mixin desktopLarge {
-  @media (min-width: $breakpointDesktopLarge) { @content; }
+  @media (max-width: $breakpointDesktopLarge) { @content; }
 }
 
 @mixin aspectRatio($width, $height) {

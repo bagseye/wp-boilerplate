@@ -15,7 +15,15 @@ module.exports = merge(common, {
         use: [
           'style-loader',
           'css-loader', 
-          'sass-loader'
+          'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: [
+                './src/scss/utils/*.scss',
+              ],
+            },
+          },
         ],
       },
     ],

@@ -25,13 +25,33 @@
 
   &__col {
     border-top: 1px solid $black;
-    padding-top: $spacing;
+    padding-top: calc($spacing * 2);
     background-color: transparent;
-    color: white;
+
+    @include tablet {
+      padding-top: $spacing;
+      padding-bottom: $spacing;
+    }
+  }
+
+  &__container &__col {
+    @include tablet {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   &__container {
-
+    
+    // >* {
+    //   &:first-child {
+    //     padding-left: 0;
+    //   }
+  
+    //   &:last-child {
+    //     padding-right: 0;
+    //   }
+    // }
       // max-width: $container;
       // margin-left: auto;
       // margin-right: auto;
@@ -55,7 +75,12 @@
 
   &__logo {
       padding-top: calc($spacing * 1);
+
+      @include tablet {
+        padding-top: 0;
+      }
       h3 {
+          margin: 0;
           font-size: $heading5;
       }
       span {
@@ -75,7 +100,11 @@
 }
 
 .footernavigation {
-  padding-right: $spacing;
+  padding-right: calc($spacing * 2);
+
+  @include tablet {
+    padding-right: 0;
+  }
 
   &__title {
       @extend %footer-menu-title;
@@ -103,6 +132,12 @@
 }
 
 .socialmedia {
+  padding-right: calc($spacing * 2);
+
+  @include tablet {
+    padding-right: 0;
+  }
+
   &__title {
       @extend %footer-menu-title;
   }
