@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     app: './src/entries/app.js',
+    editor: './src/entries/editor.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

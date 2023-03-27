@@ -45,10 +45,10 @@ function wpboiler_core_hero_render($attr, $content, $block) {
 
 	$html = null;
 	$modifiers = array();
-	$modifiers[] = (isset($attr['marginselect']) ? $attr['marginselect'] : 'margins__none');
-	$modifiers[] = (isset($attr['marginsdouble']) ? $attr['marginsdouble'] : '');
+	$modifiers[] = (isset($attr['marginselect']) ? esc_attr($attr['marginselect']) : 'margins__none');
+	$modifiers[] = (isset($attr['marginsdouble']) ? esc_attr($attr['marginsdouble']) : '');
 
-	$html = '<section class="hero splide ' . implode(' ', $modifiers) . '">
+	$html = '<section class="hero splide ' . join(' ', $modifiers) . '">
 				<div class="hero__track splide__track">
 					<div class="hero__list splide__list">
 						' . $content . '
@@ -58,10 +58,7 @@ function wpboiler_core_hero_render($attr, $content, $block) {
 
 	// If its just a single slide, remove all splide functionality
 	if(count($block->parsed_block['innerBlocks']) < 2) {
-		$html = str_replace('splide__track', '', $html);
-		$html = str_replace('splide__list', '', $html);
-		$html = str_replace('splide__slide', '', $html);
-		$html = str_replace('splide', '', $html);
+		$html = str_replace(['splide', 'splide__track', 'splide__list', 'splide__slide'], '', $html);
 	}
 
 	return $html;

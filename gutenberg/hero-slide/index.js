@@ -1,7 +1,7 @@
 (function (wp) {
-  const registerBlockType = wp.blocks.registerBlockType;
-  const el = wp.element.createElement;
-  const __ = wp.i18n.__;
+  const {registerBlockType, createBlock} = wp.blocks;
+  const {__} = wp.i18n;
+  const {createElement: el} = wp.element;
   const { Button } = wp.components;
   const { useBlockProps, RichText, MediaUpload, InnerBlocks } = wp.blockEditor;
   const allowedBlocks = ["core/button"];
@@ -68,152 +68,114 @@
         "div",
         useBlockProps(attributes),
 
-        el(
-          "div",
-          {
-            className: `${blockName}__toggleContainer ${
-              slidestate ? "slide__open" : "slide__closed"
-            }`,
-          },
-
-          // START .titleArea
-          el(
-            "div",
-            { className: `block__titleArea` },
-
-            // START .titleArea--name
-            el(
-              "div",
-              {
-                className: `block__titleArea--name`,
-              },
-              el("p", {}, __("Hero Slide", `${blockName}`))
-            ),
-            // END .titleArea--name
-
-            // START .titleArea--title
-            title &&
-              el(
-                "div",
-                {
-                  className: `block__titleArea--title`,
-                },
-                el("p", {}, title)
-              ),
-            // END .titleArea--title
-
-            // START .titleArea--toggle
-            el(
-              "div",
-              { className: `block__titleArea--toggle` },
-              el(
-                Button,
-                {
-                  onClick: onChangeSlideState,
-                },
-                !slidestate
-                  ? __("Open to Edit", `${blockName}`)
-                  : __("Close", `${blockName}`)
-              )
-            )
-            // END .titleArea--toggle
-          ),
-          // END .titleArea
-
           // PREVIEW AREA BEGIN
           el(
             "div",
-            { className: `${blockName}__preview` },
+            { className: `hero__slide ${mediaid ? 'hero__slide--has-media' : ''}` },
 
             // BACKGROUND IMAGE PREVIEW
             mediaid &&
               el("img", {
-                className: `${blockName}__image`,
+                className: `hero__slide--media`,
                 src: mediaurl,
               }),
 
             el(
               "div",
-              { className: `${blockName}__container` },
+              { className: `hero__container--content h-container-large` },
 
-              // PRE TITLE
-              el(RichText, {
-                tagName: "h3",
-                placeholder: "Enter a pre-title here",
-                className: `${blockName}__title--pre`,
-                value: pretitle ? pretitle : "",
-                onChange: (value) => setAttributes({ pretitle: value }),
-              }),
-
-              // TITLE
-              el(RichText, {
-                tagName: "h1",
-                placeholder: "Enter a title here",
-                className: `${blockName}__title`,
-                value: title ? title : "",
-                onChange: (value) => setAttributes({ title: value }),
-              }),
-
-              // INTRODUCTION
-              el(RichText, {
-                tagName: "p",
-                placeholder: "Enter an introduction here",
-                className: `${blockName}__title--intro`,
-                value: introduction ? introduction : "",
-                onChange: (value) => setAttributes({ introduction: value }),
-              }),
-
-              // CONTENT
               el(
                 "div",
-                {
-                  className: `${blockName}__content`,
-                },
+                { className: `hero__slide--content` },
 
-                el(InnerBlocks, {
-                  allowedBlocks: allowedBlocks,
-                })
+                // PRE TITLE
+                el(RichText, {
+                  tagName: "h3",
+                  placeholder: "Enter a pre-title here",
+                  className: `hero__title--pre`,
+                  value: pretitle ?? "",
+                  onChange: (value) => setAttributes({ pretitle: value }),
+                }),
+
+                // TITLE
+                el(RichText, {
+                  tagName: "h1",
+                  placeholder: "Enter a title here",
+                  className: `hero__title`,
+                  value: title ?? "",
+                  onChange: (value) => setAttributes({ title: value }),
+                }),
+
+                // INTRODUCTION
+                el(RichText, {
+                  tagName: "h2",
+                  placeholder: "Enter an introduction here",
+                  className: `hero__introduction`,
+                  value: introduction ?? "",
+                  onChange: (value) => setAttributes({ introduction: value }),
+                }),
+
+                // CONTENT
+                el(
+                  "div",
+                  {
+                    className: `${blockName}__content`,
+                  },
+
+                  el(InnerBlocks, {
+                    allowedBlocks: allowedBlocks,
+                  }),
+
+                  el(
+                    "div",
+                    {
+                      className: `hero__content--actions`,
+                    },
+
+                    // IMAGE UPLOAD
+                    el(MediaUpload, {
+                      onSelect: onSelectImage,
+                      allowedTypes: "image",
+                      value: mediaid,
+                      render: (obj) => {
+                        return el(
+                          Button,
+                          {
+                            className: "components-button is-primary",
+                            onClick: obj.open,
+                          },
+                          !mediaid
+                            ? __("Upload Image", `${blockName}`)
+                            : __("Replace Image", `${blockName}`)
+                        );
+                      },
+                    }),
+                      
+                    mediaid
+                    ? el(
+                        Button,
+                        {
+                          className: "components-button is-tertiary",
+                          style: { marginLeft: "5px" },
+                          onClick: () =>
+                            setAttributes({
+                              mediaid: "",
+                              mediaurl: "",
+                            }),
+                        },
+                        __("Remove Image", `${blockName}`)
+                      )
+                    : ""
+
+                  )
+                ),
               ),
 
-              // IMAGE UPLOAD
-              el(MediaUpload, {
-                onSelect: onSelectImage,
-                allowedTypes: "image",
-                value: mediaid,
-                render: (obj) => {
-                  return el(
-                    Button,
-                    {
-                      className: "components-button is-primary",
-                      onClick: obj.open,
-                    },
-                    !mediaid
-                      ? __("Upload Image", `${blockName}`)
-                      : __("Replace Image", `${blockName}`)
-                  );
-                },
-              }),
 
-              mediaid
-                ? el(
-                    Button,
-                    {
-                      className: "components-button is-tertiary",
-                      style: { marginLeft: "5px" },
-                      onClick: () =>
-                        setAttributes({
-                          mediaid: "",
-                          mediaurl: "",
-                        }),
-                    },
-                    __("Remove Image", `${blockName}`)
-                  )
-                : ""
+
+
             )
           )
-
-          // PREVIEW AREA END
-        )
       );
     },
 

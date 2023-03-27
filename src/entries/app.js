@@ -2,6 +2,12 @@ console.log('this is app js without 5');
 
 import '../scss/base/_normalize.scss';
 
+// Home
+import '../../gutenberg/hero/style.scss';
+
+// Editor
+import '../scss/editor/_editor-styles.scss';
+
 // Single
 import '../scss/elements/_author.scss';
 import '../scss/elements/_categories.scss';

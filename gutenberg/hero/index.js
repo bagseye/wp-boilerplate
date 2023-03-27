@@ -1,10 +1,10 @@
-(function (wp) {
-  const registerBlockType = wp.blocks.registerBlockType;
-  const el = wp.element.createElement;
-  const __ = wp.i18n.__;
-  const { RadioControl, ToggleControl, PanelBody } = wp.components;
-  const { useBlockProps, InspectorControls, InnerBlocks } = wp.blockEditor;
-  const { useSelect } = wp.data;
+(function ({blocks, element, i18n, components, blockEditor, data}) {
+  const {registerBlockType} = blocks;
+  const {createElement: el} = element;
+  const {__} = i18n;
+  const { RadioControl, ToggleControl, PanelBody } = components;
+  const { useBlockProps, InspectorControls, InnerBlocks } = blockEditor;
+  const { useSelect } = data;
   const allowedBlocks = ["wpboiler-core/hero-slide"];
   const blockName = "hero";
 
@@ -33,7 +33,7 @@
       },
     },
 
-    edit: function (props) {
+    edit: (props) => {
       const { attributes, setAttributes, clientId } = props;
       const { marginselect, marginsdouble } = attributes;
 
@@ -111,16 +111,16 @@
 
         // PREVIEW AREA BEGIN
         el(
-          "div",
-          { className: `${blockName}__preview` },
+          "section",
+          { className: `${blockName} ${blockName}__preview` },
 
           el(
             "div",
-            { className: `${blockName}__container` },
+            { className: `${blockName}__track` },
 
             el(
               "div",
-              { className: `${blockName}__content` },
+              { className: `${blockName}__list` },
 
               // Set a maximum number of slides allowed in the block
               innerBlockCount.length < 8
@@ -137,7 +137,7 @@
       );
     },
 
-    save: function () {
+    save: () => {
       return el(InnerBlocks.Content, {});
     },
   });

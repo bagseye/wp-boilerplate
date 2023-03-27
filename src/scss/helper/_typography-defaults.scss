@@ -22,6 +22,11 @@
   margin-bottom: $spacing;
 }
 
+%block-margin-small {
+  margin-top: calc($spacing / 3);
+  margin-bottom: calc($spacing / 2);
+}
+
 %block-margin-large {
   margin-top: calc($spacing * 2);
   margin-bottom: calc($spacing * 2);
@@ -49,7 +54,15 @@
 %heading-one {
   @extend %block-margin;
   @extend %heading;
-  font-size: $heading1;
+  font-size: $heading1Desktop;
+
+  @include desktop {
+    font-size: $heading1Tablet;
+  }
+
+  @include tablet {
+    font-size: $heading1;
+  }
 }
 
 %heading-two {
@@ -62,6 +75,7 @@
   @extend %block-margin;
   @extend %heading;
   font-size: $heading3;
+  line-height: 1.2;
 
   [class*="-serif-"] {
     font-size: $heading3Serif;  
@@ -72,13 +86,29 @@
 %heading-four {
   @extend %block-margin;
   @extend %heading;
-  font-size: $heading4;
+  font-size: $heading4Desktop;
+
+  @include desktop {
+    font-size: $heading4Tablet;
+  }
+
+  @include tablet {
+    font-size: $heading4;
+  }
 }
 
 %heading-five {
   @extend %block-margin;
   @extend %heading;
-  font-size: $heading5;
+  font-size: $heading5Desktop;
+
+  @include desktop {
+    font-size: $heading5Tablet;
+  }
+
+  @include tablet {
+    font-size: $heading5;
+  }
 }
 
 %heading-six {

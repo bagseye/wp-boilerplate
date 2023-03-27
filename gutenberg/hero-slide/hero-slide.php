@@ -43,7 +43,7 @@ add_action( 'init', 'wpboiler_core_hero_slide_block_init' );
 
 function wpboiler_core_hero_slide_render($attr, $content) {
 
-	$html = $pre_title_markup = $title_markup = $introduction_markup = $image_markup = null;
+	$html = $has_media = $pre_title_markup = $title_markup = $introduction_markup = $image_markup = null;
 
 	$pre_title = (isset($attr['pretitle']) ? $attr['pretitle'] : null);
 	$title = (isset($attr['title']) ? $attr['title'] : null);
@@ -51,23 +51,24 @@ function wpboiler_core_hero_slide_render($attr, $content) {
 	$media_id = (isset($attr['mediaid']) ? $attr['mediaid'] : null);
 
 	if($pre_title && !empty($pre_title)) {
-		$pre_title_markup = "<h3 class='hero__title--pre'>{$pre_title}</h3>";
+		$pre_title_markup = "<h3 class='hero__title--pre'>" . esc_html($pre_title) . "</h3>";
 	}
 
 	if($title && !empty($title)) {
-		$title_markup = "<h2 class='hero__title'>{$title}</h2>";
+		$title_markup = "<h1 class='hero__title'>" . esc_html($title) . "</h1>";
 	}
 
 	if($introduction && !empty($introduction)) {
-		$introduction_markup = "<h2 class='hero__introduction'>{$introduction}</h2>";
+		$introduction_markup = "<h2 class='hero__introduction'>" . esc_html($introduction) . "</h2>";
 	}
 
 	if($media_id && is_numeric($media_id)) {
 		$image_markup = '<div class="hero__slide--media">' . createImage($media_id, 'cta') . '</div>';
+		$has_media = 'hero__slide--has-media';
 	}
 
-	$html = "<div class='hero__slide splide__slide'>
-				<div class='hero__container--content'>
+	$html = "<div class='hero__slide splide__slide {$has_media}'>
+				<div class='hero__container--content h-container-large'>
 					<div class='hero__slide--content'>
 						{$pre_title_markup}
 						{$title_markup}
