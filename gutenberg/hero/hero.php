@@ -48,17 +48,15 @@ function wpboiler_core_hero_render($attr, $content, $block) {
 	$modifiers[] = (isset($attr['marginselect']) ? esc_attr($attr['marginselect']) : 'margins__none');
 	$modifiers[] = (isset($attr['marginsdouble']) ? esc_attr($attr['marginsdouble']) : '');
 
-	$html = '<section class="hero splide ' . join(' ', $modifiers) . '">
-				<div class="hero__track splide__track">
-					<div class="hero__list splide__list">
-						' . $content . '
-					</div>
-				</div>
-			</section>';
+	$html = '<section class="hero js-carousel ' . join(' ', $modifiers) . '">
+						<div class="hero__list js-carousel__items">
+							' . $content . '
+						</div>
+				</section>';
 
 	// If its just a single slide, remove all splide functionality
 	if(count($block->parsed_block['innerBlocks']) < 2) {
-		$html = str_replace(['splide', 'splide__track', 'splide__list', 'splide__slide'], '', $html);
+		$html = str_replace(['js-carousel', 'js-carousel__items'], '', $html);
 	}
 
 	return $html;

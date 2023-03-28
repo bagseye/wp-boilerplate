@@ -1,4 +1,4 @@
-console.log('this is app js without 5');
+import carousel from '../js/module/carousel';
 
 import '../scss/base/_normalize.scss';
 
@@ -17,6 +17,9 @@ import '../scss/helper/_grid.scss';
 import '../scss/pages/_single.scss';
 import '../scss/elements/_published.scss';
 import '../scss/helper/_typography-standard.scss';
+
+// Init
+carousel();
 
 if(module.hot) {
   module.hot.accept();

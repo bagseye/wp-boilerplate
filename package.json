@@ -33,5 +33,8 @@
     "webpack-dev-server": "^4.13.1",
     "webpack-merge": "^5.8.0",
     "write-file-webpack-plugin": "^4.5.1"
+  },
+  "dependencies": {
+    "flickity": "^3.0.0"
   }
 }

@@ -51,15 +51,15 @@ function wpboiler_core_hero_slide_render($attr, $content) {
 	$media_id = (isset($attr['mediaid']) ? $attr['mediaid'] : null);
 
 	if($pre_title && !empty($pre_title)) {
-		$pre_title_markup = "<h3 class='hero__title--pre'>" . esc_html($pre_title) . "</h3>";
+		$pre_title_markup = "<h3 class='hero__title--pre'>{$pre_title}</h3>";
 	}
 
 	if($title && !empty($title)) {
-		$title_markup = "<h1 class='hero__title'>" . esc_html($title) . "</h1>";
+		$title_markup = "<h1 class='hero__title'>{$title}</h1>";
 	}
 
 	if($introduction && !empty($introduction)) {
-		$introduction_markup = "<h2 class='hero__introduction'>" . esc_html($introduction) . "</h2>";
+		$introduction_markup = "<h2 class='hero__introduction'>{$introduction}</h2>";
 	}
 
 	if($media_id && is_numeric($media_id)) {
