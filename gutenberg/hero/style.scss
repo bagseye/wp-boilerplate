@@ -28,21 +28,49 @@ section.hero {
     
     &__container--content {
         height: 100%;
-        display: flex;
         align-items: center;
+        padding-left: calc($spacing * 4);
+        padding-right: calc($spacing * 4);
+
+        @include desktop {
+            padding-left: calc($spacing * 3);
+            padding-right: calc($spacing * 3);
+        }
+
+        @include tablet {
+            padding-left: calc($spacing * 1);
+            padding-right: calc($spacing * 1);
+        }
     }
 
     .hero__slide {
         width: 100%;
-        height: 60vh;
-        min-height: 600px;
+        padding-top: calc($spacing * 5);
+
+        @include desktop {
+            padding-top: calc($spacing * 4);
+        }
+
+        @include tablet {
+            padding-top: calc($spacing * 3);
+        }
 
         &--content {
             z-index: 1;
             width: calc((100% / 5) * 3);
-            // max-width: 700px;
-            border-top: 1px solid $brand4;
-            padding-top: $spacing;
+            border-top: 1px solid $brand1;
+            padding-top: calc($spacing / 2);
+            padding-bottom: calc($spacing * 2);
+
+            @include desktop {
+                width: calc((100% / 5) * 3);
+                padding-bottom: calc($spacing * 1);
+            }
+
+            @include tablet {
+                width: 100%;
+                padding-bottom: calc($spacing * 1);
+            }
 
 
 
@@ -57,21 +85,13 @@ section.hero {
             }
         }
 
-        &.hero__slide--has-media .hero__slide--content {
-            border-color: #fff;
-        }
-
         &--media {
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
             height: 100%;
             width: 100%;
 
             img {
                 width: 100%;
-                height: 100%;
+                height: auto;
                 object-fit: cover;
                 object-position: center;
             }
@@ -103,29 +123,19 @@ section.hero {
           font-size: $heading1;
         }
 
-        .hero__slide--has-media & {
-            color: white;
-            text-shadow: 0px 0px 20px rgba(0,0,0,0.6);
-        }
-
         &--pre {
             margin-bottom: calc($spacing / 2);
-            font-size: $heading5Desktop;
+            font-size: $heading6Desktop;
             line-height: 1.1;
-            color: $brand4;
+            color: $brand2;
             font-weight: 500;
 
-            .hero__slide--has-media & {
-                color: white;
-                text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
-            }
-
             @include desktop {
-                font-size: $heading5Tablet;
+                font-size: $heading6Tablet;
             }
 
             @include tablet {
-                font-size: $heading5;
+                font-size: $heading6;
             }
         }
     }
@@ -133,11 +143,6 @@ section.hero {
     &__introduction {
         font-size: $heading4Desktop;
         line-height: 1.1;
-
-        .hero__slide--has-media & {
-            color: white;
-            text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
-        }
 
         @include desktop {
             font-size: $heading4Tablet;

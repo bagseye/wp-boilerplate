@@ -48,7 +48,7 @@ function wpboiler_core_hero_render($attr, $content, $block) {
 	$modifiers[] = (isset($attr['marginselect']) ? esc_attr($attr['marginselect']) : 'margins__none');
 	$modifiers[] = (isset($attr['marginsdouble']) ? esc_attr($attr['marginsdouble']) : '');
 
-	$html = '<section class="hero js-carousel ' . join(' ', $modifiers) . '">
+	$html = '<section id="hero-carousel-' . mt_rand(10000, 99999) . '" class="hero js-carousel ' . join(' ', $modifiers) . '">
 						<div class="hero__list js-carousel__items">
 							' . $content . '
 						</div>

@@ -2,6 +2,9 @@ import carousel from '../js/module/carousel';
 
 import '../scss/base/_normalize.scss';
 
+// Global
+// import '../scss/helper/_typography-defaults.scss';
+
 // Home
 import '../../gutenberg/hero/style.scss';
 
@@ -17,6 +20,7 @@ import '../scss/helper/_grid.scss';
 import '../scss/pages/_single.scss';
 import '../scss/elements/_published.scss';
 import '../scss/helper/_typography-standard.scss';
+import '../scss/elements/_btn.scss';
 
 // Init
 carousel();

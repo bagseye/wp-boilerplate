@@ -44,11 +44,11 @@ $heading6: clamp(1rem, 7vw, 1.75rem);
 $black: #000000;
 $white: #ffffff;
 $brand1: #3a3a3a;
-$brand2: #ff3300;
+$brand2: rgb(76, 148, 254);
 $brand3: #ffffff;
 $brand4: #5a5a5a;
 
-$spacing: 1.25rem;
+$spacing: 2rem;
 
 $containerLarge: 1400px;
 $containerStandard: 1180px;
@@ -85,3 +85,7 @@ $heading4Desktop: 1.45rem;
 $heading5: 1.1rem;
 $heading5Tablet: 1.15rem;
 $heading5Desktop: 1.2rem;
+
+$heading6: 1rem;
+$heading6Tablet: 1.05rem;
+$heading6Desktop: 1.1rem;

@@ -73,13 +73,6 @@
             "div",
             { className: `hero__slide ${mediaid ? 'hero__slide--has-media' : ''}` },
 
-            // BACKGROUND IMAGE PREVIEW
-            mediaid &&
-              el("img", {
-                className: `hero__slide--media`,
-                src: mediaurl,
-              }),
-
             el(
               "div",
               { className: `hero__container--content h-container-large` },
@@ -171,10 +164,14 @@
                 ),
               ),
 
+                                      // BACKGROUND IMAGE PREVIEW
+                                      mediaid &&
+                                      el("img", {
+                                        className: `hero__slide--media`,
+                                        src: mediaurl,
+                                      }),
+            ),
 
-
-
-            )
           )
       );
     },
